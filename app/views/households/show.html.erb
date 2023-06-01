@@ -1,0 +1,22 @@
+<h1>Household name: <%= current_user.household.name %></h1>
+<br>
+<h3>Households#show</h3>
+<p>Find me in app/views/households/show.html.erb</p>
+
+
+
+<%= link_to "Add a User", new_user_path %>
+<hr>
+
+
+<div class="container">
+  <% @users.each do |user| %>
+    <div class="card-product">
+      <div class="card-product-infos">
+      <ul>
+        <li> <%= user.name_first %> <%= user.name_last %>  </li>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+</div>

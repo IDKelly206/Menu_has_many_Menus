@@ -1,0 +1,20 @@
+<h1>Users#new</h1>
+<p>Find me in app/views/users/new.html.erb</p>
+<h3>Create a new user</h3>
+
+<div class="container">
+  <%= simple_form_for(@user) do |f|%>
+    <%= f.input :name_first  %>
+    <%= f.input :name_last %>
+    <%= f.input :email,
+            required: true,
+            autofocus: true,
+            input_html: { autocomplete: "email" } %>
+    <%= f.input :household_id, input_html: { value: current_user.household_id  } %>
+    <%= f.submit "Add User to Household", class: "btn btn-primary" %>
+
+  <% end %>
+
+
+
+</div>

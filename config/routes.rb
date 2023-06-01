@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
+
+
   root to: "pages#home"
 
-  devise_for :users
+  devise_for :users, :path_prefix => 'auth'
+  resources :users, only: [:new, :create]
+
+  resources :households, only: [:show]
 
 
 

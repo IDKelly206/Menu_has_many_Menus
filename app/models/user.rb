@@ -4,15 +4,19 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
   :recoverable, :rememberable, :validatable
 
+  validates :name_first, :name_last, presence: true
+
   belongs_to :household
 
   before_validation :assign_household
 
   def assign_household
-    Household.create
-    self.household_id = Household.last.id
-    user = self
-    user.household.name = " #{user.name_last.capitalize} + household"
+    if self.household_id.nil?
+      Household.create
+      self.household_id = Household.last.id
+    end
   end
+
+
 
 end
