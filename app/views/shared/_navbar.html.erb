@@ -15,6 +15,9 @@
             <%= link_to "Home", root_path, class: "nav-link" %>
           </li>
           <li class="nav-item">
+            <%= link_to "Menu", menus_path , class: "nav-link" %>
+          </li>
+          <li class="nav-item">
             <%= link_to "Household", household_path(current_user.household_id) , class: "nav-link" %>
           </li>
           <li class="nav-item dropdown">
