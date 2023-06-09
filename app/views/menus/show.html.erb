@@ -2,6 +2,12 @@
 
 <div class="container">
 
+  <ul>
+    <% @menu.meals.all.each do |meal| %>
+      <li><%= meal.name %>  </li>
+      <li> <%= meal.user.name_first %> </li>
+    <% end %>
+  </ul>
 
 
 

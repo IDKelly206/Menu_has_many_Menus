@@ -7,6 +7,8 @@ class User < ApplicationRecord
   validates :name_first, :name_last, presence: true
 
   belongs_to :household
+  
+  has_many :meals
 
   before_validation :assign_household
 

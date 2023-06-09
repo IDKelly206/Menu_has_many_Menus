@@ -3,16 +3,23 @@
 
 <div class="container">
 
-<%= link_to "Create a new Menu", "#", class: "btn btn-ghost" %>
+<%= link_to "Create a new Meal", new_meal_path, class: "btn btn-ghost" %>
 
 <% @menus.each do |menu| %>
     <div class="card-product">
       <div class="card-product-infos">
+      <h6><%= menu.date %></h6>
+      <p><%= link_to "See Menu details", menu %></p>
       <ul>
-        <li><%= menu.date %></li>
+        <% menu.meals.all.each do |meal| %>
+          <li><%= meal.name %>  </li>
+          <li> <%= meal.user.name_first %> </li>
+        <% end %>
       </ul>
       </div>
-      <%= link_to "See Menu details", menu %>
+      <div>
+
+      </div>
     </div>
   <% end %>
 

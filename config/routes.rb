@@ -6,7 +6,15 @@ Rails.application.routes.draw do
 
   resources :households, only: [:show]
 
-  resources :menus, only: [:index, :show, :new, :create]
+  resources :menus, only: [:index, :show, :new, :create] do
+    resources :meals, only: [:show, :edit, :update, :destroy]
+  end
+
+  resources :meals, only: [:new, :create]
+
+
+
+
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
