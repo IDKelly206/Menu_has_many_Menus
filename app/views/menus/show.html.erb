@@ -4,7 +4,7 @@
 
   <ul>
     <% @menu.meals.all.each do |meal| %>
-      <li><%= meal.name %>  </li>
+      <li><%= meal.meal_type %>  </li>
       <li> <%= meal.user.name_first %> </li>
     <% end %>
   </ul>

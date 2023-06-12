@@ -1,0 +1,43 @@
+.section-menu {
+  display: flex;
+  justify-content: space-around;
+  background-color: black;
+  height: 500px;
+  margin: 0px 20px 0px 20px;
+}
+
+.card-menu{
+  display: flex;
+  flex-direction: column;
+
+  width: 20%;
+  background-color: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  margin: 5px 5px 5px 5px;
+
+
+}
+
+.card-menu-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  border: 1px solid black;
+}
+
+.card-menu-meal {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  height: 33%;
+  align-items: center;
+  border: 1px solid darkgray;
+  margin: 1px 1px 1px 1px;
+
+}
+
+.card-menu-meal-user {
+
+}

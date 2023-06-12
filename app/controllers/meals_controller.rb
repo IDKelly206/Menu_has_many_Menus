@@ -23,14 +23,14 @@ class MealsController < ApplicationController
     @menu_ids.each do |menu_id|
       menu = Menu.find(menu_id)
       @user_ids.each do |user_id|
-        Meal.create!(name: @meal_type, user_id: user_id, menu_id: menu_id)
+        Meal.create!(meal_type: @meal_type, user_id: user_id, menu_id: menu_id)
       end
     end
 
-    if Meal.last.id != meal_last.id
-      redirect_to menus_path
-    else
+    if Meal.last.id == meal_last.id
       render :new
+    else
+      redirect_to menus_path
     end
   end
 

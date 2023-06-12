@@ -4,10 +4,11 @@ class MenusController < ApplicationController
 
   def index
     @menus = Menu.all.where(household_id: @household)
+    @meal_type = %w(Breakfast Lunch Dinner)
   end
 
   def show
-    
+
   end
 
   def new

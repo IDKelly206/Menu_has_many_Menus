@@ -2,26 +2,27 @@
 <p>Find me in app/views/menus/index.html.erb</p>
 
 <div class="container">
-
 <%= link_to "Create a new Meal", new_meal_path, class: "btn btn-ghost" %>
+</div>
+<div class="section-menu">
 
-<% @menus.each do |menu| %>
-    <div class="card-product">
-      <div class="card-product-infos">
-      <h6><%= menu.date %></h6>
-      <p><%= link_to "See Menu details", menu %></p>
-      <ul>
-        <% menu.meals.all.each do |meal| %>
-          <li><%= meal.name %>  </li>
-          <li> <%= meal.user.name_first %> </li>
-        <% end %>
-      </ul>
-      </div>
-      <div>
+  <% @menus.each do |menu| %>
+    <div class="card-menu">
+      <div class="card-menu-header">
+        <h6><%= menu.date.strftime("%a") %></h6>
+        <h6><%= link_to "#{menu.date.strftime("%b" "%d")}", menu %></h6>
 
       </div>
+      <% @meal_type.each do |meal| %>
+        <div class= "card-menu-meal">
+            <%= meal %>
+            <div class= "card-menu-meal-user">
+
+            </div>
+        </div>
+      <% end %>
+
     </div>
   <% end %>
-
 
 </div>
