@@ -29,3 +29,14 @@
   <input type="submit" value="Submit">
 
 </form> %>
+
+<%# menu_ids.each do |menu_id|
+  menu = Menu.find(menu_id)
+    user_ids.each do |user_id|
+      Meal.create!(meal_type: meal_type, user_id: user_id, menu_id: menu_id)
+      meal_id = Meal.last.id
+      courses_info.each do |course|
+        Course.create!(meal_id: meal_id, course_type: course[0], recipe_id: course[1])
+      end
+    end
+end %>

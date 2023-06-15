@@ -1,6 +1,3 @@
-<h1>Menus#index</h1>
-<p>Find me in app/views/menus/index.html.erb</p>
-
 <div class="container">
 <%= link_to "Create a new Meal", new_meal_path, class: "btn btn-ghost" %>
 </div>
@@ -10,18 +7,26 @@
     <div class="card-menu">
       <div class="card-menu-header">
         <h6><%= menu.date.strftime("%a") %></h6>
-        <h6><%= link_to "#{menu.date.strftime("%b" "%d")}", menu %></h6>
-
+        <h6><%= link_to "#{menu.date.strftime("%B"" ""%d")}", menu %></h6>
       </div>
+
       <% @meal_type.each do |meal| %>
         <div class= "card-menu-meal">
-            <%= meal %>
-            <div class= "card-menu-meal-user">
+          <div class="card-menu-meal-header">
+            <h5><%= meal %></h5>
+          </div>
 
-            </div>
+          <div class= "card-menu-meal-body">
+            <% @users.each do |user| %>
+              <div class= "card-menu-meal-user">
+                <h6><%= user.name_first %></h6>
+
+                <p>Meal #: <%= user.meals.where(menu_id: menu).ids.first %></p>
+              </div>
+            <% end %>
+          </div>
         </div>
       <% end %>
-
     </div>
   <% end %>
 

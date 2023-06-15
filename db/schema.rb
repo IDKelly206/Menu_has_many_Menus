@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_09_125400) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_15_091920) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -19,7 +19,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_09_125400) do
     t.string "course_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "recipe_id", null: false
     t.index ["meal_id"], name: "index_courses_on_meal_id"
+    t.index ["recipe_id"], name: "index_courses_on_recipe_id"
   end
 
   create_table "households", force: :cascade do |t|
@@ -46,6 +48,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_09_125400) do
     t.index ["household_id"], name: "index_menus_on_household_id"
   end
 
+  create_table "recipes", force: :cascade do |t|
+    t.string "label"
+    t.string "source"
+    t.integer "yield"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -63,6 +73,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_09_125400) do
   end
 
   add_foreign_key "courses", "meals"
+  add_foreign_key "courses", "recipes"
   add_foreign_key "meals", "menus"
   add_foreign_key "meals", "users"
   add_foreign_key "menus", "households"
