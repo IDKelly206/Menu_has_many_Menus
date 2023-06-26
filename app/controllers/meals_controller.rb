@@ -4,6 +4,9 @@ class MealsController < ApplicationController
   def show
   end
 
+  def new_meal
+  end
+
   def new
     @meal = Meal.new
     @users = User.all.where(household_id: @household)
