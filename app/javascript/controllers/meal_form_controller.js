@@ -1,8 +1,8 @@
 import { Controller } from "@hotwired/stimulus"
 
+// Connects to data-controller="meal-form"
 export default class extends Controller {
   connect() {
-    console.log("Hello controller")
-
+    console.log("Meal Form controller")
   }
 }

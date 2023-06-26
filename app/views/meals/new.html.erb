@@ -1,5 +1,5 @@
 <h1>New Meal page</h1>
-<div class="container">
+<div class="container" data-controller="meal-form">
 
 <%= form_with url: "/meals", method: :post do |f| %>
   <%= f.collection_check_boxes :menu_ids, @menus, :id, :date, include_hidden: false %>
