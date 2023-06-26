@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   before_action :configure_permitted_parameters, if: :devise_controller?
-
+  before_action :turbo_frame_request_variant
 
   private
 
@@ -11,5 +11,9 @@ class ApplicationController < ActionController::Base
 
     # For additional in app/views/devise/registrations/edit.html.erb
     devise_parameter_sanitizer.permit(:account_update, keys: [:name_first, :name_last])
+  end
+
+  def turbo_frame_request_variant
+    request.variant = :turbo_frame if turbo_frame_request?
   end
 end

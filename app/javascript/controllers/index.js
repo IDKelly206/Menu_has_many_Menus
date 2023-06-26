@@ -9,3 +9,6 @@ application.register("hello", HelloController)
 
 import MealFormController from "./meal_form_controller"
 application.register("meal-form", MealFormController)
+
+import ModalController from "./modal_controller"
+application.register("modal", ModalController)

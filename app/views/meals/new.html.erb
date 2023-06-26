@@ -1,18 +1,20 @@
-<h1>New Meal page</h1>
-<div class="container" data-controller="meal-form">
 
-<%= form_with url: "/meals", method: :post do |f| %>
-  <%= f.collection_check_boxes :menu_ids, @menus, :id, :date, include_hidden: false %>
-  <div>
-  <%= f.collection_check_boxes :user_ids, @users, :id, :name_first, include_hidden: false %>
+<div class="row">
+  <div class="col-sm-10 col-md-8 col-lg-6 col-xl-4 offset-sm-1 offset-md-2 offset-lg-3 offset-xl-4">
+    <div class="card mb-4">
+      <div class="card-header">
+        <h2 class="card-title">Meal Create</h2>
+      </div>
+      <div class="card-body">
+        <%= render "meal/new" %>
+      </div>
+      <div class="card-footer text-muted">
+        <%=  %>
+      </div>
+    </div>
   </div>
-  <%= f.select :meal_type, collection: @meal_type %>
-  <%= f.submit %>
-<% end %>
-
-
-
 </div>
+
 
 
 <%# <form action="/meals" method='post' accept-charset="UTF-8">
