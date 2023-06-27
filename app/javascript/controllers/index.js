@@ -7,8 +7,8 @@ import { application } from "./application"
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 
-import MealFormController from "./meal_form_controller"
-application.register("meal-form", MealFormController)
-
 import ModalController from "./modal_controller"
 application.register("modal", ModalController)
+
+import TurboModalController from "./turbo_modal_controller"
+application.register("turbo-modal", TurboModalController)

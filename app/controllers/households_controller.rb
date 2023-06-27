@@ -3,6 +3,10 @@ class HouseholdsController < ApplicationController
 
   def show
     @users = @household.users
+
+    @first_names = params.fetch(:name_first, [])
+    @last_names = params.fetch(:name_last, [])
+    @household_ids = params.fetch(:hosuehold_id, [])
   end
 
 
@@ -10,5 +14,6 @@ class HouseholdsController < ApplicationController
   def set_household
     @household = Household.find(params[:id])
   end
+
 
 end

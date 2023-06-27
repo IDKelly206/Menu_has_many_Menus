@@ -16,4 +16,9 @@ export default class extends Controller {
       this.element.remove();
     })
   }
+
+  hideModal() {
+    this.element.parentElement.removeAttribute("src")
+    this.element.remove()
+  }
 }
