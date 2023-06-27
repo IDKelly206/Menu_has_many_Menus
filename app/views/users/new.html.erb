@@ -10,12 +10,8 @@
             required: true,
             autofocus: true,
             input_html: { autocomplete: "email" } %>
-    <%= f.input :household_id ,input_html: { value: current_user.household_id  } %>
-    <%# f.hidden_field (:household_id, current_user.household_id) %>
+    <%= f.hidden_field :household_id, value: current_user.household_id %>
     <%= f.submit "Add User to Household", class: "btn btn-primary" %>
-
   <% end %>
-
-
 
 </div>

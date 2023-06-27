@@ -1,6 +1,27 @@
 <div class="container">
-<h1>New Meal page</h1>
+  <%= @user_ids.each do |user| %>
+    <p><%= user %></p>
+  <% end %>
+  <br><hr>
+  <%= @menu_ids.each do |menu|%>
+    <p><%= menu %></p>
+  <% end %>
+  <br><hr>
+  
+</div>
 
+<div class="row">
+  <div class="col-sm-10 col-md-8 col-lg-6 col-xl-4 offset-sm-1 offset-md-2 offset-lg-3 offset-xl-4">
+    <div class="card mb-4">
+      <div class="card-header">
+        <h2 class="card-title">Meal Create</h2>
+      </div>
+      <div class="card-body">
+        <%= render "meals/new_meal" %>
+      </div>
+      <div class="card-footer text-muted">
 
-
+      </div>
+    </div>
+  </div>
 </div>

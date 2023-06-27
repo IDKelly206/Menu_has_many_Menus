@@ -4,10 +4,10 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
   :recoverable, :rememberable, :validatable
 
-  validates :name_first, :name_last, presence: true
+  validates :name_first, :name_last, :household_id, presence: true
 
   belongs_to :household
-  
+
   has_many :meals
 
   before_validation :assign_household

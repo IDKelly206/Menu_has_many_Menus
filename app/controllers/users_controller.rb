@@ -19,4 +19,8 @@ class UsersController < ApplicationController
     params.require(:user).permit(:name_first, :name_last, :household_id, :email)
   end
 
+  def set_household
+    @household = current_user.household_id
+  end
+
 end
