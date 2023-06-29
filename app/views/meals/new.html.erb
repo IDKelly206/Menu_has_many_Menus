@@ -1,27 +1,36 @@
-<div class="container">
-  <%= @user_ids.each do |user| %>
-    <p><%= user %></p>
-  <% end %>
-  <br><hr>
-  <%= @menu_ids.each do |menu|%>
-    <p><%= menu %></p>
-  <% end %>
-  <br><hr>
-  
-</div>
 
-<div class="row">
-  <div class="col-sm-10 col-md-8 col-lg-6 col-xl-4 offset-sm-1 offset-md-2 offset-lg-3 offset-xl-4">
-    <div class="card mb-4">
-      <div class="card-header">
-        <h2 class="card-title">Meal Create</h2>
-      </div>
-      <div class="card-body">
-        <%= render "meals/new_meal" %>
-      </div>
-      <div class="card-footer text-muted">
 
+  <div class="row">
+    <div class="" data-controller="turbo-modal">
+      <div class="card m-4 ">
+        <div class="card-header">
+          <h2 class="card-title">Create Create</h2>
+        </div>
+        <div class="card-body">
+          <%= form_with url: "/meals/new", data: { controller: 'meal-new'} do |f| %>
+            <div class="mb-3">
+              <%= f.collection_check_boxes :menu_ids, @menus, :id, :date, include_hidden: false %>
+            </div>
+            <div class="mb-3" data-meal-new-target="setUser">
+              <%= f.collection_check_boxes :user_ids, @users, :id, :name_first, include_hidden: false %>
+            </div>
+            <div class="mb-3" data-meal-new-target="setType" >
+              <%= f.select :meal_type, @meal_type, selected: "Lunch" %>
+            </div>
+            <div>
+
+            </div>
+
+          <% end %>
+        </div>
+        <div class="card-footer text-muted mt-2" data-target="meal-new.addMeal">
+          <%= link_to "Finish Meal", "#", data: { action: "click->meal-new#setMeal" } %>
+        </div>
       </div>
     </div>
   </div>
+
+
+<div class="container">
+  <p></p>
 </div>

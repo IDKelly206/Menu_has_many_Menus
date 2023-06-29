@@ -1,5 +1,5 @@
 
-<%= form_with url: "/meals", method: :post do |f| %>
+<%= form_with url: "/courses/new", method: :post do |f| %>
   <div class="mb-3">
   <%= f.collection_check_boxes :menu_ids, @menus, :id, :date, include_hidden: false %>
   </div>
@@ -13,5 +13,6 @@
   <%= f.submit %>
   </div>
 <% end %>
+<div>
 
-
+</div>

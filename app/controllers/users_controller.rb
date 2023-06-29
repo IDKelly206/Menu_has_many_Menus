@@ -5,9 +5,9 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    if @user.save(validate: false)
-      redirect_back_or_to household_path(current_user.household_id)
-
+    if @user.save(validate: false) #skips validations
+      format.turbo_stream { render turbo_stream: turbo_stream.append(:users, partial: "users/user", locals: { user: user }) }
+      redirect_to household_path(current_user.household_id)
     else
       render :new, status: :unprocessable_entity
     end

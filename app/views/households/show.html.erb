@@ -10,13 +10,5 @@
 
 
 <div class="container">
-  <% @users.each do |user| %>
-    <div class="card-product">
-      <div class="card-product-infos">
-      <ul>
-        <li> <%= user.name_first %> <%= user.name_last %>  </li>
-        </ul>
-      </div>
-    </div>
-  <% end %>
+  <%= render partial: "users/user", collection: @users %>
 </div>

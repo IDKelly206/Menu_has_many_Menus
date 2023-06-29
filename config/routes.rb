@@ -12,7 +12,7 @@ Rails.application.routes.draw do
 
   resources :meals, only: [:new, :create]
 
-  resources :course, only: [:new, :create]
+  resources :courses, only: [:new, :create]
 
 
 

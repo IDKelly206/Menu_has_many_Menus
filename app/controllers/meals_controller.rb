@@ -4,14 +4,9 @@ class MealsController < ApplicationController
   def show
   end
 
-  def new_meal
-  end
-
   def new
-    @meal = Meal.new
     @users = User.all.where(household_id: @household)
     @menus = Menu.all.where(household_id: @household)
-    @dates =
     @meal_type = %w(Breakfast Lunch Dinner)
 
   end
@@ -50,3 +45,15 @@ class MealsController < ApplicationController
 
 
 end
+
+#  MEAL creation function with COURSE
+# menu_ids.each do |menu_id|
+#   menu = Menu.find(menu_id)
+#     user_ids.each do |user_id|
+#       Meal.create!(meal_type: meal_type, user_id: user_id, menu_id: menu_id)
+#       meal_id = Meal.last.id
+#       courses_info.each do |course|
+#         Course.create!(meal_id: meal_id, course_type: course[0], recipe_id: course[1])
+#       end
+#     end
+# end
