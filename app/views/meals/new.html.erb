@@ -1,4 +1,4 @@
-
+<div class="container" data-controller="meal-new">
 
   <div class="row">
     <div class="" data-controller="turbo-modal">
@@ -6,35 +6,48 @@
         <div class="card-header">
           <h2 class="card-title">Create Create</h2>
         </div>
-        <div class="card-body">
-          <%= form_with url: "/meals/new", data: { controller: 'meal-new'} do |f| %>
-            <div class="mb-3" data-meal-new-target="setMenuID">
-              <%= f.collection_check_boxes(:menu_ids, @menus, :id, :date, include_hidden: false) do |b| %>
-                <%= b.label { b.check_box(checked: true) + b.text } %>
-              <% end %>
+        <div class="card-body" >
+          <%= form_with url: "/meals/new" do |f| %>
+            <div class="mb-3" data-meal-new-target="getMenuID">
+              <%= f.collection_check_boxes(:menu_ids, @menus, :id, :date, include_hidden: false) %>
             </div>
-            <div class="mb-3" data-meal-new-target="setUserID">
+            <div class="mb-3" data-meal-new-target="getUserID">
               <%= f.collection_check_boxes(:user_ids, @users, :id, :name_first, include_hidden: false) do |b| %>
                 <%= b.label { b.check_box(checked: true) + b.text } %>
               <% end %>
             </div>
-            <div class="mb-3" data-meal-new-target="setType" >
+            <div class="mb-3" data-meal-new-target="getType" >
               <%= f.select :meal_type, @meal_type, prompt: "Choose Meal" %>
             </div>
             <div>
 
             </div>
 
+            <%= link_to "Finish Meal", "#", data: { action: "click->meal-new#setMeal" } %>
           <% end %>
         </div>
-        <div class="card-footer text-muted mt-2" data-target="meal-new.addMeal">
-          <%= link_to "Finish Meal", "#", data: { action: "click->meal-new#setMeal" } %>
+        <div class="card-footer text-muted mt-2" >
         </div>
       </div>
     </div>
   </div>
 
 
-<div class="container">
-  <p></p>
+  <div class="container" >
+    <%= form_with url: "/courses/new", method: :post do |f| %>
+    <div class="mb-3">
+      <%= f.hidden_field :menu_ids, value: '' , data: { target: 'meal-new.setMenuID' } %>
+    </div>
+    <div class="mb-3">
+      <%= f.hidden_field :user_ids, value: '', data: { target: 'meal-new.setUserID' } %>
+    </div>
+    <div class="mb-3">
+      <%= f.hidden_field :meal_type, value: '', data: { target: 'meal-new.setType' } %>
+    </div>
+    <div class="mb-3">
+      <%= f.submit %>
+    </div>
+  <% end %>
+  </div>
+
 </div>
