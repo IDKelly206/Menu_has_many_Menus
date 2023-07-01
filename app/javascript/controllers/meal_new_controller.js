@@ -5,7 +5,11 @@ export default class extends Controller {
   static targets = [ "getMenuID", "getUserID", "getType", "setMenuID", "setUserID", "setType"]
   connect() {
     console.log("Meal New controller")
-    console.log(this.getMenuIDTarget.querySelectorAll("input[type='checkbox'][checked='checked']").forEach(element => console.log(element.value)))
+
+
+    console.log(this.getMenuIDTarget.querySelectorAll("input[type='checkbox']").forEach(element => element.checked ? console.log(element.value) : 0 ))
+    // console.log(this.getMenuIDTarget.querySelectorAll("input[type='checkbox']").forEach(element => console.log(element.value)))
+
     console.log(this.getUserIDTarget.querySelectorAll("input[type='checkbox'][checked='checked']").forEach(element => console.log(element.value)))
     console.log(this.getTypeTarget.firstElementChild.value)
     console.log(this.setTypeTarget.value)
@@ -21,13 +25,13 @@ export default class extends Controller {
 
   get menuIDs() {
     let menuIDs = []
-    this.getMenuIDTarget.querySelectorAll("input[type='checkbox'][checked=true]").forEach(element => menuIDs.push(element.value))
+    this.getMenuIDTarget.querySelectorAll("input[type='checkbox']").forEach(element => element.checked ? menuIDs.push(element.value) : 0 )
     return menuIDs
   }
 
   get userIDs() {
     let userIDS = []
-    this.getUserIDTarget.querySelectorAll("input[type='checkbox'][checked='checked']").forEach(element => userIDS.push(element.value))
+    this.getUserIDTarget.querySelectorAll("input[type='checkbox']").forEach(element => element.checked ? userIDS.push(element.value) : 0 )
     return userIDS
   }
 

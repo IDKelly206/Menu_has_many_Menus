@@ -7,7 +7,7 @@
   <%= f.collection_check_boxes :user_ids, @users, :id, :name_first, include_hidden: false %>
   </div>
   <div class="mb-3">
-  <%= f.select :meal_type, collection: @meal_type %>
+  <%= f.select :meal_type, collection: @meal_type, reqruied: true, prompt: "Choose Meal" %>
   </div>
   <div class="mb-3">
   <%= f.submit %>

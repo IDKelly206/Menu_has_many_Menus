@@ -9,15 +9,15 @@
         <div class="card-body" >
           <%= form_with url: "/meals/new" do |f| %>
             <div class="mb-3" data-meal-new-target="getMenuID">
-              <%= f.collection_check_boxes(:menu_ids, @menus, :id, :date, include_hidden: false) %>
+              <%= f.collection_check_boxes(:menu_ids, @menus, :id, :date, include_hidden: false)  %>
+
             </div>
             <div class="mb-3" data-meal-new-target="getUserID">
-              <%= f.collection_check_boxes(:user_ids, @users, :id, :name_first, include_hidden: false) do |b| %>
-                <%= b.label { b.check_box(checked: true) + b.text } %>
-              <% end %>
+              <%= f.collection_check_boxes(:user_ids, @users, :id, :name_first, include_hidden: false) %>
+
             </div>
             <div class="mb-3" data-meal-new-target="getType" >
-              <%= f.select :meal_type, @meal_type, prompt: "Choose Meal" %>
+              <%= f.select :meal_type, @meal_type  %>
             </div>
             <div>
 
