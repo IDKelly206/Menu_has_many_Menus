@@ -35,14 +35,14 @@
 
   <div class="container" >
     <%= form_with url: "/meals" do |f| %>
-    <div class="mb-3">
+    <div class="mb-3" data-meal-new-target = "setMenuID">
 
 
 
     </div>
-    <div class="mb-3">
+    <%# <div class="mb-3">
       <%= f.hidden_field :menu_ids, multiple: true,  data: { target: 'meal-new.setMenuID' } %>
-    </div>
+    <%# </div> %>
     <div class="mb-3">
       <%= f.hidden_field :user_ids, multiple: true, value: :user_ids, data: { target: 'meal-new.setUserID' } %>
     </div>
