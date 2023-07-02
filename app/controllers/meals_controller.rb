@@ -21,7 +21,7 @@ class MealsController < ApplicationController
     @menu_ids.each do |menu_id|
       menu = Menu.find(menu_id)
       @user_ids.each do |user_id|
-        Meal.create!(meal_type: @meal_type, user_id: user_id, menu_id: menu_id)
+        Meal.create!(meal_type: @meal_type, user_id: user_id.to_i, menu_id: menu_id.to_i)
       end
     end
 

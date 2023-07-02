@@ -6,26 +6,31 @@ export default class extends Controller {
   connect() {
     console.log("Meal New controller")
 
+    let menuIDss = []
+    this.getMenuIDTarget.querySelectorAll("input[type='checkbox']").forEach(element => element.checked ? menuIDss.push(element.value) : 0 )
+    console.log(this.menuIDss)
 
-    console.log(this.getMenuIDTarget.querySelectorAll("input[type='checkbox']").forEach(element => element.checked ? console.log(element.value) : 0 ))
+    // console.log(this.getMenuIDTarget.querySelectorAll("input[type='checkbox']").forEach(element => element.checked ? console.log(element.value) : 0 ))
     // console.log(this.getMenuIDTarget.querySelectorAll("input[type='checkbox']").forEach(element => console.log(element.value)))
-
-    console.log(this.getUserIDTarget.querySelectorAll("input[type='checkbox'][checked='checked']").forEach(element => console.log(element.value)))
-    console.log(this.getTypeTarget.firstElementChild.value)
-    console.log(this.setTypeTarget.value)
+    // console.log(this.getUserIDTarget.querySelectorAll("input[type='checkbox'][checked='checked']").forEach(element => console.log(element.value)))
+    // console.log(this.getTypeTarget.firstElementChild.value)
+    // console.log(this.setTypeTarget.value)
 
   }
 
   setMeal(event) {
     event.preventDefault()
+    this.getMenuIDTarget.querySelectorAll("input[type='checkbox']").forEach(element => element.checked ? menuIDs.push(element.value) : 0 )
+    console.log(this.setMenuIDTarget)
     this.setMenuIDTarget.value = this.menuIDs;
     this.setUserIDTarget.value = this.userIDs;
     this.setTypeTarget.value = this.mealType;
   }
 
   get menuIDs() {
-    let menuIDs = []
+    let menuID = []
     this.getMenuIDTarget.querySelectorAll("input[type='checkbox']").forEach(element => element.checked ? menuIDs.push(element.value) : 0 )
+    let menuIDs = menuID.split("");
     return menuIDs
   }
 

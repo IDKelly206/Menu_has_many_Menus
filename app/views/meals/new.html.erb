@@ -34,15 +34,20 @@
 
 
   <div class="container" >
-    <%= form_with url: "/courses/new", method: :post do |f| %>
+    <%= form_with url: "/meals" do |f| %>
     <div class="mb-3">
-      <%= f.hidden_field :menu_ids, value: '' , data: { target: 'meal-new.setMenuID' } %>
+
+
+
     </div>
     <div class="mb-3">
-      <%= f.hidden_field :user_ids, value: '', data: { target: 'meal-new.setUserID' } %>
+      <%= f.hidden_field :menu_ids, multiple: true,  data: { target: 'meal-new.setMenuID' } %>
     </div>
     <div class="mb-3">
-      <%= f.hidden_field :meal_type, value: '', data: { target: 'meal-new.setType' } %>
+      <%= f.hidden_field :user_ids, multiple: true, value: :user_ids, data: { target: 'meal-new.setUserID' } %>
+    </div>
+    <div class="mb-3">
+      <%= f.hidden_field :meal_type, value: :meal_type, data: { target: 'meal-new.setType' } %>
     </div>
     <div class="mb-3">
       <%= f.submit %>
@@ -50,4 +55,7 @@
   <% end %>
   </div>
 
+<div class="container">
+  <%= render '/meals/new_meal' %>
+</div>
 </div>
