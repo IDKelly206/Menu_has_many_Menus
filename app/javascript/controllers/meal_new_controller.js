@@ -14,7 +14,7 @@ export default class extends Controller {
     // console.log(this.getMenuIDTarget.querySelectorAll("input[type='checkbox']").forEach(element => console.log(element.value)))
     // console.log(this.getUserIDTarget.querySelectorAll("input[type='checkbox'][checked='checked']").forEach(element => console.log(element.value)))
     // console.log(this.getTypeTarget.firstElementChild.value)
-    console.log(this.setMenuIDTarget)
+    console.log(typeof this.setMenuIDTarget)
 
   }
 
@@ -39,12 +39,9 @@ export default class extends Controller {
     setMeal(event) {
       event.preventDefault()
       console.log(this.menuIDs)
-      this.menuIDs.forEach(menu_id =>
-        let formField = <%= f.hidden_field :menu_ids, multiple: true, value: (menu_id) %>
-
-        this.setMenuIDTarget.insertAdjacentElement("afterbegin", formField))
-
-
+      this.menuIDs.forEach((menu_id) => {
+        this.setMenuIDTarget.insertAdjacentHTML('afterbegin', `<input multiple="many" value=${menu_id} type="hidden" name="menu_ids[]" id="menu_ids">`);
+      });
 
       // this.setMenuIDTarget.value = this.menuIDs;
       this.setUserIDTarget.value = this.userIDs;
