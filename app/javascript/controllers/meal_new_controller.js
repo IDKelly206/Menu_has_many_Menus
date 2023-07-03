@@ -40,11 +40,16 @@ export default class extends Controller {
       event.preventDefault()
       console.log(this.menuIDs)
       this.menuIDs.forEach((menu_id) => {
-        this.setMenuIDTarget.insertAdjacentHTML('afterbegin', `<input multiple="many" value=${menu_id} type="hidden" name="menu_ids[]" id="menu_ids">`);
+        this.setMenuIDTarget.insertAdjacentHTML('afterbegin', `<input multiple="multiple" value=${menu_id} type="hidden" name="menu_ids[]" id="menu_ids">`);
       });
 
       // this.setMenuIDTarget.value = this.menuIDs;
-      this.setUserIDTarget.value = this.userIDs;
+      console.log(this.userIDs)
+      this.userIDs.forEach((user_id) => {
+        this.setUserIDTarget.insertAdjacentHTML('afterbegin', `<input multiple="multiple" value=${user_id} type="hidden" name="user_ids[]" id="user_id">`);
+      });
+
+      // this.setUserIDTarget.value = this.userIDs;
       this.setTypeTarget.value = this.mealType;
     }
 
