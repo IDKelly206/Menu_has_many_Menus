@@ -5,17 +5,6 @@ export default class extends Controller {
   static targets = [ "getMenuID", "getUserID", "getType", "setMenuID", "setUserID", "setType"]
   connect() {
     console.log("Meal New controller")
-
-    // let menuIDs = []
-    // this.getMenuIDTarget.querySelectorAll("input[type='checkbox']").forEach(element => element.checked ? menuIDs.push(element.value) : 0 )
-    // console.log(this.menuIDs)
-
-    // console.log(this.getMenuIDTarget.querySelectorAll("input[type='checkbox']").forEach(element => element.checked ? console.log(element.value) : 0 ))
-    // console.log(this.getMenuIDTarget.querySelectorAll("input[type='checkbox']").forEach(element => console.log(element.value)))
-    // console.log(this.getUserIDTarget.querySelectorAll("input[type='checkbox'][checked='checked']").forEach(element => console.log(element.value)))
-    // console.log(this.getTypeTarget.firstElementChild.value)
-    console.log(typeof this.setMenuIDTarget)
-
   }
 
   get menuIDs() {
@@ -43,13 +32,11 @@ export default class extends Controller {
         this.setMenuIDTarget.insertAdjacentHTML('afterbegin', `<input multiple="multiple" value=${menu_id} type="hidden" name="menu_ids[]" id="menu_ids">`);
       });
 
-      // this.setMenuIDTarget.value = this.menuIDs;
       console.log(this.userIDs)
       this.userIDs.forEach((user_id) => {
         this.setUserIDTarget.insertAdjacentHTML('afterbegin', `<input multiple="multiple" value=${user_id} type="hidden" name="user_ids[]" id="user_id">`);
       });
 
-      // this.setUserIDTarget.value = this.userIDs;
       this.setTypeTarget.value = this.mealType;
     }
 
