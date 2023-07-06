@@ -11,12 +11,12 @@ class Meal::Importer
   end
 
   def create
-    validate_params!
+    # validate_params!
 
     @menu_ids.each do |menu_id|
       menu = Menu.find(menu_id)
       @user_ids.each do |user_id|
-        Meal.create!(name: @meal_type, user_id: user_id, menu_id: menu_id)
+        Meal.create!(meal_type: @meal_type, user_id: user_id, menu_id: menu_id)
       end
     end
   end

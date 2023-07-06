@@ -1,18 +1,17 @@
 
-<%= form_with url: "/meals", method: :post do |f| %>
-  <div class="mb-3">
-  <%= f.collection_check_boxes :menu_ids, @menus, :id, :date, include_hidden: false %>
+  <div data-controller="meal-new">
+    <%= form_with url: "/meals/new" do |f| %>
+      <div class="mb-3" data-meal-new-target="getType">
+        <%= f.select :meal_type, @meal_type, { prompt: "Select meal" } %>
+      </div>
+      <div class="mb-3" data-meal-new-target="getUserID">
+        <%= f.collection_check_boxes(:user_ids, @users, :id, :name_first, include_hidden: false) %>
+      </div>
+      <div class="mb-3" data-meal-new-target="getMenuID">
+        <%= f.collection_check_boxes(:menu_ids, @menus, :id, :date, include_hidden: false)   %>
+      </div>
+      <%= link_to "Finish Meal", "#", data: { action: "click->meal-new#setMeal" } %>
+    <% end %>
+    <div class="card-footer text-muted mt-2" data-meal-new-target="errorMessage" >
+    </div>
   </div>
-  <div class="mb-3">
-  <%= f.collection_check_boxes :user_ids, @users, :id, :name_first, include_hidden: false %>
-  </div>
-  <div class="mb-3">
-  <%= f.select :meal_type, collection: @meal_type, prompt: "Choose Meal" %>
-  </div>
-  <div class="mb-3">
-  <%= f.submit %>
-  </div>
-<% end %>
-<div>
-
-</div>

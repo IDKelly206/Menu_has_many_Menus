@@ -8,7 +8,12 @@ class MealsController < ApplicationController
     @users = User.all.where(household_id: @household)
     @menus = Menu.all.where(household_id: @household)
     @meal_type = %w(Breakfast Lunch Dinner)
+  end
 
+  def meal_new
+    @users = User.all.where(household_id: @household)
+    @menus = Menu.all.where(household_id: @household)
+    @meal_type = %w(Breakfast Lunch Dinner)
   end
 
   def create
@@ -21,9 +26,11 @@ class MealsController < ApplicationController
     @menu_ids.each do |menu_id|
       menu = Menu.find(menu_id)
       @user_ids.each do |user_id|
-        Meal.create!(meal_type: @meal_type, user_id: user_id.to_i, menu_id: menu_id.to_i)
+        Meal.create!(meal_type: @meal_type, user_id: user_id.to_i, menu_id: menu_id)
       end
     end
+
+    # Meal::Importer.create(meal_params)
 
     if Meal.last.id == meal_last.id
       render :new
@@ -39,7 +46,7 @@ class MealsController < ApplicationController
   end
 
   def meal_params
-    # params(:meals).permit(:meal_type, user_ids: [], menu_ids: [])
+    # params.permit(:meal_type, user_ids: [], menu_ids: [])
     params.require(:meal).permit(:name, user_id: [], menu_id: [])
   end
 

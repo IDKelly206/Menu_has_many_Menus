@@ -5,6 +5,7 @@ class User < ApplicationRecord
   :recoverable, :rememberable, :validatable
 
   validates :name_first, :name_last, :household_id, presence: true
+  validates :email, uniqueness: true
 
   belongs_to :household
 

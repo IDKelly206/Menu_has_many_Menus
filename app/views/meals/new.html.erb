@@ -1,61 +1,66 @@
 <div class="container" data-controller="meal-new">
 
-  <div class="row">
-    <div class="" data-controller="turbo-modal">
-      <div class="card m-4 ">
-        <div class="card-header">
-          <h2 class="card-title">Create Create</h2>
-        </div>
-        <div class="card-body" >
-          <%= form_with url: "/meals/new" do |f| %>
-            <div class="mb-3" data-meal-new-target="getMenuID">
-              <%= f.collection_check_boxes(:menu_ids, @menus, :id, :date, include_hidden: false)  %>
+<!-- Button trigger modal -->
+<button hidden id="openMeal" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+  Set Meal
+</button>
 
-            </div>
-            <div class="mb-3" data-meal-new-target="getUserID">
-              <%= f.collection_check_boxes(:user_ids, @users, :id, :name_first, include_hidden: false) %>
-
-            </div>
-            <div class="mb-3" data-meal-new-target="getType" >
-              <%= f.select :meal_type, @meal_type  %>
-            </div>
-            <div>
-
-            </div>
-
-            <%= link_to "Finish Meal", "#", data: { action: "click->meal-new#setMeal" } %>
-          <% end %>
-        </div>
-        <div class="card-footer text-muted mt-2" >
-        </div>
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content" >
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <%= form_with url: "/meals/new" do |f| %>
+          <div class="mb-3" data-meal-new-target="getType">
+            <%= f.select :meal_type, @meal_type, { prompt: "Select meal" } %>
+          </div>
+          <div class="mb-3" data-meal-new-target="getUserID">
+            <%= f.collection_check_boxes(:user_ids, @users, :id, :name_first, include_hidden: false) %>
+          </div>
+          <div class="mb-3" data-meal-new-target="getMenuID">
+            <%= f.collection_check_boxes(:menu_ids, @menus, :id, :date, include_hidden: false)   %>
+          </div>
+        <% end %>
+        <div data-meal-new-target="errorMessage"></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-action="meal-new#setMeal" >Next</button>
+        <button hidden type="button" id="closeMeal" class="btn btn-warning" data-bs-dismiss="modal">Hidden</button>
       </div>
     </div>
   </div>
-
-
-  <div class="container" >
-    <%= form_with url: "/meals" do |f| %>
-    <div class="mb-3" data-meal-new-target = "setMenuID">
-
-
-
-    </div>
-    <%# <div class="mb-3">
-      <%= f.hidden_field :menu_ids, multiple: true,  data: { target: 'meal-new.setMenuID' } %>
-    <%# </div> %>
-    <div class="mb-3" data-meal-new-target = "setUserID">
-      <%# <%= f.hidden_field :user_ids, multiple: true, value: :user_ids, data: { target: 'meal-new.setUserID' } %> >
-    </div>
-    <div class="mb-3">
-      <%= f.hidden_field :meal_type, value: :meal_type, data: { target: 'meal-new.setType' } %>
-    </div>
-    <div class="mb-3">
-      <%= f.submit %>
-    </div>
-  <% end %>
-  </div>
-
-<div class="container">
-  <%= render '/meals/new_meal' %>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="container">
+    <%= form_with url: "/meals" do |f| %>
+      <div class="mb-3">
+        <%= f.hidden_field :meal_type, value: :meal_type, data: { target: 'meal-new.setType' } %>
+      </div>
+      <div class="mb-3" data-meal-new-target = "setUserID">
+      </div>
+      <div class="mb-3" data-meal-new-target = "setMenuID">
+      </div>
+      <div class="mb-3">
+        <%= f.submit %>
+      </div>
+    <% end %>
+  </div>
 </div>
