@@ -4,14 +4,14 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   static targets = [ "getType", "getUserID", "getMenuID", "setType", "setUserID", "setMenuID", "errorMessage"]
   connect() {
-    console.log("Meal New controller")
-    console.log(this.getTypeTarget)
-    console.log(this.getUserIDTarget)
-    console.log(this.getMenuIDTarget)
-    console.log(this.setTypeTraget)
-    console.log(this.setUserIDTarget)
-    console.log(this.setMenuIDTarget)
-    console.log(this.errorMessageTarget)
+    // console.log("Meal New controller")
+    // console.log(this.getTypeTarget)
+    // console.log(this.getUserIDTarget)
+    // console.log(this.getMenuIDTarget)
+    // console.log(this.setTypeTraget)
+    // console.log(this.setUserIDTarget)
+    // console.log(this.setMenuIDTarget)
+    // console.log(this.errorMessageTarget)
     this.showModal;
   }
 
