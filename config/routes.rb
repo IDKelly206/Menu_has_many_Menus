@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   root to: "pages#home"
 
+  resources :recipes, only: [:index,:show]
+
   devise_for :users, :path_prefix => 'auth'
   resources :users, only: [:new, :create]
 
@@ -18,7 +20,6 @@ Rails.application.routes.draw do
 
   resources :courses, only: [:new, :create]
 
-  resource :recipes, only: [:index, :show]
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
