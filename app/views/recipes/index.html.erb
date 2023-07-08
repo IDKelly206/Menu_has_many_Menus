@@ -1,5 +1,17 @@
 <div class="container">
 <h1>Recipe Index page</h1>
+</div>
 
+<div class="container text-center" data-controller="recipe-search">
+  <form id="search-form" class="row">
+    <div class="col-10" >
+      <input data-recipe-search-target="searchInput" id="search-input" type="text" class="form-control" placeholder="Find movies">
+      </div>
+      <div class="col-2">
+        <input type="button" class="btn btn-primary" value="Search" data-action="recipe-search#submit">
+      </div>
+    </form>
+
+<ul data-recipe-search-target="results" id="results" class="list-inline"></ul>
 
 </div>

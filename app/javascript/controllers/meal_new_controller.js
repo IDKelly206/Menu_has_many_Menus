@@ -5,7 +5,7 @@ export default class extends Controller {
   static targets = [ "getType", "getUserID", "getMenuID", "setType", "setUserID", "setMenuID", "errorMessage"]
   connect() {
     // console.log("Meal New controller")
-    // console.log(this.getTypeTarget)
+    console.dir(this.getTypeTarget)
     // console.log(this.getUserIDTarget)
     // console.log(this.getMenuIDTarget)
     // console.log(this.setTypeTraget)
@@ -32,7 +32,6 @@ export default class extends Controller {
     return menuIDs
   }
 
-
   get setMealType() {
     return this.setTypeTarget.value = this.mealType;
   }
@@ -55,16 +54,16 @@ export default class extends Controller {
 
   setMeal(event) {
     event.preventDefault()
-    console.log(this.mealType)
-    console.log(this.menuIDs.length)
-    console.log(this.userIDs.length)
+    // console.log(this.mealType)
+    // console.log(this.menuIDs.length)
+    // console.log(this.userIDs.length)
 
 
     if ( this.mealType == "" ) {
       this.errorMessageTarget.insertAdjacentHTML('beforeend', `<p style="color:red">Selection of meal required</p>`);
     } else if ( this.userIDs.length == 0 ) {
       this.deleteMessages;
-      this.errorMessageTarget.insertAdjacentHTML('afterbegin', `<p style="color:red">Selection of user(s) required</p>`);
+      this.errorMessageTarget.insertAdjacentHTML('beforeend', `<p style="color:red">Selection of user(s) required</p>`);
     } else if ( this.menuIDs.length == 0 ) {
       this.deleteMessages;
       this.errorMessageTarget.insertAdjacentHTML('beforeend', `<p style="color:red">Selection of date(s) required</p>`);
@@ -72,6 +71,7 @@ export default class extends Controller {
       this.setMealType; this.setUserIDs; this.setMenuIDs;
       document.getElementById("closeMeal").click();
       this.hideModal;
+
     }
 
 
@@ -83,7 +83,11 @@ export default class extends Controller {
 
     get showModal() {
       document.getElementById("openMeal").click();
+
     }
 
 
   }
+
+      // Need to reset form as blank.
+    // Why two showing when directed to page?
