@@ -2,13 +2,15 @@
 <h1>Recipe Index page</h1>
 </div>
 
-<div class="container text-center" data-controller="recipe-search">
+<div class="container text-center"
+     data-controller="recipe-search"
+     data-recipe-search-url-value="https://api.edamam.com/api/recipes/v2">
   <form id="search-form" class="row">
     <div class="col-10" >
-      <input data-recipe-search-target="searchInput" id="search-input" type="text" class="form-control" placeholder="Find movies">
+      <input data-recipe-search-target="searchInput" id="search-input" type="text" class="form-control" placeholder="Searh for Recipes">
       </div>
       <div class="col-2">
-        <input type="button" class="btn btn-primary" value="Search" data-action="recipe-search#submit">
+        <button type="button" class="btn btn-primary" data-action="recipe-search#submitSearch">Recipe Search</button>
       </div>
     </form>
 
