@@ -11,38 +11,43 @@ export default class extends Controller {
     console.log(this.resultsTarget);
     fetch(`https://api.edamam.com/api/recipes/v2?type=public&q=chicken%20&app_id=bb5e4702&app_key=7cb8c06cdedbc2d089957cc57703423c&mealType=Dinner&imageSize=REGULAR`)
       .then(response => response.json())
-      .then((data) => console.log(data));
+      .then((data) => console.log(data.hits));
 
   }
 
 
   insertRecipes(data) {
-    data.hits.forEach((recipe) => {
+    data.hits.forEach((r) => {
       const recipeCard = `<li class="list-inline-item">
-                            <img src=${recipe.recipe.image} alt="">
-                            <p>${recipe.recipe.label}</p>
-                            <p>${recipe.recipe.source}</p>
+                            <img src=${r.recipe.image} alt="">
+                            <p>${r.recipe.label}</p>
+                            <p>${r.recipe.source}</p>
                           </li>`
     this.resultsTarget.insertAdjacentHTML('beforeend', recipeCard)
     })
   }
 
-  findMovies(query) {
-    const type = 'type=public';
+  fetchRecipes(query) {
+    const type = "type=public";
     const url = "https://api.edamam.com/api/recipes/v2";
-    const api_key = "7cb8c06cdedbc2d089957cc57703423c";
-    const api_id = "bb5e4702";
-    fetch(`${url}?${type}&q=${query}%20&${api_id}&${api_key}`)
+    const app_id = "app_id=bb5e4702";
+    const api_key = "app_key=7cb8c06cdedbc2d089957cc57703423c";
+    const image = "imageSize=REGULAR";
+    fetch(`${url}?${type}&q=${query}%20&${app_id}&${api_key}&${image}`)
     .then(response => response.json())
-    .then(this.insertRecipes())
+    .then((data) => this.insertRecipes(data))
+
   }
+
 
   submitSearch(event) {
     event.preventDefault()
     this.resultsTarget.innerHTML = "";
     const input = this.searchInputTarget;
     console.log(input.value)
-    this.findMovies(input.value)
+    const query = input.value;
+    this.fetchRecipes(query)
+
   }
 
 }
