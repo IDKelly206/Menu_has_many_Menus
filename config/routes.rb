@@ -19,7 +19,7 @@ Rails.application.routes.draw do
 
   resources :courses, only: [:new, :create]
 
-  resources :recipes, only: [:index,:show]
+  resources :recipes, only: [:index,:show, :new]
 
 
 

@@ -17,6 +17,8 @@ class MealsController < ApplicationController
   end
 
   def create
+    # Meal::Importer.create(meal_params)
+
     @menu_ids = params.fetch(:menu_ids, [])
     @user_ids = params.fetch(:user_ids, [])
     @meal_type = params.fetch(:meal_type, "")
@@ -30,7 +32,6 @@ class MealsController < ApplicationController
       end
     end
 
-    # Meal::Importer.create(meal_params)
 
     if Meal.last.id == meal_last.id
       render :new
@@ -46,7 +47,7 @@ class MealsController < ApplicationController
   end
 
   def meal_params
-    # params.permit(:meal_type, user_ids: [], menu_ids: [])
+    # params(:meals).permit(:meal_type, user_ids: [], menu_ids: [])
     params.require(:meal).permit(:name, user_id: [], menu_id: [])
   end
 

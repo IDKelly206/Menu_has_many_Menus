@@ -11,7 +11,7 @@ class Meal::Importer
   end
 
   def create
-    # validate_params!
+    validate_params!
 
     @menu_ids.each do |menu_id|
       menu = Menu.find(menu_id)

@@ -60,21 +60,18 @@ export default class extends Controller {
 
 
     if ( this.mealType == "" ) {
-      this.errorMessageTarget.insertAdjacentHTML('beforeend', `<p style="color:red">Selection of meal required</p>`);
-    } else if ( this.userIDs.length == 0 ) {
-      this.deleteMessages;
-      this.errorMessageTarget.insertAdjacentHTML('beforeend', `<p style="color:red">Selection of user(s) required</p>`);
-    } else if ( this.menuIDs.length == 0 ) {
-      this.deleteMessages;
-      this.errorMessageTarget.insertAdjacentHTML('beforeend', `<p style="color:red">Selection of date(s) required</p>`);
-    } else {
-      this.setMealType; this.setUserIDs; this.setMenuIDs;
-      document.getElementById("closeMeal").click();
-      this.hideModal;
-
-    }
-
-
+        this.errorMessageTarget.insertAdjacentHTML('beforeend', `<p style="color:red">Selection of meal required</p>`);
+      } else if ( this.userIDs.length == 0 ) {
+          this.deleteMessages;
+          this.errorMessageTarget.insertAdjacentHTML('beforeend', `<p style="color:red">Selection of user(s) required</p>`);
+      } else if ( this.menuIDs.length == 0 ) {
+          this.deleteMessages;
+          this.errorMessageTarget.insertAdjacentHTML('beforeend', `<p style="color:red">Selection of date(s) required</p>`);
+      } else {
+          this.setMealType; this.setUserIDs; this.setMenuIDs;
+          document.getElementById("closeMeal").click();
+          this.hideModal;
+      }
     }
 
     get hideModal() {
