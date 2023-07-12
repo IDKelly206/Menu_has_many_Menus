@@ -1,1 +1,7 @@
 <h1>Recipes New page</h1>
+
+
+<% @recipes.each do |r| %>
+  <p><%= r["recipe"]["label"] %></p>
+  <p><%= r["recipe"]["source"] %></p>
+<% end %>
