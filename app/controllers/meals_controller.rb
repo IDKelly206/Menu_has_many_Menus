@@ -8,29 +8,33 @@ class MealsController < ApplicationController
     @users = User.all.where(household_id: @household)
     @menus = Menu.all.where(household_id: @household)
     @meal_type = %w(Breakfast Lunch Dinner)
-  end
-
-  def meal_new
-    @users = User.all.where(household_id: @household)
-    @menus = Menu.all.where(household_id: @household)
-    @meal_type = %w(Breakfast Lunch Dinner)
+    @meal = Meal.new
   end
 
   def create
-    # Meal::Importer.create(meal_params)
-
-    @menu_ids = params.fetch(:menu_ids, [])
-    @user_ids = params.fetch(:user_ids, [])
-    @meal_type = params.fetch(:meal_type, "")
-
     meal_last = Meal.last
 
-    @menu_ids.each do |menu_id|
-      menu = Menu.find(menu_id)
-      @user_ids.each do |user_id|
-        Meal.create!(meal_type: @meal_type, user_id: user_id.to_i, menu_id: menu_id)
-      end
-    end
+    Meal::Importer.create(meal_params)
+
+    # @menu_ids = params.fetch(:menu_ids, [])
+    # @user_ids = params.fetch(:user_ids, [])
+    # @meal_type = params.fetch(:meal_type, "")
+
+
+
+    puts @menu_ids
+    puts @user_ids
+    puts @meal_type
+
+
+    # Meal.create!(meal_params)
+
+    # @menu_ids.each do |menu_id|
+    #   menu = Menu.find(menu_id)
+    #   @user_ids.each do |user_id|
+    #     Meal.create!(meal_type: @meal_type, user_id: user_id.to_i, menu_id: menu_id)
+    #   end
+    # end
 
 
     if Meal.last.id == meal_last.id
@@ -47,8 +51,8 @@ class MealsController < ApplicationController
   end
 
   def meal_params
-    # params(:meals).permit(:meal_type, user_ids: [], menu_ids: [])
-    params.require(:meal).permit(:name, user_id: [], menu_id: [])
+    params.require(:meal).permit(:meal_type, user_ids: [], menu_ids: [])
+    # params.require(:meal).permit(:meal_type, user_ids: [], menu_ids: [])
   end
 
 
