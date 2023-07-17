@@ -12,15 +12,12 @@ class MealsController < ApplicationController
   end
 
   def create
-    meal_last = Meal.last
 
-    Meal::Importer.create(meal_params)
+    # Meal::Importer.create(meal_params)
 
-    # @menu_ids = params.fetch(:menu_ids, [])
-    # @user_ids = params.fetch(:user_ids, [])
-    # @meal_type = params.fetch(:meal_type, "")
-
-
+    @menu_ids = params.fetch(:menu_ids, [])
+    @user_ids = params.fetch(:user_ids, [])
+    @meal_type = params.fetch(:meal_type, "")
 
     puts @menu_ids
     puts @user_ids
@@ -28,14 +25,14 @@ class MealsController < ApplicationController
 
 
     # Meal.create!(meal_params)
+    meal_last = Meal.last
 
-    # @menu_ids.each do |menu_id|
-    #   menu = Menu.find(menu_id)
-    #   @user_ids.each do |user_id|
-    #     Meal.create!(meal_type: @meal_type, user_id: user_id.to_i, menu_id: menu_id)
-    #   end
-    # end
-
+    @menu_ids.each do |menu_id|
+      menu = Menu.find(menu_id)
+      @user_ids.each do |user_id|
+        Meal.create!(meal_type: @meal_type, user_id: user_id.to_i, menu_id: menu_id)
+      end
+    end
 
     if Meal.last.id == meal_last.id
       render :new
