@@ -2,6 +2,17 @@
 
 
 <% @recipes.each do |r| %>
-  <p><%= r["recipe"]["label"] %></p>
-  <p><%= r["recipe"]["source"] %></p>
+  <p><%= r.label %></p>
+  <p><%= r.source %></p>
+  <p><%= r.yield %></p>
+
 <% end %>
+
+
+
+<%=  @recipes %>
+
+<%# @recipes.each do |r|
+ <p> r[:recipe][:label] </p>
+ <p> r[:recipe][:source] </p>
+ end  %>

@@ -15,6 +15,10 @@ export default class extends Controller {
     this.showModal;
   }
 
+  disconnect() {
+    this.hideModal;
+  }
+
   get mealType() {
     let mealType = this.getTypeTarget.firstElementChild.value
     return mealType

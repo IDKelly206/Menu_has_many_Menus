@@ -9,7 +9,7 @@ export default class extends Controller {
     console.log("Recipe Search controller");
     console.dir(this.searchInputTarget);
     console.log(this.resultsTarget);
-    fetch(`https://api.edamam.com/api/recipes/v2?type=public&q=chicken%20&app_id=bb5e4702&app_key=7cb8c06cdedbc2d089957cc57703423c&mealType=Dinner&imageSize=REGULAR`)
+    fetch(`https://api.edamam.com/api/recipes/v2?q=chicken%20&app_id=bb5e4702&app_key=7cb8c06cdedbc2d089957cc57703423c&mealType=Dinner&imageSize=REGULAR`)
       .then(response => response.json())
       .then((data) => console.log(data.hits));
 
