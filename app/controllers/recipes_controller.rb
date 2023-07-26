@@ -9,7 +9,12 @@ class RecipesController < ApplicationController
     # response = JSON.parse (search_results.body), symbolize_names: true
     # @recipes = response.fetch(:hits)
 
-    @recipes = Edamam::Erecipe.search(params[:query])
+    @meal_type = %w(Breakfast Lunch Dinner)
+    @dish_type = ["Main", "Side", "Desserts"]
+    @health = ["vegan", "vegetarian", "paleo"]
+
+    # @response = Edamam::Erecipe.search(params[:query], params[:filters])
+    @recipes = Edamam::Erecipe.search(params[:query], params[:filters])
     console
 
   end

@@ -1,0 +1,14 @@
+<% @recipes.each do |r| %>
+  <div class="recipe-card">
+    <div class="card-header">
+    </div>
+    <div class="card-body">
+      <p>Name:<%= r.label %></p>
+      <p>Source:<%= r.source %></p>
+      <p>Servings:<%= r.yield %></p>
+    </div>
+    <div class="card-footer">
+
+    </div>
+  </div>
+<% end %>

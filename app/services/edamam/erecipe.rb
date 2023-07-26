@@ -2,20 +2,20 @@ module Edamam
   class Erecipe
     attr_accessor :label,
                   :source,
-                  :yield,
+                  :yield
 
 
 
 
-    def self.search(query)
-      response = Request.get_json(query)
+    def self.search(query = [], filters = {})
+      response = Request.get_json(query, filters)
       response.fetch(:hits).map do |r|
-        Recipe.new(
+        Erecipe.new(
                    label:     "#{r[:recipe][:label]}",
                    source:    "#{r[:recipe][:source]}",
-                   yield:     "#{r[:recipe][:yield]}",
-
+                   yield:     "#{r[:recipe][:yield]}"
         )
+
       end
     end
   end
