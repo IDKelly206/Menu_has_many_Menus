@@ -9,13 +9,16 @@ class Meal::Importer
     @meal_type = meal_params.fetch(:meal_type, "")
   end
 
-  def create
+  def create(meal_params)
     validate_params!
 
+    @meal_count = @menu_ids.count * @user_ids.count
+    @new_meals = 0
+
     @menu_ids.each do |menu_id|
-      menu = Menu.find(menu_id)
       @user_ids.each do |user_id|
-        Meal.create!(name: @meal_type, user_id: user_id, menu_id: menu_id)
+        Meal.create!(meal_type: @meal_type, user_id: user_id, menu_id: menu_id)
+        @new_meals += 1
       end
     end
   end
