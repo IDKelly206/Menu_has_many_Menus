@@ -14,7 +14,7 @@ class UsersController < ApplicationController
 
     if @user.save(validate: false) #skips validations
       respond_to do |format|
-        format.html { redirect_to household_path(current_user.household_id),
+        format.html { redirect_to household_path(@household),
                       notice: "User was succesfully created." }
         format.turbo_stream
       end
@@ -25,13 +25,20 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-      redirect_to household_path(current_user.household_id), notice: "User was succesfully updated."
+      redirect_to household_path(@household), notice: "User was succesfully updated."
     else
       render :edit, status: :unprocessable_entity
     end
   end
 
   def destroy
+    @user.destroy
+
+    respond_to do |format|
+      format.html { redirect_to household_path(@household),
+                    notice: "User was succesfully destroyed." }
+      format.turbo_stream
+    end
   end
 
 

@@ -1,3 +1,5 @@
-<%= turbo_stream.append "users", partial: "users/user", locals: { user: @user } %>
+<%= turbo_stream.before "users", partial: "users/user", locals: { user: @user } %>
+
+
 
 <%= turbo_stream.update User.new, "" %>

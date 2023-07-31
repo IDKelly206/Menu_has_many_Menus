@@ -10,6 +10,6 @@
   <%= turbo_frame_tag dom_id(User.new) %>
 
   <%= turbo_frame_tag "users" do %>
-    <%= render partial: "users/user", collection: @users %>
+    <%= render @users %>
   <% end %>
 </main>
