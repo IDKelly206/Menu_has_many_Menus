@@ -1,18 +1,10 @@
-<%= turbo_frame_tag "modal" do %>
-  <div class="row">
-    <div class="" data-controller="turbo-modal">
-      <div class="card m-4 ">
-        <div class="card-header">
-          <h2 class="card-title">User Create</h2>
-        </div>
-        <div class="card-body">
-          <%= render "users/new_user" %>
-        </div>
-        <div class="card-footer text-muted mt-2">
-          <%= button_tag "Close", data: { action: "turbo-modal#hideModal"},
-              type: "button", class: "rounded-lg py-3 px-5 bg-red-400 text-blue" %>
-        </div>
-      </div>
-    </div>
+<div class="container">
+<%= link_to household_path(@household) %>
+
+  <div class="header">
+    <h1>New User</h1>
   </div>
-<% end %>
+  <%= turbo_frame_tag dom_id(@user) do %>
+    <%= render "form", user: @user %>
+  <% end %>
+</div>

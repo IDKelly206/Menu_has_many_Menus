@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :households, only: [:show]
 
   devise_for :users, :path_prefix => 'auth'
-  resources :users, only: [:new, :create]
+  resources :users, only: [:show, :new, :create, :edit, :destroy]
 
 
   resources :menus, only: [:index, :show, :new, :create] do

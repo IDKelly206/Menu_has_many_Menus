@@ -15,7 +15,7 @@ class MealsController < ApplicationController
     Meal::Importer.create(meal_params)
 
     if @meal_count == @new_meals
-      redirect_to menus_path
+      redirect_to menus_path, notice: "Meal(s) were successfully created."
     else
       render :new, status: :unprocessable_entity
     end
@@ -34,11 +34,6 @@ class MealsController < ApplicationController
 end
 
 
-# def meal_params
-#   params.require(:meal).permit(:meal_type, user_id: [], menu_id: [])
-#   # params.require(:meal).permit(:meal_type, :user_id, :menu_id)
-# end
-
 #  MEAL creation function with COURSE
 # menu_ids.each do |menu_id|
 #   menu = Menu.find(menu_id)
@@ -51,4 +46,3 @@ end
 #     end
 # end
 #
-# "render :new, status: :unprocessable_entity"

@@ -10,3 +10,25 @@
     <%= f.submit "Add User to Household", class: "btn btn-primary" %>
   <% end %>
 </div>
+
+
+
+
+<%= turbo_frame_tag "modal" do %>
+  <div class="row">
+    <div class="" data-controller="turbo-modal">
+      <div class="card m-4 ">
+        <div class="card-header">
+          <h2 class="card-title">User Create</h2>
+        </div>
+        <div class="card-body">
+          <%= render "users/new_user" %>
+        </div>
+        <div class="card-footer text-muted mt-2">
+          <%= button_tag "Close", data: { action: "turbo-modal#hideModal"},
+              type: "button", class: "rounded-lg py-3 px-5 bg-red-400 text-blue" %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
