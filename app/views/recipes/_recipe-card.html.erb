@@ -1,14 +1,15 @@
 <% @recipes.each do |r| %>
   <div class="recipe-card">
     <div class="card-header">
+    <%= image_tag (r.image), size: "100" %>
     </div>
     <div class="card-body">
-      <p>Name:<%= r.label %></p>
-      <p>Source:<%= r.source %></p>
-      <p>Servings:<%= r.yield %></p>
+      <p><small>Name:<%= r.label %></small>
+      <small> Source:<%= r.source %></small>
+      <small> Servings:<%= r.yield %></small></p>
     </div>
     <div class="card-footer">
-      <p>ID: <%= r.erecipe_id %></p>
+      <p><small>ID: <%= r.erecipe_id %></small></p>
     </div>
   </div>
 <% end %>
