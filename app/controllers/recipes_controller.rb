@@ -10,7 +10,7 @@ class RecipesController < ApplicationController
     # @recipes = response.fetch(:hits)
 
     @meal_type = %w(Breakfast Lunch Dinner)
-    @dish_type = ["Main", "Side", "Desserts"]
+    @dish_type = ["Main course", "Side dish", "Desserts"]
     @health = ["vegan", "vegetarian", "paleo"]
 
     # @response = Edamam::Erecipe.search(params[:query], params[:filters])

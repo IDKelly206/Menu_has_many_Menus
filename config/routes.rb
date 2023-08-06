@@ -11,11 +11,7 @@ Rails.application.routes.draw do
     resources :meals, only: [:show, :edit, :update, :destroy]
   end
 
-  resources :meals, only: [:new, :create] do
-    # collection do
-    #   get :meal_new
-    # end
-  end
+  resources :meals, only: [:new, :create] 
 
   resources :courses, only: [:new, :create]
 

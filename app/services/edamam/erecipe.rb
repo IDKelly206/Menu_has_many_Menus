@@ -7,15 +7,14 @@ module Edamam
 
 
 
-    def self.search(query = [], filters = {})
-      response = Request.get_json(query, filters)
+    def self.search(query = [])
+      response = Request.get_json(query)
       response.fetch(:hits).map do |r|
         Recipe.new(
                    label:     "#{r[:recipe][:label]}",
                    source:    "#{r[:recipe][:source]}",
                    yield:     "#{r[:recipe][:yield]}"
         )
-
       end
     end
   end
