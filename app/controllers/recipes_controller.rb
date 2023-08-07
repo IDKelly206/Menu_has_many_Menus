@@ -4,7 +4,8 @@ class RecipesController < ApplicationController
   end
 
   def show
-    @recipe = Edamam::Erecipe.find(:erecipe_id)
+    @recipe = Edamam::Erecipe.find(params[:id])
+    console
   end
 
   def new

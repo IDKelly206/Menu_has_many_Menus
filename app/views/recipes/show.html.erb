@@ -1,6 +1,18 @@
 <h1>Recipes Show page</h1>
 <div class="container">
+<div class="recipe-card">
+    <div class="card-header">
+    <%= image_tag (@recipe.image), size: "100" %>
+    </div>
+    <div class="card-body">
+      <p><small>Name:<%= @recipe.label %></small>
+      <small> Source:<%= @recipe.source %></small>
+      <small> Servings:<%= @recipe.yield %></small></p>
+    </div>
+    <div class="card-footer">
 
-
+      <p><font size="1">ID: <%= @recipe.erecipe_id %></font></p>
+    </div>
+  </div>
 
 </div>

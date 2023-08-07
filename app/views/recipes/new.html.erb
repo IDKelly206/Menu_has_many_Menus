@@ -5,8 +5,8 @@
   <%= f.text_field :query, multiple: true %>
   <%= f.fields_for :filters do |ft| %>
     <%= ft.label "Filter by: " %>
-    <%= ft.select :mealType, @meal_type  %>
-    <%= ft.select :dishType, @dish_type  %>
+    <%= ft.select :mealType, @meal_type %>
+    <%= ft.select :dishType, @dish_type %>
     <%= ft.select :health, @health %>
   <% end %>
   <%= f.submit "Search" %>
@@ -15,7 +15,7 @@
 <br>
 
 <br>
-  <%# <%= @response %> %>
+  <%# <%= @response %>
 <div class="card-deck">
   <%= render 'recipe-card' %>
 </div>

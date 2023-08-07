@@ -6,16 +6,16 @@ module Edamam
                   :image
 
     def self.find(id)
-      response = Request.get()
-      response.fetch(:hits).map do |r|
+      r = Request.get(id)
+      # recipe[:recipe][:uri]
       Recipe.new(
-                label:     "#{r[:recipe][:label]}",
-                source:    "#{r[:recipe][:source]}",
-                yield:     "#{r[:recipe][:yield]}",
-                image:     "#{r[:recipe][:image]}",
-                erecipe_id: "#{id}"
+                label:     r[:recipe][:label],
+                source:    r[:recipe][:source],
+                yield:     r[:recipe][:yield],
+                image:     r[:recipe][:image],
+                erecipe_id: id
                 )
-      end
+
     end
 
 
