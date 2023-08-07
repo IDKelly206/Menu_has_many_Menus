@@ -1,7 +1,10 @@
 class RecipesController < ApplicationController
 
   def index
+  end
 
+  def show
+    @recipe = Edamam::Erecipe.find(:erecipe_id)
   end
 
   def new
@@ -14,7 +17,7 @@ class RecipesController < ApplicationController
     @health = ["vegan", "vegetarian", "paleo"]
 
     # @response = Edamam::Erecipe.search(params[:query], params[:filters])
-    @recipes = Edamam::Erecipe.search(params[:query])
+    @recipes = Edamam::Erecipe.search(params[:query], params[:filters])
     console
 
   end

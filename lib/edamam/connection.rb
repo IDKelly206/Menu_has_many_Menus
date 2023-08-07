@@ -10,9 +10,10 @@ class Connection
 
 
 
-  def self.api(path)
-    uri = BASE+"?"+path+KEY
-    HTTParty.get(uri, format: :plain)
+  def self.api(path, option)
+    option = option.empty? ? "" : "&#{option}"
+    url = BASE+path+KEY+option
+    HTTParty.get(url, format: :plain)
   end
 
 end
