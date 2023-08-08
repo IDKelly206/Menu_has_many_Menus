@@ -1,6 +1,7 @@
 class RecipesController < ApplicationController
 
   def index
+    console
   end
 
   def show
