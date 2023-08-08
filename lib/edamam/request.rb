@@ -7,7 +7,7 @@ class Request
       type = "?type=public"
       path = "/#{id}#{type}"
       option = ""
-      response = get_json(path, option)
+      get_json(path, option)
     end
 
     def where(query, filters)
@@ -15,7 +15,7 @@ class Request
       query_string = query.nil? ? "" : query.first.split.join("%20")
       option = filters.nil? ? "" : filters.each.map { |k, v| "#{k}=""#{v}".split.join("%20") }.join("&").insert(0, '&')
       path = "#{type}&q=#{query_string}"
-      response = get_json(path, option)
+      get_json(path, option)
     end
 
     def get_json(path, option)

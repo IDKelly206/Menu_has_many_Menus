@@ -30,9 +30,9 @@ export default class extends Controller {
   fetchRecipes(query) {
     const type = "type=public";
     const url = "https://api.edamam.com/api/recipes/v2";
-    const app_id = "app_id=bb5e4702";
-    const api_key = "app_key=7cb8c06cdedbc2d089957cc57703423c";
-    const image = "imageSize=REGULAR";
+    const app_id = ENV['app_id'];
+    const api_key = ENV['api_key'];
+    const image = "imageSize=SMALL";
     fetch(`${url}?${type}&q=${query}%20&${app_id}&${api_key}&${image}`)
     .then(response => response.json())
     .then((data) => this.insertRecipes(data))

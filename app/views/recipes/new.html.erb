@@ -1,3 +1,4 @@
+
 <h1>Recipes New page</h1>
 <div class="container">
 <%= form_with url: "/recipes/new", method: 'get', local: true do |f| %>
@@ -13,7 +14,7 @@
 <% end %>
 </div>
 <br>
-
+  <%= button_to( "#{@next_page[:title]}", new_recipe_path, @recipes = Edamam::Erecipe.update_recipes("#{@next_page[:href]}")) %>
 <br>
   <%# <%= @response %>
 <div class="card-deck">

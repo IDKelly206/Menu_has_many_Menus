@@ -1,4 +1,6 @@
 module Edamam
+  require 'json'
+
   class Erecipe
     attr_accessor :label,
                   :source,
@@ -7,7 +9,6 @@ module Edamam
 
     def self.find(id)
       r = Request.get(id)
-      # recipe[:recipe][:uri]
       Recipe.new(
                 label:     r[:recipe][:label],
                 source:    r[:recipe][:source],
@@ -15,12 +16,20 @@ module Edamam
                 image:     r[:recipe][:image],
                 erecipe_id: id
                 )
-
     end
 
 
     def self.search(query = [], filters = {})
       response = Request.where(query, filters)
+      @response = response
+      recipes(response)
+    end
+
+    def self.next_page
+      @response[:_links][:next]
+    end
+
+    def self.recipes(response)
       response.fetch(:hits).map do |r|
         id_ing = "#{r[:_links][:self][:href]}".partition("v2/")
         id = id_ing[-1].partition("?").first
@@ -34,7 +43,10 @@ module Edamam
       end
     end
 
-
-
+    def self.update_recipes(url)
+      uri = HTTParty.get(url, format: :plain)
+      response = JSON.parse (uri.body), symbolize_names: true
+      recipes(response)
+    end
   end
 end
