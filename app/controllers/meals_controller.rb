@@ -1,7 +1,11 @@
 class MealsController < ApplicationController
   before_action :set_household
+  before_action :set_menu, only: [:show]
+  before_action :set_meal, only: [:show]
+
 
   def show
+    console
   end
 
   def new
@@ -27,6 +31,15 @@ class MealsController < ApplicationController
   def set_household
     @household = current_user.household_id
   end
+
+  def set_menu
+    @menu = Menu.find(params[:id])
+  end
+
+  def set_meal
+    @meal = @menu.meals.find(params[:id])
+  end
+
 
   def meal_params
     params.permit(:meal_type, user_ids: [], menu_ids: [])

@@ -1,7 +1,16 @@
 <h1>Meal show page</h1>
 <div class="container">
-
-</div>
-<div class="section-menu">
-
+  <div>
+    <h4>Courses</h4>
+  </div>
+  <div>
+    <%= link_to "Add Course", new_menu_meal_course_path(@menu, @meal) %>
+  </div>
+  <div>
+    <% @meal.courses.each do |course| %>
+    <p> <%= course.course_type %>
+      <%= Edamam::Erecipe.find(course.erecipe_id).label %>
+      <%= Edamam::Erecipe.find(course.erecipe_id).source %></p>
+    <% end %>
+  </div>
 </div>

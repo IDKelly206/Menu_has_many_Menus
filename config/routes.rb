@@ -7,15 +7,22 @@ Rails.application.routes.draw do
   resources :users, except: [:index]
 
 
-  resources :menus, only: [:index, :show, :new, :create] do
-    resources :meals, only: [:show, :edit, :update, :destroy]
+  resources :menus, only: [:index, :show] do
+    resources :meals, only: [:index, :show] do
+      resources :courses, only: [:new, :create, :show, :edit, :update, :destroy] do
+        collection do
+          get 'search'
+        end
+      end
+    end
   end
 
-  resources :meals, only: [:new, :create] 
+  #  To be removed - used as testing for modal and multi-obj creation
+  resources :meals, only: [:new, :create]
 
-  resources :courses, only: [:new, :create]
 
-  resources :recipes, only: [:index,:show, :new]
+
+  resources :recipes, only: [:index, :show, :new]
 
 
 

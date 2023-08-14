@@ -1,0 +1,24 @@
+<% @recipes.each do |r| %>
+  <div class="recipe-card">
+    <div class="card-header">
+    <%# <%= image_tag (r.image), size: "100" %> >
+    </div>
+    <div class="card-body">
+      <p><small>Name:<%= r.label %></small>
+      <small> Source:<%= r.source %></small>
+      <small> Servings:<%= r.yield %></small>
+      <small><%= link_to 'Recipe Details', recipe_path("#{r.erecipe_id}") %></small>
+      </p>
+    </div>
+    <div class="card-footer">
+      <%= form_with model: [@menu, @meal, @course] do |f| %>
+        <%= f.label :erecipe_id, "Recipe ID" %>
+        <%= f.text_field  :erecipe_id, value: "#{r.erecipe_id}" %>
+        <%= f.label :course_type, "Course Type" %>
+        <%= f.text_field :course_type, value: params[:filters][:mealType] %>
+        <%= f.submit "Create Course" %>
+      <% end %>
+
+    </div>
+  </div>
+<% end %>

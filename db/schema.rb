@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_06_153404) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_14_083121) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -19,9 +19,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_06_153404) do
     t.string "course_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "recipe_id", null: false
+    t.string "erecipe_id", null: false
     t.index ["meal_id"], name: "index_courses_on_meal_id"
-    t.index ["recipe_id"], name: "index_courses_on_recipe_id"
   end
 
   create_table "households", force: :cascade do |t|
@@ -75,7 +74,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_06_153404) do
   end
 
   add_foreign_key "courses", "meals"
-  add_foreign_key "courses", "recipes"
   add_foreign_key "meals", "menus"
   add_foreign_key "meals", "users"
   add_foreign_key "menus", "households"

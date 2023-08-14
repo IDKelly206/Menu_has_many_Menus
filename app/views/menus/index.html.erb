@@ -21,7 +21,10 @@
               <div class= "card-menu-meal-user">
                 <h6><%= user.name_first %></h6>
 
-                <p>Meal #: <%= user.meals.where(menu_id: menu).ids.first %></p>
+                <p>Meal #: <%= link_to "#{user.meals.where(menu_id: menu).where(meal_type: meal).ids.first}", menu_meal_path(menu, "1") %>
+
+
+                <%= user.meals.where(menu_id: menu).where(meal_type: meal).ids.first %></p>
               </div>
             <% end %>
           </div>

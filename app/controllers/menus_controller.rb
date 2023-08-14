@@ -3,10 +3,11 @@ class MenusController < ApplicationController
   before_action :set_users
   before_action :set_menu, only: [:show]
 
+
   def index
     @menus = Menu.all.where(household_id: @household)
     @meal_type = %w(Breakfast Lunch Dinner)
-
+    console
   end
 
   def show
