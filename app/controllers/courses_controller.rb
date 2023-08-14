@@ -37,6 +37,32 @@ class CoursesController < ApplicationController
     end
   end
 
+  def edit
+
+    @meal_type = ["Breakfast", "Lunch", "Dinner"]
+    @dish_type = ["Main course", "Side dish", "Desserts"]
+    @health = ["vegan", "vegetarian", "paleo"]
+
+    @recipes = Edamam::Erecipe.search(params[:query], params[:filters])
+
+    console
+
+  end
+
+  def update
+    if @course.update(course_params)
+      redirect_to menu_meal_path(@menu, @meal), notice: "Course updated"
+    else
+      render :new, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    @course.destroy
+
+    redirect_to menu_meal_path(@menu, @meal), notice: "Course deleted"
+  end
+
 
   private
 

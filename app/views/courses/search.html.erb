@@ -1,5 +1,5 @@
-<h1>Course Search recipes page</h1>
 <div class="container">
+<h1>Course Search recipes page</h1>
 <%= form_with url: "/menus/1/meals/1/courses/search", method: 'get', local: true do |f| %>
   <%= f.label :query, "Search for:" %>
   <%= f.text_field :query, multiple: true %>

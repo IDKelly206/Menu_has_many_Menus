@@ -1,7 +1,7 @@
 <% @recipes.each do |r| %>
   <div class="recipe-card">
     <div class="card-header">
-    <%# <%= image_tag (r.image), size: "100" %> >
+    <%# <%= image_tag (r.image), size: "100" %>
     </div>
     <div class="card-body">
       <p><small>Name:<%= r.label %></small>
@@ -12,11 +12,9 @@
     </div>
     <div class="card-footer">
       <%= form_with model: [@menu, @meal, @course] do |f| %>
-        <%= f.label :erecipe_id, "Recipe ID" %>
-        <%= f.text_field  :erecipe_id, value: "#{r.erecipe_id}" %>
-        <%= f.label :course_type, "Course Type" %>
-        <%= f.text_field :course_type, value: params[:filters][:mealType] %>
-        <%= f.submit "Create Course" %>
+        <%= f.hidden_field  :erecipe_id, value: r.erecipe_id %>
+        <%= f.hidden_field :course_type, value: params[:filters][:mealType] %>
+        <%= f.submit "Add Course" %>
       <% end %>
 
     </div>

@@ -1,0 +1,18 @@
+<div>
+  <div class="header">
+    <%= course.id %>
+    <%= course.course_type %>
+    <%= course.erecipe_id %>
+        <%# <%= Edamam::Erecipe.find(course.erecipe_id).label %>
+  </div>
+  <div class="action">
+    <%= button_to "Delete",
+                  [@menu, @meal, course],
+                  method: :delete,
+                  class: "btn btn-ghost" %>
+    <%= link_to "Edit",
+                edit_menu_meal_course_path(@menu, @meal, course),
+               class: "btn btn-ghost" %>
+
+  </div>
+</div>

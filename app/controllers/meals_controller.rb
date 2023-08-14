@@ -1,10 +1,12 @@
 class MealsController < ApplicationController
   before_action :set_household
-  before_action :set_menu, only: [:show]
-  before_action :set_meal, only: [:show]
+  before_action :set_menu, only: [:index, :show]
+  before_action :set_meal, only: [:index, :show]
+
 
 
   def show
+    @courses = @meal.courses
     console
   end
 
@@ -33,7 +35,7 @@ class MealsController < ApplicationController
   end
 
   def set_menu
-    @menu = Menu.find(params[:id])
+    @menu = Menu.find(params[:menu_id])
   end
 
   def set_meal
