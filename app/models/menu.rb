@@ -1,5 +1,5 @@
 class Menu < ApplicationRecord
-  after_create :createMeals
+  after_create :create_menu_meals
 
   belongs_to :household
 
@@ -7,24 +7,22 @@ class Menu < ApplicationRecord
 
   validates :date, presence: true
 
+  scope :ordered, -> { order(date: :asc) }
 
   private
 
-  def createMeals
+  #  seperate out code so that is enacted after_create on User too
+  #  also, @meal_type is defined many places. what is better place to define?
+
+  def create_menu_meals
     menu_id = Menu.last.id
     household_id = Menu.last.household_id
     user_ids = User.all.where(household_id: household_id).ids
-    meal_type = %w(Breakfast Lunch Dinner)
+    meal_types = %w(Breakfast Lunch Dinner)
     user_ids.each do |user_id|
-      meal_type.each do |meal_type|
+      meal_types.each do |meal_type|
         Meal.create!(menu_id: menu_id, user_id: user_id, meal_type: meal_type)
       end
     end
   end
-
-  # Menu.createMeals
-  #  create 3 meal types with each user underneath as meals
-  #  example: Breakfast  with 2 users
-
-
 end
