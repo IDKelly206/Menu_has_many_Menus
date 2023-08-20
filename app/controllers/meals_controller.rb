@@ -17,6 +17,12 @@ class MealsController < ApplicationController
     @meal = Meal.new
   end
 
+  def meal_new
+    @users = User.all.where(household_id: @household)
+    @menus = Menu.all.where(household_id: @household)
+    @meal_type = %w(Breakfast Lunch Dinner)
+  end
+
   def create
     Meal::Importer.create(meal_params)
 

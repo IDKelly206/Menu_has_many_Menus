@@ -1,54 +1,8 @@
 <div class="container" data-controller="meal-new">
-
-<!-- Button trigger modal -->
-<button hidden id="openMeal" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-  Set Meal
-</button>
-
-<!-- Modal -->
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content" >
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="staticBackdropLabel">Choose Meal details</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <%= form_with url: "/meals/new" do |f| %>
-          <div class="mb-3" data-meal-new-target="getType">
-            <%= f.select :meal_type, @meal_type, { prompt: "Select meal" } %>
-          </div>
-          <div class="mb-3" data-meal-new-target="getUserID">
-            <%= f.collection_check_boxes(:user_ids, @users, :id, :name_first, include_hidden: false) %>
-          </div>
-          <div class="mb-3" data-meal-new-target="getMenuID">
-            <%= f.collection_check_boxes(:menu_ids, @menus, :id, :date, include_hidden: false)   %>
-          </div>
-        <% end %>
-        <div data-meal-new-target="errorMessage"></div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-action="meal-new#setMeal" >Next</button>
-        <button hidden type="button" id="closeMeal" class="btn btn-warning" data-bs-dismiss="modal">Hidden</button>
-      </div>
-    </div>
-  </div>
+<div class="container">
+<h1>New Meal page</h1>
+<div>
+<%= link_to "Choose Meal Details", meal_new_meals_path  %>
 </div>
 
-
-
-  <div class="container">
-    <%= form_with url: "/meals" do |f| %>
-      <div class="mb-3">
-        <%= f.hidden_field :meal_type, value: :meal_type, data: { target: 'meal-new.setType' } %>
-      </div>
-      <div class="mb-3" data-meal-new-target = "setUserID">
-      </div>
-      <div class="mb-3" data-meal-new-target = "setMenuID">
-      </div>
-      <div class="mb-3">
-        <%= f.submit %>
-      </div>
-    <% end %>
-  </div>
 </div>

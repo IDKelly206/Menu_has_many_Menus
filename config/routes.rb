@@ -18,7 +18,11 @@ Rails.application.routes.draw do
   end
 
   #  To be removed - used as testing for modal and multi-obj creation
-  resources :meals, only: [:new, :create]
+  resources :meals, only: [:new, :create] do
+    collection do
+      get 'meal_new'
+    end
+  end
 
 
 
