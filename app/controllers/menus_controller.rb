@@ -2,6 +2,7 @@ class MenusController < ApplicationController
   before_action :set_household
   before_action :set_users
   before_action :set_menu, only: [:show]
+  # before_action :set_meal, only: [:index]
   before_action :set_meal_type, only: [:index, :show]
 
 
@@ -44,6 +45,10 @@ class MenusController < ApplicationController
   def set_menu
     @menu = Menu.find(params[:id])
   end
+
+  # def set_meal
+  #   @meal = @menu.meals.find(params[:id])
+  # end
 
   def set_meal_type
     @meal_type = %w(Breakfast Lunch Dinner)

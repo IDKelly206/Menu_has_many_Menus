@@ -10,10 +10,10 @@
         <h6><%= link_to "#{menu.date.strftime("%B"" ""%d")}", menu %></h6>
       </div>
 
-      <% @meal_type.each do |meal| %>
+      <% @meal_type.each do |meal_type| %>
         <div class= "card-menu-meal">
           <div class="card-menu-meal-header">
-            <h5><%= meal %></h5>
+            <h5><%= meal_type %></h5>
           </div>
 
           <div class= "card-menu-meal-body">
@@ -21,7 +21,7 @@
               <div class= "card-menu-meal-user">
                 <h6><%= user.name_first %></h6>
 
-                <p>Meal #: <%= link_to "#{user.meals.where(menu_id: menu).where(meal_type: meal).ids.first}", menu_meal_path(menu, "1") %>
+                <p>Meal #: <%= link_to "#{user.meals.where(menu_id: menu).where(meal_type: meal_type).ids.first}", menu_meal_path(menu, "#{user.meals.where(menu_id: menu).where(meal_type: meal_type).ids.first}") %>
 
 
 
