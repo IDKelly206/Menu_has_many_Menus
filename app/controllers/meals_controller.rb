@@ -21,6 +21,8 @@ class MealsController < ApplicationController
     @users = User.all.where(household_id: @household)
     @menus = Menu.all.where(household_id: @household)
     @meal_type = %w(Breakfast Lunch Dinner)
+
+    console
   end
 
   def create

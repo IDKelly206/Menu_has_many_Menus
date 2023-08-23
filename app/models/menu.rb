@@ -9,6 +9,12 @@ class Menu < ApplicationRecord
 
   scope :ordered, -> { order(date: :asc) }
 
+
+
+  def day_of_week
+    "#{self.date.strftime('%a')}: #{self.date.day.ordinalize}  "
+  end
+
   private
 
   #  seperate out code so that is enacted after_create on User too
@@ -25,4 +31,5 @@ class Menu < ApplicationRecord
       end
     end
   end
+
 end
