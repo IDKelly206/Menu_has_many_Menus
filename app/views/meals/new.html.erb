@@ -1,8 +1,23 @@
-<div class="container" data-controller="meal-new">
 <div class="container">
-<h1>New Meal page</h1>
-<div>
-<%= link_to "Choose Meal Details", meal_new_meals_path  %>
-</div>
+  <h1>New Meal page</h1>
+  <div>
+    
+  </div>
+  <div>
+    <%= form_with url: new_meal_path, method: 'get', local: true do |f| %>
+      <%= f.label :query, "Search for:" %>
+      <%= f.text_field :query, multiple: true %>
+      <%= f.fields_for :filters do |ft| %>
+        <%= ft.label "Filter by: " %>
+        <%= ft.select :mealType, @meal_type %>
+        <%= ft.select :dishType, @dish_type %>
+        <%= ft.select :health, @health %>
+      <% end %>
+      <%= f.submit "Search" %>
+    <% end %>
+  </div>
+  <div>
+    <%= render 'meals/recipe_card' %>
+  </div>
 
 </div>

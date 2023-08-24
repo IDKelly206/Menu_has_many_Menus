@@ -1,8 +1,8 @@
 
   <div data-controller="meal-new">
-    <%= form_with url: "/meals/new" do |f| %>
+    <%= form_with url: "/meals/new", method: 'get' do |f| %>
       <div class="mb-3" data-meal-new-target="getType">
-        <%= f.select :meal_type, @meal_type, { prompt: "Select meal" } %>
+        <%= f.select :meal_type, @meal_types, { prompt: "Select meal" } %>
       </div>
       <div class="mb-3" data-meal-new-target="getUserID">
         <%= f.collection_check_boxes(:user_ids, @users, :id, :name_first, include_hidden: false) %>

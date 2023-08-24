@@ -67,7 +67,7 @@ class CoursesController < ApplicationController
   private
 
   def course_params
-    params.require(:course).permit(:course_type, :meal_id, :erecipe_id)
+    params.require(:course).permit(:course_type, :erecipe_id, :meal_id)
   end
 
   def set_household

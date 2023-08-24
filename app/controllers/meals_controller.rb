@@ -5,35 +5,65 @@ class MealsController < ApplicationController
 
 
 
-  def show
-    @courses = @meal.courses
+  def meal_new
+    calendar = (Time.now.to_date...(Time.now.to_date+10))
+    @menus = Menu.where('household_id = ?', @household).where('date IN (:cal)', { cal: calendar })
+    @users = User.all.where(household_id: @household)
+    @meal_types = %w(Breakfast Lunch Dinner)
+
     console
   end
 
   def new
-    @users = User.all.where(household_id: @household)
-    @menus = Menu.all.where(household_id: @household)
-    @meal_type = %w(Breakfast Lunch Dinner)
-    @meal = Meal.new
-  end
+    # Meal ID criteria
+    @menu_ids = params.fetch(:menu_ids, []) if params.fetch(:menu_ids, []).present?
+    @user_ids = params.fetch(:user_ids, []) if params.fetch(:menu_ids, []).present?
+    @meal_types = params.fetch(:meal_type, "") if params.fetch(:menu_ids, []).present?
 
-  def meal_new
-    @users = User.all.where(household_id: @household)
-    @menus = Menu.all.where(household_id: @household)
-    @meal_type = %w(Breakfast Lunch Dinner)
+    if !@menu_ids.nil? && !@user_ids.nil? && !@meal_types.nil?
+      @meals = []
+      @menu_ids.each do |menu_id|
+        @user_ids.each do |user_id|
+          meal = Meal.where(user_id: user_id).where(menu_id: menu_id).where(meal_type: @meal_types).ids
+          @meals.push(meal)
+        end
+      end
+      @meals.flatten!
+    end
+
+    # @meals = [1032, 1086, 1074, 1107]
+
+    # Search criteria
+    @meal_type = ["Breakfast", "Lunch", "Dinner"]
+    @dish_type = ["Main course", "Side dish", "Desserts"]
+    @health = ["vegan", "vegetarian", "paleo"]
+
+    @recipes = Edamam::Erecipe.search(params[:query], params[:filters])
+
+    #
+    @meal = Course.new
 
     console
   end
 
-  def create
-    Meal::Importer.create(meal_params)
 
-    if @meal_count == @new_meals
-      redirect_to menus_path, notice: "Meal(s) were successfully created."
+  def create
+
+    Meal::Multicourse.create(course_params)
+
+    if @course_count == @new_courses
+      redirect_to new_meal_path, notice: "Meal(s) were successfully created."
     else
       render :new, status: :unprocessable_entity
     end
 
+  end
+
+
+  def show
+    @courses = @meal.courses
+
+    console
   end
 
   private
@@ -50,6 +80,9 @@ class MealsController < ApplicationController
     @meal = @menu.meals.find(params[:id])
   end
 
+  def course_params
+    params.permit(:course_type, :erecipe_id, meal_ids: [])
+  end
 
   def meal_params
     params.permit(:meal_type, user_ids: [], menu_ids: [])
