@@ -16,32 +16,32 @@ class MealsController < ApplicationController
 
   def new
     # Meal ID criteria
-    @menu_ids = params.fetch(:menu_ids, []) if params.fetch(:menu_ids, []).present?
-    @user_ids = params.fetch(:user_ids, []) if params.fetch(:menu_ids, []).present?
-    @meal_types = params.fetch(:meal_type, "") if params.fetch(:menu_ids, []).present?
+    session[:menu_ids] = params.fetch(:menu_ids, []) if params.fetch(:menu_ids, []).present?
+    session[:user_ids] = params.fetch(:user_ids, []) if params.fetch(:menu_ids, []).present?
+    session[:meal_type] = params.fetch(:meal_types, "") if params.fetch(:menu_ids, []).present?
 
-    if !@menu_ids.nil? && !@user_ids.nil? && !@meal_types.nil?
+    @menu_ids = session[:menu_ids]
+    @user_ids = session[:user_ids]
+    @meal_type = session[:meal_type]
+
+
       @meals = []
-      @menu_ids.each do |menu_id|
-        @user_ids.each do |user_id|
-          meal = Meal.where(user_id: user_id).where(menu_id: menu_id).where(meal_type: @meal_types).ids
+      session[:menu_ids].each do |menu_id|
+        session[:user_ids].each do |user_id|
+          meal_type = session[:meal_type]
+          meal = Meal.where(user_id: user_id).where(menu_id: menu_id).where(meal_type: meal_type).ids
           @meals.push(meal)
         end
       end
-      @meals.flatten!
-    end
+      @meals = @meals.flatten!
 
-    # @meals = [1032, 1086, 1074, 1107]
 
     # Search criteria
-    @meal_type = ["Breakfast", "Lunch", "Dinner"]
-    @dish_type = ["Main course", "Side dish", "Desserts"]
+    @meal_types = %w(Breakfast Lunch Dinner)
+    @dish_type = ["Main course", "Starter", "Desserts"]
     @health = ["vegan", "vegetarian", "paleo"]
 
     @recipes = Edamam::Erecipe.search(params[:query], params[:filters])
-
-    #
-    @meal = Course.new
 
     console
   end

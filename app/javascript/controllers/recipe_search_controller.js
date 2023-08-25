@@ -11,20 +11,24 @@ export default class extends Controller {
     console.log(this.resultsTarget);
     fetch(`https://api.edamam.com/api/recipes/v2?type=public&q=duck&app_id=bb5e4702&app_key=7cb8c06cdedbc2d089957cc57703423c&imageSize=SMALL`)
       .then(response => response.json())
+      // .then((data) => console.log(data))
       .then((data) => this.insertRecipes(data));
+
   }
 
 
   insertRecipes(data) {
     data.hits.forEach((r) => {
+      const recipe_id = `${r.recipe._links.self.href}`
       const recipeCard = `<li class="list-inline-item">
                             <div class="recipe-card">
                               <div class="card-header">
-                               <img src=${r.recipe.images.SMALL.url} alt="">
+                                <p>Image insert</p>
                               </div>
                             <div class="card-body">
                             <p><small>${r.recipe.label}</small></p>
                             <p><small>${r.recipe.source}</small></p>
+                            <p><small>${r.recipe.yield}</small></p>
                             </div>
                             <div class="card-footer">
                             </div>
@@ -43,7 +47,6 @@ export default class extends Controller {
     fetch(`${url}?${type}&q=${query}%20&${app_id}&${api_key}&${image}`)
     .then(response => response.json())
     .then((data) => this.insertRecipes(data))
-
   }
 
 

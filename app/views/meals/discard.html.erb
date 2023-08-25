@@ -51,3 +51,50 @@
     </div>
   </div>
 </div>
+
+
+<!-- Search recipes form on Meals/new -->
+  <div>
+    <%= form_with url: new_meal_path, method: 'get', local: true do |f| %>
+      <%= f.label :query, "Search for:" %>
+      <%= f.text_field :query, multiple: true %>
+      <%= f.fields_for :filters do |ft| %>
+        <%= ft.label "Filter by: " %>
+        <%= ft.select :mealType, @meal_type %>
+        <%= ft.select :dishType, @dish_type %>
+        <%= ft.select :health, @health %>
+      <% end %>
+      <%= f.submit "Search" %>
+    <% end %>
+  </div>
+  <div class="card-deck">
+    <%= render 'recipe_card' %>
+  </div>
+
+
+  <!-- Search form in Stimulus -->
+
+    Edamam::Erecipe.search(params[query], params[filters])
+
+  fetchRecipes(query) {
+      const type = "type=public";
+    const url = "https://api.edamam.com/api/recipes/v2";
+    const app_id = "app_id=bb5e4702";
+    const api_key = "app_key=7cb8c06cdedbc2d089957cc57703423c";
+    const image = "imageSize=THUMBNAIL";
+    fetch(`${url}?${type}&q=${query}%20&${app_id}&${api_key}&${image}`)
+    .then(response => response.json())
+
+    .then((data) => this.insertRecipes(data))
+
+  }
+
+
+<!-- HTML form to create Course on recipe card -->
+
+  <form action="/meals" accept-charset="UTF-8" method="post">
+    <input value="Main course" autocomplete="off" type="hidden" name="course_type" id="course_type">
+    <input value="${recipe_id}" autocomplete="off" type="hidden" name="erecipe_id" id="erecipe_id">
+    <input  value="1060, 1063, 1066, 1069]" name="meal_ids[]" mutliple="true" value="@meals" autocomplete="off" type="hidden" id="meal_ids">
+    <input type="submit" name="commit" value="Add Course" data-disable-with="Add Course">
+  </form>
