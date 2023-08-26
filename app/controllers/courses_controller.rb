@@ -20,7 +20,8 @@ class CoursesController < ApplicationController
     @course = @meal.courses.build(course_params)
 
     if @course.save
-      redirect_to menu_meal_path(@menu, @meal), notice: "Course successfully created"
+      # redirect_to menu_meal_path(@menu, @meal), notice: "Course successfully created"
+      redirect_to new_grocery_path(meal_id: params[:meal_id]), notice: "Course successfully created"
     else
       render :new, status: :unprocessable_entity
     end

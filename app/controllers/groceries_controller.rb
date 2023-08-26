@@ -11,6 +11,8 @@ class GroceriesController < ApplicationController
   def new
     # create gList item(s)
     @grocery = Grocery.new
+    @erecipe_id = Course.where(meal_id: params[:meal_id]).last.erecipe_id
+    @recipe = Edamam::Erecipe.find(@erecipe_id)
 
     console
   end
