@@ -20,13 +20,12 @@
     <ul>
       <% Meal.find(@meals.first).courses.each do |course| %>
         <li><%= course.course_type %></li>
-        <li><%= Course.find(Meal.find(@meals.first).courses.first.id).erecipe_id
- %></li>
+        <li><%= Course.find(course.id).erecipe_id %></li>
       <% end %>
     </ul>
   </div>
 <!-- Stimulus recipce search -->
-  <div class="container text-center">
+  <div class="text-center">
       <%= form_with url: new_meal_path, method: 'get', local: true do |f| %>
         <%= f.label :query, "Search for:" %>
         <%= f.text_field :query, multiple: true %>

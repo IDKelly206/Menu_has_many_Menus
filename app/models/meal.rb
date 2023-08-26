@@ -5,5 +5,4 @@ class Meal < ApplicationRecord
   has_many :courses, dependent: :destroy
 
   validates :meal_type, presence: true
-
 end

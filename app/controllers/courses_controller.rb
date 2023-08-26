@@ -8,7 +8,7 @@ class CoursesController < ApplicationController
     @course = @meal.courses.build
 
     @meal_type = ["Breakfast", "Lunch", "Dinner"]
-    @dish_type = ["Main course", "Side dish", "Desserts"]
+    @dish_type = ["Main course", "Starter", "Desserts"]
     @health = ["vegan", "vegetarian", "paleo"]
 
     @recipes = Edamam::Erecipe.search(params[:query], params[:filters])
@@ -20,7 +20,7 @@ class CoursesController < ApplicationController
     @course = @meal.courses.build
 
     @meal_type = ["Breakfast", "Lunch", "Dinner"]
-    @dish_type = ["Main course", "Side dish", "Desserts"]
+    @dish_type = ["Main course", "Starter", "Desserts"]
     @health = ["vegan", "vegetarian", "paleo"]
 
     @recipes = Edamam::Erecipe.search(params[:query], params[:filters])
@@ -40,7 +40,7 @@ class CoursesController < ApplicationController
   def edit
 
     @meal_type = ["Breakfast", "Lunch", "Dinner"]
-    @dish_type = ["Main course", "Side dish", "Desserts"]
+    @dish_type = ["Main course", "Starter", "Desserts"]
     @health = ["vegan", "vegetarian", "paleo"]
 
     @recipes = Edamam::Erecipe.search(params[:query], params[:filters])

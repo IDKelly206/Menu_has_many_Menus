@@ -24,16 +24,15 @@ class MealsController < ApplicationController
     @user_ids = session[:user_ids]
     @meal_type = session[:meal_type]
 
-
-      @meals = []
-      session[:menu_ids].each do |menu_id|
-        session[:user_ids].each do |user_id|
-          meal_type = session[:meal_type]
-          meal = Meal.where(user_id: user_id).where(menu_id: menu_id).where(meal_type: meal_type).ids
-          @meals.push(meal)
-        end
+    @meals = []
+    session[:menu_ids].each do |menu_id|
+      session[:user_ids].each do |user_id|
+        meal_type = session[:meal_type]
+        meal = Meal.where(user_id: user_id).where(menu_id: menu_id).where(meal_type: meal_type).ids
+        @meals.push(meal)
       end
-      @meals = @meals.flatten!
+    end
+    @meals = @meals.flatten!
 
 
     # Search criteria

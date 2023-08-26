@@ -1,6 +1,11 @@
 <h1>Meal show page</h1>
 <div class="container">
   <div>
+    <p>User: <%= User.find(@meal.user_id).name_first %></p>
+    <p>Date: <%= @menu.day_of_week %></p>
+    <p>Meal: <%= @meal.meal_type %></p>
+  </div>
+  <div>
     <h4>Courses</h4>
   </div>
   <div>

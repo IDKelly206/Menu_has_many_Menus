@@ -13,7 +13,7 @@
     <div class="card-footer">
       <%= form_with model: [@menu, @meal, @course] do |f| %>
         <%= f.hidden_field  :erecipe_id, value: r.erecipe_id %>
-        <%= f.hidden_field :course_type, value: params[:filters][:mealType] %>
+        <%= f.hidden_field :course_type, value: params[:filters][:dishType] %>
         <%= f.submit "Add Course" %>
       <% end %>
     </div>
