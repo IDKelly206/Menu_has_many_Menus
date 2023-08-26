@@ -25,10 +25,9 @@ Rails.application.routes.draw do
   end
 
 
-
   resources :recipes, only: [:index, :show, :new]
 
-
+  resources :groceries
 
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

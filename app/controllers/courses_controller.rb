@@ -16,6 +16,16 @@ class CoursesController < ApplicationController
     console
   end
 
+  def create
+    @course = @meal.courses.build(course_params)
+
+    if @course.save
+      redirect_to menu_meal_path(@menu, @meal), notice: "Course successfully created"
+    else
+      render :new, status: :unprocessable_entity
+    end
+  end
+
   def search
     @course = @meal.courses.build
 
@@ -27,18 +37,7 @@ class CoursesController < ApplicationController
     console
   end
 
-  def create
-    @course = @meal.courses.build(course_params)
-
-    if @course.save
-      redirect_to menu_meal_path(@menu, @meal), notice: "Course successfully created"
-    else
-      render :new, status: :unprocessable_entity
-    end
-  end
-
   def edit
-
     @meal_type = ["Breakfast", "Lunch", "Dinner"]
     @dish_type = ["Main course", "Starter", "Desserts"]
     @health = ["vegan", "vegetarian", "paleo"]
@@ -46,7 +45,6 @@ class CoursesController < ApplicationController
     @recipes = Edamam::Erecipe.search(params[:query], params[:filters])
 
     console
-
   end
 
   def update
