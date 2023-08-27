@@ -1,3 +1,5 @@
+
+
 class RecipesController < ApplicationController
 
   def index
@@ -6,6 +8,7 @@ class RecipesController < ApplicationController
 
   def show
     @recipe = Edamam::Erecipe.find(params[:id])
+    
     console
   end
 

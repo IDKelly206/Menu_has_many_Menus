@@ -4,9 +4,10 @@
     <%# <%= image_tag (r.image), size: "100" %>
     </div>
     <div class="card-body">
-      <p><small>Name:<%= r.label %></small>
-      <small> Source:<%= r.source %></small>
-      <small> Servings:<%= r.yield %></small>
+      <p><small>Name:<%= r.label %></small><br>
+      <small> Source:<%= r.source %></small><br>
+      <small> Servings:<%= r.yield %></small><br>
+      <small> Ingredients: <%= r.ingredients["text"] %></small><br>
       <small><%= link_to 'Recipe Details', recipe_path("#{r.erecipe_id}") %></small>
       </p>
     </div>

@@ -10,9 +10,10 @@
       <small> Servings:<%= @recipe.yield %></small></p>
     </div>
     <div class="card-footer">
-
-      <p><font size="1">ID: <%= @recipe.erecipe_id %></font></p>
+    <p><font size="1">ID: <%= @recipe.erecipe_id %></font></p>
     </div>
   </div>
-
+    <p> Original format </p>
+    <p> Array format </p>
+    <p><font size="1"><%= @recipe.ingredients[0]['text'] %></font></p>
 </div>
