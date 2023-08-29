@@ -1,18 +1,22 @@
 <div class="container">
 <h1>Recipe Index page</h1>
+<div class="container">
+<%= form_with url: "/recipes/index", method: 'get', local: true do |f| %>
+  <%= f.label :query, "Search for:" %>
+  <%= f.text_field :query, multiple: true %>
+  <%= f.fields_for :filters do |ft| %>
+    <%= ft.label "Filter by: " %>
+    <%= ft.select :mealType, @meal_type %>
+    <%= ft.select :dishType, @dish_type %>
+    <%= ft.select :health, @health %>
+  <% end %>
+  <%= f.submit "Search" %>
+<% end %>
 </div>
+<br>
 
-<div class="container text-center"
-     data-controller="recipe-search">
-  <form id="search-form" class="row">
-    <div class="col-10" >
-      <input data-recipe-search-target="searchInput" id="search-input" type="text" class="form-control" placeholder="Searh for Recipes">
-      </div>
-      <div class="col-2">
-        <button type="button" class="btn btn-primary" data-action="recipe-search#submitSearch">Recipe Search</button>
-      </div>
-    </form>
-
-<ul data-recipe-search-target="results" id="results" class="list-inline"></ul>
-
+<br>
+  <%# <%= @response %>
+<div class="card-deck">
+  <%= render 'meals/recipe_card' %>
 </div>
