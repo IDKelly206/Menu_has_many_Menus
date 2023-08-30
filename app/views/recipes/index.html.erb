@@ -1,7 +1,7 @@
 <div class="container">
 <h1>Recipe Index page</h1>
 <div class="container">
-<%= form_with url: "/recipes/index", method: 'get', local: true do |f| %>
+<%= form_with url: "/recipes", method: 'get', local: true do |f| %>
   <%= f.label :query, "Search for:" %>
   <%= f.text_field :query, multiple: true %>
   <%= f.fields_for :filters do |ft| %>
@@ -16,7 +16,7 @@
 <br>
 
 <br>
-  <%# <%= @response %>
+
 <div class="card-deck">
-  <%= render 'meals/recipe_card' %>
+   <%= render 'recipe_card' %>
 </div>

@@ -18,6 +18,19 @@ class GroceriesController < ApplicationController
     @meal_id = params[:meal_id]
 
 
+    @grocery_items = []
+    @recipe.ingredients.each do |i|
+      @g_items = Grocery.new(
+        household_id: @household,
+        name: i['food'],
+        quantity: i['quantity'],
+        measurement: i['measure'],
+        category: i['foodCategory'],
+        erecipe_id: @recipe.erecipe_id
+      )
+      @grocery_items.push(@g_items)
+    end
+
     console
   end
 
@@ -26,8 +39,10 @@ class GroceriesController < ApplicationController
     @menu_id = params[:menu_id]
     @meal_id = params[:meal_id]
 
-    @grocery = Grocery.new(grocery_params)
 
+    params[:grocery].each do |k, grocery_params|
+      Grocery::Importer.create(grocery_params)
+    end
 
   end
 
@@ -62,6 +77,6 @@ class GroceriesController < ApplicationController
   end
 
   def grocery_params
-    params.require(:grocery).permit(:household_id, :name, :quantity, :measurement, :category, :erecipe_id)
+    params.permit(:household_id, :name, :quantity, :measurement, :category, :erecipe_id)
   end
 end

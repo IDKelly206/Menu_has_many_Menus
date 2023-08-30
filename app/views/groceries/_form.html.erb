@@ -1,11 +1,21 @@
-<% @recipe.ingredients.each do |i| %>
-  <%= form_with model: [@grocery] do |f| %>
-    <%= f.hidden_field  :household_id, value: @household %>
-    <%= f.text_field :name, value: i['food'] %>
-    <%= f.number_field :quantity, value: i['quantity'] %>
-    <%= f.text_field :measurement, value: i['measure'] %>
-    <%= f.text_field :category, value: i['foodCategory'] %>
-    <%= f.hidden_field :erecipe_id, value: @recipe.erecipe_id %>
-    <%= f.submit "Add gList items" %>
-  <% end %>
-<% end %>
+<div class="container">
+
+  <div>
+    <%= form_with url: '/groceries' do |form|  %>
+      <% n = 0 %>
+      <% @recipe.ingredients.each do |i| %>
+        <% n += 1 %>
+        <hr>
+        <%= fields_for 'grocery'+[n].to_s do |fields| %>
+          <%= fields.hidden_field  :household_id, value: @household %>
+          <%= fields.hidden_field  :erecipe_id, value: @erecipe_id %>
+          <%= fields.text_field :name, value: i['food'] %>
+          <%= fields.number_field :quantity, value: i['quantity'] %>
+          <%= fields.text_field :measurement, value: i['measure'] %>
+          <%= fields.text_field :category, value: i['foodCategory'] %>
+        <% end %>
+      <% end %>
+    <%= form.submit "Add gList items" %>
+    <% end %>
+  </div>
+</div>
