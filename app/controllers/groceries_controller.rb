@@ -1,5 +1,7 @@
 class GroceriesController < ApplicationController
   before_action :set_household
+  before_action :set_menu, only: [:new]
+  before_action :set_meal, only: [:new]
 
   def index
     # show all gList item(s)
@@ -9,43 +11,31 @@ class GroceriesController < ApplicationController
   end
 
   def new
-    # create gList item(s)
     @grocery = Grocery.new
-    @erecipe_id = Course.where(meal_id: params[:meal_id]).last.erecipe_id
+    # Get last added recipe from course for ingredient items to add in gList
+    @erecipe_id = Course.where(meal_id: @meal.id).last.erecipe_id
     @recipe = Edamam::Erecipe.find(@erecipe_id)
 
-    @menu_id = params[:menu_id]
-    @meal_id = params[:meal_id]
-
-
-    @grocery_items = []
-    @recipe.ingredients.each do |i|
-      @g_items = Grocery.new(
-        household_id: @household,
-        name: i['food'],
-        quantity: i['quantity'],
-        measurement: i['measure'],
-        category: i['foodCategory'],
-        erecipe_id: @recipe.erecipe_id
-      )
-      @grocery_items.push(@g_items)
-    end
-
+    # Send to sessions for re-direct purposes
+    session[:menu_id] = @menu.id
+    session[:meal_id] = @meal.id
     console
   end
 
   def create
-
-    @menu_id = params[:menu_id]
-    @meal_id = params[:meal_id]
-
-
     params[:grocery].each do |k, grocery_params|
       Grocery::Importer.create(grocery_params)
     end
 
+    @menu = session[:menu_id]
+    @meal = session[:meal_id]
+
     if @glist_count == @new_glist
-      redirect_to menu_meal_path(@menu, @meal), notice: "Meal(s) were successfully created."
+      if session[:meal_ids].include?(@meal) && session[:menu_ids].include?(@menu)
+        redirect_to new_meal_path, notice: "Grocery items successfully added to Grocery List."
+      else
+        redirect_to menu_meal_path(@menu, @meal), notice: "Grocery items successfully added to Grocery List."
+      end
     else
       render :new, status: :unprocessable_entity
     end

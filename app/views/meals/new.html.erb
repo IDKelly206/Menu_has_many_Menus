@@ -17,10 +17,15 @@
     </ul>
   </div>
   <div>
+  <%# Below is an issue. Not all meals have same course(s). Overwriting logic necessary %>
     <ul>
-      <% Meal.find(@meals.first).courses.each do |course| %>
-        <li><%= course.course_type %></li>
-        <li><%= Course.find(course.id).erecipe_id %></li>
+      <% @meals.each do |meal| %>
+        <li><b> <%= Meal.find(meal).id %> </b>
+          <% Meal.find(meal).courses.each do |course| %>
+          <li><%= course.course_type %></li>
+          <li><%= Course.find(course.id).erecipe_id %></li>
+          <% end %>
+        </li>
       <% end %>
     </ul>
   </div>

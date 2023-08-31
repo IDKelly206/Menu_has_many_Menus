@@ -15,15 +15,22 @@ class MealsController < ApplicationController
   end
 
   def new
-    # Meal ID criteria
-    session[:menu_ids] = params.fetch(:menu_ids, []) if params.fetch(:menu_ids, []).present?
-    session[:user_ids] = params.fetch(:user_ids, []) if params.fetch(:menu_ids, []).present?
-    session[:meal_type] = params.fetch(:meal_types, "") if params.fetch(:menu_ids, []).present?
+    # Search criteria
+    @meal_types = %w(Breakfast Lunch Dinner)
+    @dish_type = ["Main course", "Starter", "Desserts"]
+    @health = ["vegan", "vegetarian", "paleo"]
+    @recipes = Edamam::Erecipe.search(params[:query], params[:filters])
 
+    # Meal ID(s) criteria to specify meal. Set in sessions circular Meal build.
+    # Necessary b/c params disappear on Search submit
+    session[:menu_ids] = params.fetch(:menu_ids, []) if params.fetch(:menu_ids, []).present?
+    session[:user_ids] = params.fetch(:user_ids, []) if params.fetch(:user_ids, []).present?
+    session[:meal_type] = params.fetch(:meal_types, "") if params.fetch(:meal_types, []).present?
+    # Set meal id criteria as instance variable for display on view
     @menu_ids = session[:menu_ids]
     @user_ids = session[:user_ids]
     @meal_type = session[:meal_type]
-
+    # For display purposes only
     @meals = []
     session[:menu_ids].each do |menu_id|
       session[:user_ids].each do |user_id|
@@ -33,14 +40,8 @@ class MealsController < ApplicationController
       end
     end
     @meals = @meals.flatten!
+    session[:meal_ids] = @meals
 
-
-    # Search criteria
-    @meal_types = %w(Breakfast Lunch Dinner)
-    @dish_type = ["Main course", "Starter", "Desserts"]
-    @health = ["vegan", "vegetarian", "paleo"]
-
-    @recipes = Edamam::Erecipe.search(params[:query], params[:filters])
 
     console
   end
@@ -51,7 +52,8 @@ class MealsController < ApplicationController
     Meal::Multicourse.create(course_params)
 
     if @course_count == @new_courses
-      redirect_to new_meal_path, notice: "Meal(s) were successfully created."
+      # redirect_to new_meal_path, notice: "Course was successfully created."
+      redirect_to new_grocery_path(meal_id: session[:meal_ids].last, menu_id: session[:menu_ids].last), notice: "Course successfully added"
     else
       render :new, status: :unprocessable_entity
     end

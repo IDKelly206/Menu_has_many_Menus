@@ -1,5 +1,5 @@
 
-  <div data-controller="meal-new">
+  <div >
     <%= form_with url: "/meals/new", method: 'get' do |f| %>
       <div class="mb-3" data-meal-new-target="getType">
         <%= f.select :meal_types, @meal_types, { prompt: "Select meal" } %>
@@ -13,7 +13,4 @@
       </div>
         <%= f.submit "Next" %>
     <% end %>
-      <%# <%= link_to "Finish Meal", "#", data: { action: "click->meal-new#setMeal" } %>
-    <div class="card-footer text-muted mt-2" data-meal-new-target="errorMessage" >
-    </div>
   </div>
