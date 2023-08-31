@@ -44,6 +44,12 @@ class GroceriesController < ApplicationController
       Grocery::Importer.create(grocery_params)
     end
 
+    if @glist_count == @new_glist
+      redirect_to menu_meal_path(@menu, @meal), notice: "Meal(s) were successfully created."
+    else
+      render :new, status: :unprocessable_entity
+    end
+
   end
 
   def show
@@ -77,6 +83,6 @@ class GroceriesController < ApplicationController
   end
 
   def grocery_params
-    params.permit(:household_id, :name, :quantity, :measurement, :category, :erecipe_id)
+    params.permit(:household_id, :erecipe_id, :name, :quantity, :measurement, :category, :list_add)
   end
 end

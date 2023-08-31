@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_26_185032) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_31_095933) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -33,6 +33,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_26_185032) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "ingrs", default: [], array: true
+    t.boolean "list_add", default: true, null: false
     t.index ["household_id"], name: "index_groceries_on_household_id"
   end
 

@@ -10,19 +10,27 @@ class Grocery::Importer
     @measurement = grocery_params.fetch(:measurement)
     @category = grocery_params.fetch(:category)
     @erecipe_id = grocery_params.fetch(:erecipe_id)
+    @list_add = grocery_params.fetch(:list_add).to_i
   end
 
   def create(grocery_params)
     validate_params!
 
-    Grocery.create!(
-      household_id: @household_id,
-      name: @name,
-      quantity: @quantity,
-      measurement: @measurement,
-      category: @category,
-      erecipe_id: @erecipe_id
-    )
+    @glist_count = 0
+    @glist_count += @list_add
+    @new_glist = 0
+
+    if grocery_params.fetch(:list_add).to_i >= 1
+      Grocery.create!(
+        household_id: @household_id,
+        name: @name,
+        quantity: @quantity,
+        measurement: @measurement,
+        category: @category,
+        erecipe_id: @erecipe_id
+      )
+      @new_glist += 1
+    end
 
   end
 
