@@ -9,12 +9,22 @@
         <%= fields_for 'grocery'+[n].to_s do |fields| %>
           <%= fields.hidden_field  :household_id, value: @household %>
           <%= fields.hidden_field  :erecipe_id, value: @erecipe_id %>
-          <%= fields.text_field :name, value: i['food'] %>
-          <%= fields.number_field :quantity, value: i['quantity'] %>
-          <%= fields.text_field :measurement, value: i['measure'] %>
-          <%= fields.text_field :category, value: i['foodCategory'] %>
+          <%= fields.label i['food'] %>
+          <%= fields.hidden_field :name, value: i['food'] %>
+          <%= fields.label i['quantity'] %>
+          <%= fields.hidden_field :quantity, value: i['quantity'] %>
+          <% if  i['measure'].present?  %>
+            <%= fields.label i['measure'] %>
+            <%= fields.hidden_field :measurement, value: i['measure'] %>
+          <% else %>
+            <%= fields.label "<Pinch>" %>
+            <%= fields.hidden_field :measurement, value: "<Pinch>" %>
+          <% end %>
+          <%= fields.label i['foodCategory'] %>
+          <%= fields.hidden_field :category, value: i['foodCategory'] %>
         <% end %>
       <% end %>
+      <hr>
     <%= form.submit "Add gList items" %>
     <% end %>
   </div>
