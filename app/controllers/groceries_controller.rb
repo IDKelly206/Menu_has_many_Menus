@@ -31,7 +31,8 @@ class GroceriesController < ApplicationController
     @meal = session[:meal_id]
 
     if @glist_count == @new_glist
-      if session[:meal_ids].include?(@meal) && session[:menu_ids].include?(@menu)
+      menu_ids = session[:menu_ids].map { |n| n.to_i }
+      if session[:meal_ids].include?(@meal) && menu_ids.include?(@menu)
         redirect_to new_meal_path, notice: "Grocery items successfully added to Grocery List."
       else
         redirect_to menu_meal_path(@menu, @meal), notice: "Grocery items successfully added to Grocery List."
