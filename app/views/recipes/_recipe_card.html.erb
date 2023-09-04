@@ -6,7 +6,8 @@
     <div class="card-body">
       <p><small>Name:<%= r.label %></small>
       <small> Source:<%= r.source %></small>
-      <small> Servings:<%= r.yield %></small></p>
+      <small> Servings:<%= r.yield %></small>
+      <%# <small> Ingredients:<%= r.ingredients.count %></small></p> %>
     </div>
     <div class="card-footer">
       <%= link_to 'Recipe Details', recipe_path("#{r.erecipe_id}") %>

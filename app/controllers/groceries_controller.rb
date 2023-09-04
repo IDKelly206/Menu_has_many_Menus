@@ -7,6 +7,17 @@ class GroceriesController < ApplicationController
     # show all gList item(s)
     @groceries = Grocery.all.where('household_id = ?', @household).all
 
+    # names = @groceries.map{ |i| i.name }
+    # dups = names.detect { |n| names.count(n) > 1 }
+
+
+    # #1 Get list of names w/o doubles of name... & category
+      # @groceries.select { |x| @groceries.count(x.name) > 1 }.uniq
+    # #2 Add quantity for each individual names where measurement == measurement
+    # #3 Create new hash of groceries
+    # #? Inject info into a form
+
+
     console
   end
 
@@ -16,7 +27,7 @@ class GroceriesController < ApplicationController
     @erecipe_id = Course.where(meal_id: @meal.id).last.erecipe_id
     @recipe = Edamam::Erecipe.find(@erecipe_id)
 
-    # Send to sessions for re-direct purposes
+    # Send to sessions for re-direct purposes after save
     session[:menu_id] = @menu.id
     session[:meal_id] = @meal.id
     console
@@ -31,16 +42,16 @@ class GroceriesController < ApplicationController
     @meal = session[:meal_id]
 
     if @glist_count == @new_glist
-      menu_ids = session[:menu_ids].map { |n| n.to_i }
-      if session[:meal_ids].include?(@meal) && menu_ids.include?(@menu)
+      menu_ids = session[:menu_ids].present? ? session[:menu_ids].map { |n| n.to_i } : ""
+      meal_ids = session[:meal_ids].present? ? session[:meal_ids].map { |n| n.to_i } : ""
+      if menu_ids.empty? && meal_ids.empty?
+        redirect_to menu_meal_path(@menu, @meal), notice: "Grocery items successfully added to Grocery List."
+      elsif meal_ids.include?(@meal) && menu_ids.include?(@menu)
         redirect_to new_meal_path, notice: "Grocery items successfully added to Grocery List."
       else
-        redirect_to menu_meal_path(@menu, @meal), notice: "Grocery items successfully added to Grocery List."
+        render :new, status: :unprocessable_entity
       end
-    else
-      render :new, status: :unprocessable_entity
     end
-
   end
 
   def show

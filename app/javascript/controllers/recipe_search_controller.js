@@ -19,7 +19,7 @@ export default class extends Controller {
 
   insertRecipes(data) {
     data.hits.forEach((r) => {
-      const recipe_id = `${r.recipe._links.self.href}`
+      // const recipe_id = `${r.recipe._links.self.href}`
       const recipeCard = `<li class="list-inline-item">
                             <div class="recipe-card">
                               <div class="card-header">

@@ -12,6 +12,12 @@ class CoursesController < ApplicationController
     @health = ["vegan", "vegetarian", "paleo"]
     @recipes = Edamam::Erecipe.search(params[:query], params[:filters])
 
+    # Meal ID(s) criteria for multi meal. Set in sessions circular Meal build.
+    # Reset due to variable used for multi redirect_to
+    session[:menu_ids] = ""
+    session[:user_ids] = ""
+    session[:meal_type] = ""
+    session[:meal_ids] = ""
 
     @course = @meal.courses.build
 

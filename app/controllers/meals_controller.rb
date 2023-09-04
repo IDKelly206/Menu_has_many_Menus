@@ -30,11 +30,11 @@ class MealsController < ApplicationController
     @menu_ids = session[:menu_ids]
     @user_ids = session[:user_ids]
     @meal_type = session[:meal_type]
-    # For display purposes only
+    # Used to create multiple courses & provide erecipe_id for groceries
     @meals = []
-    session[:menu_ids].each do |menu_id|
-      session[:user_ids].each do |user_id|
-        meal_type = session[:meal_type]
+    @menu_ids.each do |menu_id|
+      @user_ids.each do |user_id|
+        meal_type = @meal_type
         meal = Meal.where(user_id: user_id).where(menu_id: menu_id).where(meal_type: meal_type).ids
         @meals.push(meal)
       end

@@ -7,13 +7,16 @@
     <div class="card-body">
       <p><small>Name:<%= @recipe.label %></small>
       <small> Source:<%= @recipe.source %></small>
-      <small> Servings:<%= @recipe.yield %></small></p>
+      <small> Servings:<%= @recipe.yield %></small>
+      <small> Ingredients:<%= @recipe.ingredients.count %></small></p>
     </div>
     <div class="card-footer">
     <p><font size="1">ID: <%= @recipe.erecipe_id %></font></p>
     </div>
   </div>
-    <p> Original format </p>
-    <p> Array format </p>
-    <p><font size="1"><%= @recipe.ingredients[0]['text'] %></font></p>
+  <ul>
+    <% @recipe.ingredients.each do |i| %>
+      <li><font size="1"><%= i['text'] %></font></li>
+    <% end %>
+  </ul>
 </div>

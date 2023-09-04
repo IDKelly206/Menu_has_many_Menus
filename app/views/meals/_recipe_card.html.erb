@@ -12,8 +12,8 @@
     </div>
     <div class="card-footer">
       <%= form_with url: meals_path do |f| %>
-        <%= f.hidden_field :course_type, value: params[:filters][:dishType] %>
         <%= f.hidden_field :erecipe_id, value: r.erecipe_id %>
+        <%= f.hidden_field :course_type, value: params[:filters][:dishType] %>
         <%= f.hidden_field :meal_ids, name:"meal_ids[]", mutliple: true, value: @meals %>
         <%= f.submit "Add Course" %>
       <% end %>
