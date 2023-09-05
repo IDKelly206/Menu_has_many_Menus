@@ -37,6 +37,7 @@ class CoursesController < ApplicationController
   def search
     @course = @meal.courses.build
 
+    # Search criteria
     @meal_type = ["Breakfast", "Lunch", "Dinner"]
     @dish_type = ["Main course", "Starter", "Desserts"]
     @health = ["vegan", "vegetarian", "paleo"]
@@ -46,10 +47,10 @@ class CoursesController < ApplicationController
   end
 
   def edit
+    # Search criteria
     @meal_type = ["Breakfast", "Lunch", "Dinner"]
     @dish_type = ["Main course", "Starter", "Desserts"]
     @health = ["vegan", "vegetarian", "paleo"]
-
     @recipes = Edamam::Erecipe.search(params[:query], params[:filters])
 
     console
