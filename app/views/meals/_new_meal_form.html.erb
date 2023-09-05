@@ -9,7 +9,6 @@
       </div>
       <div class="mb-3" data-meal-new-target="getMenuID">
         <%= f.collection_check_boxes(:menu_ids, @menus, :id, :day_of_week, include_hidden: false) %>
-
       </div>
         <%= f.submit "Next" %>
     <% end %>

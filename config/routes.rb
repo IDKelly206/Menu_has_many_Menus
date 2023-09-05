@@ -10,9 +10,6 @@ Rails.application.routes.draw do
   resources :menus, only: [:index, :show] do
     resources :meals, only: [:index, :show] do
       resources :courses, only: [:new, :create, :show, :edit, :update, :destroy] do
-        collection do
-          get 'search'
-        end
       end
     end
   end

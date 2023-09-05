@@ -8,7 +8,7 @@
       <% end %>
     </ul>
     <ul>
-      <%  @user_ids.each do |user_id| %>
+      <% @user_ids.each do |user_id| %>
         <li><%= User.find(user_id).name_first %></li>
       <% end %>
     </ul>

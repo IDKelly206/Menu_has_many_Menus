@@ -7,15 +7,38 @@ class GroceriesController < ApplicationController
     # show all gList item(s)
     @groceries = Grocery.all.where('household_id = ?', @household).all
 
-    # names = @groceries.map{ |i| i.name }
+
     # dups = names.detect { |n| names.count(n) > 1 }
 
 
     # #1 Get list of names w/o doubles of name... & category
-      # @groceries.select { |x| @groceries.count(x.name) > 1 }.uniq
     # #2 Add quantity for each individual names where measurement == measurement
     # #3 Create new hash of groceries
+    
+      # groceries = Grocery.all.where('household_id = ?', @household).all
+      # names_uniq = @groceries.map{ |i| i.name }.uniq
+      # g_list = {}
+      # names_uniq.each do |name|
+      # @quanity = 0
+      #   groceries.where(name: name).each do |g_item|
+      #      @quanity += g_item.quantity
+      #   end
+      #   g_list[name] = @quantity
+      # end
+      # g_list
+
     # #? Inject info into a form
+
+      # name_uniq.each do |n|
+      #   groceries.where(name: n).each do |g_item|
+      #     g_item.name | g.item.cat | g_list[g_item.name] | g_item.m
+      #   end
+      # end
+
+
+
+
+
 
 
     console

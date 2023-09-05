@@ -1,13 +1,6 @@
 <div class="container">
 <h1>Grocery List show page</h1>
   <div>
-    <ul>
-    <% @groceries.each do |gItem| %>
-      <li><%= gItem.name %> | <%= gItem.category %> | <%= gItem.quantity %> | <%= gItem.measurement %></li>
-    <% end %>
-    </ul>
-  </div>
-  <div>
-
+    <%= render @groceries %>
   </div>
 </div>
