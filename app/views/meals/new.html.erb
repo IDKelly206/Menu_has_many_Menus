@@ -1,3 +1,4 @@
+<% provide(:title, "Multi-Meal") %>
 <div class="container">
   <h1>New Meal page</h1>
   <div>
@@ -35,6 +36,6 @@
     <%= render 'recipes/search_bar', path: new_meal_path %>
   </div>
   <div class="card-deck">
-    <%= render 'recipe_card' %>
+    <%= render @recipes %>
   </div>
 </div>

@@ -1,8 +1,10 @@
+<%- title "Recipes" %>
 <div class="container">
 <h1>Recipe Index page</h1>
 <%= render 'search_bar', path: "/recipes" %>
 <br>
+<hr>
 <br>
 <div class="card-deck">
-   <%= render @recipes %>
+   <%= render @recipes, title: yield(:title) %>
 </div>

@@ -10,6 +10,8 @@ class RecipesController < ApplicationController
 
     @next_page = Edamam::Erecipe.next_page
 
+
+
     console
   end
 

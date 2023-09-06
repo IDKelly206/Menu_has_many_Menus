@@ -1,16 +1,18 @@
 <div class="recipe-card">
   <div class="card-header">
-    <%= image_tag recipe.image, size: "100" %>
+    <div class="text-center">
+      <%= image_tag recipe.image, size: "100" %>
+    </div>
   </div>
   <div class="card-body">
-    <ul>
-    <li>Name: <%= link_to recipe.label, recipe_path(recipe.erecipe_id  ) %></li>
-    <li><%= recipe.source %></li>
-    <li><%= recipe.yield %></li>
-    <li><%= recipe.erecipe_id %></li>
+    <ul><small>
+      <li>Name: <%= link_to recipe.label, recipe_path(recipe.erecipe_id) %></li>
+      <li>Source: <%= recipe.source %></li>
+      <li>Servings: <%= recipe.yield %></li></small>
     </ul>
   </div>
   <div class="card-footer">
-    <%# Insert ingredients here. Need to fix Recipe.new for Search function %>
+    <%=  recipe_form(title) %>
+    
   </div>
 </div>
