@@ -18,6 +18,7 @@
   </div>
   <div>
   <%# Below is an issue. Not all meals have same course(s). Overwriting logic necessary %>
+  <%# This would be the Meal partial for Course %>
     <ul>
       <% @meals.each do |meal| %>
         <li><b> <%= Meal.find(meal).id %> </b>

@@ -4,7 +4,7 @@
     <%# <%= image_tag (r.image), size: "100" %>
     </div>
     <div class="card-body">
-      <p><small>Name:<%= r.label %></small>
+      <p><small>Name:<%= link_to "#{r.label}", recipe_path("#{r.erecipe_id}") %></small>
       <small> Source:<%= r.source %></small>
       <small> Servings:<%= r.yield %></small>
       <small><%= link_to 'Recipe Details', recipe_path("#{r.erecipe_id}") %></small>

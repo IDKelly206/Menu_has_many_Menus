@@ -2,9 +2,7 @@
 <h1>Recipe Index page</h1>
 <%= render 'search_bar', path: "/recipes" %>
 <br>
-
 <br>
-
 <div class="card-deck">
-   <%= render 'recipe_card' %>
+   <%= render @recipes %>
 </div>

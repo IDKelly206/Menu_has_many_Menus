@@ -9,15 +9,13 @@ module Edamam
 
     def self.find(id)
       r = Request.get(id)
-
-
       Recipe.new(
                 label:     r[:recipe][:label],
                 source:    r[:recipe][:source],
                 yield:     r[:recipe][:yield],
                 image:     r[:recipe][:image],
-                erecipe_id: id,
-                ingredients: r[:recipe][:ingredients]
+                ingredients: r[:recipe][:ingredients],
+                erecipe_id: id
                 )
     end
 

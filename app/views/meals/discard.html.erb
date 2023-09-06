@@ -98,3 +98,22 @@
     <input  value="1060, 1063, 1066, 1069]" name="meal_ids[]" mutliple="true" value="@meals" autocomplete="off" type="hidden" id="meal_ids">
     <input type="submit" name="commit" value="Add Course" data-disable-with="Add Course">
   </form>
+
+
+
+<%# Recipe_card of Recipes %>
+<% @recipes.each do |r| %>
+  <div class="recipe-card">
+    <div class="card-header">
+    <%= image_tag (r.image), size: "100" %>
+    </div>
+    <div class="card-body">
+      <p><small>Name:<%= link_to "#{r.label}", recipe_path("#{r.erecipe_id}") %></small>
+      <small> Source:<%= r.source %></small>
+      <small> Servings:<%= r.yield %></small></p>
+    </div>
+    <div class="card-footer">
+
+    </div>
+  </div>
+<% end %>

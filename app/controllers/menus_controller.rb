@@ -45,10 +45,6 @@ class MenusController < ApplicationController
     @menu = Menu.find(params[:id])
   end
 
-  # def set_meal
-  #   @meal = @menu.meals.find(params[:id])
-  # end
-
   def set_meal_type
     @meal_type = %w(Breakfast Lunch Dinner)
   end
