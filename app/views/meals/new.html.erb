@@ -31,17 +31,7 @@
   </div>
 <!-- Recipce search -->
   <div class="text-center">
-      <%= form_with url: new_meal_path, method: 'get', local: true do |f| %>
-        <%= f.label :query, "Search for:" %>
-        <%= f.text_field :query, multiple: true %>
-        <%= f.fields_for :filters do |ft| %>
-          <%= ft.label "Filter by: " %>
-          <%= ft.select :mealType, @meal_types %>
-          <%= ft.select :dishType, @dish_type %>
-          <%= ft.select :health, @health %>
-        <% end %>
-        <%= f.submit "Search" %>
-      <% end %>
+    <%= render 'recipes/search_bar', path: new_meal_path %>
   </div>
   <div class="card-deck">
     <%= render 'recipe_card' %>
