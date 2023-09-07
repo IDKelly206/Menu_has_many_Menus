@@ -5,49 +5,44 @@ class GroceriesController < ApplicationController
 
   def index
     # show all gList item(s)
-    @groceries = Grocery.all.where('household_id = ?', @household).all
+    # @groceries = Grocery.all.where('household_id = ?', @household).all
 
 
     # dups = names.detect { |n| names.count(n) > 1 }
 
 
-    # #1 Get list of names w/o doubles of name... & category
+    # #1 Get list of items names w/o doubles of name...
+    #  .where('in_inventory = false').
     # #2 Add quantity for each individual names where measurement == measurement
+    # #2b - equalize Inventory measurement with calc. single standard measurement.
     # #3 Create new hash of groceries
 
-      # groceries = Grocery.all.where('household_id = ?', @household).where('in_inventory = false').all
-      # names_uniq = groceries.map{ |i| i.name }.uniq
-      # g_list = []
-      # @count = 0
+    groceries = Grocery.all.where('household_id = ?', @household).all
+    names_uniq = groceries.map{ |i| i.name }.uniq
+    g_list = []
+    @count = 0
 
-      # names_uniq.each_with_index do |name, index|
-      #   g_list[index] = {}
-      #   @quantity = 0
-      #   groceries.where(name: name).each do |g_item|
-      #    g_list[index][:n] = name
-      #    @quantity += g_item.quantity
-      #    g_list[index][:q] = @quantity
-      #    g_list[index][:m] = g_item.measurement
-      #    g_list[index][:cat] = g_item.category
-      #
-      #    g_item.in_inventory = true
-      #   end
-      #   @count +=1
-      # end
+    names_uniq.each_with_index do |name, index|
+      g_list[index] = {}
+      @quantity = 0
+      groceries.where(name: name).each do |g_item|
+        g_list[index][:n] = name
+        @quantity += g_item.quantity
+        g_list[index][:q] = @quantity
+        g_list[index][:m] = g_item.measurement
+        g_list[index][:cat] = g_item.category
+      end
+      @count += 1
+    end
 
+    @groceries = g_list
       # g_list
+      # Inject g_list hash into inventory form &
+      # Change g_item.in_inventory to true OR delete g_item
 
 
-    # #? Inject info into a form
-
-      # name_uniq.each do |n|
-      #   groceries.where(name: n).each do |g_item|
-      #     g_item.name | g.item.cat | g_list[g_item.name] | g_item.m
-      #   end
-      # end
-
-
-
+      ##2b - Create helper calc to convert any measurement into Inventory standard
+      # Use 'ruby-units' gem
 
 
 
@@ -94,6 +89,8 @@ class GroceriesController < ApplicationController
 
   def edit
     # update specific gList item
+
+    # gh repo create planner_v2 --private --source=. --remote=upstream
   end
 
   def update
