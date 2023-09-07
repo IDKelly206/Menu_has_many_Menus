@@ -14,18 +14,29 @@ class GroceriesController < ApplicationController
     # #1 Get list of names w/o doubles of name... & category
     # #2 Add quantity for each individual names where measurement == measurement
     # #3 Create new hash of groceries
-    
-      # groceries = Grocery.all.where('household_id = ?', @household).all
-      # names_uniq = @groceries.map{ |i| i.name }.uniq
-      # g_list = {}
-      # names_uniq.each do |name|
-      # @quanity = 0
+
+      # groceries = Grocery.all.where('household_id = ?', @household).where('in_inventory = false').all
+      # names_uniq = groceries.map{ |i| i.name }.uniq
+      # g_list = []
+      # @count = 0
+
+      # names_uniq.each_with_index do |name, index|
+      #   g_list[index] = {}
+      #   @quantity = 0
       #   groceries.where(name: name).each do |g_item|
-      #      @quanity += g_item.quantity
+      #    g_list[index][:n] = name
+      #    @quantity += g_item.quantity
+      #    g_list[index][:q] = @quantity
+      #    g_list[index][:m] = g_item.measurement
+      #    g_list[index][:cat] = g_item.category
+      #
+      #    g_item.in_inventory = true
       #   end
-      #   g_list[name] = @quantity
+      #   @count +=1
       # end
+
       # g_list
+
 
     # #? Inject info into a form
 
