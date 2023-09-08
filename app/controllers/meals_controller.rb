@@ -42,13 +42,11 @@ class MealsController < ApplicationController
     @meals = @meals.flatten!
     session[:meal_ids] = @meals
 
-
     console
   end
 
 
   def create
-
     Meal::Multicourse.create(course_params)
 
     if @course_count == @new_courses
@@ -57,9 +55,7 @@ class MealsController < ApplicationController
     else
       render :new, status: :unprocessable_entity
     end
-
   end
-
 
   def show
     @courses = @meal.courses
@@ -84,22 +80,4 @@ class MealsController < ApplicationController
   def course_params
     params.permit(:course_type, :erecipe_id, meal_ids: [])
   end
-
-  def meal_params
-    params.permit(:meal_type, user_ids: [], menu_ids: [])
-  end
 end
-
-
-#  MEAL creation function with COURSE
-# menu_ids.each do |menu_id|
-#   menu = Menu.find(menu_id)
-#     user_ids.each do |user_id|
-#       Meal.create!(meal_type: meal_type, user_id: user_id, menu_id: menu_id)
-#       meal_id = Meal.last.id
-#       courses_info.each do |course|
-#         Course.create!(meal_id: meal_id, course_type: course[0], recipe_id: course[1])
-#       end
-#     end
-# end
-#

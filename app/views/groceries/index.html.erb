@@ -2,14 +2,19 @@
 <div class="container">
 <h1>Grocery List show page</h1>
   <div>
+  <hr>
     <%  @groceries.each do |item| %>
+    <ul>
       <%= form_with url: '/groceries', method: 'get' do |f| %>
+        <li>
         <%= f.label item[:n] %>
         <%= f.label item[:q] %>
         <%= f.label item[:m] %>
         <%= f.label item[:cat] %>
-        <%= f.submit "Inventory" %>
+        <%= f.submit "Add to Inventory" %>
+        </li><hr>
       <% end %>
+    </ul>
     <% end %>
   </div>
 </div>
