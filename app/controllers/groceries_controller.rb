@@ -104,7 +104,7 @@ class GroceriesController < ApplicationController
   private
 
   def set_household
-    @household = current_user.household_id
+    @household = Household.find(current_user.id)
   end
 
   def set_menu

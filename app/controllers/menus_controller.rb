@@ -7,9 +7,9 @@ class MenusController < ApplicationController
 
   def index
     calendar = (Time.now.to_date...(Time.now.to_date+10))
-    menu_ids = Menu.where('household_id = ?', @household).where('date IN (:cal)', { cal: calendar }).ids
+    menu_count = Menu.where('household_id = ?', @household).where('date IN (:cal)', { cal: calendar }).count
 
-    if menu_ids.count >= calendar.count
+    if menu_count >= calendar.count
       @menus = Menu.where('household_id = ?', @household).where('date IN (:cal)', { cal: calendar }).ordered
     else
       cal_menu = Menu.where('household_id = ?', @household).where('date IN (:cal)', { cal: calendar }).ordered
@@ -34,11 +34,11 @@ class MenusController < ApplicationController
 
   private
   def set_household
-    @household = current_user.household_id
+    @household = Household.find(current_user.id)
   end
 
   def set_users
-    @users = User.where(household_id: @household).all
+    @users = @household.users
   end
 
   def set_menu

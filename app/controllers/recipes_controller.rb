@@ -3,14 +3,13 @@ class RecipesController < ApplicationController
 
   def index
     # Recipe search criteria
-    @meal_type = %w(Breakfast Lunch Dinner)
-    @dish_type = ["Main course", "Side dish", "Desserts"]
+    @meal_types = %w(Breakfast Lunch Dinner)
+    @dish_type = ["Main course", "Starter", "Desserts"]
     @health = ["vegan", "vegetarian", "paleo"]
     @recipes = Edamam::Erecipe.search(params[:query], params[:filters])
+    # render partial: 'recipes/recipe'
 
-    @next_page = Edamam::Erecipe.next_page
-
-
+    render @recipes, partial: 'recipes/recipe'
 
     console
   end

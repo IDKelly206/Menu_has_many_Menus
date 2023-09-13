@@ -57,7 +57,6 @@ export default class extends Controller {
     console.log(input.value)
     const query = input.value;
     this.fetchRecipes(query)
-
   }
 
 }

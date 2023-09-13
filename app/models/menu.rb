@@ -22,7 +22,7 @@ class Menu < ApplicationRecord
 
   def create_menu_meals
     # household_id = current_user.household_id
-    menu_id = Menu.last.id
+    menu_id = Self.last.id
     household_id = Menu.last.household_id
     user_ids = User.all.where(household_id: household_id).ids
     meal_types = %w(Breakfast Lunch Dinner)

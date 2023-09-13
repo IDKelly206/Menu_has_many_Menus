@@ -6,9 +6,10 @@ class MealsController < ApplicationController
 
 
   def meal_new
+    # Modal of GET form to meal#new. Selects multi-meal criteria
     calendar = (Time.now.to_date...(Time.now.to_date+10))
     @menus = Menu.where('household_id = ?', @household).where('date IN (:cal)', { cal: calendar })
-    @users = User.all.where(household_id: @household)
+    @users = @household.users
     @meal_types = %w(Breakfast Lunch Dinner)
 
     console
@@ -35,7 +36,7 @@ class MealsController < ApplicationController
     @menu_ids.each do |menu_id|
       @user_ids.each do |user_id|
         meal_type = @meal_type
-        meal = Meal.where(user_id: user_id).where(menu_id: menu_id).where(meal_type: meal_type).ids
+        meal = Meal.where('user_id = ?', user_id).where('menu_id = ?', menu_id).where('meal_type = ?', meal_type).ids
         @meals.push(meal)
       end
     end
@@ -66,7 +67,7 @@ class MealsController < ApplicationController
   private
 
   def set_household
-    @household = current_user.household_id
+    @household = Household.find(current_user.id)
   end
 
   def set_menu

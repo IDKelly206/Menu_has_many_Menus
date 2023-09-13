@@ -1,0 +1,32 @@
+    <div class="card-menu">
+      <div class="card-menu-header">
+        <h6><%= menu.date.strftime("%a") %></h6>
+        <h6><%= link_to "#{menu.date.strftime("%B"" ""%d")}", menu %></h6>
+      </div>
+
+      <% @meal_type.each do |meal_type| %>
+        <div class= "card-menu-meal">
+          <div class="card-menu-meal-header">
+            <h6><%= meal_type %></h6>
+          </div>
+
+          <div class= "card-menu-meal-body">
+            <% @users.each do |user| %>
+              <div class= "card-menu-meal-user">
+                <h6><%= link_to user.name_first, menu_meal_path(menu, Meal.find_by(user_id: user, menu_id: menu, meal_type: meal_type).id) %></h6>
+
+                <p>Meal #: <%= link_to "#{Meal.find_by(user_id: user, menu_id: menu, meal_type: meal_type).id}",
+                menu_meal_path(menu, Meal.find_by(user_id: user, menu_id: menu, meal_type: meal_type).id) %></p>
+                <p>Courses #: </p>
+                <ul>
+                  <% Meal.find_by(user_id: user, menu_id: menu, meal_type: meal_type).courses.each do |course| %>
+                    <small><li><%= course.course_type %></li></small>
+                  <% end %>
+                </ul>
+
+              </div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>

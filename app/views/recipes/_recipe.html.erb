@@ -8,11 +8,11 @@
     <ul><small>
       <li>Name: <%= link_to recipe.label, recipe_path(recipe.erecipe_id) %></li>
       <li>Source: <%= recipe.source %></li>
-      <li>Servings: <%= recipe.yield %></li></small>
+      <li>Servings: <%= recipe.yield %></li>
+      <li># of ingredients: <%= recipe.ingredients.count %></li></small>
     </ul>
   </div>
   <div class="card-footer">
-    <%=  recipe_form(title, recipe.erecipe_id) %>
 
   </div>
 </div>

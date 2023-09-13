@@ -3,32 +3,5 @@
 </div>
 <div class="section-menu">
 
-  <% @menus.each do |menu| %>
-    <div class="card-menu">
-      <div class="card-menu-header">
-        <h6><%= menu.date.strftime("%a") %></h6>
-        <h6><%= link_to "#{menu.date.strftime("%B"" ""%d")}", menu %></h6>
-      </div>
-
-      <% @meal_type.each do |meal_type| %>
-        <div class= "card-menu-meal">
-          <div class="card-menu-meal-header">
-            <h5><%= meal_type %></h5>
-          </div>
-
-          <div class= "card-menu-meal-body">
-            <% @users.each do |user| %>
-              <div class= "card-menu-meal-user">
-                <h6><%= user.name_first %></h6>
-
-                <p>Meal #: <%= link_to "#{user.meals.where(menu_id: menu).where(meal_type: meal_type).ids.first}", menu_meal_path(menu, "#{user.meals.where(menu_id: menu).where(meal_type: meal_type).ids.first}") %>
-
-              </div>
-            <% end %>
-          </div>
-        </div>
-      <% end %>
-    </div>
-  <% end %>
-
+<%= render @menus %>
 </div>
