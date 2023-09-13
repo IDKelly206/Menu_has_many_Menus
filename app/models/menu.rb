@@ -21,14 +21,13 @@ class Menu < ApplicationRecord
   #  also, @meal_type is defined many places. what is better place to define?
 
   def create_menu_meals
-    # household_id = current_user.household_id
-    menu_id = Self.last.id
-    household_id = Menu.last.household_id
-    user_ids = User.all.where(household_id: household_id).ids
+    menu = self
+    household = Household.find(menu.household_id)
+    users = household.users
     meal_types = %w(Breakfast Lunch Dinner)
-    user_ids.each do |user_id|
+    users.each do |user|
       meal_types.each do |meal_type|
-        Meal.create!(menu_id: menu_id, user_id: user_id, meal_type: meal_type)
+        Meal.create!(menu_id: menu.id, user_id: user.id, meal_type: meal_type)
       end
     end
   end

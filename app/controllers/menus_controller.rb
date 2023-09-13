@@ -15,7 +15,7 @@ class MenusController < ApplicationController
       cal_menu = Menu.where('household_id = ?', @household).where('date IN (:cal)', { cal: calendar }).ordered
       menu_dates = cal_menu.map { |d| d.date }
       menu_dates_missing = calendar.select { |d| d if menu_dates.exclude?(d) }
-      menu_dates_missing.each { |d| Menu.create!(date: d, household_id: @household) }
+      menu_dates_missing.each { |d| Menu.create!(date: d, household_id: @household.id) }
       @menus = Menu.where('household_id = ?', @household).where('date IN (:cal)', { cal: calendar }).ordered
     end
 
