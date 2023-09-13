@@ -26,9 +26,9 @@ export default class extends Controller {
                                 <p>Image insert</p>
                               </div>
                             <div class="card-body">
-                            <p><small>${r.recipe.label}</small></p>
-                            <p><small>${r.recipe.source}</small></p>
-                            <p><small>${r.recipe.yield}</small></p>
+                            <p><small>Name: ${r.recipe.label}</small></p>
+                            <p><small>Source: ${r.recipe.source}</small></p>
+                            <p><small>Servings: ${r.recipe.yield}</small></p>
                             </div>
                             <div class="card-footer">
                             </div>

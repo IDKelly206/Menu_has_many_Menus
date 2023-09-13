@@ -7,9 +7,8 @@ class RecipesController < ApplicationController
     @dish_type = ["Main course", "Starter", "Desserts"]
     @health = ["vegan", "vegetarian", "paleo"]
     @recipes = Edamam::Erecipe.search(params[:query], params[:filters])
-    # render partial: 'recipes/recipe'
 
-    render @recipes, partial: 'recipes/recipe'
+    # render @recipes, partial: 'recipes/recipe'
 
     console
   end

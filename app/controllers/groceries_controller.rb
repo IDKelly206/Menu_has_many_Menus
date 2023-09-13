@@ -17,6 +17,8 @@ class GroceriesController < ApplicationController
     # #2b - equalize Inventory measurement with calc. single standard measurement.
     # #3 Create new hash of groceries
 
+    # groceries = menu.groceries
+    
     groceries = Grocery.all.where('household_id = ?', @household).all
     names_uniq = groceries.map{ |i| i.name }.uniq
     g_list = []

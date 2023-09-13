@@ -14,13 +14,10 @@
             <% @users.each do |user| %>
               <div class= "card-menu-meal-user">
                 <h6><%= link_to user.name_first, menu_meal_path(menu, Meal.find_by(user_id: user, menu_id: menu, meal_type: meal_type).id) %></h6>
-
-                <p>Meal #: <%= link_to "#{Meal.find_by(user_id: user, menu_id: menu, meal_type: meal_type).id}",
-                menu_meal_path(menu, Meal.find_by(user_id: user, menu_id: menu, meal_type: meal_type).id) %></p>
                 <p>Courses #: </p>
                 <ul>
                   <% Meal.find_by(user_id: user, menu_id: menu, meal_type: meal_type).courses.each do |course| %>
-                    <small><li><%= course.course_type %></li></small>
+                    <div class= "card-menu-meal-course"><small><li><%= course.course_type %></li></small></div>
                   <% end %>
                 </ul>
 
