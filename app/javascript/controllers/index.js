@@ -10,6 +10,9 @@ application.register("hello", HelloController)
 import MealNewController from "./meal_new_controller"
 application.register("meal-new", MealNewController)
 
+import ProductsSearchController from "./products_search_controller"
+application.register("products-search", ProductsSearchController)
+
 import RecipeSearchController from "./recipe_search_controller"
 application.register("recipe-search", RecipeSearchController)
 

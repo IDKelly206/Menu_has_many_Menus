@@ -1,10 +1,9 @@
-
+<div class="container">
 <h1>Recipes New page</h1>
 <%# Search using Stimulus  %>
 </div>
-
 <div class="container text-center"
-     data-controller="recipe-search">
+    data-controller="recipe-search">
   <form id="search-form" class="row">
     <div class="col-10" >
       <input data-recipe-search-target="searchInput" id="search-input" type="text" class="form-control" placeholder="Searh for Recipes">
@@ -13,7 +12,5 @@
         <button type="button" class="btn btn-primary" data-action="recipe-search#submitSearch">Recipe Search</button>
       </div>
     </form>
-
-<ul data-recipe-search-target="results" id="results" class="list-inline"></ul>
-
+  <ul data-recipe-search-target="results" id="results" class="list-inline"></ul>
 </div>

@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   resources :users, except: [:index]
 
 
-  resources :menus, only: [:index, :show] do
+  resources :menus, only: [:index, :show, :new] do
     resources :meals, only: [:index, :show] do
       resources :courses, only: [:new, :create, :show, :edit, :update, :destroy] do
       end

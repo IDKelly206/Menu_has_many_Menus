@@ -1,25 +1,19 @@
 <div class="container">
   <h1>Menu New page</h1>
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-  Launch static backdrop modal
-</button>
+  <h3>Grocery product search</h3>
 
-<!-- Modal -->
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+<div class="container text-center"
+     data-controller="products-search">
+  <form id="search-form" class="row">
+    <div class="col-10" >
+      <input data-products-search-target="searchInput" id="search-input" type="text" class="form-control" placeholder="Searh for Products">
       </div>
-      <div class="modal-body">
-        ...
+      <div class="col-2">
+        <button type="button" class="btn btn-primary" data-action="products-search#submitSearch">product Search</button>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Understood</button>
-      </div>
-    </div>
-  </div>
+    </form>
+
+<ul data-products-search-target="results" id="results" class="list-inline"></ul>
+
+</div>
 </div>
