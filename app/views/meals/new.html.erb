@@ -36,6 +36,6 @@
     <%= render 'recipes/search_bar', path: new_meal_path %>
   </div>
   <div class="card-deck">
-    <%= render @recipes, title: yield(:title)  %>
+    <%= render "recipes/recipes", recipes: @recipes, title: yield(:title) %>
   </div>
 </div>
