@@ -1,5 +1,5 @@
 <div class="container">
-<%= form_with url: path, method: 'get', local: true do |f| %>
+<%= form_with(url: path, method: "GET", data: {turbo_frame: "recipes" }) do |f| %>
   <%= f.label :query, "Search for:" %>
   <%= f.text_field :query, multiple: true %>
   <%= f.fields_for :filters do |ft| %>
@@ -8,6 +8,6 @@
     <%= ft.select :dishType, @dish_type %>
     <%= ft.select :health, @health %>
   <% end %>
-  <%= f.submit "Search" %>
+  <%= f.submit "Search", name: nil %>
 <% end %>
 </div>

@@ -13,8 +13,10 @@ module ApplicationHelper
       render 'courses/form', erecipe_id: erecipe_id
     elsif page_title == "Mulit-Meal"
       render 'meals/form', erecipe_id: erecipe_id
+    elsif page_title == "Recipes"
+      "Recipes footer"
     else
-      "BIG Footer Area"
+      "BLANK Footer Area"
     #  Insert ingredients here. Need to fix Recipe.new for Search function
     end
   end

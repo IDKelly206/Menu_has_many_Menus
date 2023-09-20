@@ -6,7 +6,17 @@ class RecipesController < ApplicationController
     @meal_types = %w(Breakfast Lunch Dinner)
     @dish_type = ["Main course", "Starter", "Desserts"]
     @health = ["vegan", "vegetarian", "paleo"]
-    @recipes = Edamam::Erecipe.search(params[:query], params[:filters])
+
+    if params[:query].present?
+      @recipes = Edamam::Erecipe.search(params[:query], params[:filters])
+    else
+      @recipes = Edamam::Erecipe.search("yogurt", params[:filters])
+    end
+    # if turbo_frame_request?
+    #   render partial: "recipes", locals: { recipes: @recipes }
+    # else
+    #   render "index"
+    # end
 
     # render @recipes, partial: 'recipes/recipe'
 
