@@ -12,6 +12,7 @@ class MealsController < ApplicationController
     @users = @household.users
     @meal_types = %w(Breakfast Lunch Dinner)
 
+    @meal = Meal.new
     console
   end
 
@@ -24,13 +25,13 @@ class MealsController < ApplicationController
 
     # Meal ID(s) criteria to specify meal. Set in sessions circular Meal build.
     # Necessary b/c params disappear on Search submit
-    session[:menu_ids] = params.fetch(:menu_ids, []) if params.fetch(:menu_ids, []).present?
-    session[:user_ids] = params.fetch(:user_ids, []) if params.fetch(:user_ids, []).present?
-    session[:meal_type] = params.fetch(:meal_types, "") if params.fetch(:meal_types, []).present?
+    # session[:menu_ids] = params.fetch(:menu_ids, []) if params.fetch(:menu_ids, []).present?
+    # session[:user_ids] = params.fetch(:user_ids, []) if params.fetch(:user_ids, []).present?
+    # session[:meal_type] = params.fetch(:meal_types, "") if params.fetch(:meal_types, []).present?
     # Set meal id criteria as instance variable for display on view
-    @menu_ids = session[:menu_ids]
-    @user_ids = session[:user_ids]
-    @meal_type = session[:meal_type]
+    @menu_ids = params.fetch(:menu_ids, [])
+    @user_ids = params.fetch(:user_ids, [])
+    @meal_type = params.fetch(:meal_types, "")
     # Used to create multiple courses & provide erecipe_id for groceries
     @meals = []
     @menu_ids.each do |menu_id|
@@ -52,6 +53,7 @@ class MealsController < ApplicationController
 
     if @course_count == @new_courses
       # redirect_to new_meal_path, notice: "Course was successfully created."
+      # Need to send meal_id & menu_id to Grocery new b/c
       redirect_to new_grocery_path(meal_id: session[:meal_ids].last, menu_id: session[:menu_ids].last), notice: "Course successfully added"
     else
       render :new, status: :unprocessable_entity

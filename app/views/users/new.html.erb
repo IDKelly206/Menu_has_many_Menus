@@ -8,7 +8,7 @@
   <%= turbo_frame_tag dom_id(@user) do %>
     <%= turbo_frame_tag "modal" do %>
       <div class="row">
-        <div class="" data-controller="turbo-modal">
+        <div>
           <div class="card m-4 ">
             <div class="card-header">
               <h2 class="card-title">User Create</h2>
@@ -17,6 +17,7 @@
               <%= render "form", user: @user %>
             </div>
             <div class="card-footer text-muted mt-2">
+
             </div>
           </div>
         </div>

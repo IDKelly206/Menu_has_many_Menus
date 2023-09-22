@@ -54,4 +54,5 @@ class UsersController < ApplicationController
 
   def set_household
     @household = Household.find(current_user.id)
+  end
 end
