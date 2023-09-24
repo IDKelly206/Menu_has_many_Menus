@@ -76,7 +76,7 @@ class GroceriesController < ApplicationController
       menu_ids = session[:menu_ids].present? ? session[:menu_ids].map { |n| n.to_i } : ""
       meal_ids = session[:meal_ids].present? ? session[:meal_ids].map { |n| n.to_i } : ""
       if menu_ids.empty? && meal_ids.empty?
-        redirect_back_to menu_meal_path(@menu, @meal), notice: "Grocery items successfully added to Grocery List."
+        redirect_to menu_meal_path(@menu, @meal), notice: "Grocery items successfully added to Grocery List."
       elsif meal_ids.include?(@meal) && menu_ids.include?(@menu)
         redirect_to new_meal_path, notice: "Grocery items successfully added to Grocery List."
       else

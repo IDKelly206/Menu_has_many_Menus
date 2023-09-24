@@ -1,12 +1,20 @@
 <div class="container">
 <h1>Grocery New page </h1>
   <div class="column">
-    <div class="card-header">
-      <h6 class="card-title">Grocery List - add items</h6>
-      <p>For: <%= @recipe.label %> </p>
-    </div>
-    <div class="row">
-      <%= render "form" %>
-    </div>
+    <%= turbo_frame_tag dom_id(@grocery) do %>
+      <%= turbo_frame_tag "modal", target: :_top do %>
+        <div class="row">
+          <div class="card m-4">
+            <div class="card-header">
+              <h2 class="card-title">Grocery List - add items</h6>
+              <p><strong>For: <%= @recipe.label %></strong></p>
+            </div>
+            <div class="card-body">
+              <%= render "form" %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
   </div>
 </div>
