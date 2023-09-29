@@ -19,7 +19,8 @@ module Kroger
           upc: p[:upc],
           kproduct_id: p[:productId],
           item_info: p[:items],
-          aisle: p[:categories]
+          aisle: p[:categories],
+          images: p[:images].first
         )
       end
     end

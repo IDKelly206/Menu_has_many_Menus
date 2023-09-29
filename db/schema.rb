@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_29_200310) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_29_200833) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -70,6 +70,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_29_200310) do
     t.string "upc"
     t.jsonb "item_info", default: {}
     t.string "aisle", default: [], array: true
+    t.jsonb "images", default: {}
   end
 
   create_table "recipes", force: :cascade do |t|
