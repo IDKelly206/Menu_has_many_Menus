@@ -15,7 +15,7 @@ class Token
                     )
 
     response = JSON.parse (response_token.body), symbolize_names: true
-    @token = response[:access_token]
+    # @token = response[:access_token]
   end
 
 

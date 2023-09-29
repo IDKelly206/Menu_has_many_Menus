@@ -5,7 +5,7 @@ class ProductsController < ApplicationController
     if params[:query].present? || !params[:query].nil?
       @products = Kroger::KrogerProduct.search(params[:query])
     else
-      @products = Kroger::KrogerProduct.search("pizza")
+      @products = Kroger::KrogerProduct.search(["tomato"])
     end
 
     console

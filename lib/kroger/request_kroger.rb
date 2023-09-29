@@ -5,7 +5,8 @@ class RequestKroger
 
     def where(query)
       query_full = query.first.split.join("%20")
-      @query_full = query_full
+      # query_full = "tomato"
+
       search = "filter.term=#{query_full}"
       location = "filter.locationId=01400943"
       fullfillment = "filter.fulfillment=ais"
@@ -17,6 +18,7 @@ class RequestKroger
 
     def get_json(query)
       response = api(query)
+      @response = response
       JSON.parse (response.body), symbolize_names: true
     end
 
