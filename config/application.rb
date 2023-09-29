@@ -30,6 +30,7 @@ module PlannerV3
     config.load_defaults 7.0
 
     config.autoload_paths += %W(#{config.root}/lib/edamam)
+    config.autoload_paths += %W(#{config.root}/lib/kroger)
     config.autoload_paths += %W(#{config.root}/app/services)
 
     # Configuration for the application, engines, and railties goes here.

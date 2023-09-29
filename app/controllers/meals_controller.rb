@@ -21,7 +21,7 @@ class MealsController < ApplicationController
     @meal_types = %w(Breakfast Lunch Dinner)
     @dish_type = ["Main course", "Starter", "Desserts"]
     @health = ["vegan", "vegetarian", "paleo"]
-    @recipes = Edamam::Erecipe.search(params[:query], params[:filters])
+    @recipes = Edamam::EdamamRecipe.search(params[:query], params[:filters])
 
     # Meal ID(s) criteria to specify meal. Set in sessions circular Meal build.
     # Necessary b/c params disappear on Search submit

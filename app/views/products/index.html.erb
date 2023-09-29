@@ -1,0 +1,21 @@
+<div class="container">
+<h1>Products Index Page</h1>
+<%= form_with(url: products_path, method: "GET") do |f| %>
+  <%= f.label :query, "Search for:" %>
+  <%= f.text_field :query, multiple: true %>
+
+  <%= f.submit "Search", name: nil %>
+<% end %>
+<hr>
+  <ul>
+    <% @products.each do |r|  %>
+        <li>Brand: <%= r[:brand] %></li>
+        <li>Name: <%= r[:name] %></li>
+        <li>Size: </li>
+    <br>
+    <% end %>
+
+  </ul>
+
+  <%= render @products %>
+</div>

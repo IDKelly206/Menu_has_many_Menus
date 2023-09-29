@@ -8,9 +8,9 @@ class RecipesController < ApplicationController
     @health = ["vegan", "vegetarian", "paleo"]
 
     if params[:query].present?
-      @recipes = Edamam::Erecipe.search(params[:query], params[:filters])
+      @recipes = Edamam::EdamamRecipe.search(params[:query], params[:filters])
     else
-      @recipes = Edamam::Erecipe.search("yogurt", params[:filters])
+      @recipes = Edamam::EdamamRecipe.search("spinach", params[:filters])
     end
     # if turbo_frame_request?
     #   render partial: "recipes", locals: { recipes: @recipes }
@@ -24,7 +24,7 @@ class RecipesController < ApplicationController
   end
 
   def show
-    @recipe = Edamam::Erecipe.find(@recipe_id)
+    @recipe = Edamam::EdamamRecipe.find(@recipe_id)
 
     console
   end

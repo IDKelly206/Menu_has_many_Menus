@@ -56,7 +56,7 @@ class GroceriesController < ApplicationController
     @grocery = Grocery.new
     # Get last added recipe from course for ingredient items to add in gList
     @erecipe_id = Course.where(meal_id: @meal.id).last.erecipe_id
-    @recipe = Edamam::Erecipe.find(@erecipe_id)
+    @recipe = Edamam::EdamamRecipe.find(@erecipe_id)
 
     # Send to sessions for re-direct purposes after save
     session[:menu_id] = @menu.id
