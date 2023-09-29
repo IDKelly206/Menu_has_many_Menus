@@ -11,11 +11,12 @@ module Kroger
     end
 
     def self.products(response)
-      @response = response
       response.fetch(:data).map do |p|
         Product.new(
           name:  p[:description],
-          brand: p[:brand]
+          brand: p[:brand],
+          upc: p[:upc],
+          kproduct_id: p[:productId]
         )
       end
     end
