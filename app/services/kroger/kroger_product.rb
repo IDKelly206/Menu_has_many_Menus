@@ -18,7 +18,8 @@ module Kroger
           brand: p[:brand],
           upc: p[:upc],
           kproduct_id: p[:productId],
-          item_info: p[:items]
+          item_info: p[:items],
+          aisle: p[:categories]
         )
       end
     end
