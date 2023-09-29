@@ -1,22 +1,14 @@
 class ProductsController < ApplicationController
-require 'json'
+
 
   def index
-
-    # @products = products
-
-    @products = Kroger::KrogerProduct.search("yogurt")
+    if params[:query].present? || !params[:query].nil?
+      @products = Kroger::KrogerProduct.search(params[:query])
+    else
+      @products = Kroger::KrogerProduct.search("pizza")
+    end
 
     console
   end
-
-  private
-
-  # def search(query = [])
-  #   @products = where(query)
-  # end
-
-  private
-
 
 end

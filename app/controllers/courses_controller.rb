@@ -10,7 +10,7 @@ class CoursesController < ApplicationController
     @meal_types = ["Breakfast", "Lunch", "Dinner"]
     @dish_type = ["Main course", "Starter", "Desserts"]
     @health = ["vegan", "vegetarian", "paleo"]
-    @recipes = Edamam::Erecipe.search(params[:query], params[:filters])
+    @recipes = Edamam::EdamamRecipe.search(params[:query], params[:filters])
 
     # Meal ID(s) criteria for multi meal. Set in sessions circular Meal build.
     # Reset due to variable used for multi redirect_to
@@ -29,7 +29,7 @@ class CoursesController < ApplicationController
 
     if @course.save
       redirect_to new_grocery_path(menu_id: params[:menu_id], meal_id: params[:meal_id]),
-                 
+
                   notice: "Course successfully created"
     else
       render :new, status: :unprocessable_entity

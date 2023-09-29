@@ -4,8 +4,8 @@ class RequestKroger
   class << self
 
     def where(query)
-      search = "filter.term=#{query}"
-      # search = query.first.split.join("%20")
+      query_full = query.first.split.join("%20")
+      search = "filter.term=#{query_full}"
       location = "filter.locationId=01400943"
       fullfillment = "filter.fulfillment=ais"
       limit = "filter.limit=40"
