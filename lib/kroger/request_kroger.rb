@@ -5,6 +5,7 @@ class RequestKroger
 
     def where(query)
       query_full = query.first.split.join("%20")
+      @query_full = query_full
       search = "filter.term=#{query_full}"
       location = "filter.locationId=01400943"
       fullfillment = "filter.fulfillment=ais"

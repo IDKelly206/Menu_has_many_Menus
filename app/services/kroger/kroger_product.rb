@@ -11,6 +11,7 @@ module Kroger
     end
 
     def self.products(response)
+      @response = response
       response.fetch(:data).map do |p|
         Product.new(
           name:  p[:description],
