@@ -11,8 +11,8 @@
         <li>Brand: <%= product.brand %></li>
         <li>UPC: <%= product.upc %></li>
         <li>ID#: <%= product.kproduct_id %></li>
-        <li>Servings: </li>
-        <li>Unit ? : </li></small>
+        <li>Servings: <%= product.item_info.first["size"] %></li>
+        <li>Unit: <%= product.item_info.first["soldBy"] %></li></small>
       </ul>
     </div>
     <div class="card-footer">

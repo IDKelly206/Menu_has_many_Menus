@@ -16,7 +16,8 @@ module Kroger
           name:  p[:description],
           brand: p[:brand],
           upc: p[:upc],
-          kproduct_id: p[:productId]
+          kproduct_id: p[:productId],
+          item_info: p[:items]
         )
       end
     end
