@@ -20,7 +20,7 @@ module Kroger
           kproduct_id: p[:productId],
           item_info: p[:items],
           aisle: p[:categories],
-          images: p[:images].first
+          images: p[:images]
         )
       end
     end
