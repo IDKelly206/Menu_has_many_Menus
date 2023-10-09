@@ -25,13 +25,13 @@ class MealsController < ApplicationController
 
     # Meal ID(s) criteria to specify meal. Set in sessions circular Meal build.
     # Necessary b/c params disappear on Search submit
-    session[:menu_ids] = params.fetch(:menu_ids, []) if params.fetch(:menu_ids, []).present?
-    session[:user_ids] = params.fetch(:user_ids, []) if params.fetch(:user_ids, []).present?
-    session[:meal_type] = params.fetch(:meal_types, "") if params.fetch(:meal_types, []).present?
+    # session[:menu_ids] = params.fetch(:menu_ids, []) if params.fetch(:menu_ids, []).present?
+    # session[:user_ids] = params.fetch(:user_ids, []) if params.fetch(:user_ids, []).present?
+    # session[:meal_type] = params.fetch(:meal_types, "") if params.fetch(:meal_types, []).present?
     # Set meal id criteria as instance variable for display on view
-    @menu_ids = session[:menu_ids]
-    @user_ids = session[:user_ids]
-    @meal_type = session[:meal_type]
+    @menu_ids = params[:menu_ids]
+    @user_ids = params[:user_ids]
+    @meal_type = params[:meal_types]
     # Used to create multiple courses & provide erecipe_id for groceries
     meals = []
     @menu_ids.each do |menu_id|

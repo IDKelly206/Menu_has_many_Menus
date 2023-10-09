@@ -32,10 +32,9 @@
     </ul>
   </div>
 <!-- Recipce search -->
-  <div class="text-center">
-    <%= render 'recipes/search_bar', path: new_meal_path %>
-  </div>
-  <div class="card-deck">
-    <%= render "recipes/recipes", recipes: @recipes, title: yield(:title) %>
-  </div>
+
+  <%= render 'recipes/search_bar', path: new_meal_path %>
+  <br>
+  <%= render "recipes/recipes", recipes: @recipes, title: yield(:title) %>
+
 </div>

@@ -7,6 +7,7 @@ class Grocery::Importer
     @household_id = grocery_params.fetch(:household_id).to_i
     @course_id = grocery_params.fetch(:course_id).to_i
     @name = grocery_params.fetch(:name)
+    # Quantity needs to be float & factor in # of servings necessary
     @quantity = grocery_params.fetch(:quantity).to_i
     @measurement = grocery_params.fetch(:measurement)
     @category = grocery_params.fetch(:category)

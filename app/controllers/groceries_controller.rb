@@ -120,6 +120,8 @@ class GroceriesController < ApplicationController
     @meal = @menu.meals.find(params[:meal_id])
   end
 
+  # Course can not just take last. Multi-course create requires different
+  # b/c dependent-destroy correlation with course
   def set_course
     @course = Course.where(meal_id: @meal).last
   end
