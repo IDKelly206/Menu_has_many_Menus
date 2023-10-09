@@ -1,5 +1,6 @@
 class Grocery < ApplicationRecord
   belongs_to :household
+  belongs_to :course
 
   validates :name, presence: true
   validates :quantity, presence: true

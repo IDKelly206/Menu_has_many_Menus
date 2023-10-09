@@ -8,6 +8,7 @@
         <hr>
         <%= fields_for 'grocery'+[n].to_s do |fields| %>
           <%= fields.check_box :list_add, checked: true %>
+          <%= fields.hidden_field  :course_id, value: @course.id %>
           <%= fields.hidden_field  :household_id, value: @household.id %>
           <%= fields.hidden_field  :erecipe_id, value: @erecipe_id %>
           <%= fields.label i['food'] %>

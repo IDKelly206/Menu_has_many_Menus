@@ -55,12 +55,13 @@ class GroceriesController < ApplicationController
   def new
     @grocery = Grocery.new
     # Get last added recipe from course for ingredient items to add in gList
-    @erecipe_id = Course.where(meal_id: @meal.id).last.erecipe_id
+    @course = Course.where(meal_id: @meal.id).last
+    @erecipe_id = @course.erecipe_id
     @recipe = Edamam::EdamamRecipe.find(@erecipe_id)
 
     # Send to sessions for re-direct purposes after save
-    session[:menu_id] = @menu.id
-    session[:meal_id] = @meal.id
+    # session[:menu_id] = @menu.id
+    # session[:meal_id] = @meal.id
     console
   end
 
@@ -118,6 +119,6 @@ class GroceriesController < ApplicationController
   end
 
   def grocery_params
-    params.permit(:household_id, :erecipe_id, :name, :quantity, :measurement, :category, :list_add)
+    params.permit(:household_id, :course_id, :erecipe_id, :name, :quantity, :measurement, :category, :list_add)
   end
 end

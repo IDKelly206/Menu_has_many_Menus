@@ -5,6 +5,7 @@ class Grocery::Importer
 
   def initialize(grocery_params)
     @household_id = grocery_params.fetch(:household_id).to_i
+    @course_id = grocery_params.fetch(:course_id).to_i
     @name = grocery_params.fetch(:name)
     @quantity = grocery_params.fetch(:quantity).to_i
     @measurement = grocery_params.fetch(:measurement)
@@ -23,6 +24,7 @@ class Grocery::Importer
     if grocery_params.fetch(:list_add).to_i >= 1
       Grocery.create!(
         household_id: @household_id,
+        course_id: @course_id,
         name: @name,
         quantity: @quantity,
         measurement: @measurement,

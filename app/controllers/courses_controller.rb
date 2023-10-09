@@ -14,10 +14,10 @@ class CoursesController < ApplicationController
 
     # Meal ID(s) criteria for multi meal. Set in sessions circular Meal build.
     # Reset due to variable used for multi redirect_to
-    session[:menu_ids] = ""
-    session[:user_ids] = ""
-    session[:meal_type] = ""
-    session[:meal_ids] = ""
+    # session[:menu_ids] = ""
+    # session[:user_ids] = ""
+    # session[:meal_type] = ""
+    # session[:meal_ids] = ""
 
     @course = @meal.courses.build
 
@@ -29,7 +29,6 @@ class CoursesController < ApplicationController
 
     if @course.save
       redirect_to new_grocery_path(menu_id: params[:menu_id], meal_id: params[:meal_id]),
-
                   notice: "Course successfully created"
     else
       render :new, status: :unprocessable_entity

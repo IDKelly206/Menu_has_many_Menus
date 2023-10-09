@@ -32,7 +32,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_09_083535) do
     t.bigint "household_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "ingrs", default: [], array: true
     t.boolean "list_add", default: true, null: false
     t.bigint "course_id", null: false
     t.index ["course_id"], name: "index_groceries_on_course_id"
