@@ -33,7 +33,6 @@ class Grocery::Importer
       )
       @new_glist += 1
     end
-
   end
 
   def validate_params!

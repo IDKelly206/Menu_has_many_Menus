@@ -1,7 +1,8 @@
 class GroceriesController < ApplicationController
   before_action :set_household
-  before_action :set_menu, only: [:new]
-  before_action :set_meal, only: [:new]
+  before_action :set_menu, only: [:new, :create]
+  before_action :set_meal, only: [:new, :create]
+  before_action :set_course, only: [:new, :create]
 
   def index
     # show all gList item(s)
@@ -55,13 +56,13 @@ class GroceriesController < ApplicationController
   def new
     @grocery = Grocery.new
     # Get last added recipe from course for ingredient items to add in gList
-    @course = Course.where(meal_id: @meal.id).last
+    # @course = Course.where(meal_id: @meal.id).last
     @erecipe_id = @course.erecipe_id
     @recipe = Edamam::EdamamRecipe.find(@erecipe_id)
 
     # Send to sessions for re-direct purposes after save
-    # session[:menu_id] = @menu.id
-    # session[:meal_id] = @meal.id
+    session[:menu_id] = 0
+    session[:meal_id] = 0
     console
   end
 
@@ -70,19 +71,20 @@ class GroceriesController < ApplicationController
       Grocery::Importer.create(grocery_params)
     end
 
-    @menu = session[:menu_id]
-    @meal = session[:meal_id]
+    # @menu = session[:menu_id]
+    # @meal = session[:meal_id]
+    # meal_ids.include?(@meal) && menu_ids.include?(@menu)
 
     if @glist_count == @new_glist
       menu_ids = session[:menu_ids].present? ? session[:menu_ids].map { |n| n.to_i } : ""
       meal_ids = session[:meal_ids].present? ? session[:meal_ids].map { |n| n.to_i } : ""
-      if menu_ids.empty? && meal_ids.empty?
-        redirect_to menu_meal_path(@menu, @meal), notice: "Grocery items successfully added to Grocery List."
-      elsif meal_ids.include?(@meal) && menu_ids.include?(@menu)
+      if !menu_ids.empty? && !meal_ids.empty?
         redirect_to new_meal_path, notice: "Grocery items successfully added to Grocery List."
       else
-        render :new, status: :unprocessable_entity
+        redirect_to menu_meal_path(@menu, @meal), notice: "Grocery items successfully added to Grocery List."
       end
+    else
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -116,6 +118,10 @@ class GroceriesController < ApplicationController
 
   def set_meal
     @meal = @menu.meals.find(params[:meal_id])
+  end
+
+  def set_course
+    @course = Course.where(meal_id: @meal).last
   end
 
   def grocery_params
