@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_29_200833) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_09_083535) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -34,6 +34,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_29_200833) do
     t.datetime "updated_at", null: false
     t.string "ingrs", default: [], array: true
     t.boolean "list_add", default: true, null: false
+    t.bigint "course_id", null: false
+    t.index ["course_id"], name: "index_groceries_on_course_id"
     t.index ["household_id"], name: "index_groceries_on_household_id"
   end
 
@@ -101,6 +103,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_29_200833) do
   end
 
   add_foreign_key "courses", "meals"
+  add_foreign_key "groceries", "courses"
   add_foreign_key "groceries", "households"
   add_foreign_key "meals", "menus"
   add_foreign_key "meals", "users"
