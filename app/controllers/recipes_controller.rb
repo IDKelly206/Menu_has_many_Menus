@@ -3,14 +3,12 @@ class RecipesController < ApplicationController
 
   def index
     # Recipe search criteria
-    @meal_types = %w(Breakfast Lunch Dinner)
-    @dish_type = ["Main course", "Starter", "Desserts"]
-    @health = ["vegan", "vegetarian", "paleo"]
+    search_criteria
 
     if params[:query].present?
       @recipes = Edamam::EdamamRecipe.search(params[:query], params[:filters])
     else
-      @recipes = Edamam::EdamamRecipe.search("spinach", params[:filters])
+      @recipes = Edamam::EdamamRecipe.search("pasta", params[:filters])
     end
     # if turbo_frame_request?
     #   render partial: "recipes", locals: { recipes: @recipes }
@@ -23,6 +21,8 @@ class RecipesController < ApplicationController
     console
   end
 
+
+
   def show
     @recipe = Edamam::EdamamRecipe.find(@recipe_id)
 
@@ -34,8 +34,24 @@ class RecipesController < ApplicationController
     console
   end
 
+  def recipe_search
+    @recipes = Edamam::EdamamRecipe.search(params[:query], params[:filters])
+
+    @title = params["title"]
+    @meals = params["meals"]
+    @menu = Menu.find(params["menu"])
+    @meal = Meal.find(params["meal"])
+    @course = @meal.courses.build
+  end
+
   private
   def set_recipe
     @recipe_id = params[:id]
+  end
+
+  def search_criteria
+    @meal_types = %w(Breakfast Lunch Dinner)
+    @dish_type = ["Main course", "Starter", "Desserts"]
+    @health = ["vegan", "vegetarian", "paleo"]
   end
 end

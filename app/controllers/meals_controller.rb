@@ -22,38 +22,26 @@ class MealsController < ApplicationController
     @dish_type = ["Main course", "Starter", "Desserts"]
     @health = ["vegan", "vegetarian", "paleo"]
     @recipes = Edamam::EdamamRecipe.search(params[:query], params[:filters])
+    # @recipes = Edamam::EdamamRecipe.search("pasta", params[:filters])
 
-    # Meal ID(s) criteria to specify meal. Set in sessions circular Meal build.
-    # Necessary b/c params disappear on Search submit
-    # session[:menu_ids] = params.fetch(:menu_ids, []) if params.fetch(:menu_ids, []).present?
-    # session[:user_ids] = params.fetch(:user_ids, []) if params.fetch(:user_ids, []).present?
-    # session[:meal_type] = params.fetch(:meal_types, "") if params.fetch(:meal_types, []).present?
-    # Set meal id criteria as instance variable for display on view
-    @menu_ids = params[:menu_ids]
-    @user_ids = params[:user_ids]
+    @menus = params[:menu_ids].map { |menu_id| Menu.find(menu_id.to_i) }
+    @users = params[:user_ids].map { |user_id| User.find(user_id.to_i) }
     @meal_type = params[:meal_types]
     # Used to create multiple courses & provide erecipe_id for groceries
-    meals = []
-    @menu_ids.each do |menu_id|
-      @user_ids.each do |user_id|
-        meal_type = @meal_type
-        meal = Meal.where('user_id = ?', user_id).where('menu_id = ?', menu_id).where('meal_type = ?', meal_type).ids
-        meals.push(meal)
-      end
-    end
-    @meals = meals.flatten!
-    session[:meal_ids] = @meals
+    @menu_ids = @menus.map { |menu| menu.id }
+    @meals = meal_ids(@menus, @users, @meal_type)
 
     console
   end
 
 
   def create
-    Meal::Multicourse.create(course_params)
-
+    @courses = Meal::Multicourse.create(course_params)
+    course_ids = @courses.map { |course| course.id }
+    meal_ids = params[:meal_ids].first.split
     if @course_count == @new_courses
       # redirect_to new_meal_path, notice: "Course was successfully created."
-      redirect_to new_grocery_path(meal_id: session[:meal_ids].last, menu_id: session[:menu_ids].last), notice: "Course successfully added"
+      redirect_to new_grocery_path(meal_ids: meal_ids, course_ids: course_ids), notice: "Course successfully added"
     else
       render :new, status: :unprocessable_entity
     end
@@ -81,5 +69,16 @@ class MealsController < ApplicationController
 
   def course_params
     params.permit(:course_type, :erecipe_id, meal_ids: [])
+  end
+
+  def meal_ids(menus, users, meal_type)
+    meals = []
+    menus.each do |menu|
+      users.each do |user|
+        meal = Meal.where('user_id = ?', user.id).where('menu_id = ?', menu.id).where('meal_type = ?', "#{meal_type}").ids
+        meals.push(meal)
+      end
+    end
+    meals.flatten
   end
 end

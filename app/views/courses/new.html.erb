@@ -5,10 +5,10 @@
   <h1>New Course page</h1>
   <small><h4>Title page: <%= yield(:title) %></h4></small>
   <div>
-    <%= render 'recipes/search_bar', path: new_menu_meal_course_path(@menu, @meal) %>
+    <%= render 'recipes/search_bar' %>
   </div>
   <hr>
   <div>
-    <%= render "recipes/recipes", recipes: @recipes, title: yield(:title) %>
+    <%= render "recipes/recipes", recipes: @recipes, locals: { title: yield(:title) } %>
   </div>
 </div>

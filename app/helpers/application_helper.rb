@@ -11,9 +11,9 @@ module ApplicationHelper
   def recipe_form(page_title = '', erecipe_id = '')
     if page_title == "Course"
       render 'courses/form', erecipe_id: erecipe_id
-    elsif page_title == "Mulit-Meal"
+    elsif page_title == "Multi-Meal"
       render 'meals/form', erecipe_id: erecipe_id
-    elsif page_title == "Recipes"
+    elsif page_title == "Recipe"
       "Recipes footer"
     else
       "BLANK Footer Area"
@@ -21,5 +21,15 @@ module ApplicationHelper
     end
   end
 
+  def meal_ids(menu_ids, user_ids, meal_type)
+    meals = []
+    menu_ids.each do |menu_id|
+      user_ids.each do |user_id|
+        meal = Meal.where('user_id = ?', user_id).where('menu_id = ?', menu_id).where('meal_type = ?', "#{meal_type}").ids
+        meals.push(meal)
+      end
+    end
+    meals.flatten
+  end
 
 end

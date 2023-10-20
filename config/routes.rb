@@ -22,7 +22,12 @@ Rails.application.routes.draw do
   end
 
 
-  resources :recipes, only: [:index, :show, :new]
+  resources :recipes, only: [:index, :show, :new] do
+    collection do
+      get 'recipe_search'
+    end
+  end
+
   resources :products, only: [:index]
 
   resources :groceries

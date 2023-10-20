@@ -7,17 +7,9 @@ class CoursesController < ApplicationController
   def new
 
     # Search criteria
-    @meal_types = ["Breakfast", "Lunch", "Dinner"]
-    @dish_type = ["Main course", "Starter", "Desserts"]
-    @health = ["vegan", "vegetarian", "paleo"]
+    search_criteria
     @recipes = Edamam::EdamamRecipe.search(params[:query], params[:filters])
 
-    # Meal ID(s) criteria for multi meal. Set in sessions circular Meal build.
-    # Reset due to variable used for multi redirect_to
-    # session[:menu_ids] = ""
-    # session[:user_ids] = ""
-    # session[:meal_type] = ""
-    # session[:meal_ids] = ""
 
     @course = @meal.courses.build
 
@@ -80,5 +72,11 @@ class CoursesController < ApplicationController
 
   def set_course
     @course = @meal.courses.find(params[:id])
+  end
+
+  def search_criteria
+    @meal_types = %w(Breakfast Lunch Dinner)
+    @dish_type = ["Main course", "Starter", "Desserts"]
+    @health = ["vegan", "vegetarian", "paleo"]
   end
 end

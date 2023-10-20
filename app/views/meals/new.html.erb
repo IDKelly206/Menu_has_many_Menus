@@ -1,16 +1,18 @@
-<%- title "Mulit-Meal" %>
+<%- title "Multi-Meal" %>
 <div class="container">
   <h1>New Meal page</h1>
+  <small><h4>Title page: <%= yield(:title) %></h4></small>
+
   <div>
   <!-- Section of currently selction meal options-->
     <ul>
-      <% @menu_ids.each do |menu_id| %>
-      <li><%= Menu.find(menu_id).day_of_week %></li>
+      <% @menus.each do |menu| %>
+      <li><%= Menu.find(menu.id).day_of_week %></li>
       <% end %>
     </ul>
     <ul>
-      <% @user_ids.each do |user_id| %>
-        <li><%= User.find(user_id).name_first %></li>
+      <% @users.each do |user| %>
+        <li><%= User.find(user.id).name_first %></li>
       <% end %>
     </ul>
     <ul>
@@ -33,8 +35,8 @@
   </div>
 <!-- Recipce search -->
 
-  <%= render 'recipes/search_bar', path: new_meal_path %>
+  <%= render 'recipes/search_bar' %>
   <br>
-  <%= render "recipes/recipes", recipes: @recipes, title: yield(:title) %>
+  <%= render "recipes/recipes", recipes: @recipes, locals: { title: yield(:title) } %>
 
 </div>

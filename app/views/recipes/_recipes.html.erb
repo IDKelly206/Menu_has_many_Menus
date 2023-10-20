@@ -1,4 +1,4 @@
-<%= turbo_frame_tag "recipes" do %>
+<%= turbo_frame_tag "recipes", target: "_top" do %>
   <div class="card-deck">
   <%= render recipes, locals: { title: yield(:title) } %>
   </div>

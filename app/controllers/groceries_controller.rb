@@ -47,22 +47,30 @@ class GroceriesController < ApplicationController
       ##2b - Create helper calc to convert any measurement into Inventory standard
       # Use 'ruby-units' gem
 
-
-
-
     console
   end
 
   def new
     @grocery = Grocery.new
-    # Get last added recipe from course for ingredient items to add in gList
-    # @course = Course.where(meal_id: @meal.id).last
+    # Need eRecipeID for courses just created for ingredient items to add in gList
+    # Pull meal_ids sent in params
+    @meal_ids = params[:meal_ids]
+    @meal_id = @meal_ids.last.split.first.to_i
+    @meals = @meal_ids.map { |meal_id| Meal.find(meal_id) }
+    @course = Course.where(meal_id: @meal_id).last
     @erecipe_id = @course.erecipe_id
     @recipe = Edamam::EdamamRecipe.find(@erecipe_id)
 
-    # Send to sessions for re-direct purposes after save
-    session[:menu_id] = 0
-    session[:meal_id] = 0
+    # Change. Course_ids being passed to g#new.
+
+    # course_ids = params[:course_ids]
+    # courses = course_ids.map { |course_id| Course.find(course_id) }
+    # course = courses.first
+    # erecipe_id = course.erecipe_id
+    # @recipe = Edamam::EdamamRecipe.find(erecipe_id)
+    # recipes_servings = @recipe.yield
+    # users_counts = course.count
+
     console
   end
 
@@ -71,14 +79,8 @@ class GroceriesController < ApplicationController
       Grocery::Importer.create(grocery_params)
     end
 
-    # @menu = session[:menu_id]
-    # @meal = session[:meal_id]
-    # meal_ids.include?(@meal) && menu_ids.include?(@menu)
-
     if @glist_count == @new_glist
-      menu_ids = session[:menu_ids].present? ? session[:menu_ids].map { |n| n.to_i } : ""
-      meal_ids = session[:meal_ids].present? ? session[:meal_ids].map { |n| n.to_i } : ""
-      if !menu_ids.empty? && !meal_ids.empty?
+      if @menu.nil?
         redirect_to new_meal_path, notice: "Grocery items successfully added to Grocery List."
       else
         redirect_to menu_meal_path(@menu, @meal), notice: "Grocery items successfully added to Grocery List."
@@ -113,17 +115,19 @@ class GroceriesController < ApplicationController
   end
 
   def set_menu
-    @menu = Menu.find(params[:menu_id])
+    params[:menu_id].present? ? @menu = Menu.find(params[:menu_id]) : @menu = nil
+    # @menu = Menu.find(params[:menu_id])
   end
 
   def set_meal
-    @meal = @menu.meals.find(params[:meal_id])
+    @menu.nil? ? @meal = nil : @meal = @menu.meals.find(params[:meal_id])
+    # @meal = @menu.meals.find(params[:meal_id])
   end
 
   # Course can not just take last. Multi-course create requires different
   # b/c dependent-destroy correlation with course
   def set_course
-    @course = Course.where(meal_id: @meal).last
+    # @course = Course.where(meal_id: @meal.id).last
   end
 
   def grocery_params

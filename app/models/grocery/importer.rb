@@ -15,6 +15,12 @@ class Grocery::Importer
     @list_add = grocery_params.fetch(:list_add).to_i
   end
 
+  # Need adjust grocery create action to account for
+  # serving size of course & number of users
+  # Currently creating course for each meal with erecipeID
+  # Currently each erecipeID for single course creates gItem
+  # Need to change so that each erecipeID for EACH course creates gItem
+
   def create(grocery_params)
     validate_params!
 
