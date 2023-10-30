@@ -1,33 +1,32 @@
 <div class="container">
-
   <div>
     <%= form_with url: '/groceries' do |form|  %>
+      <%= form.hidden_field :course_ids, value: params[:course_ids] %>
       <% n = 0 %>
-      <% @recipe.ingredients.each do |i| %>
+      <% @recipe.ingredients.each do |ingredeient| %>
         <% n += 1 %>
-        <hr>
         <%= fields_for 'grocery'+[n].to_s do |fields| %>
           <%= fields.check_box :list_add, checked: true %>
           <%= fields.hidden_field  :course_id, value: @course.id %>
           <%= fields.hidden_field  :household_id, value: @household.id %>
           <%= fields.hidden_field  :erecipe_id, value: @erecipe_id %>
-          <%= fields.label i['food'] %>
-          <%= fields.hidden_field :name, value: i['food'] %>
-          <%= fields.label i['quantity'] %>
-          <%= fields.hidden_field :quantity, value: i['quantity'] %>
-          <% if  i['measure'].present?  %>
-            <%= fields.label i['measure'] %>
-            <%= fields.hidden_field :measurement, value: i['measure'] %>
+          <%= fields.label ingredeient['food'] %>
+          <%= fields.hidden_field :name, value: ingredeient['food'] %>
+          <%= fields.label ingredeient['quantity'] %>
+          <%= fields.hidden_field :quantity, value: ingredeient['quantity'] %>
+          <% if  ingredeient['measure'].present?  %>
+            <%= fields.label ingredeient['measure'] %>
+            <%= fields.hidden_field :measurement, value: ingredeient['measure'] %>
           <% else %>
             <%= fields.label "<Pinch>" %>
             <%= fields.hidden_field :measurement, value: "<Pinch>" %>
           <% end %>
-          <%= fields.label i['foodCategory'] %>
-          <%= fields.hidden_field :category, value: i['foodCategory'] %>
+          <%= fields.label ingredeient['foodCategory'] %>
+          <%= fields.hidden_field :category, value: ingredeient['foodCategory'] %>
         <% end %>
+        <hr>
       <% end %>
-      <hr>
-    <%= form.submit "Add gList items" %>
+      <%= form.submit "Add gList items" %>
     <% end %>
   </div>
 </div>

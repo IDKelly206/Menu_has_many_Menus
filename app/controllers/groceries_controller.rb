@@ -53,23 +53,13 @@ class GroceriesController < ApplicationController
   def new
     @grocery = Grocery.new
     # Need eRecipeID for courses just created for ingredient items to add in gList
-    # Pull meal_ids sent in params
-    @meal_ids = params[:meal_ids]
-    @meal_id = @meal_ids.last.split.first.to_i
-    @meals = @meal_ids.map { |meal_id| Meal.find(meal_id) }
-    @course = Course.where(meal_id: @meal_id).last
-    @erecipe_id = @course.erecipe_id
+    @course_ids = params[:course_ids]
+    @courses = @course_ids.map { |course_id| Course.find(course_id.to_i) }
+
+    @course = @courses.first
+
+    @erecipe_id = @courses.first.erecipe_id
     @recipe = Edamam::EdamamRecipe.find(@erecipe_id)
-
-    # Change. Course_ids being passed to g#new.
-
-    # course_ids = params[:course_ids]
-    # courses = course_ids.map { |course_id| Course.find(course_id) }
-    # course = courses.first
-    # erecipe_id = course.erecipe_id
-    # @recipe = Edamam::EdamamRecipe.find(erecipe_id)
-    # recipes_servings = @recipe.yield
-    # users_counts = course.count
 
     console
   end
@@ -78,12 +68,27 @@ class GroceriesController < ApplicationController
     params[:grocery].each do |k, grocery_params|
       Grocery::Importer.create(grocery_params)
     end
+    @course_ids = params[:course_ids].split
 
     if @glist_count == @new_glist
-      if @menu.nil?
-        redirect_to new_meal_path, notice: "Grocery items successfully added to Grocery List."
+      if @course_ids.size > 1
+
+        user_ids = []
+        menu_ids = []
+        meal_types = []
+
+        @course_ids.each do |course_id|
+          course = Course.find(course_id.to_i)
+          user_ids << course.meal.user.id
+          menu_ids << course.meal.menu.id
+          meal_types << course.meal.meal_type
+        end
+
+        redirect_to new_meal_path(user_ids: user_ids.uniq, menu_ids: menu_ids.uniq, meal_types: meal_types.uniq.first),
+                                  notice: "Grocery items successfully added to Grocery List."
       else
-        redirect_to menu_meal_path(@menu, @meal), notice: "Grocery items successfully added to Grocery List."
+        @course = Course.find(@course_ids.first.to_i)
+        redirect_to menu_meal_path(@course.meal.menu, @course.meal), notice: "Grocery items successfully added to Grocery List."
       end
     else
       render :new, status: :unprocessable_entity

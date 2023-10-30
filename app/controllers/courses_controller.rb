@@ -10,7 +10,6 @@ class CoursesController < ApplicationController
     search_criteria
     @recipes = Edamam::EdamamRecipe.search(params[:query], params[:filters])
 
-
     @course = @meal.courses.build
 
     console
@@ -20,7 +19,7 @@ class CoursesController < ApplicationController
     @course = @meal.courses.build(course_params)
 
     if @course.save
-      redirect_to new_grocery_path(menu_id: params[:menu_id], meal_id: params[:meal_id]),
+      redirect_to new_grocery_path(course_ids: [@course.id]),
                   notice: "Course successfully created"
     else
       render :new, status: :unprocessable_entity

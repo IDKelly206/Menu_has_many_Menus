@@ -38,10 +38,14 @@ class RecipesController < ApplicationController
     @recipes = Edamam::EdamamRecipe.search(params[:query], params[:filters])
 
     @title = params["title"]
-    @meals = params["meals"]
-    @menu = Menu.find(params["menu"])
-    @meal = Meal.find(params["meal"])
-    @course = @meal.courses.build
+
+    if params["meals"].present?
+      @meals = params["meals"]
+    else
+      @menu = Menu.find(params["menu"])
+      @meal = Meal.find(params["meal"])
+      @course = @meal.courses.build
+    end
   end
 
   private

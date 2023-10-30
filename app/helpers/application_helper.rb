@@ -21,11 +21,11 @@ module ApplicationHelper
     end
   end
 
-  def meal_ids(menu_ids, user_ids, meal_type)
+  def meal_ids(menus, users, meal_type)
     meals = []
-    menu_ids.each do |menu_id|
-      user_ids.each do |user_id|
-        meal = Meal.where('user_id = ?', user_id).where('menu_id = ?', menu_id).where('meal_type = ?', "#{meal_type}").ids
+    menus.each do |menu|
+      users.each do |user|
+        meal = Meal.where('user_id = ?', user.id).where('menu_id = ?', menu.id).where('meal_type = ?', "#{meal_type}").ids
         meals.push(meal)
       end
     end

@@ -10,7 +10,7 @@
               <p><strong>For: <%= @recipe.label %></strong></p>
             </div>
             <div class="card-body">
-              <%= render "form" %>
+              <%= render "form", course_ids: @course_ids %>
             </div>
           </div>
         </div>

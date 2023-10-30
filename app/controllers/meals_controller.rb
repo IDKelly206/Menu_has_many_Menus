@@ -28,7 +28,6 @@ class MealsController < ApplicationController
     @users = params[:user_ids].map { |user_id| User.find(user_id.to_i) }
     @meal_type = params[:meal_types]
     # Used to create multiple courses & provide erecipe_id for groceries
-    @menu_ids = @menus.map { |menu| menu.id }
     @meals = meal_ids(@menus, @users, @meal_type)
 
     console
@@ -41,7 +40,7 @@ class MealsController < ApplicationController
     meal_ids = params[:meal_ids].first.split
     if @course_count == @new_courses
       # redirect_to new_meal_path, notice: "Course was successfully created."
-      redirect_to new_grocery_path(meal_ids: meal_ids, course_ids: course_ids), notice: "Course successfully added"
+      redirect_to new_grocery_path(course_ids: course_ids), notice: "Course successfully added"
     else
       render :new, status: :unprocessable_entity
     end

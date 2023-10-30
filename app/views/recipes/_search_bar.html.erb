@@ -9,10 +9,14 @@
     <%= ft.select :health, @health %>
   <% end %>
   <%= hidden_field_tag :title, yield(:title) %>
-  <%= hidden_field_tag 'meals', @meals %>
-  <%= hidden_field_tag 'menu', @menu.id %>
-  <%= hidden_field_tag 'meal', @meal.id %>
-  <%= hidden_field_tag 'course', @course %>
+  <% if @meals.present? %>
+    <%= hidden_field_tag 'meals',  @meals %>
+  <%# <%= hidden_field_tag 'course', mutliple: true, @courses %> %>
+  <% else %>
+    <%= hidden_field_tag 'meal', @meal.id %>
+    <%= hidden_field_tag 'menu', @menu.id %>
+  <%# <%= hidden_field_tag 'course', @course %> %>
+  <% end %>
   <%= f.submit "Search", name: nil %>
 <% end %>
 </div>
