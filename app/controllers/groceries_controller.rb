@@ -8,19 +8,16 @@ class GroceriesController < ApplicationController
     # show all gList item(s)
     # @groceries = Grocery.all.where('household_id = ?', @household).all
 
-
-    # dups = names.detect { |n| names.count(n) > 1 }
-
-
-    # #1 Get list of items names w/o doubles of name...
-    #  .where('in_inventory = false').
-    # #2 Add quantity for each individual names where measurement == measurement
-    # #2b - equalize Inventory measurement with calc. single standard measurement.
-    # #3 Create new hash of groceries
+    # #1 - Get list of items names w/o doubles of name...
+    #      .where('in_inventory = false').
+    # #2a - Calculate Q by # course.where(erecipe_id) > Recipe(ercipe.id).servings
+    # #2b - Add quantity for each individual names where measurement == measurement
+    # #2c - equalize Inventory measurement with calc. single standard measurement.
+    # #3 -Create new hash of groceries
 
     # groceries = menu.groceries
 
-    groceries = Grocery.all.where('household_id = ?', @household).all
+    groceries = Grocery.all.where('household_id = ?', @household)
     names_uniq = groceries.map{ |i| i.name }.uniq
     g_list = []
     @count = 0
