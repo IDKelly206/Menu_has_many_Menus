@@ -1,13 +1,13 @@
 <div class="container">
   <div>
     <%= form_with url: '/groceries' do |form|  %>
-      <%= form.hidden_field :course_ids, value: params[:course_ids] %>
+      <%= form.hidden_field :course_ids, value: @course_ids %>
       <% n = 0 %>
       <% @recipe.ingredients.each do |ingredient| %>
         <% n += 1 %>
         <%= fields_for 'grocery'+[n].to_s do |fields| %>
           <%= fields.check_box :list_add, checked: true %>
-          <%= fields.hidden_field  :course_id, value: @course.id %>
+          <%= fields.hidden_field :course_ids, value: @course_ids %>
           <%= fields.hidden_field  :household_id, value: @household.id %>
           <%= fields.hidden_field  :erecipe_id, value: @erecipe_id %>
           <%= fields.label ingredient['food'] %>
@@ -19,7 +19,7 @@
             <%= fields.hidden_field :measurement, value: ingredient['measure'] %>
           <% else %>
             <%= fields.label "<Pinch>" %>
-            <%= fields.hidden_field :measurement, value: "Pinch" %>
+            <%= fields.hidden_field :measurement, value: "<Pinch>" %>
           <% end %>
           <%= fields.label ingredient['foodCategory'] %>
           <%= fields.hidden_field :category, value: ingredient['foodCategory'] %>

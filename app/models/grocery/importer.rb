@@ -5,13 +5,13 @@ class Grocery::Importer
 
   def initialize(grocery_params)
     @household_id = grocery_params.fetch(:household_id).to_i
-    @course_id = grocery_params.fetch(:course_id).to_i
+    @course_ids = grocery_params.fetch(:course_ids).split
+    @erecipe_id = grocery_params.fetch(:erecipe_id)
+
     @name = grocery_params.fetch(:name)
-    # Quantity needs to be float & factor in # of servings necessary
     @quantity = grocery_params.fetch(:quantity).to_i
     @measurement = grocery_params.fetch(:measurement)
     @category = grocery_params.fetch(:category)
-    @erecipe_id = grocery_params.fetch(:erecipe_id)
     @list_add = grocery_params.fetch(:list_add).to_i
   end
 
@@ -29,15 +29,17 @@ class Grocery::Importer
     @new_glist = 0
 
     if grocery_params.fetch(:list_add).to_i >= 1
-      Grocery.create!(
-        household_id: @household_id,
-        course_id: @course_id,
-        name: @name,
-        quantity: @quantity,
-        measurement: @measurement,
-        category: @category,
-        erecipe_id: @erecipe_id
-      )
+      @course_ids.each do |course_id|
+        Grocery.create!(
+          household_id: @household_id,
+          course_id: course_id.to_i,
+          name: @name,
+          quantity: @quantity,
+          measurement: @measurement,
+          category: @category,
+          erecipe_id: @erecipe_id
+        )
+      end
       @new_glist += 1
     end
   end

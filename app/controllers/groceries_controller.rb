@@ -55,8 +55,10 @@ class GroceriesController < ApplicationController
 
     @course = @courses.first
 
-    @erecipe_id = @courses.first.erecipe_id
+    @erecipe_id = @course.erecipe_id
     @recipe = Edamam::EdamamRecipe.find(@erecipe_id)
+    # Calculate quantity of ingreients necessary per recipe.
+    # Calc based off servings/yield divided by # courses per meal_type multiplied by # menu.dates
 
     console
   end
