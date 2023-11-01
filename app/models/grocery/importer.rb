@@ -9,7 +9,7 @@ class Grocery::Importer
     @erecipe_id = grocery_params.fetch(:erecipe_id)
 
     @name = grocery_params.fetch(:name)
-    @quantity = grocery_params.fetch(:quantity).to_i
+    @quantity = grocery_params.fetch(:quantity).to_f
     @measurement = grocery_params.fetch(:measurement)
     @category = grocery_params.fetch(:category)
     @list_add = grocery_params.fetch(:list_add).to_i

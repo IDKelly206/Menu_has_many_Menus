@@ -11,11 +11,9 @@
   <%= hidden_field_tag :title, yield(:title) %>
   <% if @meals.present? %>
     <%= hidden_field_tag 'meals',  @meals %>
-  <%# <%= hidden_field_tag 'course', mutliple: true, @courses %> %>
-  <% else %>
+  <% elsif @meal.present? %>
     <%= hidden_field_tag 'meal', @meal.id %>
     <%= hidden_field_tag 'menu', @menu.id %>
-  <%# <%= hidden_field_tag 'course', @course %> %>
   <% end %>
   <%= f.submit "Search", name: nil %>
 <% end %>
