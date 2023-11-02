@@ -17,25 +17,48 @@ class GroceriesController < ApplicationController
 
     # groceries = menu.groceries
 
-    groceries = Grocery.all.where('household_id = ?', @household)
-    names_uniq = groceries.map{ |i| i.name }.uniq
+    groceries_all = Grocery.all.where('household_id = ?', @household)
+    @list_add_true = groceries_all.where('list_add = ?', true)
+    names_uniq = @list_add_true.map { |i| i.name }.uniq.sort_by!{ |n| n.downcase }
+    # All uniq recipe_ids for uncollected grocery items
+    @recipe_ids_all = @list_add_true.map { |i| i.erecipe_id }
+    @recipe_ids = @recipe_ids_all.uniq
+
     g_list = []
     @count = 0
 
-    names_uniq.each_with_index do |name, index|
-      g_list[index] = {}
-      @quantity = 0
-      groceries.where(name: name).each do |g_item|
-        g_list[index][:n] = name
-        @quantity += g_item.quantity
-        g_list[index][:q] = @quantity
-        g_list[index][:m] = g_item.measurement
-        g_list[index][:cat] = g_item.category
+    # Go through all recipes
+    @recipe_ids.each do |recipe_id|
+      @recipe = Edamam::EdamamRecipe.find(recipe_id)
+      @servings = @recipe.yield
+      @num_of_courses = @recipe_ids_all.count(recipe_id) / @recipe.ingredients.count
+      @multiplier = round_up(@num_of_courses, @servings)
+      # Go through each unique ingredient name
+      names_uniq.each_with_index do |name, index|
+        # Determine if a Grocery item exists with a given name and erecipe_id
+        unless @list_add_true.detect { |g_item| g_item.name == name && g_item.erecipe_id == recipe_id }.nil?
+          @g_item = @list_add_true.detect { |g_item| g_item.name == name && g_item.erecipe_id == recipe_id }
+          # Does the array already have an index assisgned for the unique ingredient name?
+          if g_list[index].nil?
+            g_list[index] = {}
+            g_list[index][:n] = @g_item.name
+            g_list[index][:q] = @g_item.quantity * @multiplier
+            # Need to convert measurement
+            g_list[index][:m] = @g_item.measurement
+            g_list[index][:cat] = @g_item.category
+          else
+            g_list[index][:q] += (@g_item.quantity * @multiplier)
+          end
+        end
       end
       @count += 1
     end
+    @g_list = g_list
+    @groceries = g_list.sort_by { |gItem| gItem[:cat] }
 
-    @groceries = g_list
+    # def order_by_category
+    #   self.sort_by { |gItem| gItem[:cat] }
+    # end
       # g_list
       # Inject g_list hash into inventory form &
       # Change g_item.in_inventory to true OR delete g_item
@@ -136,5 +159,17 @@ class GroceriesController < ApplicationController
 
   def grocery_params
     params.permit(:household_id, :course_id, :erecipe_id, :name, :quantity, :measurement, :category, :list_add)
+  end
+
+  def round_up(numerator, denominator)
+    number = numerator / denominator.to_f
+    remainder = number % 1.0
+    if number < 1
+      number.round(0)
+    elsif remainder.zero?
+      number.to_i
+    else
+      number.round(0) + 1
+    end
   end
 end

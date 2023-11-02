@@ -39,7 +39,6 @@ class MealsController < ApplicationController
     course_ids = @courses.map { |course| course.id }
     meal_ids = params[:meal_ids].first.split
     if @course_count == @new_courses
-      # redirect_to new_meal_path, notice: "Course was successfully created."
       redirect_to new_grocery_path(course_ids: course_ids), notice: "Course successfully added"
     else
       render :new, status: :unprocessable_entity

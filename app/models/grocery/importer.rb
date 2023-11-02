@@ -33,10 +33,10 @@ class Grocery::Importer
         Grocery.create!(
           household_id: @household_id,
           course_id: course_id.to_i,
-          name: @name,
+          name: @name.downcase,
           quantity: @quantity,
-          measurement: @measurement,
-          category: @category,
+          measurement: @measurement.downcase,
+          category: @category.downcase,
           erecipe_id: @erecipe_id
         )
       end

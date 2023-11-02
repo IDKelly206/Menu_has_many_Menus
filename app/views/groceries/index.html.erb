@@ -7,9 +7,9 @@
     <ul>
       <%= form_with url: '/groceries', method: 'get' do |f| %>
         <li>
-        <%= f.label item[:n] %>
-        <%= f.label item[:q] %>
-        <%= f.label item[:m] %>
+        <%= f.label item[:n] %> |
+        <%= f.label item[:q] %> |
+        <%= f.label item[:m] %> |
         <%= f.label item[:cat] %>
         <%= f.submit "Add to Inventory" %>
         </li><hr>
