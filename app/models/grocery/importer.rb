@@ -51,6 +51,7 @@ class Grocery::Importer
     raise "Invalid params" unless @measurement.present?
     raise "Invalid params" unless @category.present?
     raise "Invalid params" unless @erecipe_id.present?
+    # Add course_ids check
   end
 
 end

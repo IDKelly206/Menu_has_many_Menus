@@ -5,11 +5,8 @@ class CoursesController < ApplicationController
   before_action :set_course, only: [:edit, :update, :destroy]
 
   def new
-
-    # Search criteria
     search_criteria
     @recipes = Edamam::EdamamRecipe.search(params[:query], params[:filters])
-
     @course = @meal.courses.build
 
     console
@@ -17,7 +14,6 @@ class CoursesController < ApplicationController
 
   def create
     @course = @meal.courses.build(course_params)
-
     if @course.save
       redirect_to new_grocery_path(course_ids: [@course.id]),
                   notice: "Course successfully created"
@@ -27,10 +23,7 @@ class CoursesController < ApplicationController
   end
 
   def edit
-    # Search criteria
-    @meal_type = ["Breakfast", "Lunch", "Dinner"]
-    @dish_type = ["Main course", "Starter", "Desserts"]
-    @health = ["vegan", "vegetarian", "paleo"]
+    search_criteria
     @recipes = Edamam::Erecipe.search(params[:query], params[:filters])
 
     console

@@ -22,12 +22,11 @@ class MealsController < ApplicationController
     @dish_type = ["Main course", "Starter", "Desserts"]
     @health = ["vegan", "vegetarian", "paleo"]
     @recipes = Edamam::EdamamRecipe.search(params[:query], params[:filters])
-    # @recipes = Edamam::EdamamRecipe.search("pasta", params[:filters])
 
+    # Used to create multiple courses & provide erecipe_id for groceries
     @menus = params[:menu_ids].map { |menu_id| Menu.find(menu_id.to_i) }
     @users = params[:user_ids].map { |user_id| User.find(user_id.to_i) }
     @meal_type = params[:meal_types]
-    # Used to create multiple courses & provide erecipe_id for groceries
     @meals = meal_ids(@menus, @users, @meal_type)
 
     console

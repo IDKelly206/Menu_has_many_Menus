@@ -5,39 +5,24 @@ class GroceriesController < ApplicationController
   before_action :set_course, only: [:new, :create]
 
   def index
-    # show all gList item(s)
-    # @groceries = Grocery.all.where('household_id = ?', @household).all
-
-    # #1 - Get list of items names w/o doubles of name...
-    #      .where('in_inventory = false').
-    # #2a - Calculate Q by # course.where(erecipe_id) > Recipe(ercipe.id).servings
-    # #2b - Add quantity for each individual names where measurement == measurement
-    # #2c - equalize Inventory measurement with calc. single standard measurement.
-    # #3 -Create new hash of groceries
-
-    # groceries = menu.groceries
-
     groceries_all = Grocery.all.where('household_id = ?', @household)
-    @list_add_true = groceries_all.where('list_add = ?', true)
-    names_uniq = @list_add_true.map { |i| i.name }.uniq.sort_by!{ |n| n.downcase }
+    list_add_true = groceries_all.where('list_add = ?', true)
+    names_uniq = list_add_true.map { |i| i.name }.uniq.sort_by!{ |n| n.downcase }
     # All uniq recipe_ids for uncollected grocery items
-    @recipe_ids_all = @list_add_true.map { |i| i.erecipe_id }
-    @recipe_ids = @recipe_ids_all.uniq
+    recipe_ids_all = list_add_true.map { |i| i.erecipe_id }
+    recipe_ids = recipe_ids_all.uniq
 
     g_list = []
-    @count = 0
-
-    # Go through all recipes
-    @recipe_ids.each do |recipe_id|
+    recipe_ids.each do |recipe_id|
       @recipe = Edamam::EdamamRecipe.find(recipe_id)
       @servings = @recipe.yield
-      @num_of_courses = @recipe_ids_all.count(recipe_id) / @recipe.ingredients.count
+      @num_of_courses = recipe_ids_all.count(recipe_id) / @recipe.ingredients.count
       @multiplier = round_up(@num_of_courses, @servings)
       # Go through each unique ingredient name
       names_uniq.each_with_index do |name, index|
         # Determine if a Grocery item exists with a given name and erecipe_id
-        unless @list_add_true.detect { |g_item| g_item.name == name && g_item.erecipe_id == recipe_id }.nil?
-          @g_item = @list_add_true.detect { |g_item| g_item.name == name && g_item.erecipe_id == recipe_id }
+        unless list_add_true.detect { |g_item| g_item.name == name && g_item.erecipe_id == recipe_id }.nil?
+          @g_item = list_add_true.detect { |g_item| g_item.name == name && g_item.erecipe_id == recipe_id }
           # Does the array already have an index assisgned for the unique ingredient name?
           if g_list[index].nil?
             g_list[index] = {}
@@ -51,21 +36,8 @@ class GroceriesController < ApplicationController
           end
         end
       end
-      @count += 1
     end
-    @g_list = g_list
     @groceries = g_list.sort_by { |gItem| gItem[:cat] }
-
-    # def order_by_category
-    #   self.sort_by { |gItem| gItem[:cat] }
-    # end
-      # g_list
-      # Inject g_list hash into inventory form &
-      # Change g_item.in_inventory to true OR delete g_item
-
-
-      ##2b - Create helper calc to convert any measurement into Inventory standard
-      # Use 'ruby-units' gem
 
     console
   end
@@ -134,9 +106,7 @@ class GroceriesController < ApplicationController
     # remove specific gList itme
   end
 
-
   private
-
   def set_household
     @household = Household.find(current_user.id)
   end
@@ -151,8 +121,6 @@ class GroceriesController < ApplicationController
     # @meal = @menu.meals.find(params[:meal_id])
   end
 
-  # Course can not just take last. Multi-course create requires different
-  # b/c dependent-destroy correlation with course
   def set_course
     # @course = Course.where(meal_id: @meal.id).last
   end
