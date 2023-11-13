@@ -1,16 +1,19 @@
 // Import your components CSS files here.
 @import "alert";
-@import "avatar";
+// @import "avatar";
+@import "btn";
+@import "card_menu_meal_user_course";
+@import "card_menu_meal_user";
+@import "card_menu_meal";
+@import "card_menu";
+@import "card_product";
+@import "card_recipe";
+@import "error_messages";
 @import "form_legend_clear";
-@import "navbar";
-@import "card-product";
-@import "card-menu";
-@import "card-menu-meal";
-@import "card-menu-meal-user";
-@import "card-menu-meal-user-course";
-@import "card-recipe";
-@import "buttons";
+@import "form";
 @import "modal";
+@import "navbar";
+@import "visually_hidden";
 
 // www.color-name.com
 // Pearl White has the hex code #F8F6F0. The equivalent RGB values are (248, 246, 240)
