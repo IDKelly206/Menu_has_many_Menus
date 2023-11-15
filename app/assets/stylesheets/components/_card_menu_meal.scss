@@ -1,29 +1,30 @@
 .card-menu-meal {
   display: flex;
   flex-direction: column;
-  height: 30%;
-  width: 100%;
   align-items: center;
-  justify-content: center;
-  margin: 2rem;
-  border: .1px solid dodgerblue;
+  justify-content: start;
+  border: var(--border-muted);
+  border-radius: var(--border-radius);
+  // box-shadow: var(--shadow-small);
+
 
 
   &__header {
-    font-size: small;
-    border: .1px solid gray;
-    h5 {
-      font-size: small;
-      padding: 0px;
-      margin: 0px;
-      text-align: center;
-    }
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: var(--space-s);
+    height: 10%;
+    font-weight: bold;
+    font-size: var(--font-size-m);
   }
 
   &__body {
     display: flex;
     flex-direction: row;
-    height: 100%;
-    border: .1px solid gray;
+    justify-content: center;
+    padding: var(--space-xs);
+
   }
 }

@@ -1,9 +1,11 @@
 <%- title "Recipe" %>
 <div class="container">
-<h1>Recipe Index page</h1>
-<small><h4>Title page: <%= yield(:title) %></h4></small>
-
-<%= render 'search_bar' %>
-<br>
-<%= render "recipes", recipes: @recipes, locals: { title: yield(:title) } %>
+  <div class="header">
+    <h1>Recipe Index page</h1>
+    <small><h4>Title page: <%= yield(:title) %></h4></small>
+    <%= render 'search_bar' %>
+  </div>
+  <div class="card-deck">
+    <%= render "recipes", recipes: @recipes, locals: { title: yield(:title) } %>
+  </div>
 </div>

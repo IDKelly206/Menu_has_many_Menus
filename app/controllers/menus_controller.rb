@@ -19,7 +19,7 @@ class MenusController < ApplicationController
       @menus = Menu.where('household_id = ?', @household).where('date IN (:cal)', { cal: calendar }).ordered
     end
 
-    console
+
   end
 
   def show

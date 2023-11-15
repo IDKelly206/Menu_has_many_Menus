@@ -1,27 +1,27 @@
     <div class="card-menu">
       <div class="card-menu__header">
-        <h6><%= menu.day_of_week %></h6>
-        <h6><%= link_to "#{menu.date.strftime("%B"" ""%d")}", menu %></h6>
+        <h2><%= menu.day_of_week %></h2>
+        <h3><%= link_to "#{menu.date.strftime("%B"" ""%d")}", menu %></h3>
       </div>
       <div class="card-menu__body">
         <% @meal_type.each do |meal_type| %>
           <div class= "card-menu-meal">
             <div class="card-menu-meal__header">
-              <h6><%= meal_type %></h6>
+              <%= meal_type %>
             </div>
 
             <div class= "card-menu-meal__body">
               <% @users.each do |user| %>
                 <div class= "card-menu-meal-user">
                   <div class="card-menu-meal-user__header">
-                    <h6><%= link_to user.name_first, menu_meal_path(menu, Meal.find_by(user_id: user, menu_id: menu, meal_type: meal_type).id) %></h6>
+                    <%= link_to user.name_first, menu_meal_path(menu, Meal.find_by(user_id: user, menu_id: menu, meal_type: meal_type).id) %>
                   </div>
                   <div class="card-menu-meal-user__body">
-                    <p>Courses #: </p>
+                    <p>Courses:</p>
                     <p>
                       <% Meal.find_by(user_id: user, menu_id: menu, meal_type: meal_type).courses.each do |course| %>
                         <div class= "card-menu-meal-course">
-                          <small><li><%= course.course_type %></li></small>
+                          <li><%= course.course_type %></li>
                         </div>
                       <% end %>
                     </p>
