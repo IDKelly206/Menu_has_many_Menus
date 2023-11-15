@@ -1,0 +1,18 @@
+.section-menu {
+  width: 100%;
+  padding: var(--space-s), var(--space-s);
+  margin-left: auto;
+  margin-right: auto;
+  background-color: var(--color-pearl);
+
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  // flex-wrap: nowrap;
+  // margin-block-start: var(--space-xxl);
+
+  // justify-content: flex-start;
+  // white-space: nowrap;
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
