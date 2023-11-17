@@ -1,7 +1,9 @@
 .card-menu-meal-course {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: start;
+  font-size: var(--font-size-xs)
+
 
   // &__header {
 

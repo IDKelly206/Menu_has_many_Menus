@@ -18,13 +18,19 @@
                   </div>
                   <div class="card-menu-meal-user__body">
                     <p>Courses:</p>
-                    <p>
-                      <% Meal.find_by(user_id: user, menu_id: menu, meal_type: meal_type).courses.each do |course| %>
-                        <div class= "card-menu-meal-course">
-                          <li><%= course.course_type %></li>
-                        </div>
+                      <% @course_types.each do |course_type| %>
+                        <% meal_courses = Meal.find_by(user_id: user, menu_id: menu, meal_type: meal_type).courses.map { |course| course.course_type } %>
+                        <% if meal_courses.include?(course_type) %>
+                          <div class= "card-menu-meal-course">
+                            <i class="fa-solid fa-square-check"></i><%= course_type %>
+                          </div>
+                        <% else %>
+                          <div class= "card-menu-meal-course">
+                            <i class="fa-regular fa-square"></i><%= course_type %>
+                          </div>
+                        <% end %>
                       <% end %>
-                    </p>
+
                   </div>
                 </div>
               <% end %>

@@ -19,11 +19,11 @@
     font-size: var(--font-size-s);
 }
   &__body {
-    display: flex;
     flex-direction: column;
     justify-content: space-between;
     padding: var(--space-xs);
 
     font-size: var(--font-size-xs)
+
   }
 }

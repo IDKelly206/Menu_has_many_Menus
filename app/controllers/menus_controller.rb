@@ -19,7 +19,8 @@ class MenusController < ApplicationController
       @menus = Menu.where('household_id = ?', @household).where('date IN (:cal)', { cal: calendar }).ordered
     end
 
-
+    @course_types = ["Main course", "Starter", "Desserts"]
+    console
   end
 
   def show
