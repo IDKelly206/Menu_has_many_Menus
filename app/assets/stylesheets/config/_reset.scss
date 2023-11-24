@@ -67,18 +67,17 @@ h4 {
 
 
 p {
-  margin-bottom: 0;
-  text-decoration: underline;
+
 }
 
 a {
-  color: var(--color-primary);
+  color: var(--color-dark);
   text-decoration: none;
   transition: color 200ms;
 
   &:hover,
   &:focus,
   &:active {
-    color: var(--color-primary-rotate);
+    color: var(--color-tertiary);
   }
 }

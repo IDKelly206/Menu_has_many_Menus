@@ -1,19 +1,13 @@
 <div class="container">
-<h1>Grocery New page </h1>
+  <h1>Grocery New page </h1>
   <div class="column">
     <%= turbo_frame_tag dom_id(@grocery) do %>
       <%= turbo_frame_tag "modal", target: :_top do %>
-        <div class="row">
-          <div class="card m-4">
-            <div class="card-header">
-              <h2 class="card-title">Grocery List - add items</h6>
-              <p><strong>For: <%= @recipe.label %></strong></p>
-            </div>
-            <div class="card-body">
-              <%= render "form", course_ids: @course_ids %>
-            </div>
-          </div>
-        </div>
+        <%= render "partials/modal",
+        locals: { title: "Add items to Grocery List",
+                  form: "groceries/form"
+                } %>
+        <%# course_ids: @course_ids %>
       <% end %>
     <% end %>
   </div>

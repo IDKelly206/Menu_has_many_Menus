@@ -1,16 +1,21 @@
-
-  <div >
-    <%= form_with url: "/meals/new", method: 'get' do |f| %>
-      <div class="mb-3" data-meal-new-target="getType">
-        <%= f.select :meal_types, @meal_types, { prompt: "Select meal" } %>
-      </div>
-      <div class="mb-3" data-meal-new-target="getUserID">
-        <%= f.collection_check_boxes(:user_ids, @users, :id, :name_first, include_hidden: false) %>
-      </div>
-      <div class="mb-3" data-meal-new-target="getMenuID">
-        <%= f.collection_check_boxes(:menu_ids, @menus, :id, :day_of_week, include_hidden: false) %>
-      </div>
-          <%= link_to "Cancel", menus_path, class: "btn"  %>
-        <%= f.submit "Next" %>
-    <% end %>
-  </div>
+<div >
+  <%= form_with url: new_meal_path, method: 'get' do |f| %>
+    <div class="mb-3" >
+      <%= f.select :meal_types, @meal_types, { class: "class-name", prompt: "Select meal" }, { class: "meal_dropdown" } %>
+    </div>
+    <div class="mb-3" >
+      <%= f.collection_check_boxes :user_ids, @users, :id, :name_first, include_hidden: false do |b| %>
+        <%= b.check_box class: "check_box" %>
+        <%= b.label  %>
+      <% end %>
+    </div>
+    <div class="mb-3" >
+      <%= f.collection_check_boxes :menu_ids, @menus, :id, :day_of_week, include_hidden: false do |b| %>
+        <%= b.check_box class: "check_box" %>
+        <%= b.label  %>
+      <% end %>
+    </div>
+      <%= f.submit "Next", class: "btn btn-light" %>
+      <%= link_to "Cancel", menus_path, class: "btn btn-light"  %>
+  <% end %>
+</div>

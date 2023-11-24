@@ -17,16 +17,16 @@
                     <%= link_to user.name_first, menu_meal_path(menu, Meal.find_by(user_id: user, menu_id: menu, meal_type: meal_type).id) %>
                   </div>
                   <div class="card-menu-meal-user__body">
-                    <p>Courses:</p>
+                    <p class="card-menu-meal-course__p">Courses:</p>
                       <% @course_types.each do |course_type| %>
                         <% meal_courses = Meal.find_by(user_id: user, menu_id: menu, meal_type: meal_type).courses.map { |course| course.course_type } %>
                         <% if meal_courses.include?(course_type) %>
                           <div class= "card-menu-meal-course">
-                            <i class="fa-solid fa-square-check"></i><%= course_type %>
+                            <i class="fa-solid fa-square-check"></i> <%= course_type %>
                           </div>
                         <% else %>
                           <div class= "card-menu-meal-course">
-                            <i class="fa-regular fa-square"></i><%= course_type %>
+                            <i class="fa-regular fa-square"></i> <%= course_type %>
                           </div>
                         <% end %>
                       <% end %>

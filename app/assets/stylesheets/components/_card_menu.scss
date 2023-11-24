@@ -9,6 +9,8 @@
   border: var(--border-muted);
   border-radius: var(--border-radius);
   margin: var(--space-s) var(--space-s);
+  box-shadow: var(--shadow-small);
+
 
 
   &__header {
@@ -22,12 +24,14 @@
     font-size: var(--font-size-m);
   }
 
-&__body {
+  // Contains Meal cards
+  &__body {
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
+    height: 100%;
     justify-content: space-between;
-    align-items: center;
+    // align-items: space-around;
     padding: var(--space-m);
   }
 

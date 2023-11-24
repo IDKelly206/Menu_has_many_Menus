@@ -41,7 +41,8 @@
  --color-primary-rotate:   hsl(120, 45%, 56%);
  --color-secondary:        hsl(6, 43%, 42%);    // Cognac
  --color-secondary-rotate: hsl(10, 73%, 54%);   // TBD  // TBD
- --color-tertiary:         hsl(199, 77%, 44%);  // Powder Blue
+//  --color-tertiary:         hsl(199, 77%, 44%);  // Powder Blue
+ --color-tertiary:         #bad5ff;  // Powder Blue
  --color-glint:            hsl(210, 100%, 82%); // TBD
 
  // Neutral colors
@@ -60,6 +61,8 @@
   --border-dark: solid 2px var(--color-dark);
   --border-light: solid 2px var(--color-light);
   --border-muted: solid 1px var(--color-text-muted);
+  --border-navbar: solid 1px var(--color-pearl);
+  --border-navbar-bottom: solid 0px var(--color-white);
 
   // Shadows
   --shadow-large:  2px 4px 10px hsl(0 0% 0% / 0.1);

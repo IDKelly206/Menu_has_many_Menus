@@ -1,0 +1,37 @@
+.check_box {
+  position: absolute;
+  transform: scale(0);
+}
+
+.check_box + label {
+  cursor: pointer;
+  display: inline-block;
+  padding: var(--space-xxs) var(--space-m);
+  border-radius: var(--border-radius);
+  background-origin: border-box; // Invisible borders with linear gradients
+  background-color: transparent;
+  border: solid 2px transparent;
+  font-weight: bold;
+  text-decoration: none;
+  cursor: pointer;
+  outline: none;
+  transition: filter 400ms, color 200ms;
+
+  color: var(--color-dark);
+  background-color: var(--color-light);
+
+  &:hover,
+  &:focus,
+  &:focus-within,
+  &:active {
+    color: var(--color-dark);
+    filter: brightness(92%);
+  }
+
+}
+
+.check_box:checked + label {
+  color: var(--color-dark);
+  filter: brightness(92%);
+
+}

@@ -1,4 +1,4 @@
-<div class="container">
+
   <div>
     <%= form_with url: '/groceries' do |form|  %>
       <%= form.hidden_field :course_ids, value: @course_ids %>
@@ -10,10 +10,13 @@
           <%= fields.hidden_field :course_ids, value: @course_ids %>
           <%= fields.hidden_field  :household_id, value: @household.id %>
           <%= fields.hidden_field  :erecipe_id, value: @erecipe_id %>
+
           <%= fields.label ingredient['food'] %>
           <%= fields.hidden_field :name, value: ingredient['food'] %>
+
           <%= fields.label ingredient['quantity'] %>
           <%= fields.hidden_field :quantity, value: ingredient['quantity'] %>
+
           <% if  ingredient['measure'].present?  %>
             <%= fields.label ingredient['measure'] %>
             <%= fields.hidden_field :measurement, value: ingredient['measure'] %>
@@ -21,12 +24,14 @@
             <%= fields.label "<Pinch>" %>
             <%= fields.hidden_field :measurement, value: "<Pinch>" %>
           <% end %>
+
           <%= fields.label ingredient['foodCategory'] %>
           <%= fields.hidden_field :category, value: ingredient['foodCategory'] %>
+
         <% end %>
         <hr>
       <% end %>
+      <%= link_to "Cancel", "#", class: "btn" %>
       <%= form.submit "Add gList items" %>
     <% end %>
   </div>
-</div>

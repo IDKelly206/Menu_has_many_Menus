@@ -1,16 +1,18 @@
 .card-menu-meal-course {
-  display: flex;
-  flex-direction: column;
-  justify-content: start;
-  font-size: var(--font-size-xs)
+  font-size: var(--font-size-xs);
+  display: inline-block;
+  width: 100px;
+  padding: var(--space-xs) 0;
 
 
-  // &__header {
+  &__p {
+    margin-top: var(--space-xs);
+    margin-bottom: 0;
+    text-decoration: underline;
+    text-align: left;
+    font-size: var(--font-size-xs);
+  }
 
-  // }
 
-  // &__body {
-
-  // }
 
 }

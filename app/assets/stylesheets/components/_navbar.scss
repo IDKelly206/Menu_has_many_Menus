@@ -1,47 +1,90 @@
-// .navbar-lewagon {
-//   justify-content: space-between;
-//   background: hsl(45, 36%, 96%);
-// }
-
-// .navbar-lewagon .navbar-collapse {
-//   flex-grow: 0;
-// }
-
-// .navbar-lewagon .navbar-brand img {
-//   width: 40px;
-// }
-
-
 .navbar {
+  position: sticky;
+  top: 0;
   display: flex;
-  align-items: center;
-  box-shadow: var(--shadow-large);
-  padding: var(--space-xs) var(--space-m);
-  margin-bottom: var(--space-xxs);
+  flex-direction: row;
+  flex-wrap: nowrap;
+  margin-bottom: 0;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
   background-color: var(--color-onyx);
+  padding: 0 var(--space-m);
+
+  @include media(tabletAndUp) {
+    padding-right: 0;
+    padding-left: 0;
+    max-width: 90rem;
+  }
+
+  &__nav {
+    display: flex;
+    flex-direction: row;
+    justify-content:space-between;
+    width: 100%;
+    list-style: none;
+    margin: 0;
+    padding: 0 var(--space-xs);
+  }
 
   &__brand {
+    display: flex;
+    flex-grow: 0;
+    align-items: center;
+    padding: var(--space-m) var(--space-m);
+    color: var(--color-pearl);
+    text-align: center;
+    font-weight: bold;
+    font-size: var(--font-size-xxxl);
+  }
+
+  &__item {
+    flex-grow: 1;
+  }
+
+  &__link {
+    display: block;
+    padding: var(--space-m) var(--space-xxl) ;
+    color: var(--color-pearl);
+    text-align: center;
     font-weight: bold;
     font-size: var(--font-size-xl);
-    color: var(--color-pearl);
   }
 
-  &__name {
+  &__dropdown {
+    display: flex;
+    flex-grow: 0;
+    align-items: center;
+    padding: var(--space-m) var(--space-m) ;
+    color: var(--color-pearl);
     font-weight: bold;
-    margin-left: auto;
-    margin-right: var(--space-xl);
-    color: var(--color-pearl);
-    border: solid 2px var(--color-primary-bg);
+    font-size: var(--font-size-xxxl);
   }
 
-  &__right {
-    margin-left: auto;
-    color: var(--color-pearl);
-  }
-
-  &__btn {
-    color: var(--color-pearl);
+  &__border{
+    background-color: var(--color-onyx);
+    border: var(--border-navbar);
+    border-bottom: var(--border-navbar-botton);
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
   }
 
 
+
+  &__border-invert {
+    background-color: var(--color-pearl);
+    border: var(--border-navbar);
+    border-bottom: var(--border-navbar);
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
+  }
+
+  &__link-invert {
+    display: block;
+    padding: var(--space-m) var(--space-xxl) ;
+    color: var(--color-onyx);
+    text-align: center;
+    font-weight: bold;
+    font-size: var(--font-size-xl);
+  }
 }

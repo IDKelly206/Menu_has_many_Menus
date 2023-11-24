@@ -1,24 +1,11 @@
-
 <div class="container">
   <h1>Meal_New page of Meals</h1>
-
-    <%= turbo_frame_tag dom_id(@meal) do %>
-      <%= turbo_frame_tag "modal", target: :_top do %>
-        <div class="row">
-          <div class="card m-4 ">
-            <div class="card-header">
-              <h2 class="card-title">Choose Meal</h2>
-              <h6>Modal</h6>
-            </div>
-            <div class="card-body">
-              <%= render "meals/new_meal_form" %>
-            </div>
-            <div class="card-footer text-muted mt-2">
-              <%# <%= button_tag "Close", data: { action: "turbo-modal#hideModal"},
-                  type: "button", class: "rounded-lg py-3 px-5 bg-red-400 text-blue" %> %>
-            </div>
-          </div>
-        </div>
-      <% end %>
+  <%= turbo_frame_tag dom_id(@meal) do %>
+    <%= turbo_frame_tag "modal", target: :_top do %>
+      <%= render "partials/modal",
+                  locals: { title: "Choose Meal details",
+                            form: "meals/new_meal_form"
+                          } %>
     <% end %>
+  <% end %>
 </div>

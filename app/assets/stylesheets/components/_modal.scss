@@ -1,10 +1,36 @@
 #modal {
-  position: absolute;
-  z-index: 2;
-  right: 100px;
-  top: 50px;
   width: 600px;
+  max-width: 100%;
+  position: fixed;
+  z-index: 2;
+  left: 30%;
+  top: 15%;
+
   word-break: break-word;
-  border-radius: 6px;
-  background: #bad5ff;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-large);
+  background: var(--color-onyx);
+  // background: ;
+}
+
+.card-modal {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  flex-grow: 1;
+  margin: var(--space-l);
+
+  background: var(--color-pearl);
+
+  &__header{
+    padding: var(--space-s) var(--space-l);
+  }
+
+  &__title {
+    color: var(--color-onyx);
+  }
+
+  &__body{
+    padding: var(--space-s) var(--space-l);
+  }
 }

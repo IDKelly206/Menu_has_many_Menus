@@ -20,7 +20,7 @@ class MenusController < ApplicationController
     end
 
     @course_types = ["Main course", "Starter", "Desserts"]
-    console
+    # console
   end
 
   def show
