@@ -16,15 +16,21 @@
     flex-direction: column;
     justify-content: center;
     align-items: start;
-    height: 10%;
     padding-top: var(--space-s);
     font-size: var(--font-size-s);
 }
   &__body {
     flex-direction: column;
     justify-content: space-between;
-    padding: var(--space-xs);
-    font-size: var(--font-size-xs)
+    padding: 0;
+    font-size: var(--font-size-xs);
 
+    p {
+      margin-top: var(--space-xs);
+      margin-bottom: 0;
+      text-decoration: underline;
+      text-align: left;
+      font-size: var(--font-size-xs);
+    }
   }
 }

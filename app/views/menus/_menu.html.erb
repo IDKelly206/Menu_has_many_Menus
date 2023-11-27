@@ -10,14 +10,14 @@
               <%= meal_type %>
             </div>
 
-            <div class= "card-menu-meal__body">
+            <div class="card-menu-meal__body">
               <% @users.each do |user| %>
                 <div class= "card-menu-meal-user">
                   <div class="card-menu-meal-user__header">
                     <%= link_to user.name_first, menu_meal_path(menu, Meal.find_by(user_id: user, menu_id: menu, meal_type: meal_type).id) %>
                   </div>
                   <div class="card-menu-meal-user__body">
-                    <p class="card-menu-meal-course__p">Courses:</p>
+                    <p>Courses:</p>
                       <% @course_types.each do |course_type| %>
                         <% meal_courses = Meal.find_by(user_id: user, menu_id: menu, meal_type: meal_type).courses.map { |course| course.course_type } %>
                         <% if meal_courses.include?(course_type) %>

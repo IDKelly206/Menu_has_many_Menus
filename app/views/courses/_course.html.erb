@@ -1,18 +1,14 @@
-<div>
-  <div class="header">
-    <%= course.id %>
-    <%= course.course_type %>
-    <%= course.erecipe_id %>
-
+<div class="card-course">
+  <div class="card-course__header">
+    <p><%= course.course_type %>: <%= course.erecipe_id %></p>
   </div>
-  <div class="action">
+  <div class="card-course__action">
+    <%= link_to "Edit",
+                edit_menu_meal_course_path(@menu, @meal, course),
+               class: "btn btn--light" %>
     <%= button_to "Delete",
                   [@menu, @meal, course],
                   method: :delete,
-                  class: "btn btn-ghost" %>
-    <%= link_to "Edit",
-                edit_menu_meal_course_path(@menu, @meal, course),
-               class: "btn btn-ghost" %>
-
+                  class: "btn btn--dark" %>
   </div>
 </div>
