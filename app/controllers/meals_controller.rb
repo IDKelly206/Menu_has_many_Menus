@@ -2,6 +2,8 @@ class MealsController < ApplicationController
   before_action :set_household
   before_action :set_menu, only: [:index, :show]
   before_action :set_meal, only: [:index, :show]
+  before_action :set_meal_type, only: [:index, :show]
+  before_action :set_course_type, only: [:index, :show]
 
 
 
@@ -62,6 +64,14 @@ class MealsController < ApplicationController
 
   def set_meal
     @meal = @menu.meals.find(params[:id])
+  end
+
+  def set_meal_type
+    @meal_type = %w(Breakfast Lunch Dinner)
+  end
+
+  def set_course_type
+    @course_types = ["Main course", "Starter", "Desserts"]
   end
 
   def course_params

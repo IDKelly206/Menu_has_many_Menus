@@ -1,39 +1,61 @@
 <div class="container">
-  <h1>Menu Show page</h1>
-</div>
+  <div class="header">
+    <h1>Menu Show page</h1>
+  </div>
 
-<div class="section-menu">
-  <div class="card-menu-day">
-    <div class="card-menu-day-header">
-      <div class="card-menu-day-date">
-        <h4><%= @menu.date.strftime("%a") %></h4><h6><%= @menu.date.strftime("%B"" ""%d") %></h6>
+  <div class="section-menu">
+  <%= turbo_frame_tag "menu" do %>
+    <div class="card-menu">
+      <div class="card-menu__header">
+        <h2> <%= @menu.day_of_week %> </h2>
+        <%= link_to "X", menus_path, class: "btn" %>
       </div>
-      <div class="card-menu-day-users">
-        <% @users.each do |user| %>
-          <div class= "card-menu-day-user">
-            <h6><%= user.name_first %></h6>
-          </div>
-        <% end %>
-      </div>
-    </div>
 
-    <div class="card-menu-day-body">
+      <div class="card-menu__body">
+        <% @meal_type.each do |meal_type| %>
+          <div class= "card-menu-meal">
+            <div class="card-menu-meal__header">
+              <%= meal_type %>
+            </div>
 
-        <% @users.each do |user| %>
-          <div class= "card-menu-day-user-section">
+            <%= turbo_frame_tag "menu-meal-body" do %>
 
-            <% @meal_type.each do |meal| %>
-              <div class="card-menu-day-meal">
-                <p><%= meal %></p>
-                <div class="card-menu-day-course">
+            <div class="card-menu-meal__body">
+              <% @users.each do |user| %>
+                <div class= "card-menu-meal-user">
+                  <div class="card-menu-meal-user__header">
+                    <%= user.name_first %>
+                  </div>
+                  <div class="card-menu-meal-user__body">
+          <% @course_types.each do |course_type| %>
+            <% @meal = Meal.find_by(user_id: user, menu_id: @menu, meal_type: meal_type) %>
+            <% @courses = @meal.courses %>
 
+            <h6><%= course_type%>: </h6>
+            <% unless @courses.find_by(course_type: course_type).nil? %>
+              <%= render @courses.find_by(course_type: course_type), meal: @meal %>
+            <% else %>
+              <div class="card-course">
+                <div class="card-course__action">
+                  <%= link_to "Add Course", new_menu_meal_course_path(@menu, @meal), class: "btn btn--light", target: :_top %>
                 </div>
               </div>
             <% end %>
+          <% end %>
+
+
+                  </div>
+                </div>
+              <% end %>
+            </div>
+
+            <% end %>
+
           </div>
         <% end %>
+      </div>
 
-    </div>
 
+  <% end %>
   </div>
 </div>

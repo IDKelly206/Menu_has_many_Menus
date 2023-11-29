@@ -1,4 +1,14 @@
 .card-menu-meal-course {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+
+  padding: var(--space-xs);
+  background-color: var(--color-white);
+  border: var(--border-muted);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-small);
+
 
   &__header {
     display: inline-flex;
@@ -17,6 +27,8 @@
     flex-direction: column;
     justify-content: space-between;
     padding: 0;
-    font-size: var(--font-size-xs)
+    font-size: var(--font-size-xs);
+    width: 100%;
+    min-width: 100px;
   }
 }

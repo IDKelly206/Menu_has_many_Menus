@@ -11,21 +11,31 @@
   <div>
   </div>
 
-  <div class="card-menu-meal__body">
-    <div class= "card-menu-meal-user">
-      <div class="card-menu-meal-course__header">
-        <p>Courses for: <%= User.find(@meal.user_id).name_first %></p>
-        <%= link_to "X", menus_path, class: "btn" %>
-      </div>
-      <div class="card-menu-meal-course__body">
-        <%= render @courses, meal: @meal %>
-        <div class="card-course">
-          <div class="card-course__action">
-          <%= link_to "Add Course", new_menu_meal_course_path(@menu, @meal), class: "btn btn--light" %>
-          </div>
+  <%= turbo_frame_tag "menu-meal-body" do %>
+    <div class="card-menu-meal__body">
+      <div class= "card-menu-meal-course">
+        <div class="card-menu-meal-course__header">
+          <p>Courses for: <%= User.find(@meal.user_id).name_first %></p>
+          <%= link_to "X", menus_path, class: "btn" %>
+        </div>
+        <div class="card-menu-meal-course__body">
+        <%# Go through each course (@courses) and match course_type & render card %>
+          <% @course_types.each do |course_type| %>
+            <h6><%= course_type%>: </h6>
+            <% unless @courses.find_by(course_type: course_type).nil? %>
+              <%= render @courses.find_by(course_type: course_type), meal: @meal %>
+            <% else %>
+              <div class="card-course">
+                <div class="card-course__action">
+                  <%= link_to "Add Course", new_menu_meal_course_path(@menu, @meal), class: "btn btn--light", target: :_top %>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+
         </div>
       </div>
     </div>
-  </div>
+  <% end %>
 
 </div>

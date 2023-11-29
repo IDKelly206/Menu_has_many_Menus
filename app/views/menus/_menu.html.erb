@@ -1,7 +1,7 @@
+<%= turbo_frame_tag "menu" do %>
     <div class="card-menu">
       <div class="card-menu__header">
-        <h2><%= menu.day_of_week %></h2>
-        <h3><%= link_to "#{menu.date.strftime("%B"" ""%d")}", menu %></h3>
+        <h2><%= link_to menu.day_of_week, menu %></h2>
       </div>
       <div class="card-menu__body">
         <% @meal_type.each do |meal_type| %>
@@ -10,6 +10,8 @@
               <%= meal_type %>
             </div>
 
+            <%= turbo_frame_tag "menu-meal-body" do %>
+
             <div class="card-menu-meal__body">
               <% @users.each do |user| %>
                 <div class= "card-menu-meal-user">
@@ -17,25 +19,27 @@
                     <%= link_to user.name_first, menu_meal_path(menu, Meal.find_by(user_id: user, menu_id: menu, meal_type: meal_type).id) %>
                   </div>
                   <div class="card-menu-meal-user__body">
-                    <p>Courses:</p>
                       <% @course_types.each do |course_type| %>
                         <% meal_courses = Meal.find_by(user_id: user, menu_id: menu, meal_type: meal_type).courses.map { |course| course.course_type } %>
                         <% if meal_courses.include?(course_type) %>
-                          <div class= "card-menu-meal-course">
+                          <div class= "card-menu-meal-user-course">
                             <i class="fa-solid fa-square-check"></i> <%= course_type %>
                           </div>
                         <% else %>
-                          <div class= "card-menu-meal-course">
+                          <div class= "card-menu-meal-user-course">
                             <i class="fa-regular fa-square"></i> <%= course_type %>
                           </div>
                         <% end %>
                       <% end %>
-
                   </div>
                 </div>
               <% end %>
             </div>
+
+            <% end %>
+
           </div>
         <% end %>
       </div>
     </div>
+<% end %>
