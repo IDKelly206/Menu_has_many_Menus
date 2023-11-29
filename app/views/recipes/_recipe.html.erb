@@ -1,18 +1,29 @@
 <div id="<%= dom_id recipe %>">
   <div class="recipe-card">
-    <div class="card__header">
+    <div class="recipe-card__header">
         <%= image_tag recipe.image %>
     </div>
-    <div class="card__body">
-      <div class="content-header">
+    <div class="recipe-card__body">
+      <div class="recipe-card__body_content-header">
       <%= link_to recipe.label, recipe_path(recipe.erecipe_id), class: "recipe-title" %>
-      <%= recipe.source %>
+      <p><%= recipe.source %></p>
       </div>
-      Servings: <%= recipe.yield %>
-      # of ingredients: <%= recipe.ingredients.count %>
-
+      <div class="recipe-card__body_content-body">
+        <ul class="recipe-card__body_content-body-details">
+          <li class="item">
+            <i class="fa-solid fa-user"></i>
+            <span class="value"><%= recipe.yield %></span>
+            <span class="title">Servings</span>
+          </li>
+          <li class="item">
+            <i class="fa-solid fa-book-open"></i>
+            <span class="value"><%= recipe.ingredients.count %></span>
+            <span class="title">Ingredients</span>
+          </li>
+        </ul>
+      </div>
     </div>
-    <div class="card__footer">
+    <div class="recipe-card__footer">
       <%= recipe_form(page_title = locals[:title], erecipe_id = recipe.erecipe_id) %>
     </div>
   </div>
