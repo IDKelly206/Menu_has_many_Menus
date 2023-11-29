@@ -9,15 +9,15 @@ class GroceriesController < ApplicationController
     list_add_true = groceries_all.where('list_add = ?', true)
     names_uniq = list_add_true.map { |i| i.name }.uniq.sort_by!{ |n| n.downcase }
     # All uniq recipe_ids for uncollected grocery items
-    recipe_ids_all = list_add_true.map { |i| i.erecipe_id }
-    recipe_ids = recipe_ids_all.uniq
+    @recipe_ids_all = list_add_true.map { |i| i.erecipe_id }
+    recipe_ids = @recipe_ids_all.uniq
 
     g_list = []
     recipe_ids.each do |recipe_id|
       @recipe = Edamam::EdamamRecipe.find(recipe_id)
-      @servings = @recipe.yield
-      @num_of_courses = recipe_ids_all.count(recipe_id) / @recipe.ingredients.count
-      @multiplier = round_up(@num_of_courses, @servings)
+      @num_of_courses = @recipe_ids_all.count(recipe_id) / @recipe.ingredients.count.to_f
+      @servings = @recipe.yield.to_f
+      @multiplier = (@num_of_courses / @servings).ceil
       # Go through each unique ingredient name
       names_uniq.each_with_index do |name, index|
         # Determine if a Grocery item exists with a given name and erecipe_id
@@ -27,7 +27,7 @@ class GroceriesController < ApplicationController
           if g_list[index].nil?
             g_list[index] = {}
             g_list[index][:n] = @g_item.name
-            g_list[index][:q] = @g_item.quantity * @multiplier
+            g_list[index][:q] = (@g_item.quantity * @multiplier)
             # Need to convert measurement
             g_list[index][:m] = @g_item.measurement
             g_list[index][:cat] = @g_item.category
@@ -127,17 +127,5 @@ class GroceriesController < ApplicationController
 
   def grocery_params
     params.permit(:household_id, :course_id, :erecipe_id, :name, :quantity, :measurement, :category, :list_add)
-  end
-
-  def round_up(numerator, denominator)
-    number = numerator / denominator.to_f
-    remainder = number % 1.0
-    if number < 1
-      number.round(0)
-    elsif remainder.zero?
-      number.to_i
-    else
-      number.round(0) + 1
-    end
   end
 end

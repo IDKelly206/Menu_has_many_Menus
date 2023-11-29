@@ -18,7 +18,7 @@ class RecipesController < ApplicationController
 
     # render @recipes, partial: 'recipes/recipe'
 
-    console
+    # console
   end
 
 
