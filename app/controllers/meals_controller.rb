@@ -23,7 +23,7 @@ class MealsController < ApplicationController
     # Used to create multiple courses & provide erecipe_id for groceries
     @menus = params[:menu_ids].map { |menu_id| Menu.find(menu_id.to_i) }
     @users = params[:user_ids].map { |user_id| User.find(user_id.to_i) }
-    @meal_type = params[:meal_types]
+    @meal_type = params[:meal_type]
     @meals = meal_ids(@menus, @users, @meal_type)
 
     console
