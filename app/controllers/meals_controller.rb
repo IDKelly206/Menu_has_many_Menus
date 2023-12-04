@@ -12,7 +12,7 @@ class MealsController < ApplicationController
     calendar = (Time.now.to_date...(Time.now.to_date+10))
     @menus = Menu.where('household_id = ?', @household).where('date IN (:cal)', { cal: calendar })
     @users = @household.users
-    @meal_types = %w(Breakfast Lunch Dinner)
+    @meal_types = Meal.meal_types
 
     @meal = Meal.new
     console
@@ -20,7 +20,7 @@ class MealsController < ApplicationController
 
   def new
     # Search criteria
-    @meal_types = %w(Breakfast Lunch Dinner)
+    @meal_types = Meal.meal_types
     @dish_type = ["Main course", "Starter", "Desserts"]
     @health = ["vegan", "vegetarian", "paleo"]
     @recipes = Edamam::EdamamRecipe.search(params[:query], params[:filters])
@@ -67,11 +67,11 @@ class MealsController < ApplicationController
   end
 
   def set_meal_type
-    @meal_type = %w(Breakfast Lunch Dinner)
+    @meal_types = Meal.meal_types
   end
 
   def set_course_type
-    @course_types = ["Main course", "Starter", "Desserts"]
+    @course_types = Course.course_types
   end
 
   def course_params

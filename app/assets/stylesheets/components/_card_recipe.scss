@@ -6,18 +6,16 @@
   gap: var(--space-m);
 }
 
-.recipe-card {
+.card-recipe {
   display: flex;
   flex-flow: column nowrap;
   border: var(--border-muted);
   box-shadow: var(--shadow-small);
   width: 256px;
-  height: 450px;
+  height: 100%;
 
 
   &__header {
-    position: relative;
-
     img {
       max-width: 100%;
       min-height: 100%;
@@ -29,17 +27,18 @@
   }
 
   &__body {
-    flex-grow: 1;
-    padding: 0 var(--space-xl) var(--space-m);
+    flex: 1 1 auto;
+    padding: 0 var(--space-l) var(--space-s);
 
-    &_content-header {
+    .content-header {
       display: inline-flex;
       flex-flow: column nowrap;
       padding: var(--space-xs) 0 var(--space-xxs);
+      min-height: 20%;
 
       a {
         font-weight: bold;
-        font-size: var(--font-size-m);
+        font-size: var(--font-size-s);
       }
 
       p {
@@ -48,19 +47,20 @@
       }
     }
 
-    &_content-body {
+    .content-body {
       border-top: var(--border-muted);
 
-      &-details {
+      .details {
         display: flex;
+        flex-shrink: 1;
         justify-content: space-between;
-        padding: var(--space-l) 0 var(--space-m);
+        padding: var(--space-xs) 0 var(--space-s);
         margin: 0;
         list-style: none;
 
 
         .item {
-          flex: 1;
+          flex: 1 1 auto;
 
 
           i {
@@ -84,6 +84,10 @@
   }
 
   &__footer {
-
+    flex-shrink: 1;
+    justify-content: center;
+    padding: var(--space-xs);
+    margin-right: auto;
+    margin-left: auto;
   }
 }

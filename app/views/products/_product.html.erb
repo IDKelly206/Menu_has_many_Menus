@@ -1,21 +1,14 @@
-<div>
-  <div class="recipe-card">
-    <div class="card-header">
-      <div class="text-center">
-        <%= image_tag product.kroger_img("front", "thumbnail") %>
+  <div class="card-product">
+    <div class="card-product__header">
+      <%= image_tag product.kroger_img("front", "medium") %>
+    </div>
+    <div class="card-product__body">
+      <div class="content-header">
+        <p><%= product.name %></p>
+      </div>
+      <div class="content-body">
+        <p>Serving size: <%= product.item_info.first["size"] %></p>
+        <%# Unit product.item_info.first["soldBy"] %>
       </div>
     </div>
-    <div class="card-body">
-      <ul><small>
-        <li>Name: <%= product.name %></li>
-        <li>Brand: <%= product.brand %></li>
-        <li>Aisle#: <%= product.aisle %></li>
-        <li>Servings: <%= product.item_info.first["size"] %></li>
-        <li>Unit: <%= product.item_info.first["soldBy"] %></li></small>
-      </ul>
-    </div>
-    <div class="card-footer">
-
-    </div>
   </div>
-</div>

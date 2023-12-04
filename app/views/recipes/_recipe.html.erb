@@ -1,15 +1,15 @@
 <div id="<%= dom_id recipe %>">
-  <div class="recipe-card">
-    <div class="recipe-card__header">
+  <div class="card-recipe">
+    <div class="card-recipe__header">
         <%= image_tag recipe.image %>
     </div>
-    <div class="recipe-card__body">
-      <div class="recipe-card__body_content-header">
+    <div class="card-recipe__body">
+      <div class="content-header">
       <%= link_to recipe.label, recipe_path(recipe.erecipe_id), class: "recipe-title" %>
       <p><%= recipe.source %></p>
       </div>
-      <div class="recipe-card__body_content-body">
-        <ul class="recipe-card__body_content-body-details">
+      <div class="content-body">
+        <ul class="details">
           <li class="item">
             <i class="fa-solid fa-user"></i>
             <span class="value"><%= recipe.yield %></span>
@@ -23,7 +23,7 @@
         </ul>
       </div>
     </div>
-    <div class="recipe-card__footer">
+    <div class="card-recipe__footer">
       <%= recipe_form(page_title = locals[:title], erecipe_id = recipe.erecipe_id) %>
     </div>
   </div>

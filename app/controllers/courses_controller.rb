@@ -67,8 +67,8 @@ class CoursesController < ApplicationController
   end
 
   def search_criteria
-    @meal_types = %w(Breakfast Lunch Dinner)
-    @dish_type = ["Main course", "Starter", "Desserts"]
+    @meal_types = Meal.meal_types
+    @dish_type = Course.course_types
     @health = ["vegan", "vegetarian", "paleo"]
   end
 end

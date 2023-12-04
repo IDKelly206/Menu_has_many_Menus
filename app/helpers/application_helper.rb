@@ -14,7 +14,8 @@ module ApplicationHelper
     elsif page_title == "Multi-Meal"
       render 'meals/form', erecipe_id: erecipe_id
     elsif page_title == "Recipe"
-      "Recipes footer"
+      render 'meals/link', erecipe_id: erecipe_id
+      # "More details"
     else
       "BLANK Footer Area"
     #  Insert ingredients here. Need to fix Recipe.new for Search function

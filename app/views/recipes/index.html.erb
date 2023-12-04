@@ -5,7 +5,7 @@
     <small><h4>Title page: <%= yield(:title) %></h4></small>
     <%= render 'search_bar' %>
   </div>
-  <div class="section-recipe">
+  <div class="section-cards">
     <%= render "recipes", recipes: @recipes, locals: { title: yield(:title) } %>
   </div>
 </div>

@@ -6,5 +6,8 @@ class Meal < ApplicationRecord
 
   validates :meal_type, presence: true
 
+  def self.meal_types
+    %w(Breakfast Lunch Dinner)
+  end
 
 end
