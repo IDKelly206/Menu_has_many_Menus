@@ -5,7 +5,6 @@ class CoursesController < ApplicationController
   before_action :set_course, only: [:edit, :update, :destroy]
 
   def new
-    search_criteria
     @recipes = Edamam::EdamamRecipe.search(params[:query], params[:filters])
     @course = @meal.courses.build
 
@@ -23,7 +22,6 @@ class CoursesController < ApplicationController
   end
 
   def edit
-    search_criteria
     @recipes = Edamam::Erecipe.search(params[:query], params[:filters])
 
     console
@@ -64,11 +62,5 @@ class CoursesController < ApplicationController
 
   def set_course
     @course = @meal.courses.find(params[:id])
-  end
-
-  def search_criteria
-    @meal_types = Meal.meal_types
-    @dish_type = Course.course_types
-    @health = ["vegan", "vegetarian", "paleo"]
   end
 end

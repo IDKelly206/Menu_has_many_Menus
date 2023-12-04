@@ -22,17 +22,4 @@ module ApplicationHelper
     end
   end
 
-  def meal_ids(menus, users, meal_type)
-    meals = []
-    menus.each do |menu|
-      users.each do |user|
-        meal = Meal.where('user_id = ?', user.id).where('menu_id = ?', menu.id).where('meal_type = ?', "#{meal_type}").ids
-        meals.push(meal)
-      end
-    end
-    meals.flatten
-  end
-
-
-
 end

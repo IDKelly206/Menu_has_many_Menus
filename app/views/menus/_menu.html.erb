@@ -4,7 +4,7 @@
         <h2><%= link_to menu.day_of_week, menu %></h2>
       </div>
       <div class="card-menu__body">
-        <% @meal_type.each do |meal_type| %>
+        <% @meal_types.each do |meal_type| %>
           <div class= "card-menu-meal">
             <div class="card-menu-meal__header">
               <%= meal_type %>
@@ -16,7 +16,7 @@
               <% @users.each do |user| %>
                 <div class= "card-menu-meal-user">
                   <div class="card-menu-meal-user__header">
-                    <%= link_to user.name_first, menu_meal_path(menu, Meal.find_by(user_id: user, menu_id: menu, meal_type: meal_type).id) %>
+                    <%= link_to user.name_first, menu_meal_path(menu, Meal.find_by(user_id: user, menu_id: menu, meal_type: meal_type)) %>
                   </div>
                   <div class="card-menu-meal-user__body">
                       <% @course_types.each do |course_type| %>

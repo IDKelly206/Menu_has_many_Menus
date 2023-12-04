@@ -2,8 +2,8 @@ class MealsController < ApplicationController
   before_action :set_household
   before_action :set_menu, only: [:index, :show]
   before_action :set_meal, only: [:index, :show]
-  before_action :set_meal_type, only: [:index, :show]
-  before_action :set_course_type, only: [:index, :show]
+  before_action :set_meal_types, only: [:index, :show, :meal_new, :new]
+  before_action :set_course_types, only: [:index, :show]
 
 
 
@@ -12,17 +12,12 @@ class MealsController < ApplicationController
     calendar = (Time.now.to_date...(Time.now.to_date+10))
     @menus = Menu.where('household_id = ?', @household).where('date IN (:cal)', { cal: calendar })
     @users = @household.users
-    @meal_types = Meal.meal_types
 
     @meal = Meal.new
     console
   end
 
   def new
-    # Search criteria
-    @meal_types = Meal.meal_types
-    @dish_type = ["Main course", "Starter", "Desserts"]
-    @health = ["vegan", "vegetarian", "paleo"]
     @recipes = Edamam::EdamamRecipe.search(params[:query], params[:filters])
 
     # Used to create multiple courses & provide erecipe_id for groceries
@@ -66,12 +61,12 @@ class MealsController < ApplicationController
     @meal = @menu.meals.find(params[:id])
   end
 
-  def set_meal_type
-    @meal_types = Meal.meal_types
+  def set_meal_types
+    @meal_types = Meal::MEAL_TYPES
   end
 
-  def set_course_type
-    @course_types = Course.course_types
+  def set_course_types
+    @course_types = Course::COURSE_TYPES
   end
 
   def course_params
@@ -82,7 +77,7 @@ class MealsController < ApplicationController
     meals = []
     menus.each do |menu|
       users.each do |user|
-        meal = Meal.where('user_id = ?', user.id).where('menu_id = ?', menu.id).where('meal_type = ?', "#{meal_type}").ids
+        meal = Meal.where('user_id = ?', user.id).where('menu_id = ?', menu.id).where('meal_type = ?', meal_type.capitalize).ids
         meals.push(meal)
       end
     end

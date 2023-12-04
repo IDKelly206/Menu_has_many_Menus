@@ -4,9 +4,9 @@
   <%= f.text_field :query, multiple: true %>
   <%= f.fields_for :filters do |ft| %>
     <%= ft.label "Filter by: " %>
-    <%= ft.select :mealType, @meal_types %>
-    <%= ft.select :dishType, @dish_type %>
-    <%= ft.select :health, @health %>
+    <%= ft.select :mealType, Recipe::SEARCH_CRITERIA[:MEAL_TYPES] %>
+    <%= ft.select :dishType, Recipe::SEARCH_CRITERIA[:COURSE_TYPES] %>
+    <%= ft.select :health, Recipe::SEARCH_CRITERIA[:DIETARY_FILTERS] %>
   <% end %>
   <%= hidden_field_tag :title, yield(:title) %>
   <% if @meals.present? %>

@@ -6,6 +6,12 @@ class Course < ApplicationRecord
   validates :course_type, presence: true
   validates :meal_id, presence: true
 
+  COURSE_TYPES = [
+    "main course",
+    "starter",
+    "dessert"
+  ]
+
   def self.course_types
     %w(Main course Starter Desserts)
   end

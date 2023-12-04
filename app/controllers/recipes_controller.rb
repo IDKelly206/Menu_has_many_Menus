@@ -2,9 +2,6 @@ class RecipesController < ApplicationController
   before_action :set_recipe, only: [:show]
 
   def index
-    # Recipe search criteria
-    search_criteria
-
     if params[:query].present?
       @recipes = Edamam::EdamamRecipe.search(params[:query], params[:filters])
     else
@@ -51,11 +48,5 @@ class RecipesController < ApplicationController
   private
   def set_recipe
     @recipe_id = params[:id]
-  end
-
-  def search_criteria
-    @meal_types = %w(Breakfast Lunch Dinner)
-    @dish_type = ["Main course", "Starter", "Desserts"]
-    @health = ["vegan", "vegetarian", "paleo"]
   end
 end
