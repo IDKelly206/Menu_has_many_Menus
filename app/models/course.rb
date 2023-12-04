@@ -11,8 +11,4 @@ class Course < ApplicationRecord
     "starter",
     "dessert"
   ]
-
-  def self.course_types
-    %w(Main course Starter Desserts)
-  end
 end

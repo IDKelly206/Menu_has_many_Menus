@@ -1,3 +1,8 @@
+
+.checkboxes {
+  display: inline-block;
+}
+
 .check_box {
   position: absolute;
   transform: scale(0);
@@ -6,6 +11,7 @@
 .check_box + label {
   cursor: pointer;
   display: inline-block;
+  margin-bottom: var(--space-m);
   padding: var(--space-xxs) var(--space-m);
   border-radius: var(--border-radius);
   background-origin: border-box; // Invisible borders with linear gradients

@@ -1,19 +1,28 @@
 <div >
   <%= form_with url: new_meal_path, method: 'get' do |f| %>
-    <div class="mb-3" >
+    <div class="radio-btns" >
       <% @meal_types.each do |meal_type| %>
-        <%= f.radio_button(:meal_type, meal_type) %>
-        <%= f.label(:meal_type, meal_type) %>
+      <div class="radio-item"></div>
+          <%= f.radio_button :meal_type, meal_type, class: "radio-btn" %>
+          <%= f.label "meal_type_#{meal_type.downcase}", meal_type %>
       <% end %>
     </div>
-    <div class="mb-3" >
-      <%= f.collection_check_boxes :user_ids, @users, :id, :name_first, include_hidden: false do |b| %>
+    <div class="mb-3 checkboxes">
+      <%= f.collection_check_boxes :user_ids,
+                                   @users,
+                                   :id,
+                                   :name_first,
+                                   include_hidden: false do |b| %>
         <%= b.check_box class: "check_box" %>
         <%= b.label  %>
       <% end %>
     </div>
-    <div class="mb-3" >
-      <%= f.collection_check_boxes :menu_ids, @menus, :id, :day_of_week, include_hidden: false do |b| %>
+    <div class="mb-3 checkboxes">
+      <%= f.collection_check_boxes :menu_ids,
+                                   @menus,
+                                   :id,
+                                   :day_of_week,
+                                   include_hidden: false do |b| %>
         <%= b.check_box class: "check_box" %>
         <%= b.label  %>
       <% end %>

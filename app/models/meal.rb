@@ -11,11 +11,4 @@ class Meal < ApplicationRecord
     "Lunch",
     "Dinner"
   ]
-
-  # def self.meal_types
-  #   %w(Breakfast Lunch Dinner)
-  # end
-
-  private
-
 end

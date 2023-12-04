@@ -50,6 +50,7 @@
  --color-background: hsl(30, 50%, 98%);
  --color-light:      hsl(0, 6%, 93%);
  --color-dark:       var(--color-text-header);
+ 
  --color-pearl:      hsl(45, 36%, 96%);   // Pearl Bright (background)
  --color-onyx:       hsl(195, 4%, 22%);    // Onyx
 
@@ -61,6 +62,7 @@
   --border-dark: solid 2px var(--color-dark);
   --border-light: solid 2px var(--color-light);
   --border-muted: solid 1px var(--color-text-muted);
+
   --border-navbar: solid 1px var(--color-pearl);
   --border-navbar-bottom: solid 0px var(--color-white);
 
