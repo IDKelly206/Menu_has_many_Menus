@@ -27,12 +27,13 @@
   }
 
   &__body {
-    flex: 1 1 auto;
+    display: flex;
+    flex: 1 0 auto;
     padding: 0 var(--space-l) var(--space-s);
+    flex-flow: column nowrap;
+    justify-content: space-between;
 
     .content-header {
-      display: inline-flex;
-      flex-flow: column nowrap;
       padding: var(--space-xs) 0 var(--space-xxs);
       min-height: 20%;
 
@@ -60,8 +61,9 @@
 
 
         .item {
+          // display: flex;
           flex: 1 1 auto;
-
+          text-align: center;
 
           i {
             font-size: var(--font-size-l)
