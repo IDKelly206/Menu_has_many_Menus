@@ -24,7 +24,7 @@ class Menu < ApplicationRecord
     menu = self
     household = Household.find(menu.household_id)
     users = household.users
-    meal_types = %w(Breakfast Lunch Dinner)
+    meal_types = Meal::MEAL_TYPES
     users.each do |user|
       meal_types.each do |meal_type|
         Meal.create!(menu_id: menu.id, user_id: user.id, meal_type: meal_type)

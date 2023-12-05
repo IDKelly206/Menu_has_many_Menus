@@ -1,0 +1,42 @@
+.radio-btns {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding-bottom: var(--space-m);
+}
+
+.radio-item {
+  flex: 0 0 30%;
+}
+.radio-btn {
+  position: absolute;
+  transform: scale(0);
+}
+
+.radio-btn + label {
+  cursor: pointer;
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  padding: var(--space-xxs) var(--space-m);
+  border: var(--border-transparent);
+  border-radius: var(--border-radius);
+  background-color: var(--color-light);
+  text-align: center;
+  color: var(--color-dark);
+  font-size: var--font-size-m;
+  font-weight: bold;
+
+  &:hover,
+  &:focus,
+  &:focus-within,
+  &:active {
+    color: var(--color-dark);
+    filter: brightness(92%);
+  }
+}
+
+.radio-btn:checked + label {
+  color: var(--color-dark);
+  filter: brightness(92%);
+}

@@ -13,10 +13,10 @@
   display: inline-block;
   margin-bottom: var(--space-m);
   padding: var(--space-xxs) var(--space-m);
+  border: var(--border-transparent);
   border-radius: var(--border-radius);
   background-origin: border-box; // Invisible borders with linear gradients
-  background-color: transparent;
-  border: solid 2px transparent;
+  // background-color: transparent;
   font-weight: bold;
   text-decoration: none;
   cursor: pointer;

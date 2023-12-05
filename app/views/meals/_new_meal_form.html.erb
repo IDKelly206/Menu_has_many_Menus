@@ -2,9 +2,10 @@
   <%= form_with url: new_meal_path, method: 'get' do |f| %>
     <div class="radio-btns" >
       <% @meal_types.each do |meal_type| %>
-      <div class="radio-item"></div>
+        <div class="radio-item">
           <%= f.radio_button :meal_type, meal_type, class: "radio-btn" %>
           <%= f.label "meal_type_#{meal_type.downcase}", meal_type %>
+        </div>
       <% end %>
     </div>
     <div class="mb-3 checkboxes">
