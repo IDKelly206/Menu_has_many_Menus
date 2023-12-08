@@ -8,7 +8,8 @@
   border: var(--border-muted);
   border-radius: var(--border-radius);
   box-shadow: var(--shadow-small);
-  height: 50px;
+  max-height: var(--space-xxxxl);
+  min-height: var(--space-xxxl);
   gap: var(--space-xs);
 
 
@@ -34,11 +35,12 @@
     }
   }
 
-  &__recipe {
+  &__details {
     display: inline-flex;
-    flex: 1 1 auto;
+    flex: 1 1 0;
     align-items: center;
     justify-content: start;
+    min-width: 144px;
     font-size: var(--font-size-m);
     padding-right: 0 var(--space-s);
 
@@ -53,7 +55,7 @@
   &__action {
     display: inline-flex;
     flex-flow: row nowrap;
-    flex: 0 1 auto;
+    flex: 0 1 0;
     align-items: center;
     gap: var(--space-xs);
     margin: 0 var(--space-xs);
@@ -69,7 +71,8 @@
 
 
     a, button {
-      font-size: var(--font-size-xxs);
+      font-size: var(--font-size-xl);
+      font-weight: bold;
     }
   }
 

@@ -3,7 +3,7 @@ class MealsController < ApplicationController
   before_action :set_menu, only: [:index, :show]
   before_action :set_meal, only: [:index, :show]
   before_action :set_meal_types, only: [:index, :show, :meal_new, :new]
-  before_action :set_course_types, only: [:index, :show]
+  before_action :set_course_types, only: [:index, :show, :new]
 
 
 
@@ -43,7 +43,7 @@ class MealsController < ApplicationController
 
   def show
     @courses = @meal.courses
-    # @recipe = Edamam::EdamamRecipe.find(@recipe_id)
+    @recipes = @courses.map { |course| Edamam::EdamamRecipe.find(course.erecipe_id) }
 
     console
   end

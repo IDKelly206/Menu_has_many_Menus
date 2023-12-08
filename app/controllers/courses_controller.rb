@@ -7,7 +7,8 @@ class CoursesController < ApplicationController
   def new
     @recipes = Edamam::EdamamRecipe.search(params[:query], params[:filters])
     @course = @meal.courses.build
-    @meal_type = params[:meal_type]
+    @meal_type = @meal.meal_type
+    @course_type = params[:course_type]
 
     console
   end

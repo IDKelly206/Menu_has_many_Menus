@@ -9,7 +9,12 @@
     <% else %>
       <%= ft.select :mealType, Recipe::SEARCH_CRITERIA[:MEAL_TYPES] %>
     <% end %>
-    <%= ft.select :dishType, Recipe::SEARCH_CRITERIA[:COURSE_TYPES] %>
+
+    <% if @course_type.present? %>
+      <%= ft.hidden_field :dishType, value: @course_type %>
+    <% else %>
+      <%= ft.select :dishType, Recipe::SEARCH_CRITERIA[:COURSE_TYPES] %>
+    <% end %>
     <%= ft.select :health, Recipe::SEARCH_CRITERIA[:DIETARY_FILTERS] %>
   <% end %>
   <%= hidden_field_tag :title, yield(:title) %>

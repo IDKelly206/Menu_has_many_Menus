@@ -3,9 +3,9 @@
     <h1>Menu show page of MealType for: <%= @meal_type %></h1>
   </div>
 
-<%# turbo_frame_tag "menu-body" %>
 
 <div class="card-menu__body">
+  <%# turbo_frame_tag "menu-body" %>
     <div class= "card-menu-meal">
       <div class="card-menu-meal__header">
         <%= @meal_type %>
@@ -18,16 +18,18 @@
             </div>
             <div class="card-menu-meal-user__body">
               <% @course_types.each do |course_type| %>
-                <% @meal = Meal.find(meal.id) %>
-                <% @courses = @meal.courses %>
                 <h6><%= course_type.capitalize %>: </h6>
 
                 <% unless @courses.find_by(course_type: course_type).nil? %>
-                  <%= render @courses.find_by(course_type: course_type), meal: @meal %>
+                  <%= render @courses.find_by(course_type: course_type),
+                                      meal: @meal %>
                 <% else %>
                   <div class="card-course">
                     <div class="card-course__action">
-                      <%= link_to new_menu_meal_course_path(@menu, @meal), class: "btn btn--light", target: :_top do %>
+                      <%= link_to new_menu_meal_course_path(@menu, @meal),
+                                  class: "btn btn--light"
+                                  # insert > recipe = @recipes.detect()
+                                   do %>
                         <i class="fa-solid fa-circle-plus"></i>
                       <% end %>
                     </div>
@@ -39,9 +41,9 @@
         <% end %>
       </div>
     </div>
+  <%# end - turbo_frame_tag "menu-body" %>
 </div>
 
-<%# end - turbo_frame_tag "menu-body" %>
 
 
 

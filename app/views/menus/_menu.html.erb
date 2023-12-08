@@ -1,4 +1,4 @@
-<%= turbo_frame_tag "menu" do %>
+<%# turbo_frame_tag "menu"  %>
     <div class="card-menu">
       <div class="card-menu__header">
         <h2><%= link_to menu.day_of_week, menu %></h2>
@@ -14,7 +14,7 @@
               <% @users.each do |user| %>
                 <div class= "card-menu-meal-user">
                   <div class="card-menu-meal-user__header">
-                    <h4><%= link_to user.name_first, menu_meals_path(menu, Meal.find_by(user_id: user, menu_id: menu, meal_type: meal_type)) %></h4>
+                    <h4><%= link_to user.name_first, menu_meal_path(menu, Meal.find_by(user_id: user, menu_id: menu, meal_type: meal_type)) %></h4>
                   </div>
                   <div class="card-menu-meal-user__body">
                       <% @course_types.each do |course_type| %>
@@ -38,4 +38,3 @@
         <% end %>
       </div>
     </div>
-<% end %>

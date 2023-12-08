@@ -15,7 +15,7 @@
 
   &__header {
     display: flex;
-    flex-direction: row;
+    flex-flow: row nowrap;
     flex: 0 1 auto;
     justify-content: space-around;
     align-items: center;

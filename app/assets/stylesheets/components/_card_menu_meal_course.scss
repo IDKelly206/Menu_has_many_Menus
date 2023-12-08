@@ -34,7 +34,18 @@
     min-width: 100px;
 
     .course-item {
-      display: block;
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: flex-start;
+      align-items: flex-end;
+      background-color: var(--color-white);
+      padding: var(--space-xxs);
+      min-height: var(--space-xxxl);
+      gap: var(--space-xs);
+
+      h5 {
+        text-decoration: underline;
+      }
     }
   }
 }
