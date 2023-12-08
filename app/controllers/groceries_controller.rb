@@ -78,7 +78,7 @@ class GroceriesController < ApplicationController
           meal_types << course.meal.meal_type
         end
 
-        redirect_to new_meal_path(user_ids: user_ids.uniq, menu_ids: menu_ids.uniq, meal_types: meal_types.uniq.first),
+        redirect_to new_meal_path(user_ids: user_ids.uniq, menu_ids: menu_ids.uniq, meal_type: meal_types.uniq.first),
                                   notice: "Grocery items successfully added to Grocery List."
       else
         @course = Course.find(@course_ids.first.to_i)

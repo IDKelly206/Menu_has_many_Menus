@@ -7,27 +7,25 @@
         <% @meal_types.each do |meal_type| %>
           <div class= "card-menu-meal">
             <div class="card-menu-meal__header">
-              <%= meal_type %>
+              <h3><%= link_to meal_type, show_meal_menu_path(menu, meal_type), target: :_top %></h3>
             </div>
-
-            <%= turbo_frame_tag "menu-meal-body" do %>
 
             <div class="card-menu-meal__body">
               <% @users.each do |user| %>
                 <div class= "card-menu-meal-user">
                   <div class="card-menu-meal-user__header">
-                    <%= link_to user.name_first, menu_meal_path(menu, Meal.find_by(user_id: user, menu_id: menu, meal_type: meal_type)) %>
+                    <h4><%= link_to user.name_first, menu_meals_path(menu, Meal.find_by(user_id: user, menu_id: menu, meal_type: meal_type)) %></h4>
                   </div>
                   <div class="card-menu-meal-user__body">
                       <% @course_types.each do |course_type| %>
                         <% meal_courses = Meal.find_by(user_id: user, menu_id: menu, meal_type: meal_type).courses.map { |course| course.course_type } %>
                         <% if meal_courses.include?(course_type) %>
                           <div class= "card-menu-meal-user-course">
-                            <i class="fa-solid fa-square-check"></i> <%= course_type %>
+                            <i class="fa-solid fa-square-check checked"></i> <%= course_type.capitalize %>
                           </div>
                         <% else %>
                           <div class= "card-menu-meal-user-course">
-                            <i class="fa-regular fa-square"></i> <%= course_type %>
+                            <i class="fa-regular fa-square"></i> <%= course_type.capitalize %>
                           </div>
                         <% end %>
                       <% end %>
@@ -35,8 +33,6 @@
                 </div>
               <% end %>
             </div>
-
-            <% end %>
 
           </div>
         <% end %>

@@ -10,6 +10,7 @@
   width: 100%;
   background-color: var(--color-onyx);
   padding: 0 var(--space-m);
+  z-index: 99;
 
   @include media(tabletAndUp) {
     padding-right: 0;

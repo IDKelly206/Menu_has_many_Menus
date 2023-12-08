@@ -1,15 +1,19 @@
 <div class="card-course">
+  <% recipe = Edamam::EdamamRecipe.find(course.erecipe_id) %>
+  <div class="card-course__img">
+    <%= image_tag recipe.image %>
+  </div>
   <div class="card-course__recipe">
-    <p><%= course.erecipe_id %></p>
+    <p><%= recipe.label %></p>
   </div>
   <div class="card-course__action">
-    <%= link_to "Edit",
+    <%= button_to "",
                 edit_menu_meal_course_path(@menu, @meal, course),
-               class: "btn btn--light",
-               target: :_top %>
-    <%= button_to "Delete",
+                class: "btn btn--light fa-solid fa-pen-to-square",
+                target: :_top %>
+    <%= button_to "",
                   [@menu, @meal, course],
                   method: :delete,
-                  class: "btn btn--dark" %>
+                  class: "btn btn--light fa-solid fa-circle-minus" %>
   </div>
 </div>

@@ -19,7 +19,7 @@ class Meal::Multicourse
     @courses = []
 
     @meal_ids.each do |meal_id|
-      @courses.push(Course.create!(course_type: @course_type, erecipe_id: @erecipe_id, meal_id: meal_id,))
+      @courses.push(Course.create!(course_type: @course_type, erecipe_id: @erecipe_id, meal_id: meal_id))
       @new_courses += 1
     end
     @courses

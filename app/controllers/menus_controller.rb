@@ -1,9 +1,9 @@
 class MenusController < ApplicationController
   before_action :set_household
   before_action :set_users
-  before_action :set_menu, only: [:show]
-  before_action :set_meal_types, only: [:index, :show]
-  before_action :set_course_types, only: [:index, :show]
+  before_action :set_menu, only: [:show, :show_meal]
+  before_action :set_meal_types, only: [:index, :show, :show_meal]
+  before_action :set_course_types, only: [:index, :show, :show_meal]
 
 
   def index
@@ -24,6 +24,16 @@ class MenusController < ApplicationController
   end
 
   def show
+  end
+
+  def show_meal
+    @meal_type = params[:meal_type].capitalize
+    if Meal::MEAL_TYPES.include?(@meal_type)
+      @meals = @menu.meals.where('meal_type = ?', @meal_type)
+    else
+      error
+    end
+    console
   end
 
   def new

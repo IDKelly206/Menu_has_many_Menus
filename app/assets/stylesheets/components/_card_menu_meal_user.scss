@@ -1,7 +1,8 @@
 .card-menu-meal-user {
   display: flex;
-  flex-direction: column;
+  flex-flow: column nowrap;
   justify-content: start;
+  position: relative;
 
   padding: var(--space-xs);
   background-color: var(--color-white);
@@ -16,6 +17,23 @@
     justify-content: center;
     align-items: center;
     font-size: var(--font-size-s);
+
+    a {
+      color: var(--color-text-body);
+      text-align: left;
+      display: block;
+      z-index: 1;
+    }
+
+    a::after {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      content: ' ';
+    }
+
 }
   &__body {
     flex-direction: column;
@@ -24,6 +42,7 @@
     font-size: var(--font-size-xs);
 
     p {
+      color: var(--color-text-muted);
       margin-top: var(--space-xs);
       margin-bottom: 0;
       text-decoration: underline;
@@ -31,4 +50,16 @@
       font-size: var(--font-size-xs);
     }
   }
+
+
+  &:hover,
+  &:focus,
+  &:focus-within,
+  &:active {
+    color: var(--color-dark);
+    filter: brightness(92%);
+    opacity: 1;
+    box-shadow: var(--shadow-small);
+  }
+
 }

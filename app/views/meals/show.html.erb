@@ -11,31 +11,39 @@
   <div>
   </div>
 
-  <%= turbo_frame_tag "menu-meal-body" do %>
+
+  <%# turbo_frame_tag "menu-meal-body"  %>
     <div class="card-menu-meal__body">
       <div class= "card-menu-meal-course">
         <div class="card-menu-meal-course__header">
-          <p>Courses for: <%= User.find(@meal.user_id).name_first %></p>
-          <%= link_to "X", menus_path, class: "btn" %>
+          <h4><%= User.find(@meal.user_id).name_first %></h4>
+          <%= link_to menus_path do %>
+            <i class="fa-regular fa-circle-xmark"></i>
+          <% end %>
         </div>
         <div class="card-menu-meal-course__body">
         <%# Go through each course (@courses) and match course_type & render card %>
           <% @course_types.each do |course_type| %>
-            <h6><%= course_type%>: </h6>
-            <% unless @courses.find_by(course_type: course_type).nil? %>
-              <%= render @courses.find_by(course_type: course_type), meal: @meal %>
-            <% else %>
-              <div class="card-course">
-                <div class="card-course__action">
-                  <%= link_to "Add Course", new_menu_meal_course_path(@menu, @meal), class: "btn btn--light", target: :_top %>
+            <div class="course-item">
+              <% unless @courses.find_by(course_type: course_type).nil? %>
+                <%= render @courses.find_by(course_type: course_type), meal: @meal %>
+              <% else %>
+                <div class="card-course">
+                  <div class="card-course__recipe">
+                    <p><%= course_type.capitalize %>: </p>
+                  </div>
+                  <div class="card-course__action">
+                    <%= button_to  new_menu_meal_course_path(@menu, @meal), class: "btn btn--light", target: :_top do %>
+                      <i class="fa-solid fa-circle-plus"></i>
+                    <% end %>
+                  </div>
                 </div>
-              </div>
-            <% end %>
+              <% end %>
+            </div>
           <% end %>
-
         </div>
       </div>
     </div>
-  <% end %>
+<%# Turbo frame end %>
 
 </div>

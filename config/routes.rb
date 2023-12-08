@@ -14,6 +14,14 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :menus, only: [:show] do
+    member do
+      get '/:meal_type', to: 'menus#show_meal', as: 'show_meal'
+    end
+  end
+
+
+
   #  To be removed - used as testing for modal and multi-obj creation
   resources :meals, only: [:new, :create] do
     collection do

@@ -1,6 +1,12 @@
 .card-menu-meal-user-course {
+  color: var(--color-text-body);
   font-size: var(--font-size-xs);
   display: inline-block;
   width: 100px;
-  padding: var(--space-xs) 0;
+  padding: var(--space-xxxs) 0;
+
+  .checked {
+    color: var(--color-secondary);
+    font-weight: bold;
+  }
 }

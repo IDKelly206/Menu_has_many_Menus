@@ -23,7 +23,7 @@ class MealsController < ApplicationController
     # Used to create multiple courses & provide erecipe_id for groceries
     @menus = params[:menu_ids].map { |menu_id| Menu.find(menu_id.to_i) }
     @users = params[:user_ids].map { |user_id| User.find(user_id.to_i) }
-    @meal_type = params[:meal_type]
+    @meal_type = params[:meal_type].capitalize
     @meals = meal_ids(@menus, @users, @meal_type)
 
     console
@@ -43,6 +43,7 @@ class MealsController < ApplicationController
 
   def show
     @courses = @meal.courses
+    # @recipe = Edamam::EdamamRecipe.find(@recipe_id)
 
     console
   end
@@ -77,7 +78,7 @@ class MealsController < ApplicationController
     meals = []
     menus.each do |menu|
       users.each do |user|
-        meal = Meal.where('user_id = ?', user.id).where('menu_id = ?', menu.id).where('meal_type = ?', meal_type.capitalize).ids
+        meal = Meal.where('user_id = ?', user.id).where('menu_id = ?', menu.id).where('meal_type = ?', meal_type).ids
         meals.push(meal)
       end
     end

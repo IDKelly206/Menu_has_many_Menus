@@ -1,14 +1,14 @@
 
 .card-menu{
   display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
   height: 96%;
   float: none;
-  background-color: var(--color-white);
   border: var(--border-muted);
   border-radius: var(--border-radius);
   margin: var(--space-s) var(--space-s)var(--space-l)var(--space-s);
+  background-color: var(--color-onyx);
   box-shadow: var(--shadow-small);
 
 
@@ -16,21 +16,22 @@
   &__header {
     display: flex;
     flex-direction: row;
+    flex: 0 1 auto;
     justify-content: space-around;
     align-items: center;
     padding-top: var(--space-s);
-    height: 10%;
     font-weight: bold;
     font-size: var(--font-size-m);
+    a {
+      color: var(--color-pearl);
+      }
   }
 
   // Contains Meal cards
   &__body {
     display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    height: 100%;
-    justify-content: space-between;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
     gap: var(--space-l);
     padding: var(--space-m);
   }

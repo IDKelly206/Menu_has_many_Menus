@@ -13,7 +13,8 @@
   &__header {
     display: inline-flex;
     justify-content: space-between;
-    padding-left: var(--space-s);
+    // padding-left: var(--space-s);
+    border-bottom: var(--border-muted);
     font-size: var(--font-size-m);
 
     p {
@@ -24,11 +25,16 @@
     }
 }
   &__body {
+    display: inline-flex;
     flex-direction: column;
     justify-content: space-between;
     padding: 0;
     font-size: var(--font-size-xs);
     width: 100%;
     min-width: 100px;
+
+    .course-item {
+      display: block;
+    }
   }
 }

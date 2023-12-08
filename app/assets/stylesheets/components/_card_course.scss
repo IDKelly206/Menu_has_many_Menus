@@ -1,26 +1,63 @@
 .card-course {
   display: flex;
   flex-flow: row nowrap;
-  justify-content: space-between;
-  margin: var(--space-s);
-  padding: var(--space-xs);
+  justify-content: space-around;
+  margin: var(--space-xxs);
+  // padding: var(--space-xs);
   background-color: var(--color-white);
   border: var(--border-muted);
   border-radius: var(--border-radius);
   box-shadow: var(--shadow-small);
+  height: 50px;
+  gap: var(--space-xs);
+
+
+      // h6 {
+      //   margin-top: 0;
+      //   margin-bottom: 0;
+      //   text-align: left;
+      //   font-size: var(--font-size-s);
+      // }
+
+  &__img {
+    display: inline-flex;
+    flex: 0 0 auto;
+    img {
+      border: var(--border-muted);
+      border-radius: var(--border-radius);
+      max-width: 100%;
+      min-height: 100%;
+      width: auto;
+      height: auto;
+      object-fit: scale-down;
+      object-position: 50% 50%;
+    }
+  }
 
   &__recipe {
     display: inline-flex;
+    flex: 1 1 auto;
     align-items: center;
+    justify-content: start;
     font-size: var(--font-size-m);
-    padding-right: var(--space-s);
+    padding-right: 0 var(--space-s);
 
-    h6 {
-      margin-top: 0;
-      margin-bottom: 0;
+    p {
+      margin: 0 0 0 var(--space-xxs);
+      text-decoration: none;
       text-align: left;
-      font-size: var(--font-size-s);
+      font-size: var(--font-size-xs);
     }
+  }
+
+  &__action {
+    display: inline-flex;
+    flex-flow: row nowrap;
+    flex: 0 1 auto;
+    align-items: center;
+    gap: var(--space-xs);
+    margin: 0 var(--space-xs);
+    font-size: var(--font-size-xs);
 
     p {
       margin-top: 0;
@@ -30,18 +67,11 @@
       font-size: var(--font-size-xs);
     }
 
-}
-  &__action {
-    display: flex;
-    flex-flow: row nowrap;
-    flex: 0 0 auto;
-    align-items: center;
-    // justify-content: flex-end;
-    gap: var(--space-xs);
-    font-size: var(--font-size-xs);
 
     a, button {
       font-size: var(--font-size-xxs);
     }
   }
+
+
 }

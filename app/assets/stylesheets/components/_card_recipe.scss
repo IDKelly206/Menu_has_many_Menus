@@ -10,6 +10,7 @@
   display: flex;
   flex-flow: column nowrap;
   border: var(--border-muted);
+  border-radius: (--border-radius);
   box-shadow: var(--shadow-small);
   width: 256px;
   height: 100%;

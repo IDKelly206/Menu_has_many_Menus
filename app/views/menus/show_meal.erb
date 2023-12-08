@@ -1,38 +1,26 @@
 <div class="container">
   <div class="header">
-    <h1>Menu Show page</h1>
+    <h1>Menu show page of MealType for: <%= @meal_type %></h1>
   </div>
-
-  <div class="section-menu">
-  <%= turbo_frame_tag "menu" do %>
-
-    <div class="card-menu">
-      <div class="card-menu__header">
-        <h2><%= link_to @menu.day_of_week, menus_path %></h2>
-        <%= link_to menus_path do %>
-          <i class="fa-regular fa-circle-xmark"></i>
-        <% end %>      </div>
 
 <%# turbo_frame_tag "menu-body" %>
 
 <div class="card-menu__body">
-  <% @meal_types.each do |meal_type| %>
     <div class= "card-menu-meal">
       <div class="card-menu-meal__header">
-        <%= meal_type %>
+        <%= @meal_type %>
       </div>
-
       <div class="card-menu-meal__body">
-        <% @users.each do |user| %>
+        <% @meals.each do |meal| %>
           <div class= "card-menu-meal-user">
             <div class="card-menu-meal-user__header">
-              <%= user.name_first %>
+              <%= User.find(meal.user_id).name_first %>
             </div>
             <div class="card-menu-meal-user__body">
               <% @course_types.each do |course_type| %>
-                <% @meal = Meal.find_by(user_id: user, menu_id: @menu, meal_type: meal_type) %>
+                <% @meal = Meal.find(meal.id) %>
                 <% @courses = @meal.courses %>
-                <h6><%= course_type%>: </h6>
+                <h6><%= course_type.capitalize %>: </h6>
 
                 <% unless @courses.find_by(course_type: course_type).nil? %>
                   <%= render @courses.find_by(course_type: course_type), meal: @meal %>
@@ -51,11 +39,10 @@
         <% end %>
       </div>
     </div>
-  <% end %>
 </div>
 
 <%# end - turbo_frame_tag "menu-body" %>
 
-  <% end %>
-  </div>
+
+
 </div>
