@@ -40,17 +40,32 @@
   }
 
   &__item {
+    display: inline-flex;
     flex-grow: 1;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+
+    a {
+      z-index: 1;
+      display: block;
+      padding: 0 0;
+      text-align: center;
+      font-weight: bold;
+      color: var(--color-pearl);
+      font-size: var(--font-size-xl);
+    }
+
+    a::after {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      content: ' ';
+    }
   }
 
-  &__link {
-    display: block;
-    padding: var(--space-m) var(--space-xxl) ;
-    color: var(--color-pearl);
-    text-align: center;
-    font-weight: bold;
-    font-size: var(--font-size-xl);
-  }
 
   &__dropdown {
     display: flex;

@@ -1,9 +1,8 @@
 <%- title "Multi-Meal" %>
 <div class="container">
-  <h1>Multi-Course creation on Meal#New page</h1>
-  <small><h4>Title page: <%= yield(:title) %></h4></small>
-
-  <div>
+  <div class="header">
+  <h5>Multi-Course creation on Meal#New page</h5>
+  <p>Title page: <%= yield(:title) %></p>
   <!-- Section of currently selction meal options-->
     <ul>
       <% @menus.each do |menu| %>
@@ -21,20 +20,19 @@
     <ul>
       <li>Courses: based on course_type </li>
     </ul>
-  </div>
-  <div>
+
   <%# Below is an issue. Not all meals have same course(s). Overwriting logic necessary %>
   <%# This would be the Meal partial for Course %>
-    <ul>
-      <%# <% @meals.each do |meal| %> %>
-        <%# <li><b> <%= Meal.find(meal).id %> </b> %>
-          <%# <% Meal.find(meal).courses.each do |course| %> %>
-          <%# <li><%= course.course_type %></li> %>
-          <%# <li><%= Course.find(course.id).erecipe_id %></li> %>
-          <%# <% end %> %>
-        <%# </li> %>
-      <%# <% end %> %>
-    </ul>
+
+     <%# @meals.each do |meal|
+        <li>Meal.find(meal).id
+          Meal.find(meal).courses.each do |course|
+          <li>course.course_type</li>
+          <li>Course.find(course.id).erecipe_id</li>
+          end
+        </li>
+      end %>
+
   </div>
 <!-- Recipce search -->
 

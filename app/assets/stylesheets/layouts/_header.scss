@@ -1,6 +1,6 @@
 .header {
   display: flex;
-  flex-wrap: nowrap;
+  flex-flow: row nowrap;
   gap: var(--space-s);
   justify-content: space-between;
   padding-top: var(--space-xxs);

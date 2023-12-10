@@ -1,20 +1,39 @@
-<head><meta name="turbo-visit-control" content="reload"></head>
-
+<%# <head><meta name="turbo-visit-control" content="reload"></head> %>
 <%- title "Course" %>
-<div class="container">
-  <div class="header">
-    <h4>Add Course for:</h4>
-    <ul class= "">
-      <li><%= @menu.day_of_week %></li>
-      <li><%= @meal_type %></li>
-      <li><%= @course_type %></li>
-      <li><%= @meal.user.name_first %></li>
-    </ul>
-    <h4>Title page: <%= yield(:title) %></h4>
+
+<div class="section-menu">
+  <%# TurboFrameTag %>
+  <div class="container">
+
+    <div class="header">
+      <div class="search-section">
+        <div class="search-section__filters">
+          <ul class= "details">
+            <li class="item item--user"><%= @meal.user.name_first %></li>
+            <li class="item item--type"><%= @meal_type %></li>
+            <li class="item item--type"><%= @course_type.capitalize %></li>
+            <li class="item item--date"><%= @menu.day_of_week %></li>
+          </ul>
+        </div>
+        <div class="search-section__body">
+          <div class="header">
+            <h4>Title page: <%= yield(:title) %></h4>
+            <h6>Add Course for:</h4>
+          </div>
+          <div class="search-bar">
+            <%= render 'recipes/search_bar' %>
+          </div>
+        </div>
+        <%# <div class="search-section__filters">
+
+        </div> %>
+      </div>
+    </div>
+
+
+    <div>
+      <%= render "recipes/recipes", recipes: @recipes, locals: { title: yield(:title) } %>
+    </div>
   </div>
-  <%= render 'recipes/search_bar' %>
-  <hr>
-  <div>
-    <%= render "recipes/recipes", recipes: @recipes, locals: { title: yield(:title) } %>
-  </div>
+  <%# TurboFrameTag %>
 </div>

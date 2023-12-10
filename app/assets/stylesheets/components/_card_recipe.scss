@@ -12,7 +12,7 @@
   border: var(--border-muted);
   border-radius: (--border-radius);
   box-shadow: var(--shadow-small);
-  width: 256px;
+  width: 192px;
   height: 100%;
 
 
@@ -30,7 +30,7 @@
   &__body {
     display: flex;
     flex: 1 0 auto;
-    padding: 0 var(--space-l) var(--space-s);
+    padding: 0 var(--space-m) var(--space-xs);
     flex-flow: column nowrap;
     justify-content: space-between;
 
@@ -65,17 +65,19 @@
           // display: flex;
           flex: 1 1 auto;
           text-align: center;
+          gap: var(--space-xxs);
 
           i {
             font-size: var(--font-size-l)
           }
 
           .value {
-            font-size: var(--font-size-l);
+            font-size: var(--font-size-s);
           }
 
           .title {
             display: block;
+            // font-size: var(--font-size-xxxs);
           }
         }
 

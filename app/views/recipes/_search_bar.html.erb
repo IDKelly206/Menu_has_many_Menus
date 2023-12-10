@@ -1,4 +1,4 @@
-<div class="container">
+
 <%= form_with(url: recipe_search_recipes_path, method: "GET", data: {turbo_frame: "recipes" }) do |f| %>
   <%= f.label :query, "Search for:" %>
   <%= f.text_field :query, multiple: true %>
@@ -26,4 +26,4 @@
   <% end %>
   <%= f.submit "Search", name: nil %>
 <% end %>
-</div>
+
