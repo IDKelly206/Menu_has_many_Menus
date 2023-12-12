@@ -1,0 +1,35 @@
+
+<%= form_with(url: recipe_search_recipes_path, method: "GET", data: {turbo_frame: "recipes" }) do |f| %>
+  <%= f.fields_for :filters do |ft| %>
+    <%= ft.label "Filter by: " %>
+    <% if @meal_type.present? %>
+      <%= ft.hidden_field :mealType, value: @meal_type %>
+    <% else %>
+      <%= ft.select :mealType, Recipe::SEARCH_CRITERIA[:MEAL_TYPES] %>
+    <% end %>
+
+    <% if @course_type.present? %>
+      <%= ft.hidden_field :dishType, value: @course_type %>
+    <% else %>
+      <div class="radio-btns">
+        <% Recipe::SEARCH_CRITERIA[:COURSE_TYPES].each do |course_type| %>
+          <div class="radio-item">
+            <%= ft.radio_button :dishType, course_type, class: "radio-btn" %>
+            <%= ft.label "dishType_#{course_type.split(" ").join("_")}", course_type %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+    <%= ft.select :health, Recipe::SEARCH_CRITERIA[:DIETARY_FILTERS] %>
+  <% end %>
+  <%= hidden_field_tag :title, yield(:title) %>
+  <% if @meals.present? %>
+    <%= hidden_field_tag 'meals',  @meals %>
+  <% elsif @meal.present? %>
+    <%= hidden_field_tag 'meal', @meal.id %>
+    <%= hidden_field_tag 'menu', @menu.id %>
+  <% end %>
+  <%= f.label :query, "Search for:" %>
+  <%= f.text_field :query, multiple: true %>
+  <%= f.submit "Search", name: nil %>
+<% end %>
