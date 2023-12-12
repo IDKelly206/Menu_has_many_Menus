@@ -1,4 +1,4 @@
-<div class="card-course">
+<div class="card-course card-course--course-new">
     <% recipe = recipes.select { |recipe| recipe.erecipe_id == course.erecipe_id }.first %>
   <div class="card-course__img">
     <%= image_tag recipe.image %>

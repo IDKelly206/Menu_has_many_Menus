@@ -8,25 +8,33 @@
     <div class="header">
       <div class="search-section">
         <div class="search-section__filters">
-          <ul class= "details">
-            <li class="item item--user"><%= @meal.user.name_first %></li>
-            <li class="item item--type"><%= @meal_type %></li>
-            <li class="item item--type"><%= @course_type.capitalize %></li>
-            <li class="item item--date"><%= @menu.day_of_week %></li>
-          </ul>
+          <h4>Title page: <%= yield(:title) %></h4>
+          <p>Filters:</p>
         </div>
         <div class="search-section__body">
           <div class="header">
-            <h4>Title page: <%= yield(:title) %></h4>
-            <h6>Add Course for:</h4>
           </div>
           <div class="search-bar">
-            <%= render 'recipes/search_bar' %>
+            <%= render 'recipes/search_form' %>
           </div>
         </div>
-        <%# <div class="search-section__filters">
 
-        </div> %>
+
+        <div class="search-section__filters">
+          <h6>Add Course for:</h4>
+          <ul class="details">
+            <li class="item item--user"><%= @meal.user.name_first %></li>
+          </ul>
+          <ul class="details">
+            <li class="item item--type"><%= @meal_type %></li>
+            <li class="item item--type"><%= @course_type.capitalize %></li>
+          </ul>
+          <ul class="details">
+            <li class="item item--date"><%= @menu.day_of_week %></li>
+          </ul>
+        </div>
+
+
       </div>
     </div>
 

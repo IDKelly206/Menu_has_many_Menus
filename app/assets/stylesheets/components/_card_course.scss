@@ -3,22 +3,18 @@
   flex-flow: row nowrap;
   justify-content: space-around;
   margin: var(--space-xxs);
-  // padding: var(--space-xs);
   background-color: var(--color-white);
   border: var(--border-muted);
   border-radius: var(--border-radius);
   box-shadow: var(--shadow-small);
-  max-height: var(--space-xxxxl);
-  min-height: var(--space-xxxl);
   gap: var(--space-xs);
 
+  &--course-new {
+  max-height: var(--space-xxxxl);
+  min-height: var(--space-xxxl);
+  width: 24rem
+  }
 
-      // h6 {
-      //   margin-top: 0;
-      //   margin-bottom: 0;
-      //   text-align: left;
-      //   font-size: var(--font-size-s);
-      // }
 
   &__img {
     display: inline-flex;
@@ -39,8 +35,8 @@
     display: inline-flex;
     flex: 1 1 0;
     align-items: center;
-    justify-content: start;
-    min-width: 144px;
+    justify-content: flex-start;
+    min-width: 9rem;
     font-size: var(--font-size-m);
     padding-right: 0 var(--space-s);
 

@@ -3,7 +3,7 @@
     <div class="radio-btns" >
       <% @meal_types.each do |meal_type| %>
         <div class="radio-item">
-          <%= f.radio_button :meal_type, meal_type, class: "radio-btn" %>
+          <%= f.radio_button :meal_type, meal_type, class: "radio-btn btn--pill btn--pill--meal" %>
           <%= f.label "meal_type_#{meal_type.downcase}", meal_type %>
         </div>
       <% end %>
@@ -14,7 +14,7 @@
                                    :id,
                                    :name_first,
                                    include_hidden: false do |b| %>
-        <%= b.check_box class: "check_box" %>
+        <%= b.check_box class: "check_box btn--pill btn--pill--user" %>
         <%= b.label  %>
       <% end %>
     </div>
@@ -24,7 +24,7 @@
                                    :id,
                                    :day_of_week,
                                    include_hidden: false do |b| %>
-        <%= b.check_box class: "check_box" %>
+        <%= b.check_box class: "check_box btn--pill btn--pill--date" %>
         <%= b.label  %>
       <% end %>
     </div>

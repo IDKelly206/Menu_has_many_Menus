@@ -9,6 +9,9 @@ class CoursesController < ApplicationController
     @course = @meal.courses.build
     @meal_type = @meal.meal_type
     @course_type = params[:course_type]
+    @courses = @meal.courses.reject { |course| course if course.id.nil? }
+    @course_types = @courses.map { |course| course.course_type }.uniq
+    @meal_recipes = @courses.map { |course| Edamam::EdamamRecipe.find(course.erecipe_id) }
 
     console
   end

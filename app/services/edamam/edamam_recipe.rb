@@ -16,7 +16,7 @@ module Edamam
                 image:     r[:recipe][:image],
                 ingredients: r[:recipe][:ingredients],
                 erecipe_id: id
-                )
+              )
     end
 
 

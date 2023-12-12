@@ -11,20 +11,18 @@
 .check_box + label {
   cursor: pointer;
   display: inline-block;
-  margin-bottom: var(--space-m);
-  padding: var(--space-xxs) var(--space-m);
-  border: var(--border-transparent);
-  border-radius: var(--border-radius);
+  // margin-bottom: var(--space-m);
+  // padding: var(--space-xxs) var(--space-m);
+  // border: var(--border-transparent);
+  // border-radius: var(--border-radius);
   background-origin: border-box; // Invisible borders with linear gradients
-  background-color: transparent;
-  font-weight: bold;
+  // background-color: transparent;
+  // color: var(--color-dark);
+  // font-weight: bold;
   text-decoration: none;
-  cursor: pointer;
+
   outline: none;
   transition: filter 400ms, color 200ms;
-
-  color: var(--color-dark);
-  background-color: var(--color-light);
 
   &:hover,
   &:focus,
