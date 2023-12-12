@@ -36,39 +36,48 @@
     cursor: none;
     // transition: none;
 
-    // &:hover,
-    // &:focus,
-    // &:focus-within,
-    // &:active {
-    //   transition: none;
-    //   background-color: var(--color-onxy);
-    //   color: var(--color-pearl);
-    //   // filter: saturate(1.4) brightness(115%);
-    //   }
-
     &--course,
-    &--course + label {
-      background-color: var(--color-pearl);
-      color: var(--color-text-body);
+    &--course:checked + label {
+      background-color: var(--color-secondary);
+      color: var(--color-light);
+
+      &:hover + label {
+        background-color: var(--color-secondary);
+        color: var(--color-light);
+        }
     }
 
     &--date,
-    &--date + label {
+    &--date:checked + label {
       background-color: var(--color-tertiary);
       color: var(--color-text-body);
-      // font-weight: bold;
+
+      &:hover + label {
+        background-color: var(--color-tertiary);
+        color: var(--color-text-body);
+      }
     }
 
     &--meal,
-    &--meal + label {
+    &--meal:checked + label {
       background-color: var(--color-secondary);
       color: var(--color-light);
+
+      &:hover + label {
+        background-color: var(--color-secondary);
+        color: var(--color-light);
+        }
     }
 
     &--user,
-    &--user + label {
+    &--user:checked + label {
       background-color: var(--color-primary);
       color: var(--color-text-body);
+
+      &:hover + label {
+        background-color: var(--color-primary);
+        color: var(--color-text-body);
+      }
     }
   }
 

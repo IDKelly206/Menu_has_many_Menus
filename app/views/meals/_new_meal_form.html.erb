@@ -1,4 +1,4 @@
-<div >
+<div>
   <%= form_with url: new_meal_path, method: 'get' do |f| %>
     <div class="radio-btns" >
       <% @meal_types.each do |meal_type| %>
@@ -8,7 +8,7 @@
         </div>
       <% end %>
     </div>
-    <div class="mb-3 checkboxes">
+    <div class="checkboxes">
       <%= f.collection_check_boxes :user_ids,
                                    @users,
                                    :id,
@@ -18,7 +18,7 @@
         <%= b.label  %>
       <% end %>
     </div>
-    <div class="mb-3 checkboxes">
+    <div class="checkboxes">
       <%= f.collection_check_boxes :menu_ids,
                                    @menus,
                                    :id,

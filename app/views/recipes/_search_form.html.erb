@@ -14,7 +14,7 @@
       <div class="radio-btns">
         <% Recipe::SEARCH_CRITERIA[:COURSE_TYPES].each do |course_type| %>
           <div class="radio-item">
-            <%= ft.radio_button :dishType, course_type, class: "radio-btn" %>
+            <%= ft.radio_button :dishType, course_type, class: "radio-btn btn--pill btn--pill--course" %>
             <%= ft.label "dishType_#{course_type.split(" ").join("_")}", course_type %>
           </div>
         <% end %>

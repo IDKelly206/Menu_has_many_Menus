@@ -1,12 +1,14 @@
 .radio-btns {
   display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
+  justify-content: flex-start;
+  flex-flow: row wrap;
+  gap: var(--space-m);
   padding-bottom: var(--space-m);
+
 }
 
 .radio-item {
-  flex: 0 0 30%;
+  flex: 0 1 auto;
 }
 .radio-btn {
   position: absolute;
@@ -27,16 +29,16 @@
   // font-size: var--font-size-m;
   // font-weight: bold;
 
-  &:hover,
-  &:focus,
-  &:focus-within,
-  &:active {
-    color: var(--color-dark);
-    filter: brightness(92%);
-  }
+  // &:hover,
+  // &:focus,
+  // &:focus-within,
+  // &:active {
+  //   color: var(--color-dark);
+  //   filter: brightness(92%);
+  // }
 }
 
-.radio-btn:checked + label {
-  color: var(--color-dark);
-  filter: brightness(92%);
-}
+// .radio-btn:checked + label {
+//   color: var(--color-dark);
+//   filter: brightness(92%);
+// }
