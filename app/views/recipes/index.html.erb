@@ -1,9 +1,7 @@
 <%- title "Recipe" %>
 <div class="container">
   <div class="header">
-    <h1>Recipe Index page</h1>
-    <small><h4>Title page: <%= yield(:title) %></h4></small>
-    <%= render 'search_form' %>
+    <%= render 'shared/searchbar' %>
   </div>
   <div class="section-cards">
     <%= render "recipes", recipes: @recipes, locals: { title: yield(:title) } %>

@@ -2,27 +2,30 @@
 <%= form_with(url: recipe_search_recipes_path, method: "GET", data: {turbo_frame: "recipes" }) do |f| %>
   <%= f.fields_for :filters do |ft| %>
     <div class="filters">
-      <div class="type">
+
         <% if @meal_type.present? %>
-          <%= ft.hidden_field :mealType, value: @meal_type %>
+          <div class="type">
+            <%= ft.hidden_field :mealType, value: @meal_type %>
+          </div>
         <% else %>
-          <h6>Add filter for:</h6>
-          <div class="radio-btns">
-            <% Recipe::SEARCH_CRITERIA[:MEAL_TYPES].each do |meal_type| %>
-              <div class="radio-item">
-                <%= ft.radio_button :mealType, meal_type, class: "radio-btn btn--pill btn--pill--meal" %>
-                <%= ft.label meal_type, meal_type %>
-              </div>
-            <% end %>
+          <div class="type">
+            <h6>Select Meal type:</h6>
+            <div class="radio-btns">
+              <% Recipe::SEARCH_CRITERIA[:MEAL_TYPES].each do |meal_type| %>
+                <div class="radio-item">
+                  <%= ft.radio_button :mealType, meal_type, class: "radio-btn btn--pill btn--pill--meal" %>
+                  <%= ft.label meal_type, meal_type %>
+                </div>
+              <% end %>
+            </div>
           </div>
         <% end %>
-      </div>
 
       <div class="type">
         <% if @course_type.present? %>
           <%= ft.hidden_field :dishType, value: @course_type %>
         <% else %>
-          <h6>Add Filter:</h6>
+          <h6>Select Course type:</h6>
           <div class="radio-btns">
             <% Recipe::SEARCH_CRITERIA[:COURSE_TYPES].each do |course_type| %>
               <div class="radio-item">
