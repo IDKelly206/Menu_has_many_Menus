@@ -14,7 +14,7 @@
               <% Recipe::SEARCH_CRITERIA[:MEAL_TYPES].each do |meal_type| %>
                 <div class="radio-item">
                   <%= ft.radio_button :mealType, meal_type, class: "radio-btn btn--pill btn--pill--meal" %>
-                  <%= ft.label meal_type, meal_type %>
+                  <%= ft.label "mealType_#{meal_type.downcase}", meal_type %>
                 </div>
               <% end %>
             </div>
@@ -30,7 +30,7 @@
             <% Recipe::SEARCH_CRITERIA[:COURSE_TYPES].each do |course_type| %>
               <div class="radio-item">
                 <%= ft.radio_button :dishType, course_type, class: "radio-btn btn--pill btn--pill--course" %>
-                <%= ft.label "dishType_#{course_type.split(" ").join("_")}", course_type %>
+                <%= ft.label "dishType_#{course_type.split(" ").join("_")}", course_type.capitalize %>
               </div>
             <% end %>
           </div>

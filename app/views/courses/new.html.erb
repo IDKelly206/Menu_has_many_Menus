@@ -1,14 +1,16 @@
-<%# <head><meta name="turbo-visit-control" content="reload"></head> %>
 <%- title "Course" %>
 
-<div class="section-menu">
-  <%# TurboFrameTag %>
   <div class="container">
-    <div class="header">
-      <%= render "shared/searchbar" %>
-    </div>
-    <br>
-    <%= render "recipes/recipes", recipes: @recipes, locals: { title: yield(:title) } %>
+    <%# TurboFrameTag %>
+      <div class="header">
+        <%= render "shared/searchbar" %>
+      </div>
+      <div class="section-cards">
+        <%= render "recipes/recipes", recipes: @recipes, locals: { title: yield(:title) } %>
+      </div>
+    <%# TurboFrameTag %>
   </div>
-  <%# TurboFrameTag %>
-</div>
+
+
+
+<%# <head><meta name="turbo-visit-control" content="reload"></head> %>

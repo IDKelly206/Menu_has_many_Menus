@@ -1,4 +1,7 @@
+<%- title "Menu" %>
+
 <div class="container">
+    <%# TurboFrameTag %>
   <div class="header">
     <%= link_to "Create Many Meals",
                 meal_new_meals_path,
@@ -9,4 +12,5 @@
     <%= turbo_frame_tag dom_id(Meal.new) %>
     <%= render @menus %>
   </div>
+    <%# TurboFrameTag %>
 </div>

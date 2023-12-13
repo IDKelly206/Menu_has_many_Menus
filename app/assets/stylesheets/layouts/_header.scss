@@ -1,8 +1,8 @@
 .header {
   display: flex;
   flex-flow: row nowrap;
-  gap: var(--space-s);
-  justify-content: space-between;
+  // gap: var(--space-s);
+  justify-content: space-around;
   padding-top: var(--space-xxs);
   padding-bottom: var(--space-xs);
   background-color: var(--color-pearl);

@@ -26,11 +26,11 @@
     border-radius: var(--border-radius-pill);
     // background-origin: border-box; // Invisible borders with linear gradients
     background-color: var(--color-onyx);
-    max-height: var(--space-l);
+    max-height: var(--space-xxl);
     text-align: center;
     text-decoration: none;
     color: var(--color-pearl);
-    font-size: 0.625rem;
+    font-size: var(--font-size-s);
     font-weight: bold;
 
     cursor: none;
