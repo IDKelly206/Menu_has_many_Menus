@@ -4,26 +4,40 @@
     <div class="search-section">
 
       <div class="search-section__filters">
-        <h4>Title page: <%= yield(:title) %></h4>
+        <h6>Title page: <%= yield(:title) %></h6>
         <p>Filters:</p>
       </div>
 
       <div class="search-section__body">
-        <div class="header">
-          <%# Fill meal-filters here %>
+        <div class="top">
+          <h6>Add Course for:</h6>
           <div class="meal-filters">
-          <h6>Add Course for:</h4>
+            <% unless @meal_type.nil?  %>
+              <ul class="details">
+                <li class="btn--pill btn--pill--meal"><%= @meal_type.capitalize %></li>
+              </ul>
+            <% end %>
+            <% unless @course_type.nil?  %>
+              <ul class="details">
+                <li class="btn--pill btn--pill--course"><%= @course_type.capitalize %></li>
+              </ul>
+            <% end %>
             <ul class="details">
-              <% @users.each do |user| %>
-                <li class="btn--pill btn--pill--user"><%= User.find(user.id).name_first %></li>
+              <% if @users.present?  do %>
+                <% @users.each do |user| %>
+                  <li class="btn--pill btn--pill--user"><%= User.find(user.id).name_first %></li>
+                <% end %>
+              <% else %>
+                  <li class="btn--pill btn--pill--user"><%= @meal.user.name_first %></li>
               <% end %>
             </ul>
             <ul class="details">
-              <li class="btn--pill btn--pill--meal"><%= @meal_type.capitalize %></li>
-            </ul>
-            <ul class="details">
-              <% @menus.each do |menu| %>
-              <li class="btn--pill btn--pill--date"><%= Menu.find(menu.id).day_of_week %></li>
+              <% if @menus.present? do %>
+                <% @menus.each do |menu| %>
+                <li class="btn--pill btn--pill--date"><%= Menu.find(menu.id).day_of_week %></li>
+                <% end %>
+              <% else %>
+                <li class="btn--pill btn--pill--date"><%= @menu.day_of_week %></li>
               <% end %>
             </ul>
           </div>
