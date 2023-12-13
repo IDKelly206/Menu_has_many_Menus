@@ -32,5 +32,11 @@
 
   &__body{
     padding: var(--space-s) var(--space-l);
+
+    .form-body {
+      display: flex;
+      flex-flow: column nowrap;
+      gap: var(--space-s);
+    }
   }
 }
