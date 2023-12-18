@@ -36,8 +36,8 @@
             </div>
             <% unless @courses.find_by(course_type: course_type).nil? %>
               <%= render @courses.where(course_type: course_type),
-                                  meal: @meal,
-                                  recipes: @recipes  %>
+                                        meal: @meal,
+                                        recipes: @recipes  %>
             <% else %>
             <% end %>
           <% end %>

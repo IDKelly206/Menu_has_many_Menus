@@ -36,8 +36,8 @@ class RecipesController < ApplicationController
 
     @title = params["title"]
 
-    if params["meals"].present?
-      @meals = params["meals"]
+    if params["meal_ids"].present?
+      @meal_ids = params["meal_ids"]
     elsif params["menu"].present?
       @menu = Menu.find(params["menu"])
       @meal = Meal.find(params["meal"])

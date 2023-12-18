@@ -55,10 +55,26 @@
             <span class="title"><%= course_type.capitalize %>s:</span>
           </div>
           <div class="courses">
-            <p>render courses</p>
+
+            <% @courses_final.select { |course| course[:course_type] == course_type }.each do |course|%>
+              <div><p><%= course[:label] %></p></div>
+
+            <% end %>
+
+
+            <%# course_by_type = @courses.select { |course| course.course_type == course_type} %>
+            <%# recipe_ids = course_by_type.map { |course| course.erecipe_id }.uniq %>
+            <%# @courses = recipes_ids.each { |recipe_id| course_by_type.find_by(recipe_id) } %>
+            <%# render 'meals/course', @courses %>
+            <%#   %>
+            <%# course_by_type  %>
             <%# column %>
             <%# flex-start %>
             <%# render meal--course partaials %>
+            <%# Build Partial HERE %>
+
+
+
           </div>
         </div>
       <% end %>
