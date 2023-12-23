@@ -2,6 +2,7 @@ class MealsController < ApplicationController
   before_action :set_household
   before_action :set_menu, only: [:index, :show]
   before_action :set_meal, only: [:index, :show]
+  # before_action :set_course, only: [:new]
   before_action :set_meal_types, only: [:index, :show, :meal_new, :new]
   before_action :set_course_types, only: [:index, :show, :new]
 
@@ -26,26 +27,18 @@ class MealsController < ApplicationController
     @meal_type = params[:meal_type].capitalize
     @meal_ids = meal_ids(@menus, @users, @meal_type)
 
-    # detect course(s) shared by all Meals.
-    # @courses =
-
     @meals = @meal_ids.map { |meal| Meal.find(meal) }
     @meal_count = @meals.size
 
-    #1 get all courses
-    #2 filter to only those that share the same ?
     courses = []
-
     @meals.each do |meal|
       course_group = meal.courses.map { |course| Course.find(course.id) }
       courses.push(course_group)
     end
-
-    @courses= courses.flatten
-
+    @courses_all = courses.flatten
+    # //////
     courses_of_meal = {}
-
-    @courses.each do |course|
+    @courses_all.each do |course|
       course_id = course.id
       recipe_id = course.erecipe_id
       if courses_of_meal[recipe_id].nil?
@@ -55,57 +48,14 @@ class MealsController < ApplicationController
         courses_of_meal[recipe_id].push(course_id)
       end
     end
-
-    @courses_of_meal = courses_of_meal
-
     @recipes_with_course_id = courses_of_meal.select { |recipe_id, course_ids| course_ids.count == @meal_count }
-    @recipe_ids = @recipes_with_course_id.keys
-    course_list = []
-    @recipe_ids.each_with_index do |recipe_id, index|
-      recipe = Edamam::EdamamRecipe.find(recipe_id)
-     if course_list[index].nil?
-       course_list[index] = {}
-       course_list[index][:label] = recipe.label
-       course_list[index][:image] = recipe.image
-       course_list[index][:erecipe_id] = recipe.erecipe_id
-       course_list[index][:course_ids] = @recipes_with_course_id[recipe.erecipe_id]
-       course_list[index][:course_type] = Course.find(course_list[index][:course_ids].first).course_type
-     else
-       course_list[index][:course_ids].push(@recipes_with_course_id[recipe.erecipe_id])
-     end
-    end
+    # //////
+    @recipe_ids_all = @courses_all.map { |course| course.erecipe_id }
+    @recipe_ids_uniq = @recipe_ids_all.select { |recipe_id| @recipe_ids_all.count(recipe_id) == @meal_count }.uniq
 
-    @courses_final = course_list
+    @courses = @recipe_ids_uniq.map { |recipe_id| @courses_all.detect { |course| course.erecipe_id == recipe_id } }
 
-
-
-
-    # @recipes_planned = @recipe_ids.map { |recipe_id| Edamam::EdamamRecipe.find(recipe_id) }
-
-
-    # @recipes_hash = { :label, :image, :erecipe_id, course_ids: []}
-    # @courses_array = []
-    # @courses_hash = @recipes_planned.map { |recipe| label: recipe.label,
-                                    # image: recipe.image,
-                                    # erecipe_id: recipe.erecipe_id,
-                                    # course_ids: @recipes_with_course_id[recipe.erecipe_id]
-                                  # }
-
-
-
-    # @recipe_ids = @courses.each { |course| course.erecipe_id }.uniq
-
-
-    # 1 - get all recipes from courses
-    # 2 - create hash of recipes with course_type & name
-    # 3 - assign all course_ids for each recipe
-    # 4 - delete_all Courses where id: id
-      #  recipe_count = courses.each do |course|
-
-
-      # end
-
-    #  courses.select { |course| course.course_type == 'main course' && }
+    @course_recipes = @courses.map { |course| Edamam::EdamamRecipe.find(course.erecipe_id) }
 
     console
   end
@@ -130,7 +80,10 @@ class MealsController < ApplicationController
   end
 
   def destroy
-    # Course.where(id: course_ids).destory_all
+    course_ids = params[:courses]
+    Course.where(id: course_ids).destroy_all
+
+    redirect_to new_meal_path
   end
 
   private
@@ -147,8 +100,9 @@ class MealsController < ApplicationController
     @meal = @menu.meals.find(params[:id])
   end
 
-  def set_courses
-  end
+  # def set_course
+  #   @course = @meal.courses.find(params[:id])
+  # end
 
   def set_meal_types
     @meal_types = Meal::MEAL_TYPES

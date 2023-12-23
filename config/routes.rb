@@ -9,8 +9,7 @@ Rails.application.routes.draw do
 
   resources :menus, only: [:index, :show, :new] do
     resources :meals, only: [:index, :show] do
-      resources :courses, only: [:new, :create, :show, :edit, :update, :destroy] do
-      end
+      resources :courses, only: [:new, :create, :show, :edit, :update, :destroy]
     end
   end
 
@@ -22,10 +21,12 @@ Rails.application.routes.draw do
 
 
 
+
   #  To be removed - used as testing for modal and multi-obj creation
   resources :meals, only: [:new, :create, :destroy] do
     collection do
       get 'meal_new'
+      get 'multi_destroy', to: 'meals#multi_destroy', as: 'multi_destroy'
     end
   end
 

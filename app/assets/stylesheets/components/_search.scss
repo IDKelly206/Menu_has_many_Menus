@@ -15,7 +15,7 @@
 
   &__body {
     display: flex;
-    flex: 1 1 auto;
+    flex: 2 1 auto;
     flex-flow: column nowrap;
     justify-content: space-around;
 
@@ -72,7 +72,7 @@
 
       .bar {
         display: flex;
-        flex: 1 0 auto;
+        flex: 1 1 auto;
         flex-flow: row wrap;
         justify-content: space-between;
         padding: var(--space-s) var(--font-size-xs) 0;
@@ -93,37 +93,11 @@
 
   &__courses {
     display: flex;
-    flex: 1 1 auto;
+    flex: 0 1 auto;
     flex-flow: column nowrap;
-    justify-content: flex-start;
-
-    .course_type {
-      display: flex;
-      flex-flow: row nowrap;
-      justify-content: flex-start;
-      gap: var(--space-m);
-
-      .type {
-        flex: 0 1 auto;
-        text-align: center;
-
-        i {
-          font-size: var(--font-size-l);
-        }
-
-        .title {
-          display: inline-block;
-          font-size: var(--font-size-xs);
-        }
-      }
-
-      .courses {
-        display: inline-flex;
-        flex: 1 1 auto;
-        text-align: center;
-
-      }
-    }
-
+    justify-content: space-between;
+    padding: 0;
+    font-size: var(--font-size-xs);
+    
   }
 }

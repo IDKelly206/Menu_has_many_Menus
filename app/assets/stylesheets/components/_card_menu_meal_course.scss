@@ -1,6 +1,7 @@
 .card-menu-meal-course {
   display: flex;
-  flex-direction: column;
+  flex-shrink: 1;
+  flex-flow: column nowrap;
   justify-content: start;
 
   padding: var(--space-xs);
@@ -25,16 +26,17 @@
     }
 }
   &__body {
-    display: inline-flex;
+    display: flex;
+    flex: 1 1 auto;
     flex-direction: column;
     justify-content: space-between;
     padding: 0;
     font-size: var(--font-size-xs);
-    width: 100%;
-    min-width: 100px;
+    // width: 100%;
+    // min-width: 100px;
 
     .course-item {
-      display: flex;
+      display: inline-flex;
       flex-flow: row nowrap;
       justify-content: flex-start;
       align-items: flex-end;

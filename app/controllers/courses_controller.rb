@@ -47,7 +47,6 @@ class CoursesController < ApplicationController
     redirect_to menu_meal_path(@menu, @meal), notice: "Course deleted"
   end
 
-
   private
 
   def course_params

@@ -1,7 +1,9 @@
 .card-course {
   display: flex;
   flex-flow: row nowrap;
-  justify-content: space-around;
+  // flex-shrink: 2;
+  justify-content: flex-start;
+  box-sizing: content-box;
   margin: var(--space-xxs);
   background-color: var(--color-white);
   border: var(--border-muted);
@@ -9,10 +11,13 @@
   box-shadow: var(--shadow-small);
   gap: var(--space-xs);
 
-  &--course-new {
+
+  &--tiny {
   max-height: var(--space-xxxxl);
-  min-height: var(--space-xxxl);
-  width: 24rem
+  min-height: var(--space-xxxxl);
+  // min-width: 18rem;
+  // max-width: 24rem;
+
   }
 
 
@@ -32,24 +37,25 @@
   }
 
   &__details {
-    display: inline-flex;
-    flex: 1 1 0;
+    display: flex;
+    flex: 0 1 auto;
     align-items: center;
     justify-content: flex-start;
-    min-width: 9rem;
-    font-size: var(--font-size-m);
     padding-right: 0 var(--space-s);
+    // min-width: 10rem;
+    // max-width: 10rem;
+
 
     p {
-      margin: 0 0 0 var(--space-xxs);
+      margin: 0;
       text-decoration: none;
       text-align: left;
-      font-size: var(--font-size-xs);
+      font-size: var(--font-size-m);
     }
   }
 
   &__action {
-    display: inline-flex;
+    display: flex;
     flex-flow: row nowrap;
     flex: 0 1 0;
     align-items: center;

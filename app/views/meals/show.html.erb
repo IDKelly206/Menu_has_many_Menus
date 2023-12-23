@@ -34,12 +34,12 @@
                 <h5><%= course_type.capitalize %>s:</h5>
               </div>
             </div>
-            <% unless @courses.find_by(course_type: course_type).nil? %>
-              <%= render @courses.where(course_type: course_type),
-                                        meal: @meal,
-                                        recipes: @recipes  %>
-            <% else %>
-            <% end %>
+              <% unless @courses.find_by(course_type: course_type).nil? %>
+                <%= render @courses.select { |course| course.course_type == course_type },
+                                    meal: @meal,
+                                    recipes: @recipes %>
+              <% else %>
+              <% end %>
           <% end %>
         </div>
       </div>

@@ -1,10 +1,10 @@
 <div class="search-section">
-  <% unless @users.nil? && @meal.nil? %>
-    <div class="search-section__filters">
+  <div class="search-section__filters">
+    <% unless @users.nil? && @meal.nil? %>
       <h6>Title page: <%= yield(:title) %></h6>
       <p>Filters:</p>
-    </div>
-  <% end %>
+    <% end %>
+  </div>
 
   <div class="search-section__body">
     <div class="top">
@@ -47,37 +47,18 @@
     </div>
   </div>
 
-  <% unless @course_types.nil? %>
-    <div class="search-section__courses">
+  <div class="search-section__courses">
+    <% unless @course_recipes.nil? %>
       <% @course_types.each do |course_type| %>
-        <div class="course_type">
-          <div class="type">
-            <span class="title"><%= course_type.capitalize %>s:</span>
-          </div>
+
+          <span class="title"><h6><%= course_type.capitalize %>s:</h6></span>
           <div class="courses">
-
-            <% @courses_final.select { |course| course[:course_type] == course_type }.each do |course|%>
-              <div><p><%= course[:label] %></p></div>
-
-            <% end %>
-
-
-            <%# course_by_type = @courses.select { |course| course.course_type == course_type} %>
-            <%# recipe_ids = course_by_type.map { |course| course.erecipe_id }.uniq %>
-            <%# @courses = recipes_ids.each { |recipe_id| course_by_type.find_by(recipe_id) } %>
-            <%# render 'meals/course', @courses %>
-            <%#   %>
-            <%# course_by_type  %>
-            <%# column %>
-            <%# flex-start %>
-            <%# render meal--course partaials %>
-            <%# Build Partial HERE %>
-
-
-
+              <%= render @courses.select { |course| course.course_type == course_type },
+                                         recipes: @course_recipes,
+                                         recipe_keyes: @recipes_with_course_id %>
           </div>
-        </div>
+
       <% end %>
-    </div>
-  <% end %>
+    <% end %>
+  </div>
 </div>

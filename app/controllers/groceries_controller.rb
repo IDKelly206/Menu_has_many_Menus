@@ -5,17 +5,29 @@ class GroceriesController < ApplicationController
   before_action :set_course, only: [:new, :create]
 
   def index
-    groceries_all = Grocery.all.where('household_id = ?', @household)
+    groceries_all = Grocery.where('household_id = ?', @household)
     list_add_true = groceries_all.where('list_add = ?', true)
+
     names_uniq = list_add_true.map { |i| i.name }.uniq.sort_by!{ |n| n.downcase }
     # All uniq recipe_ids for uncollected grocery items
     @recipe_ids_all = list_add_true.map { |i| i.erecipe_id }
     recipe_ids = @recipe_ids_all.uniq
 
+
+    @g_list_add_items = Grocery.where('household_id = ?', @household).select { |grocery| grocery.list_add == true }
+    @recipe_ids_uniq = @g_list_add_items.map { | i | i.erecipe_id }.uniq
+    @recipe_ingredient_names_uniq = @g_list_add_items.map { | i | i.name }.uniq
+
+
+
     g_list = []
-    recipe_ids.each do |recipe_id|
+    @recipe_ids_uniq.each do |recipe_id|
       @recipe = Edamam::EdamamRecipe.find(recipe_id)
-      @num_of_courses = @recipe_ids_all.count(recipe_id) / @recipe.ingredients.count.to_f
+      # number of grocery items for specific recipe
+      @g_items_of_recipe = @g_list_add_items.select { |i| i.erecipe_id == recipe_id }.count
+      # divide by number of ingredients included uniq ingredients names
+      @recipe_ingredient_count = @recipe_ingredient_names_uniq.map { |n| @recipe.ingredients.detect { |i| i["food"] == n } }.count
+      @num_of_courses = @g_items_of_recipe / @recipe_ingredient_count.to_f
       @servings = @recipe.yield.to_f
       @multiplier = (@num_of_courses / @servings).ceil
       # Go through each unique ingredient name

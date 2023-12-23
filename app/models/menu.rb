@@ -10,7 +10,6 @@ class Menu < ApplicationRecord
   scope :ordered, -> { order(date: :asc) }
 
 
-
   def day_of_week
     "#{self.date.strftime('%a')}: #{self.date.day.ordinalize}  "
   end

@@ -11,4 +11,5 @@ class Grocery < ApplicationRecord
 
   #  Add ordered sequence of :foodCat then :name
 
+
 end
