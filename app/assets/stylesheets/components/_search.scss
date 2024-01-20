@@ -93,11 +93,24 @@
 
   &__courses {
     display: flex;
-    flex: 0 1 auto;
-    flex-flow: column nowrap;
-    justify-content: space-between;
+    // flex: 0 1 auto;
+    flex-flow: column;
+    // justify-content: space-between;
     padding: 0;
-    font-size: var(--font-size-xs);
-    
+    // font-size: var(--font-size-xs);
+
+    .title {
+      display: inline-block;
+      font-size: var(--font-size-xs);
+    }
+
+    .courses {
+      display: flex;
+      flex: 0 1 auto;
+      flex-flow: column;
+      justify-content: space-between;
+      padding: 0;
+      font-size: var(--font-size-xs);
+    }
   }
 }
