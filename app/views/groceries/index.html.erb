@@ -1,20 +1,20 @@
 <% provide(:title, "Grocery List") %>
 <div class="container">
-<h1>Grocery List show page</h1>
+  <h1>Grocery List show page</h1>
   <div>
   <hr>
-    <%  @groceries.each do |item| %>
-    <ul>
-      <%= form_with url: '/groceries', method: 'get' do |f| %>
+    <ol>
+      <%  @grocery_list.each do |item| %>
         <li>
-        <%= f.label item[:n] %> |
-        <%= f.label item[:q] %> |
-        <%= f.label item[:m] %> |
-        <%= f.label item[:cat] %>
-        <%= f.submit "Add to Inventory" %>
+          <%= form_with url: '/groceries', method: 'get' do |f| %>
+            <%= f.label item[:n] %> |
+            <%= f.label item[:q] %> |
+            <%= f.label item[:m] %> |
+            <%= f.label item[:cat] %>
+            <%= f.submit "Add to Inventory" %>
+          <% end %>
         </li><hr>
       <% end %>
-    </ul>
-    <% end %>
+    </ol>
   </div>
 </div>

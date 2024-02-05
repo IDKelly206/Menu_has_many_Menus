@@ -8,8 +8,7 @@ class Grocery < ApplicationRecord
   validates :erecipe_id, presence: true
   validates :course_id, presence: true
 
-
   #  Add ordered sequence of :foodCat then :name
 
-
+  
 end

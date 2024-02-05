@@ -5,7 +5,8 @@ module Edamam
     attr_accessor :label,
                   :source,
                   :yield,
-                  :image
+                  :image,
+                  :ingredients
 
     def self.find(id)
       r = Request.get(id)

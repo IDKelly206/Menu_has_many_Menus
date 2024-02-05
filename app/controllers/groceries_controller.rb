@@ -5,52 +5,53 @@ class GroceriesController < ApplicationController
   before_action :set_course, only: [:new, :create]
 
   def index
-    groceries_all = Grocery.where('household_id = ?', @household)
-    list_add_true = groceries_all.where('list_add = ?', true)
 
-    names_uniq = list_add_true.map { |i| i.name }.uniq.sort_by!{ |n| n.downcase }
-    # All uniq recipe_ids for uncollected grocery items
-    @recipe_ids_all = list_add_true.map { |i| i.erecipe_id }
-    recipe_ids = @recipe_ids_all.uniq
+    groceries = Grocery.select { |g_item| g_item.household_id = @household && g_item.list_add == true }
 
+    ingredient_names = groceries.map { | g_item | g_item.name.singularize.downcase }.uniq
+    grocery_list_names = []
+    ingredient_names.each_with_index do |name, index|
+      grocery_list_names[index] = {}
+      grocery_list_names[index][:n] = name.singularize.downcase
+    end
+    grocery_list = grocery_list_names
 
-    @g_list_add_items = Grocery.where('household_id = ?', @household).select { |grocery| grocery.list_add == true }
-    @recipe_ids_uniq = @g_list_add_items.map { | i | i.erecipe_id }.uniq
-    @recipe_ingredient_names_uniq = @g_list_add_items.map { | i | i.name }.uniq
+    uniq_recipe_ids = groceries.map { |g_item| g_item.erecipe_id }.uniq
+    recipes = []
+    uniq_recipe_ids.each do |recipe_id|
+      recipe = Edamam::EdamamRecipe.find(recipe_id)
+      recipes << recipe
+    end
 
+    recipes.each do |recipe|
+      g_items_per_recipe = groceries.select { |g_item| g_item.erecipe_id == recipe.erecipe_id }.count
+      # @g_items_per_recipe = g_items_per_recipe # Number of grocery items for specific recipe
+      number_ingredients = 0
+      recipe.ingredients.each do |i|
+        if ingredient_names.include?(i["food"].singularize.downcase)
+          number_ingredients += 1
+        else
+          number_ingredients += 0
+        end
+      end
+      number_ingredients.to_f
 
+      number_courses_per_recipe = (g_items_per_recipe / number_ingredients)
+      servings = recipe.yield.to_f
+      ingredient_multiplier = (number_courses_per_recipe / servings).ceil
 
-    g_list = []
-    @recipe_ids_uniq.each do |recipe_id|
-      @recipe = Edamam::EdamamRecipe.find(recipe_id)
-      # number of grocery items for specific recipe
-      @g_items_of_recipe = @g_list_add_items.select { |i| i.erecipe_id == recipe_id }.count
-      # divide by number of ingredients included uniq ingredients names
-      @recipe_ingredient_count = @recipe_ingredient_names_uniq.map { |n| @recipe.ingredients.detect { |i| i["food"] == n } }.count
-      @num_of_courses = @g_items_of_recipe / @recipe_ingredient_count.to_f
-      @servings = @recipe.yield.to_f
-      @multiplier = (@num_of_courses / @servings).ceil
-      # Go through each unique ingredient name
-      names_uniq.each_with_index do |name, index|
-        # Determine if a Grocery item exists with a given name and erecipe_id
-        unless list_add_true.detect { |g_item| g_item.name == name && g_item.erecipe_id == recipe_id }.nil?
-          @g_item = list_add_true.detect { |g_item| g_item.name == name && g_item.erecipe_id == recipe_id }
-          # Does the array already have an index assisgned for the unique ingredient name?
-          if g_list[index].nil?
-            g_list[index] = {}
-            g_list[index][:n] = @g_item.name
-            g_list[index][:q] = (@g_item.quantity * @multiplier)
-            # Need to convert measurement
-            g_list[index][:m] = @g_item.measurement
-            g_list[index][:cat] = @g_item.category
-          else
-            g_list[index][:q] += (@g_item.quantity * @multiplier)
-          end
+      recipe.ingredients.each do |ingredient|
+        name = ingredient["food"].singularize.downcase
+        unless grocery_list.detect { |item| item[:n] == name }.nil?
+          g_item = grocery_list.detect { |item| item[:n] == name }
+          g_item[:m] = ingredient["measure"] if g_item[:m].nil?
+          g_item[:q].nil? ? g_item[:q] = (ingredient["quantity"] * ingredient_multiplier) : g_item[:q] += (ingredient["quantity"] * ingredient_multiplier)
+          g_item[:cat] = ingredient["foodCategory"] if g_item[:cat].nil?
         end
       end
     end
-    @groceries = g_list.sort_by { |gItem| gItem[:cat] }
 
+    @grocery_list = grocery_list
     console
   end
 
