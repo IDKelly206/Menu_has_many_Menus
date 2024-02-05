@@ -12,13 +12,21 @@
   // gap: var(--space-xs);
 
 
-  &--tiny {
+  &--small {
   max-height: var(--space-xxxxl);
   min-height: var(--space-xxxxl);
   min-width: 18rem;
   max-width: 24rem;
 
   }
+
+  &--tiny {
+    max-height: var(--space-xxxl);
+    min-height: var(--space-xxxl);
+    min-width: 18rem;
+    max-width: 24rem;
+
+    }
 
 
   &__img {
