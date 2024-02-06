@@ -10,5 +10,14 @@ class Grocery < ApplicationRecord
 
   #  Add ordered sequence of :foodCat then :name
 
-  
+  def grocery_list
+    ingredient_names = self.map { | g_item | g_item.name.singularize.downcase }.uniq
+    grocery_list_names = []
+    ingredient_names.each_with_index do |name, index|
+      grocery_list_names[index] = {}
+      grocery_list_names[index][:n] = name.singularize.downcase
+    end
+    grocery_list_names
+  end
+
 end

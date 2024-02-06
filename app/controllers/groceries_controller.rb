@@ -8,13 +8,14 @@ class GroceriesController < ApplicationController
 
     groceries = Grocery.select { |g_item| g_item.household_id = @household && g_item.list_add == true }
 
-    ingredient_names = groceries.map { | g_item | g_item.name.singularize.downcase }.uniq
-    grocery_list_names = []
-    ingredient_names.each_with_index do |name, index|
-      grocery_list_names[index] = {}
-      grocery_list_names[index][:n] = name.singularize.downcase
-    end
-    grocery_list = grocery_list_names
+    # ingredient_names = groceries.map { | g_item | g_item.name.singularize.downcase }.uniq
+    # grocery_list_names = []
+    # ingredient_names.each_with_index do |name, index|
+    #   grocery_list_names[index] = {}
+    #   grocery_list_names[index][:n] = name.singularize.downcase
+    # end
+    # grocery_list = grocery_list_names
+    grocery_list = groceries.grocery_list
 
     uniq_recipe_ids = groceries.map { |g_item| g_item.erecipe_id }.uniq
     recipes = []
@@ -24,23 +25,16 @@ class GroceriesController < ApplicationController
     end
 
     recipes.each do |recipe|
-      g_items_per_recipe = groceries.select { |g_item| g_item.erecipe_id == recipe.erecipe_id }.count
-      # @g_items_per_recipe = g_items_per_recipe # Number of grocery items for specific recipe
-      number_ingredients = 0
-      recipe.ingredients.each do |i|
-        if ingredient_names.include?(i["food"].singularize.downcase)
-          number_ingredients += 1
-        else
-          number_ingredients += 0
-        end
-      end
-      number_ingredients.to_f
+      g_items_per_recipe = groceries.select { |g_item| g_item.erecipe_id == recipe.erecipe_id }
+      g_items_count = g_items_per_recipe.count
+      g_items_uniq_count = g_items_per_recipe.map { |i| i.name }.uniq.count
 
-      number_courses_per_recipe = (g_items_per_recipe / number_ingredients)
+      number_courses_per_recipe = (g_items_count / g_items_uniq_count)
       servings = recipe.yield.to_f
       ingredient_multiplier = (number_courses_per_recipe / servings).ceil
 
       recipe.ingredients.each do |ingredient|
+        # FILTER: not all ingredients, only those that are select to add
         name = ingredient["food"].singularize.downcase
         unless grocery_list.detect { |item| item[:n] == name }.nil?
           g_item = grocery_list.detect { |item| item[:n] == name }
