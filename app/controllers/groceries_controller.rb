@@ -7,8 +7,8 @@ class GroceriesController < ApplicationController
   def index
     groceries = Grocery.groceries(@household)
     grocery_list = Grocery.grocery_list(groceries)
-    uniq_recipe_ids = groceries.map { |g_item| g_item.erecipe_id }.uniq
-    @grocery_list = Edamam::EdamamRecipe.grocery_list(ids: uniq_recipe_ids, groceries: groceries, grocery_list: grocery_list)
+    ids = groceries.map { |g_item| g_item.erecipe_id }.uniq
+    @grocery_list = Edamam::EdamamRecipe.grocery_list(ids:, groceries:, grocery_list:)
     console
   end
 
