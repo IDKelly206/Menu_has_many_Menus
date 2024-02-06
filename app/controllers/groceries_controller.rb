@@ -5,47 +5,10 @@ class GroceriesController < ApplicationController
   before_action :set_course, only: [:new, :create]
 
   def index
-
-    groceries = Grocery.select { |g_item| g_item.household_id = @household && g_item.list_add == true }
-
-    # ingredient_names = groceries.map { | g_item | g_item.name.singularize.downcase }.uniq
-    # grocery_list_names = []
-    # ingredient_names.each_with_index do |name, index|
-    #   grocery_list_names[index] = {}
-    #   grocery_list_names[index][:n] = name.singularize.downcase
-    # end
-    # grocery_list = grocery_list_names
-    grocery_list = groceries.grocery_list
-
+    groceries = Grocery.groceries(@household)
+    grocery_list = Grocery.grocery_list(groceries)
     uniq_recipe_ids = groceries.map { |g_item| g_item.erecipe_id }.uniq
-    recipes = []
-    uniq_recipe_ids.each do |recipe_id|
-      recipe = Edamam::EdamamRecipe.find(recipe_id)
-      recipes << recipe
-    end
-
-    recipes.each do |recipe|
-      g_items_per_recipe = groceries.select { |g_item| g_item.erecipe_id == recipe.erecipe_id }
-      g_items_count = g_items_per_recipe.count
-      g_items_uniq_count = g_items_per_recipe.map { |i| i.name }.uniq.count
-
-      number_courses_per_recipe = (g_items_count / g_items_uniq_count)
-      servings = recipe.yield.to_f
-      ingredient_multiplier = (number_courses_per_recipe / servings).ceil
-
-      recipe.ingredients.each do |ingredient|
-        # FILTER: not all ingredients, only those that are select to add
-        name = ingredient["food"].singularize.downcase
-        unless grocery_list.detect { |item| item[:n] == name }.nil?
-          g_item = grocery_list.detect { |item| item[:n] == name }
-          g_item[:m] = ingredient["measure"] if g_item[:m].nil?
-          g_item[:q].nil? ? g_item[:q] = (ingredient["quantity"] * ingredient_multiplier) : g_item[:q] += (ingredient["quantity"] * ingredient_multiplier)
-          g_item[:cat] = ingredient["foodCategory"] if g_item[:cat].nil?
-        end
-      end
-    end
-
-    @grocery_list = grocery_list
+    @grocery_list = Edamam::EdamamRecipe.grocery_list(ids: uniq_recipe_ids, groceries: groceries, grocery_list: grocery_list)
     console
   end
 

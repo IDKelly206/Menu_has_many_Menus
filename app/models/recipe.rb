@@ -4,4 +4,6 @@ class Recipe < ApplicationRecord
     COURSE_TYPES: Course::COURSE_TYPES,
     DIETARY_FILTERS: ["vegan", "vegetarian", "paleo"]
   }
+
+  
 end
