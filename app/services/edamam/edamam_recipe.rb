@@ -11,10 +11,12 @@ module Edamam
     def self.find(id)
       r = Request.get(id)
       Recipe.new(
-                label:     r[:recipe][:label],
-                source:    r[:recipe][:source],
-                yield:     r[:recipe][:yield],
-                image:     r[:recipe][:image],
+                label:       r[:recipe][:label],
+                source:      r[:recipe][:source],
+                source_url:  r[:recipe][:url],
+                yield:       r[:recipe][:yield],
+                image:       r[:recipe][:image],
+                images:      r[:recipe][:images],
                 ingredients: r[:recipe][:ingredients],
                 erecipe_id: id
               )
@@ -36,10 +38,12 @@ module Edamam
         id_ing = "#{r[:_links][:self][:href]}".partition("v2/")
         id = id_ing[-1].partition("?").first
         Recipe.new(
-          label:     r[:recipe][:label],
-          source:    r[:recipe][:source],
-          yield:     r[:recipe][:yield],
-          image:     r[:recipe][:image],
+          label:       r[:recipe][:label],
+          source:      r[:recipe][:source],
+          source_url:  r[:recipe][:url],
+          yield:       r[:recipe][:yield],
+          image:       r[:recipe][:image],
+          images:      r[:recipe][:images],
           ingredients: r[:recipe][:ingredients],
           erecipe_id: id
         )
