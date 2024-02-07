@@ -33,6 +33,8 @@ module Edamam
       @response[:_links][:next]
     end
 
+    
+
     def self.recipes(response)
       response.fetch(:hits).map do |r|
         id_ing = "#{r[:_links][:self][:href]}".partition("v2/")

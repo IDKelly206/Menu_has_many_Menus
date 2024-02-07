@@ -1,12 +1,12 @@
 <div id="<%= dom_id recipe %>">
   <div class="card-recipe">
     <div class="card-recipe__header">
-        <%= image_tag recipe.image %>
+        <%= image_tag recipe.recipe_image(size: "regular") %>
     </div>
     <div class="card-recipe__body">
       <div class="content-header">
       <%= link_to recipe.label, recipe_path(recipe.erecipe_id), class: "recipe-title" %>
-      <p><%= recipe.source %></p>
+      <p><%= link_to recipe.source, recipe.source_url, :target => '_blank' %></p>
       </div>
       <div class="content-body">
         <ul class="details">

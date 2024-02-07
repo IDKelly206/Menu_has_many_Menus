@@ -5,5 +5,8 @@ class Recipe < ApplicationRecord
     DIETARY_FILTERS: ["vegan", "vegetarian", "paleo"]
   }
 
-  
+  def recipe_image( attr = {})
+    sz = attr[:size].upcase
+    images[sz]["url"]
+  end
 end
