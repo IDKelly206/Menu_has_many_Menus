@@ -25,8 +25,8 @@ class MealsController < ApplicationController
     @menus = params[:menu_ids].map { |menu_id| Menu.find(menu_id.to_i) }
     @users = params[:user_ids].map { |user_id| User.find(user_id.to_i) }
     @meal_type = params[:meal_type].capitalize
-    @meal_ids = meal_ids(@menus, @users, @meal_type)
 
+    @meal_ids = meal_ids(@menus, @users, @meal_type)
     @meals = @meal_ids.map { |meal| Meal.find(meal) }
     @meal_count = @meals.size
 

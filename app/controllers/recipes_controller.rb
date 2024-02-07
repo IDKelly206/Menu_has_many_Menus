@@ -5,7 +5,7 @@ class RecipesController < ApplicationController
     if params[:query].present?
       @recipes = Edamam::EdamamRecipe.search(params[:query], params[:filters])
     else
-      @recipes = Edamam::EdamamRecipe.search("pasta", params[:filters])
+      @recipes = Edamam::EdamamRecipe.search("banana", params[:filters])
     end
     # if turbo_frame_request?
     #   render partial: "recipes", locals: { recipes: @recipes }
