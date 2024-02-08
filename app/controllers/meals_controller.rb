@@ -48,13 +48,14 @@ class MealsController < ApplicationController
         courses_of_meal[recipe_id].push(course_id)
       end
     end
+    # !!!!!
     @recipes_with_course_id = courses_of_meal.select { |recipe_id, course_ids| course_ids.count == @meal_count }
-    # //////
+    # --------
     @recipe_ids_all = @courses_all.map { |course| course.erecipe_id }
     @recipe_ids_uniq = @recipe_ids_all.select { |recipe_id| @recipe_ids_all.count(recipe_id) == @meal_count }.uniq
 
     @courses = @recipe_ids_uniq.map { |recipe_id| @courses_all.detect { |course| course.erecipe_id == recipe_id } }
-
+      # !!!
     @course_recipes = @courses.map { |course| Edamam::EdamamRecipe.find(course.erecipe_id) }
 
     console
@@ -80,10 +81,6 @@ class MealsController < ApplicationController
   end
 
   def multi_destroy
-    course_ids = params[:courses]
-    Course.where(id: course_ids).destroy_all
-
-    redirect_to new_meal_path(@users, @menus, @meal_type)
   end
 
   def destroy
