@@ -1,7 +1,7 @@
 <div class="card-course card-course--tiny">
     <% recipe = recipes.select { |recipe| recipe.erecipe_id == course.erecipe_id }.first %>
   <div class="card-course__img">
-    <%= image_tag recipe.image %>
+    <%= image_tag recipe.recipe_image(size: "thumbnail") %>
   </div>
   <div class="card-course__details">
     <p><%= recipe.label %></p>
@@ -18,7 +18,10 @@
                     class: "btn fa-solid fa-circle-minus" %>
     <% else %>
       <%= button_to "",
-                    multi_destroy_meals_path(courses: recipe_keyes[course.erecipe_id]),
+                    multi_destroy_meals_path(courses: recipe_keyes[course.erecipe_id],
+                                             user_ids: @users,
+                                             menu_ids: @menus,
+                                             meal_type: @meal_type),
                     method: :delete,
                     class: "btn fa-solid fa-circle-minus" %>
     <% end %>

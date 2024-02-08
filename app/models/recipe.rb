@@ -5,6 +5,7 @@ class Recipe < ApplicationRecord
     DIETARY_FILTERS: ["vegan", "vegetarian", "paleo"]
   }
 
+  # size options = THUMBNAIL, SMALL & REGULAR
   def recipe_image( attr = {})
     sz = attr[:size].upcase
     images[sz]["url"]

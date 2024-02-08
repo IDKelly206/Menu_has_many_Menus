@@ -2,9 +2,13 @@ class MealsController < ApplicationController
   before_action :set_household
   before_action :set_menu, only: [:index, :show]
   before_action :set_meal, only: [:index, :show]
-  # before_action :set_course, only: [:new]
   before_action :set_meal_types, only: [:index, :show, :meal_new, :new]
   before_action :set_course_types, only: [:index, :show, :new]
+  before_action :set_menus, only: [:new, :destroy]
+  before_action :set_users, only: [:new, :destroy]
+  before_action :set_meal_type, only: [:new, :destroy]
+  # before_action :set_meals, only: [:new]
+  # before_action :set_course, only: [:new]
 
 
 
@@ -21,21 +25,17 @@ class MealsController < ApplicationController
   def new
     @recipes = Edamam::EdamamRecipe.search(params[:query], params[:filters])
 
-    # Used to create multiple courses & provide erecipe_id for groceries
-    @menus = params[:menu_ids].map { |menu_id| Menu.find(menu_id.to_i) }
-    @users = params[:user_ids].map { |user_id| User.find(user_id.to_i) }
-    @meal_type = params[:meal_type].capitalize
-
-    @meal_ids = meal_ids(@menus, @users, @meal_type)
-    @meals = @meal_ids.map { |meal| Meal.find(meal) }
+    # @meal_type = params[:meal_type].capitalize
+    @meal_ids = meal_ids(menus: @menus, users: @users, meal_type: @meal_type)
+    @meals = meal_ids(menus: @menus, users: @users, meal_type: @meal_type).map { |meal| Meal.find(meal) }
     @meal_count = @meals.size
-
-    courses = []
+    # /////////// Course delete_all
+    course_groups = []
     @meals.each do |meal|
       course_group = meal.courses.map { |course| Course.find(course.id) }
-      courses.push(course_group)
+      course_groups.push(course_group)
     end
-    @courses_all = courses.flatten
+    @courses_all = course_groups.flatten
     # //////
     courses_of_meal = {}
     @courses_all.each do |course|
@@ -79,11 +79,20 @@ class MealsController < ApplicationController
     console
   end
 
+  def multi_destroy
+    course_ids = params[:courses]
+    Course.where(id: course_ids).destroy_all
+
+    redirect_to new_meal_path(@users, @menus, @meal_type)
+  end
+
   def destroy
     course_ids = params[:courses]
     Course.where(id: course_ids).destroy_all
 
-    redirect_to new_meal_path
+    redirect_to new_meal_path( user_ids: @users,
+                               menu_ids: @menus,
+                               meal_type: @meal_type)
   end
 
   private
@@ -92,6 +101,22 @@ class MealsController < ApplicationController
     @household = Household.find(current_user.id)
   end
 
+  def set_menus
+    @menus = params[:menu_ids].map { |menu_id| Menu.find(menu_id.to_i) }
+  end
+
+  def set_users
+    @users = params[:user_ids].map { |user_id| User.find(user_id.to_i) }
+  end
+
+  def set_meal_type
+    @meal_type = params[:meal_type].capitalize
+  end
+
+  # def set_meals
+  #   @meals = meal_ids(@menus, @users, @meal_type).map { |meal| Meal.find(meal) }
+  # end
+
   def set_menu
     @menu = Menu.find(params[:menu_id])
   end
@@ -99,6 +124,7 @@ class MealsController < ApplicationController
   def set_meal
     @meal = @menu.meals.find(params[:id])
   end
+
 
   # def set_course
   #   @course = @meal.courses.find(params[:id])
@@ -116,7 +142,10 @@ class MealsController < ApplicationController
     params.permit(:course_type, :erecipe_id, meal_ids: [])
   end
 
-  def meal_ids(menus, users, meal_type)
+  def meal_ids(attr = {})
+    menus = attr[:menus]
+    users = attr[:users]
+    meal_type = attr[:meal_type]
     meals = []
     menus.each do |menu|
       users.each do |user|
