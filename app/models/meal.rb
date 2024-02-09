@@ -11,4 +11,18 @@ class Meal < ApplicationRecord
     "Lunch",
     "Dinner"
   ]
+
+  def self.meals(attr = {})
+    menus = attr[:menus]
+    users = attr[:users]
+    meal_type = attr[:meal_type]
+    meals = []
+    menus.each do |menu|
+      users.each do |user|
+        meal = where('user_id = ?', user.id).where('menu_id = ?', menu.id).where('meal_type = ?', meal_type).ids
+        meals.push(meal)
+      end
+    end
+    meals.flatten.map { |meal| Meal.find(meal) }
+  end
 end

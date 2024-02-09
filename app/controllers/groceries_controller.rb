@@ -14,16 +14,14 @@ class GroceriesController < ApplicationController
 
   def new
     @grocery = Grocery.new
-    # Need eRecipeID for courses just created for ingredient items to add in gList
     @course_ids = params[:course_ids]
     @courses = @course_ids.map { |course_id| Course.find(course_id.to_i) }
 
     @course = @courses.first
 
+    # Need eRecipeID for courses just created for ingredient items to add in gList
     @erecipe_id = @course.erecipe_id
     @recipe = Edamam::EdamamRecipe.find(@erecipe_id)
-    # Calculate quantity of ingreients necessary per recipe.
-    # Calc based off servings/yield divided by # courses per meal_type multiplied by # menu.dates
 
     console
   end

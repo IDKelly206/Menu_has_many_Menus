@@ -11,7 +11,7 @@ class Grocery < ApplicationRecord
   #  Add ordered sequence of :foodCat then :name
 
   def self.groceries(household)
-    select { |g_item| g_item.household_id = household && g_item.list_add == true }
+    household.groceries.map { |g| g if g.list_add == true }
   end
 
   def self.grocery_list(groceries)

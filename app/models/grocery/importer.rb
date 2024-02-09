@@ -4,8 +4,8 @@ class Grocery::Importer
   end
 
   def initialize(grocery_params)
-    @household_id = grocery_params.fetch(:household_id).to_i
-    @course_ids = grocery_params.fetch(:course_ids).split
+    @household = Household.find(grocery_params.fetch(:household_id).to_i)
+    @courses = grocery_params.fetch(:course_ids).split.map { |id| Course.find(id) }
     @erecipe_id = grocery_params.fetch(:erecipe_id)
 
     @name = grocery_params.fetch(:name)
@@ -15,12 +15,6 @@ class Grocery::Importer
     @list_add = grocery_params.fetch(:list_add).to_i
   end
 
-  # Need adjust grocery create action to account for
-  # serving size of course & number of users
-  # Currently creating course for each meal with erecipeID
-  # Currently each erecipeID for single course creates gItem
-  # Need to change so that each erecipeID for EACH course creates gItem
-
   def create(grocery_params)
     validate_params!
 
@@ -29,10 +23,10 @@ class Grocery::Importer
     @new_glist = 0
 
     if grocery_params.fetch(:list_add).to_i >= 1
-      @course_ids.each do |course_id|
+      @courses.each do |course|
         Grocery.create!(
-          household_id: @household_id,
-          course_id: course_id.to_i,
+          household: @household,
+          course: course,
           name: @name.downcase,
           quantity: @quantity,
           measurement: @measurement.downcase,
@@ -45,13 +39,13 @@ class Grocery::Importer
   end
 
   def validate_params!
-    raise "Invalid params" unless @household_id.present?
+    raise "Invalid params" unless @household.present?
+    raise "Invalid params" unless @courses.present?
     raise "Invalid params" unless @name.present?
     raise "Invalid params" unless @quantity.present?
     raise "Invalid params" unless @measurement.present?
     raise "Invalid params" unless @category.present?
     raise "Invalid params" unless @erecipe_id.present?
-    # Add course_ids check
   end
 
 end

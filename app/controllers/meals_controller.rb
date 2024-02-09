@@ -7,7 +7,7 @@ class MealsController < ApplicationController
   before_action :set_menus, only: [:new, :destroy]
   before_action :set_users, only: [:new, :destroy]
   before_action :set_meal_type, only: [:new, :destroy]
-  # before_action :set_meals, only: [:new]
+  before_action :set_meals, only: [:new]
   # before_action :set_course, only: [:new]
 
 
@@ -25,37 +25,26 @@ class MealsController < ApplicationController
   def new
     @recipes = Edamam::EdamamRecipe.search(params[:query], params[:filters])
 
-    # @meal_type = params[:meal_type].capitalize
-    @meal_ids = meal_ids(menus: @menus, users: @users, meal_type: @meal_type)
-    @meals = meal_ids(menus: @menus, users: @users, meal_type: @meal_type).map { |meal| Meal.find(meal) }
-    @meal_count = @meals.size
-    # /////////// Course delete_all
+    @meal_ids = @meals.map { |m| m.id }
+
     course_groups = []
-    @meals.each do |meal|
-      course_group = meal.courses.map { |course| Course.find(course.id) }
-      course_groups.push(course_group)
-    end
+    @meals.each { |meal| course_groups.push(meal.courses.map { |course| Course.find(course.id) }) }
     @courses_all = course_groups.flatten
-    # //////
-    courses_of_meal = {}
+
+    courses_of_meals = {}
     @courses_all.each do |course|
       course_id = course.id
       recipe_id = course.erecipe_id
-      if courses_of_meal[recipe_id].nil?
-        courses_of_meal[recipe_id] = []
-        courses_of_meal[recipe_id].push(course_id)
+      if courses_of_meals[recipe_id].nil?
+        courses_of_meals[recipe_id] = []
+        courses_of_meals[recipe_id].push(course_id)
       else
-        courses_of_meal[recipe_id].push(course_id)
+        courses_of_meals[recipe_id].push(course_id)
       end
     end
-    # !!!!!
-    @recipes_with_course_id = courses_of_meal.select { |recipe_id, course_ids| course_ids.count == @meal_count }
-    # --------
-    @recipe_ids_all = @courses_all.map { |course| course.erecipe_id }
-    @recipe_ids_uniq = @recipe_ids_all.select { |recipe_id| @recipe_ids_all.count(recipe_id) == @meal_count }.uniq
-
-    @courses = @recipe_ids_uniq.map { |recipe_id| @courses_all.detect { |course| course.erecipe_id == recipe_id } }
-      # !!!
+    courses_of_meals
+    @recipes_with_course_id = courses_of_meals.select { |recipe_id, course_ids| course_ids.count == @meals.size }
+    @courses = @recipes_with_course_id.keys.map { |recipe_id| @courses_all.detect { |course| course.erecipe_id == recipe_id } }
     @course_recipes = @courses.map { |course| Edamam::EdamamRecipe.find(course.erecipe_id) }
 
     console
@@ -63,9 +52,8 @@ class MealsController < ApplicationController
 
 
   def create
-    @courses = Meal::Multicourse.create(course_params)
-    course_ids = @courses.map { |course| course.id }
-    # meal_ids = params[:meal_ids].first.split
+    courses = Meal::Multicourse.create(course_params)
+    course_ids = courses.map { |course| course.id }
     if @course_count == @new_courses
       redirect_to new_grocery_path(course_ids: course_ids), notice: "Course successfully added"
     else
@@ -110,9 +98,9 @@ class MealsController < ApplicationController
     @meal_type = params[:meal_type].capitalize
   end
 
-  # def set_meals
-  #   @meals = meal_ids(@menus, @users, @meal_type).map { |meal| Meal.find(meal) }
-  # end
+  def set_meals
+    @meals = Meal.meals(menus: @menus, users: @users, meal_type: @meal_type)
+  end
 
   def set_menu
     @menu = Menu.find(params[:menu_id])
@@ -121,11 +109,6 @@ class MealsController < ApplicationController
   def set_meal
     @meal = @menu.meals.find(params[:id])
   end
-
-
-  # def set_course
-  #   @course = @meal.courses.find(params[:id])
-  # end
 
   def set_meal_types
     @meal_types = Meal::MEAL_TYPES
@@ -137,19 +120,5 @@ class MealsController < ApplicationController
 
   def course_params
     params.permit(:course_type, :erecipe_id, meal_ids: [])
-  end
-
-  def meal_ids(attr = {})
-    menus = attr[:menus]
-    users = attr[:users]
-    meal_type = attr[:meal_type]
-    meals = []
-    menus.each do |menu|
-      users.each do |user|
-        meal = Meal.where('user_id = ?', user.id).where('menu_id = ?', menu.id).where('meal_type = ?', meal_type).ids
-        meals.push(meal)
-      end
-    end
-    meals.flatten
   end
 end

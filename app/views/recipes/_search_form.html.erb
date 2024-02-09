@@ -54,7 +54,7 @@
   <% if @meal_ids.present? %>
     <%= hidden_field_tag 'meal_ids', @meal_ids %>
   <% elsif @meal.present? %>
-    <%= hidden_field_tag 'meal', @meal.id %>
-    <%= hidden_field_tag 'menu', @menu.id %>
+    <%= hidden_field_tag 'meal_id', @meal.id %>
+    <%= hidden_field_tag 'menu_id', @menu.id %>
   <% end %>
 <% end %>

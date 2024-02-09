@@ -39,8 +39,8 @@ class RecipesController < ApplicationController
     if params["meal_ids"].present?
       @meal_ids = params["meal_ids"]
     elsif params["menu"].present?
-      @menu = Menu.find(params["menu"])
-      @meal = Meal.find(params["meal"])
+      @menu = Menu.find(params["menu_id"])
+      @meal = Meal.find(params["meal_id"])
       @course = @meal.courses.build
     end
   end
@@ -49,4 +49,7 @@ class RecipesController < ApplicationController
   def set_recipe
     @recipe_id = params[:id]
   end
+
+
+
 end
