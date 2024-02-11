@@ -5,15 +5,23 @@ class CoursesController < ApplicationController
   before_action :set_course, only: [:edit, :update, :destroy]
 
   def new
-    @recipes = Edamam::EdamamRecipe.search(params[:query], params[:filters])
+    # @recipes = Edamam::EdamamRecipe.search(params[:query], params[:filters])
 
-    @course = @meal.courses.build
+    if params[:query].present?
+      @recipes = Edamam::EdamamRecipe.search(params[:query], params[:filters])
+    else
+      @recipes = Edamam::EdamamRecipe.search("pasta", params[:filters])
+    end
+
+
+    params[:course_type].nil? ? @course_type = params[:filters][:dishType] : @course_type = params[:course_type]
+
+    @course = @meal.courses.build(course_type: @course_type)
     @meal_type = @meal.meal_type
-    @course_type = params[:course_type]
 
-    @courses = @meal.courses.reject { |course| course if course.id.nil? }
-    @course_types = @courses.map { |course| course.course_type }.uniq
-    @meal_recipes = @courses.map { |course| Edamam::EdamamRecipe.find(course.erecipe_id) }
+    # @courses = @meal.courses.reject { |course| course if course.id.nil? }
+    # @course_types = @courses.map { |course| course.course_type }.uniq
+    # @meal_recipes = @courses.map { |course| Edamam::EdamamRecipe.find(course.erecipe_id) }
 
     console
   end

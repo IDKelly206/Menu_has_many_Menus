@@ -5,7 +5,7 @@ class RecipesController < ApplicationController
     if params[:query].present?
       @recipes = Edamam::EdamamRecipe.search(params[:query], params[:filters])
     else
-      @recipes = Edamam::EdamamRecipe.search("banana", params[:filters])
+      @recipes = Edamam::EdamamRecipe.search("pasta", params[:filters])
     end
     # if turbo_frame_request?
     #   render partial: "recipes", locals: { recipes: @recipes }
@@ -35,13 +35,17 @@ class RecipesController < ApplicationController
     @recipes = Edamam::EdamamRecipe.search(params[:query], params[:filters])
 
     @title = params["title"]
+    # @course_type = params[:course_type]
+    params[:course_type].nil? ? @course_type = params[:filters][:dishType] : @course_type = params[:course_type]
+
 
     if params["meal_ids"].present?
       @meal_ids = params["meal_ids"]
-    elsif params["menu"].present?
-      @menu = Menu.find(params["menu_id"])
-      @meal = Meal.find(params["meal_id"])
-      @course = @meal.courses.build
+    elsif params["menu_id"].present?
+      @menu = Menu.find(params["menu_id"].to_i)
+      @meal = Meal.find(params["meal_id"].to_i)
+      # @course_type = params["course_type"]
+      @course = @meal.courses.build(course_type: @course_type)
     end
   end
 

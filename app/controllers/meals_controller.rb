@@ -23,14 +23,19 @@ class MealsController < ApplicationController
   end
 
   def new
-    @recipes = Edamam::EdamamRecipe.search(params[:query], params[:filters])
+    if params[:query].present?
+      @recipes = Edamam::EdamamRecipe.search(params[:query], params[:filters])
+    else
+      @recipes = Edamam::EdamamRecipe.search("banana", params[:filters])
+    end
+    # @recipes = Edamam::EdamamRecipe.search(params[:query], params[:filters])
 
     @meal_ids = @meals.map { |m| m.id }
 
     course_groups = []
     @meals.each { |meal| course_groups.push(meal.courses.map { |course| Course.find(course.id) }) }
     @courses_all = course_groups.flatten
-
+    @course_type = params["course_type"]
     courses_of_meals = {}
     @courses_all.each do |course|
       course_id = course.id
