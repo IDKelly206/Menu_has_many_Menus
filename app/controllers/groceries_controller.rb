@@ -50,7 +50,7 @@ class GroceriesController < ApplicationController
         redirect_to new_meal_path(user_ids: user_ids, menu_ids: menu_ids, meal_type: meal_type),
                                   notice: "Grocery items successfully added to Grocery List."
       else
-        redirect_to menu_meal_path(@courses.meal.menu, @courses.meal),
+        redirect_to menu_meal_path(courses.first.meal.menu, courses.first.meal),
                                   notice: "Grocery items successfully added to Grocery List."
       end
     else
