@@ -23,7 +23,7 @@
             <i class="fa-solid fa-bars"></i>
           </a>
           <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-            <p>Welcome back, NAME</p>
+            <p>Welcome back <%= current_user.name_first %></p>
             <%= link_to "Household", household_path(current_user.household_id) , class: "dropdown-item" %>
             <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
           </div>

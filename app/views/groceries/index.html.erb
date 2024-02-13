@@ -3,7 +3,7 @@
   <h1>Grocery List show page</h1>
   <div>
   <hr>
-    <ol>
+    <ul>
       <%  @grocery_list.each do |item| %>
         <li>
           <%= form_with url: '/groceries', method: 'get' do |f| %>
@@ -15,6 +15,6 @@
           <% end %>
         </li><hr>
       <% end %>
-    </ol>
+    </ul>
   </div>
 </div>

@@ -1,12 +1,10 @@
 <%- title "Multi-Meal" %>
 
 <div class="container">
-  <%# TurboFrameTag %>
-    <div class="header">
-      <%= render 'shared/searchbar' %>
-    </div>
-    <div class="section-cards">
-      <%= render "recipes/recipes", recipes: @recipes, locals: { title: yield(:title) } %>
-    </div>
-  <%# TurboFrameTag %>
+  <div class="header">
+    <%= render 'shared/searchbar' %>
+  </div>
+  <div class="section-cards">
+    <%= render "recipes/recipes", recipes: @recipes, locals: { title: yield(:title) } %>
+  </div>
 </div>
