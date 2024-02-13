@@ -16,6 +16,7 @@ class CoursesController < ApplicationController
     @course = @meal.courses.build(course_type: @course_type)
     @meal_type = @meal.meal_type
 
+    # For rendering course cards in search bar for meals selected
     # @courses = @meal.courses.reject { |course| course if course.id.nil? }
     # @course_types = @courses.map { |course| course.course_type }.uniq
     # @meal_recipes = @courses.map { |course| Edamam::EdamamRecipe.find(course.erecipe_id) }

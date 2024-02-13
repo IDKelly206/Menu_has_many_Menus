@@ -14,7 +14,7 @@ class MealsController < ApplicationController
 
   def meal_new
     # Modal of GET form to meal#new. Selects multi-meal criteria
-    calendar = (Time.now.to_date...(Time.now.to_date+10))
+    calendar = (Time.now.to_date...(Time.now.to_date + 10))
     @menus = Menu.where('household_id = ?', @household).where('date IN (:cal)', { cal: calendar })
     @users = @household.users
 
@@ -29,14 +29,15 @@ class MealsController < ApplicationController
       @recipes = Edamam::EdamamRecipe.search("banana", params[:filters])
     end
 
-    #  For rendering course cards in search bar for meals selected
     @meal_ids = @meals.map { |m| m.id }
+    # @course_type = params["course_type"]
+
+    #  For rendering course cards in search bar for meals selected
     course_groups = []
     @meals.each { |meal| course_groups.push(meal.courses.map { |course| Course.find(course.id) }) }
-    @courses_all = course_groups.flatten
-    @course_type = params["course_type"]
+    courses_all = course_groups.flatten
     courses_of_meals = {}
-    @courses_all.each do |course|
+    courses_all.each do |course|
       course_id = course.id
       recipe_id = course.erecipe_id
       if courses_of_meals[recipe_id].nil?
@@ -48,7 +49,7 @@ class MealsController < ApplicationController
     end
     courses_of_meals
     @recipes_with_course_id = courses_of_meals.select { |recipe_id, course_ids| course_ids.count == @meals.size }
-    @courses = @recipes_with_course_id.keys.map { |recipe_id| @courses_all.detect { |course| course.erecipe_id == recipe_id } }
+    @courses = @recipes_with_course_id.keys.map { |recipe_id| courses_all.detect { |course| course.erecipe_id == recipe_id } }
     @course_recipes = @courses.map { |course| Edamam::EdamamRecipe.find(course.erecipe_id) }
 
     console
@@ -70,9 +71,6 @@ class MealsController < ApplicationController
     @recipes = @courses.map { |course| Edamam::EdamamRecipe.find(course.erecipe_id) }
 
     console
-  end
-
-  def multi_destroy
   end
 
   def destroy

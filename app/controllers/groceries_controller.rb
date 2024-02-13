@@ -2,7 +2,6 @@ class GroceriesController < ApplicationController
   before_action :set_household
   before_action :set_menu, only: [:new, :create]
   before_action :set_meal, only: [:new, :create]
-  before_action :set_course, only: [:new, :create]
 
   def index
     groceries = Grocery.groceries(@household)
@@ -30,27 +29,29 @@ class GroceriesController < ApplicationController
     params[:grocery].each do |k, grocery_params|
       Grocery::Importer.create(grocery_params)
     end
+
     @course_ids = params[:course_ids].split
+    courses = @course_ids.map { |id| Course.find(id) }
 
     if @glist_count == @new_glist
-      if @course_ids.size > 1
-
+      if courses.size > 1
         user_ids = []
         menu_ids = []
-        meal_types = []
-
-        @course_ids.each do |course_id|
-          course = Course.find(course_id.to_i)
-          user_ids << course.meal.user.id
-          menu_ids << course.meal.menu.id
-          meal_types << course.meal.meal_type
+        meal_type = []
+        courses.each do |c|
+          user_ids << c.meal.user.id
+          menu_ids << c.meal.menu.id
+          meal_type << c.meal.meal_type
         end
+        user_ids = user_ids.uniq
+        menu_ids = menu_ids.uniq
+        meal_type = meal_type.uniq.first
 
-        redirect_to new_meal_path(user_ids: user_ids.uniq, menu_ids: menu_ids.uniq, meal_type: meal_types.uniq.first),
+        redirect_to new_meal_path(user_ids: user_ids, menu_ids: menu_ids, meal_type: meal_type),
                                   notice: "Grocery items successfully added to Grocery List."
       else
-        @course = Course.find(@course_ids.first.to_i)
-        redirect_to menu_meal_path(@course.meal.menu, @course.meal), notice: "Grocery items successfully added to Grocery List."
+        redirect_to menu_meal_path(@courses.meal.menu, @courses.meal),
+                                  notice: "Grocery items successfully added to Grocery List."
       end
     else
       render :new, status: :unprocessable_entity
@@ -58,23 +59,19 @@ class GroceriesController < ApplicationController
   end
 
   def show
-    # show specific gList item
   end
 
   def edit
-    # update specific gList item
-
-    # gh repo create planner_v2 --private --source=. --remote=upstream
   end
 
   def update
   end
 
   def destroy
-    # remove specific gList itme
   end
 
   private
+
   def set_household
     @household = Household.find(current_user.id)
   end
@@ -87,10 +84,6 @@ class GroceriesController < ApplicationController
   def set_meal
     @menu.nil? ? @meal = nil : @meal = @menu.meals.find(params[:meal_id])
     # @meal = @menu.meals.find(params[:meal_id])
-  end
-
-  def set_course
-    # @course = Course.where(meal_id: @meal.id).last
   end
 
   def grocery_params
