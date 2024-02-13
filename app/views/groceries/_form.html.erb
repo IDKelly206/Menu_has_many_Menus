@@ -22,8 +22,15 @@
             <%= fields.hidden_field :measurement, value: "<Pinch>" %>
           <% end %>
 
-          <%= fields.label ingredient['foodCategory'], for: "grocery_#{n}_list_add"  %>
-          <%= fields.hidden_field :category, value: ingredient['foodCategory'] %>
+          <% if ingredient['foodCategory'].present? %>
+            <%= fields.label ingredient['foodCategory'], for: "grocery_#{n}_list_add"  %>
+            <%= fields.hidden_field :category, value: ingredient['foodCategory'] %>
+          <% else %>
+            <%= fields.label "<Blank>", for: "grocery_#{n}_list_add"  %>
+            <%= fields.hidden_field :category, value: "<Blank>" %>
+          <% end %>
+
+
 
           <%= fields.hidden_field :course_ids, value: @course_ids %>
           <%= fields.hidden_field  :household_id, value: @household.id %>

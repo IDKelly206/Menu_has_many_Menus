@@ -8,7 +8,7 @@
   </div>
   <div class="card-course__action">
     <% if @meal.present?  %>
-      <%= button_to "",
+      <%= link_to "",
                     edit_menu_meal_course_path(@menu, @meal, course),
                     class: "btn fa-solid fa-pen-to-square",
                     target: :_top %>

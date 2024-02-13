@@ -28,10 +28,9 @@ class MealsController < ApplicationController
     else
       @recipes = Edamam::EdamamRecipe.search("banana", params[:filters])
     end
-    # @recipes = Edamam::EdamamRecipe.search(params[:query], params[:filters])
 
+    #  For rendering course cards in search bar for meals selected
     @meal_ids = @meals.map { |m| m.id }
-
     course_groups = []
     @meals.each { |meal| course_groups.push(meal.courses.map { |course| Course.find(course.id) }) }
     @courses_all = course_groups.flatten

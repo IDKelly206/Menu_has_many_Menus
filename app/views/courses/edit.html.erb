@@ -1,21 +1,12 @@
-<div class="container">
-  <h1>Edit Course page</h1>
+<%- title "Course" %>
 
-    <%= form_with url: edit_menu_meal_course_path(@menu, @meal), method: 'get', local: true do |f| %>
-  <%= f.label :query, "Search for:" %>
-  <%= f.text_field :query, multiple: true %>
-  <%= f.fields_for :filters do |ft| %>
-    <%= ft.label "Filter by: " %>
-    <%= ft.select :mealType, @meal_type %>
-    <%= ft.select :dishType, @dish_type %>
-    <%= ft.select :health, @health %>
-  <% end %>
-  <%= f.submit "Search" %>
-<% end %>
-  <br>
-  <br>
-  <div>
-    <%= render 'courses/recipe_card' %>
+  <div class="container">
+    <%# TurboFrameTag %>
+      <div class="header">
+        <%= render "shared/searchbar" %>
+      </div>
+      <div class="section-cards">
+        <%= render "recipes/recipes", recipes: @recipes, locals: { title: yield(:title) } %>
+      </div>
+    <%# TurboFrameTag %>
   </div>
-
-<div>
