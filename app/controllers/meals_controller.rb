@@ -1,13 +1,14 @@
 class MealsController < ApplicationController
   before_action :set_household
-  before_action :set_menu, only: [:index, :show]
-  before_action :set_meal, only: [:index, :show]
-  before_action :set_meal_types, only: [:index, :show, :meal_new, :new]
-  before_action :set_course_types, only: [:index, :show, :new]
   before_action :set_menus, only: [:new, :destroy]
   before_action :set_users, only: [:new, :destroy]
+  # before_action :set_meals, only: [:new, :create]
+  before_action :set_meal_types, only: [:index, :show, :meal_new, :new]
+  before_action :set_course_types, only: [:index, :show, :new]
+  before_action :set_menu, only: [:index, :show]
+  before_action :set_meal, only: [:index, :show]
+  before_action :set_user, only: [:index, :show]
   before_action :set_meal_type, only: [:new, :destroy]
-  before_action :set_meals, only: [:new]
   # before_action :set_course, only: [:new]
 
 
@@ -23,12 +24,13 @@ class MealsController < ApplicationController
   end
 
   def new
-    if params[:query].present?
-      @recipes = Edamam::EdamamRecipe.search(params[:query], params[:filters])
-    else
-      @recipes = Edamam::EdamamRecipe.search("banana", params[:filters])
-    end
-
+    # if params[:query].present?
+    #   @recipes = Edamam::EdamamRecipe.search(params[:query], params[:filters])
+    # else
+    #   @recipes = Edamam::EdamamRecipe.search("banana", params[:filters])
+    # end
+    @recipes = Edamam::EdamamRecipe.search(params[:query], params[:filters])
+    @meals = Meal.meals(menus: @menus, users: @users, meal_type: @meal_type)
     @meal_ids = @meals.map { |m| m.id }
     # @course_type = params["course_type"]
 
@@ -57,6 +59,8 @@ class MealsController < ApplicationController
 
 
   def create
+    # @meals = Meal.meals(menus: @menus, users: @users, meal_type: @meal_type)
+
     courses = Meal::Multicourse.create(course_params)
     course_ids = courses.map { |course| course.id }
     if @course_count == @new_courses
@@ -88,6 +92,18 @@ class MealsController < ApplicationController
     @household = Household.find(current_user.id)
   end
 
+  def set_meal_types
+    @meal_types = Meal::MEAL_TYPES
+  end
+
+  def set_course_types
+    @course_types = Course::COURSE_TYPES
+  end
+
+  def set_meal_type
+    @meal_type = params[:meal_type].capitalize
+  end
+
   def set_menus
     @menus = params[:menu_ids].map { |menu_id| Menu.find(menu_id.to_i) }
   end
@@ -96,13 +112,9 @@ class MealsController < ApplicationController
     @users = params[:user_ids].map { |user_id| User.find(user_id.to_i) }
   end
 
-  def set_meal_type
-    @meal_type = params[:meal_type].capitalize
-  end
-
-  def set_meals
-    @meals = Meal.meals(menus: @menus, users: @users, meal_type: @meal_type)
-  end
+  # def set_meals
+    # @meals = Meal.meals(menus: @menus, users: @users, meal_type: @meal_type)
+  # end
 
   def set_menu
     @menu = Menu.find(params[:menu_id])
@@ -112,12 +124,8 @@ class MealsController < ApplicationController
     @meal = @menu.meals.find(params[:id])
   end
 
-  def set_meal_types
-    @meal_types = Meal::MEAL_TYPES
-  end
-
-  def set_course_types
-    @course_types = Course::COURSE_TYPES
+  def set_user
+    @user = @meal.user
   end
 
   def course_params

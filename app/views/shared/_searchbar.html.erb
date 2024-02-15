@@ -1,47 +1,21 @@
 <div class="search-section">
   <div class="search-section__filters">
-    <% unless @users.nil? && @meal.nil? %>
-      <h6>Title page: <%= yield(:title) %></h6>
-      <p>Filters:</p>
-    <% end %>
-  </div>
-
-  <div class="search-section__body">
-    <div class="top">
-      <% unless @users.nil? && @meal.nil? %>
-        <h6>Add Course for:</h6>
-        <div class="meal-filters">
-          <% unless @meal_type.nil? %>
-            <ul class="details">
-              <li class="btn--pill btn--pill--meal"><%= @meal_type.capitalize %></li>
-            </ul>
-          <% end %>
-          <% unless @course_type.nil? %>
-            <ul class="details">
-              <li class="btn--pill btn--pill--course"><%= @course_type.capitalize %></li>
-            </ul>
-          <% end %>
-          <ul class="details">
-            <% if @users.present? %>
-              <% @users.each do |user| %>
-                <li class="btn--pill btn--pill--user"><%= User.find(user.id).name_first %></li>
-              <% end %>
-            <% else %>
-                <li class="btn--pill btn--pill--user"><%= @meal.user.name_first %></li>
-            <% end %>
-          </ul>
-          <ul class="details">
-            <% if @menus.present? %>
-              <% @menus.each do |menu| %>
-              <li class="btn--pill btn--pill--date"><%= Menu.find(menu.id).day_of_week %></li>
-              <% end %>
-            <% else %>
-              <li class="btn--pill btn--pill--date"><%= @menu.day_of_week %></li>
-            <% end %>
-          </ul>
-        </div>
-      <% end %>
+    <div class="meal-filters">
+      <ul class="details">
+        <%= filter_types(type: @meal_type) %>
+        <%= filter_types(type: @course_type) %>
+      </ul>
+      <ul class="details">
+        <%= filter_users(users: @users) %>
+        <%= filter_users(users: @user) %>
+      </ul>
+      <ul class="details">
+        <%= filter_dates(dates: @menus) %>
+        <%= filter_dates(dates: @menu) %>
+      </ul>
     </div>
+  </div>
+  <div class="search-section__body">
     <div class="search-bar">
       <%= render 'recipes/search_form' %>
     </div>

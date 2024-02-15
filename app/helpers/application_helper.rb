@@ -1,8 +1,5 @@
 module ApplicationHelper
-
-# Returns the full title on a per-page basis
-
-  # Access page titles
+  # Returns the full title on a per-page basis
   def title(page_title)
     content_for(:title) { page_title }
   end
@@ -23,5 +20,4 @@ module ApplicationHelper
     #  Insert ingredients here. Need to fix Recipe.new for Search function
     end
   end
-
 end

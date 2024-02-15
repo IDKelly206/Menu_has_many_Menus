@@ -7,51 +7,45 @@
 
   &__filters {
     display: flex;
-    flex: 1 1 auto;
-    flex-flow: column wrap;
-    justify-content: center;
+    flex: 1 1 0;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+
+    .meal-filters {
+      display: inline-flex;
+      flex-flow: column nowrap;
+      flex: 1 1 auto;
+      justify-content: flex-start;
+      gap: var(--space-s);
+      padding: 0 var(--font-size-xs) var(--space-s) ;
+
+        // UL
+      .details {
+        display: flex;
+        flex: 0 0 0;
+        flex-flow: row wrap;
+        justify-content: flex-start;
+        list-style: none;
+        gap: var(--space-xs);
+        margin: 0;
+        padding: 0;
+      }
+    }
+
+
 
   }
 
   &__body {
     display: flex;
-    flex: 2 1 auto;
+    flex: 2 1 0;
     flex-flow: column nowrap;
-    justify-content: space-around;
-
-    .top {
-      display: inline-flex;
-      flex: 1 1 auto;
-      flex-flow: row nowrap;
-      justify-content: center;
-
-      .meal-filters {
-        // display: flex;
-        flex-flow: row nowrap;
-        flex: 1 1 auto;
-        justify-content: flex-start;
-        gap: var(--space-s);
-        padding: 0 var(--font-size-xs) var(--space-s) ;
-
-          // UL
-        .details {
-          display: inline-flex;
-          flex: 1 1 auto;
-          flex-flow: row wrap;
-          justify-content: flex-start;
-          list-style: none;
-          gap: var(--space-xs);
-          margin: 0;
-          padding: 0;
-        }
-      }
-    }
+    justify-content: flex-end;
 
     .search-bar {
       display: flex;
-      flex: 1 1 auto;
+      flex: 0 0 0;
       flex-flow: row nowrap;
-
       justify-content: center;
 
       .filters {
@@ -67,14 +61,13 @@
           flex-flow: row nowrap;
           gap: var(--space-m)
         }
-
       }
 
       .bar {
         display: flex;
         flex: 1 1 auto;
         flex-flow: row wrap;
-        justify-content: space-between;
+        justify-content: flex-end;
         padding: var(--space-s) var(--font-size-xs) 0;
 
         .option {
@@ -93,11 +86,11 @@
 
   &__courses {
     display: flex;
-    // flex: 0 1 auto;
+    flex: 1 1 0;
     flex-flow: column;
-    // justify-content: space-between;
+    justify-content: space-between;
     padding: 0;
-    // font-size: var(--font-size-xs);
+    font-size: var(--font-size-xs);
 
     .title {
       display: block;

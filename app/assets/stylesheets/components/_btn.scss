@@ -20,7 +20,7 @@
 
   &--pill,
   &--pill + label {
-    flex: 1 1 auto;
+    flex: 0 0 auto;
     padding: var(--space-xxxs) var(--space-xxs);
     border: var(--border-dark);
     border-radius: var(--border-radius-pill);

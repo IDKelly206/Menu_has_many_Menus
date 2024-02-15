@@ -2,6 +2,7 @@ class CoursesController < ApplicationController
   before_action :set_household
   before_action :set_menu
   before_action :set_meal
+  before_action :set_user
   before_action :set_course, only: [:edit, :update, :destroy]
 
   def new
@@ -78,6 +79,10 @@ class CoursesController < ApplicationController
 
   def set_meal
     @meal = @menu.meals.find(params[:meal_id])
+  end
+
+  def set_user
+    @user = @meal.user
   end
 
   def set_course
