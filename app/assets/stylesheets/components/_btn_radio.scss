@@ -1,8 +1,9 @@
 .radio-btns {
   display: flex;
-  justify-content: flex-start;
+  flex: 0 0 auto;
   flex-flow: row wrap;
-  gap: var(--space-m);
+  justify-content: center;
+  gap: var(--space-xs);
 }
 
 .radio-item {

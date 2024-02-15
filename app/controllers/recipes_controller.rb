@@ -1,6 +1,10 @@
 class RecipesController < ApplicationController
   before_action :set_recipe, only: [:show]
 
+  before_action :set_meal_types, only: [:index, :recipe_search]
+  before_action :set_course_types, only: [:index, :recipe_search]
+
+
   def index
     if params[:query].present?
       @recipes = Edamam::EdamamRecipe.search(params[:query], params[:filters])
@@ -39,6 +43,11 @@ class RecipesController < ApplicationController
     @recipe = Edamam::EdamamRecipe.find(recipe_id)
   end
 
+  def set_meal_types
+    @meal_types = Meal::MEAL_TYPES
+  end
 
-
+  def set_course_types
+    @course_types = Course::COURSE_TYPES
+  end
 end

@@ -56,10 +56,18 @@
         gap: var(--space-xs);
 
         .type {
-          display: flex;
+          display: inline-flex;
           flex: 2 1 auto;
           flex-flow: row nowrap;
-          gap: var(--space-m)
+          gap: var(--space-m);
+        }
+
+        .type p {
+          margin-bottom: 0;
+          padding-top: 6px;
+          font-size: var(--font-size-m);
+          text-decoration: underline;
+          font-weight: bold;
         }
       }
 

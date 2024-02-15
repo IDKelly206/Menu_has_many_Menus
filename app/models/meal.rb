@@ -7,9 +7,9 @@ class Meal < ApplicationRecord
   validates :meal_type, presence: true
 
   MEAL_TYPES = [
-    "Breakfast",
-    "Lunch",
-    "Dinner"
+    "breakfast",
+    "lunch",
+    "dinner"
   ]
 
   def self.meals(attr = {})

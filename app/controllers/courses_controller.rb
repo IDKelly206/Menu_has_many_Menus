@@ -1,5 +1,7 @@
 class CoursesController < ApplicationController
   before_action :set_household
+  before_action :set_meal_types, only: [:new]
+  before_action :set_course_types, only: [:new]
   before_action :set_menu
   before_action :set_meal
   before_action :set_user
@@ -67,6 +69,14 @@ class CoursesController < ApplicationController
 
   def course_params
     params.require(:course).permit(:course_type, :erecipe_id, :meal_id)
+  end
+
+  def set_meal_types
+    @meal_types = Meal::MEAL_TYPES
+  end
+
+  def set_course_types
+    @course_types = Course::COURSE_TYPES
   end
 
   def set_household
