@@ -102,7 +102,7 @@ class MealsController < ApplicationController
   end
 
   def set_meal_type
-    @meal_type = params[:meal_type].capitalize
+    @meal_type = params[:meal_type]
   end
 
   def set_menus
