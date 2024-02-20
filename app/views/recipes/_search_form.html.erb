@@ -20,13 +20,6 @@
             </div>
           </div>
         <% end %>
-<div class="type">
-  <div class="radio-btns">
-    <%= select_types(type: @meal_type, types: @meal_types, btn_type: 'meal') %>
-  </div>
-</div>
-
-
       <div class="type">
         <% if @course_type.present? %>
           <%= ft.hidden_field :dishType, value: @course_type %>

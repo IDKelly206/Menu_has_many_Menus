@@ -13,11 +13,11 @@
               <% @users.each do |user| %>
                 <div class= "card-menu-meal-user">
                   <div class="card-menu-meal-user__header">
-                    <h4><%= link_to user.name_first, menu_meal_path(menu, Meal.find_by(user_id: user, menu_id: menu, meal_type: meal_type)) %></h4>
+                    <h4><%= link_to user.name_first, menu_meal_path(menu, Meal.find_by(user: user, menu: menu, meal_type: meal_type)) %></h4>
                   </div>
                   <div class="card-menu-meal-user__body">
                       <% @course_types.each do |course_type| %>
-                        <% meal_courses = Meal.find_by(user_id: user, menu_id: menu, meal_type: meal_type).courses.map { |course| course.course_type } %>
+                        <% meal_courses = Meal.find_by(user: user, menu: menu, meal_type: meal_type).courses.map { |course| course.course_type } %>
                         <% if meal_courses.include?(course_type) %>
                           <div class= "card-menu-meal-user-course">
                             <i class="fa-solid fa-square-check checked"></i> <%= course_type.capitalize %>

@@ -29,6 +29,7 @@ class MealsController < ApplicationController
     # else
     #   @recipes = Edamam::EdamamRecipe.search("banana", params[:filters])
     # end
+    # What are params being send for intial call if query not present?
     @recipes = Edamam::EdamamRecipe.search(params[:query], params[:filters])
     @meals = Meal.meals(menus: @menus, users: @users, meal_type: @meal_type)
     @meal_ids = @meals.map { |m| m.id }
