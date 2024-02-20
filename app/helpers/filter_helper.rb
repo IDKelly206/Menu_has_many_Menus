@@ -41,7 +41,7 @@ module FilterHelper
       pills << "<div class='radio-btns'>"
       types.map do |t|
         pills << "<div class='radio-item'>
-                #{ft.radio_button :mealType, t, class: 'radio-btn btn--pill btn--pill--meal'}"
+                #{ft.radio_button :mealType, t, class: 'radio-btn btn--pill btn--pill--meal', checked: 'checked'}"
         pills << "#{ft.label 'mealType_'+t, t.capitalize}"
         pills << "</div>"
       end
@@ -61,7 +61,7 @@ module FilterHelper
       pills << "<div class='radio-btns'>"
       types.map do |t|
         pills << "<div class='radio-item'>
-                #{ft.radio_button :dishType, t, class: 'radio-btn btn--pill btn--pill--course'}"
+                #{ft.radio_button :dishType, t, class: 'radio-btn btn--pill btn--pill--course', checked: 'checked'}"
         pills << "#{ft.label 'dishType_'+t.split(" ").join("_"), t.capitalize}"
         pills << "</div>"
       end
