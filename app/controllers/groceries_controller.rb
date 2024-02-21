@@ -14,16 +14,28 @@ class GroceriesController < ApplicationController
   def new
     @grocery = Grocery.new
     @course_ids = params[:course_ids]
-    @courses = @course_ids.map { |course_id| Course.find(course_id.to_i) }
+    @courses = @course_ids.map { |id| Course.find(id.to_i) }
 
-    @course = @courses.first
-    @meal = @course.meal
-    @menu = @meal.menu
 
-    
-
-    # Need eRecipeID for courses just created for ingredient items to add in gList
-    @erecipe_id = @course.erecipe_id
+    if @courses.count == 1
+      @course = @courses.first
+      @meal = @course.meal
+      @menu = @meal.menu
+      @erecipe_id = @course.erecipe_id
+    else
+      user_ids = []
+      menu_ids = []
+      meal_type = []
+      @courses.each do |c|
+        user_ids << c.meal.user.id
+        menu_ids << c.meal.menu.id
+        meal_type << c.meal.meal_type
+      end
+      @users = user_ids.uniq.map { |id| User.find(id) }
+      @menus = menu_ids.uniq.map { |id| Menu.find(id) }
+      @meal_type = meal_type.uniq.first
+      @erecipe_id = @courses.first.erecipe_id
+    end
     @recipe = Edamam::EdamamRecipe.find(@erecipe_id)
 
     console
@@ -83,7 +95,7 @@ class GroceriesController < ApplicationController
   def set_menu
     # params[:menu_id].present? ? @menu = Menu.find(params[:menu_id]) : @menu = nil
     # @menu = Menu.find(params[:menu_id])
-    @menu = @course.meal.menu
+    # @menu = @course.meal.menu
   end
 
   def set_meal
