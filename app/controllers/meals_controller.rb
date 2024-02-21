@@ -29,11 +29,15 @@ class MealsController < ApplicationController
     # else
     #   @recipes = Edamam::EdamamRecipe.search("banana", params[:filters])
     # end
+
+    # params[:course_type].nil? ? @course_type = params[:filters][:dishType] : @course_type = params[:course_type]
+    # @course_type = params["course_type"]
+
     # What are params being send for intial call if query not present?
     @recipes = Edamam::EdamamRecipe.search(params[:query], params[:filters])
+
     @meals = Meal.meals(menus: @menus, users: @users, meal_type: @meal_type)
     @meal_ids = @meals.map { |m| m.id }
-    # @course_type = params["course_type"]
 
     #  For rendering course cards in search bar for meals selected
     course_groups = []

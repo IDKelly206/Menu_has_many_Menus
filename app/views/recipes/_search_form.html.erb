@@ -1,4 +1,3 @@
-
 <%= form_with(url: recipe_search_recipes_path, method: "GET", data: {turbo_frame: "recipes" }) do |f| %>
   <%= f.fields_for :filters do |ft| %>
     <div class="filters">

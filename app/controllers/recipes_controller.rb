@@ -25,7 +25,6 @@ class RecipesController < ApplicationController
     @recipes = Edamam::EdamamRecipe.search(params[:query], params[:filters])
 
     @title = params["title"]
-    # @course_type = params[:course_type]
     params[:course_type].nil? ? @course_type = params[:filters][:dishType] : @course_type = params[:course_type]
 
     if params["meal_ids"].present?
