@@ -31,12 +31,21 @@
           <% end %>
 
           <%= fields.hidden_field :course_ids, value: @course_ids %>
-          <%= fields.hidden_field  :household_id, value: @household.id %>
-          <%= fields.hidden_field  :erecipe_id, value: @erecipe_id %>
+          <%= fields.hidden_field :household_id, value: @household.id %>
+          <%= fields.hidden_field :erecipe_id, value: @erecipe_id %>
         <% end %>
         <hr>
       <% end %>
-      <%= form.submit "Add gList items" %>
-      <%= link_to "Cancel", "#", class: "btn" %>
+    <%= form.submit "Add gList items" %>
     <% end %>
+    <%# if course_ids == 1 %>
+    <%= button_to "Cancel",
+                  [@menu, @meal, @course],
+                  method: :delete,
+                  class: "btn" %>
+
+    <%# else %>
+
+
+
   </div>

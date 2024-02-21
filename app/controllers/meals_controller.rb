@@ -83,7 +83,7 @@ class MealsController < ApplicationController
   end
 
   def destroy
-    course_ids = params[:courses]
+    course_ids = params[:course_ids]
     Course.where(id: course_ids).destroy_all
 
     redirect_to new_meal_path( user_ids: @users,

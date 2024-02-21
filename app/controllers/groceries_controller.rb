@@ -1,7 +1,7 @@
 class GroceriesController < ApplicationController
   before_action :set_household
-  before_action :set_menu, only: [:new, :create]
-  before_action :set_meal, only: [:new, :create]
+  before_action :set_menu, only: [:create]
+  before_action :set_meal, only: [:create]
 
   def index
     groceries = Grocery.groceries(@household)
@@ -17,6 +17,10 @@ class GroceriesController < ApplicationController
     @courses = @course_ids.map { |course_id| Course.find(course_id.to_i) }
 
     @course = @courses.first
+    @meal = @course.meal
+    @menu = @meal.menu
+
+    
 
     # Need eRecipeID for courses just created for ingredient items to add in gList
     @erecipe_id = @course.erecipe_id
@@ -77,13 +81,15 @@ class GroceriesController < ApplicationController
   end
 
   def set_menu
-    params[:menu_id].present? ? @menu = Menu.find(params[:menu_id]) : @menu = nil
+    # params[:menu_id].present? ? @menu = Menu.find(params[:menu_id]) : @menu = nil
     # @menu = Menu.find(params[:menu_id])
+    @menu = @course.meal.menu
   end
 
   def set_meal
-    @menu.nil? ? @meal = nil : @meal = @menu.meals.find(params[:meal_id])
+    # @menu.nil? ? @meal = nil : @meal = @menu.meals.find(params[:meal_id])
     # @meal = @menu.meals.find(params[:meal_id])
+
   end
 
   def grocery_params
