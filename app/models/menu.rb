@@ -16,9 +16,6 @@ class Menu < ApplicationRecord
 
   private
 
-  #  seperate out code so that is enacted after_create on User too
-  #  also, @meal_type is defined many places. what is better place to define?
-
   def create_menu_meals
     menu = self
     household = Household.find(menu.household_id)

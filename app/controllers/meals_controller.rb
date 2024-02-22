@@ -1,15 +1,15 @@
 class MealsController < ApplicationController
   before_action :set_household
-  before_action :set_menus, only: [:new, :destroy]
-  before_action :set_users, only: [:new, :destroy]
-  # before_action :set_meals, only: [:new, :create]
-  before_action :set_meal_types, only: [:index, :show, :meal_new, :new]
-  before_action :set_course_types, only: [:index, :show, :new]
+  before_action :set_menus, only: [:planner, :destroy]
+  before_action :set_users, only: [:planner, :destroy]
+  # before_action :set_meals, only: [:planner, :create]
+  before_action :set_meal_types, only: [:index, :show, :meal_new, :planner]
+  before_action :set_course_types, only: [:index, :show, :planner]
   before_action :set_menu, only: [:index, :show]
   before_action :set_meal, only: [:index, :show]
   before_action :set_user, only: [:index, :show]
-  before_action :set_meal_type, only: [:new, :destroy]
-  # before_action :set_course, only: [:new]
+  before_action :set_meal_type, only: [:planner, :destroy]
+  # before_action :set_course, only: [:planner]
 
 
 
@@ -24,6 +24,9 @@ class MealsController < ApplicationController
   end
 
   def new
+  end
+
+  def planner
     # if params[:query].present?
     #   @recipes = Edamam::EdamamRecipe.search(params[:query], params[:filters])
     # else
@@ -86,7 +89,7 @@ class MealsController < ApplicationController
     course_ids = params[:course_ids]
     Course.where(id: course_ids).destroy_all
 
-    redirect_to new_meal_path( user_ids: @users,
+    redirect_to planner_meals_path( user_ids: @users,
                                menu_ids: @menus,
                                meal_type: @meal_type)
   end

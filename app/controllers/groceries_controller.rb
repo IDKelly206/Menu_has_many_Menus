@@ -63,7 +63,7 @@ class GroceriesController < ApplicationController
         menu_ids = menu_ids.uniq
         meal_type = meal_type.uniq.first
 
-        redirect_to new_meal_path(user_ids: user_ids, menu_ids: menu_ids, meal_type: meal_type),
+        redirect_to planner_meals_path(user_ids: user_ids, menu_ids: menu_ids, meal_type: meal_type),
                                   notice: "Grocery items successfully added to Grocery List."
       else
         redirect_to menu_meal_path(courses.first.meal.menu, courses.first.meal),
