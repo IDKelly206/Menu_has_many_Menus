@@ -33,7 +33,7 @@ module Edamam
       @response[:_links][:next]
     end
 
-    
+
 
     def self.recipes(response)
       response.fetch(:hits).map do |r|
@@ -61,11 +61,11 @@ module Edamam
 
 
     def self.grocery_list(attrs = {} )
-      ids = attrs[:ids]
+      recipe_ids = attrs[:recipe_ids]
       groceries = attrs[:groceries]
       grocery_list = attrs[:grocery_list]
       recipes = []
-      ids.each do |recipe_id|
+      recipe_ids.each do |recipe_id|
         recipe = Edamam::EdamamRecipe.find(recipe_id)
         recipes << recipe
       end

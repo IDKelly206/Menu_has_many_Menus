@@ -20,7 +20,15 @@ class Grocery < ApplicationRecord
     ingredient_names.each_with_index do |name, index|
       grocery_list_names[index] = {}
       grocery_list_names[index][:n] = name.singularize.downcase
+      grocery_list_names[index][:c_ids] = []
     end
+
+    groceries.each do |g|
+      name = g.name.singularize.downcase
+      g_item = grocery_list_names.detect { |i| i[:n] == name }
+      g_item[:c_ids].push(g.id)
+    end
+
     grocery_list_names
   end
 
