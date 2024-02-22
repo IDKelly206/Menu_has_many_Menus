@@ -23,13 +23,18 @@
   <div class="search-section__courses">
     <% unless @course_recipes.nil? %>
       <% @course_types.each do |course_type| %>
-          <span class="title"><h6><%= course_type.capitalize %>s:</h6></span>
+        <div class="section">
+          <span class="title"><h6><%= course_type.split.first.capitalize.pluralize %>:</h6></span>
           <div class="courses">
-              <%= render @courses.select { |course| course.course_type == course_type },
-                                         recipes: @course_recipes,
-                                         recipe_keyes: @recipes_with_course_id %>
+            <%= render @courses.select { |course| course.course_type == course_type },
+                                        recipes: @course_recipes,
+                                        recipe_keyes: @recipes_with_course_id %>
           </div>
+        </div>
       <% end %>
+      <div class="footer">
+        <%= link_to "DONE", menus_path, class: "btn btn--ligth" %>
+      </div>
     <% end %>
   </div>
 </div>
