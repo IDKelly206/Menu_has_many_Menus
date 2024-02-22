@@ -32,5 +32,6 @@
   <% elsif @meal.present? %>
     <%= hidden_field_tag 'meal_id', @meal.id %>
     <%= hidden_field_tag 'menu_id', @menu.id %>
+    <%= hidden_field_tag 'course_id', @course.id %>
   <% end %>
 <% end %>
