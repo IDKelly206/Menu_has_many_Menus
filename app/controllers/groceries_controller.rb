@@ -47,7 +47,7 @@ class GroceriesController < ApplicationController
       if courses.size > 1
         user_ids = courses.map { |c| c.meal.user_id }.uniq
         menu_ids = courses.map { |c| c.meal.menu_id }.uniq
-        meal_type = courses.map { |c| c.meal.meal_type }.uniq
+        meal_type = courses.map { |c| c.meal.meal_type }.uniq.first
 
         redirect_to planner_meals_path(user_ids: user_ids, menu_ids: menu_ids, meal_type: meal_type),
                                   notice: "Grocery items successfully added to Grocery List."
@@ -64,10 +64,31 @@ class GroceriesController < ApplicationController
   end
 
   def edit
+  end
 
+  def multi_edit
+    value = false
+    @g_ids = params[:g_ids].split
+
+    Grocery.where(id: @g_ids).update_all(list_add: value)
+
+    # courses = params[:course_ids].map { |id| Course.find(id) }
+    # courses.each do |c|
+    #   c.list_add = false
+    #   c.save
+    # end
+
+    redirect_to groceries_path
   end
 
   def update
+    courses = params[:course_ids].map { |id| Course.find(id) }
+    courses.each do |c|
+      c.list_add = false
+      c.save
+    end
+
+    redirect_to groceries_path
   end
 
   def destroy

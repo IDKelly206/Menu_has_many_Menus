@@ -11,7 +11,7 @@ class Grocery < ApplicationRecord
   #  Add ordered sequence of :foodCat then :name
 
   def self.groceries(household)
-    household.groceries.map { |g| g if g.list_add == true }
+    household.groceries.select { |g| g if g.list_add == true }
   end
 
   def self.grocery_list(groceries)
@@ -20,13 +20,13 @@ class Grocery < ApplicationRecord
     ingredient_names.each_with_index do |name, index|
       grocery_list_names[index] = {}
       grocery_list_names[index][:n] = name.singularize.downcase
-      grocery_list_names[index][:c_ids] = []
+      grocery_list_names[index][:g_ids] = []
     end
 
     groceries.each do |g|
       name = g.name.singularize.downcase
       g_item = grocery_list_names.detect { |i| i[:n] == name }
-      g_item[:c_ids].push(g.id)
+      g_item[:g_ids].push(g.id)
     end
 
     grocery_list_names

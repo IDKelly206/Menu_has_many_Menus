@@ -36,7 +36,11 @@ Rails.application.routes.draw do
 
   resources :products, only: [:index]
 
-  resources :groceries
+  resources :groceries do
+    collection do
+      get 'multi_edit', to: 'groceries#multi_edit', as: 'multi_edit'
+    end
+  end
 
 
 end
