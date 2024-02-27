@@ -1,8 +1,9 @@
 module FilterHelper
-  def filter_types(attr = { })
+  def filter_types(attr = {})
     unless attr[:type].nil?
       type = attr[:type]
-      pills = "<li class='btn--pill btn--pill--meal'>#{type.capitalize}</li>"
+      type = type.capitalize
+      pills = "<li class='btn--pill btn--pill--meal'>#{type}</li>"
       pills.html_safe
     end
   end
