@@ -1,11 +1,15 @@
 class CoursesController < ApplicationController
-  before_action :set_household
+  before_action :set_household, except: [:multi_destroy]
   before_action :set_meal_types, only: [:new]
   before_action :set_course_types, only: [:new]
-  before_action :set_menu
-  before_action :set_meal
-  before_action :set_user
+  before_action :set_menu, except: [:multi_destroy]
+  before_action :set_meal, except: [:multi_destroy]
+  before_action :set_user, except: [:multi_destroy]
   before_action :set_course, only: [:edit, :update, :destroy]
+  before_action :set_menus, only: [:multi_destroy]
+  before_action :set_users, only: [:multi_destroy]
+  before_action :set_meal_type, only: [:multi_destroy]
+
 
   def new
     if params[:query].present?
@@ -65,6 +69,14 @@ class CoursesController < ApplicationController
     redirect_to menu_meal_path(@menu, @meal), notice: "Course deleted"
   end
 
+  def multi_destroy
+    Course.destroy(params[:course_ids])
+
+    redirect_to planner_meals_path( user_ids: @users,
+                               menu_ids: @menus,
+                               meal_type: @meal_type)
+  end
+
   private
 
   def course_params
@@ -97,5 +109,17 @@ class CoursesController < ApplicationController
 
   def set_course
     @course = @meal.courses.find(params[:id])
+  end
+
+  def set_menus
+    @menus = params[:menu_ids].map { |menu_id| Menu.find(menu_id.to_i) }
+  end
+
+  def set_users
+    @users = params[:user_ids].map { |user_id| User.find(user_id.to_i) }
+  end
+
+  def set_meal_type
+    @meal_type = params[:meal_type]
   end
 end

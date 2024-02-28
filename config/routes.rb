@@ -27,6 +27,11 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :courses, only: [:index] do
+    collection do
+      delete 'multi_destroy', to: 'courses#multi_destroy', as: 'multi_destroy'
+    end
+  end
 
   resources :recipes, only: [:index, :show, :new] do
     collection do
