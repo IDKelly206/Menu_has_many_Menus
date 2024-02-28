@@ -26,7 +26,7 @@ class Grocery < ApplicationRecord
     groceries.each do |g|
       name = g.name.singularize.downcase
       g_item = grocery_list_names.detect { |i| i[:n] == name }
-      g_item[:g_ids].push(g.id)
+      g_item[:g_ids].push(g.id.to_s)
     end
 
     grocery_list_names

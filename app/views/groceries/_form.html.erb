@@ -45,7 +45,7 @@
                     class: "btn" %>
     <% else %>
       <%= button_to "Cancel",
-                    multi_destroy_meals_path(course_ids: @course_ids,
+                    destroy_multiple_courses_path(course_ids: @course_ids,
                                           user_ids: @users,
                                           menu_ids: @menus,
                                           meal_type: @meal_type),

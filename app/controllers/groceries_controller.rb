@@ -65,7 +65,7 @@ class GroceriesController < ApplicationController
   def edit
   end
 
-  def multi_edit
+  def edit_multiple
     value = false
     g_ids = params[:g_ids].first.split
     Grocery.where(id: g_ids).update_all(list_add: value)

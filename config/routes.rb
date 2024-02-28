@@ -23,13 +23,12 @@ Rails.application.routes.draw do
     collection do
       get 'meal_new'
       get 'planner'
-      get 'multi_destroy', to: 'meals#multi_destroy', as: 'multi_destroy'
     end
   end
 
   resources :courses, only: [:index] do
     collection do
-      delete 'multi_destroy', to: 'courses#multi_destroy', as: 'multi_destroy'
+      delete 'destroy_multiple', to: 'courses#destroy_multiple', as: 'destroy_multiple'
     end
   end
 
@@ -43,7 +42,7 @@ Rails.application.routes.draw do
 
   resources :groceries do
     collection do
-      get 'multi_edit', to: 'groceries#multi_edit', as: 'multi_edit'
+      patch 'edit_multiple', to: 'groceries#edit_multiple', as: 'edit_multiple'
     end
   end
 

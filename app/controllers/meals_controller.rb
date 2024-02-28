@@ -86,12 +86,6 @@ class MealsController < ApplicationController
   end
 
   def destroy
-    course_ids = params[:course_ids]
-    Course.where(id: course_ids).destroy_all
-
-    redirect_to planner_meals_path( user_ids: @users,
-                               menu_ids: @menus,
-                               meal_type: @meal_type)
   end
 
   private
