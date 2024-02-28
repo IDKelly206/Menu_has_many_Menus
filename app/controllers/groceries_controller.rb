@@ -1,7 +1,5 @@
 class GroceriesController < ApplicationController
   before_action :set_household
-  before_action :set_menu, only: [:create]
-  before_action :set_meal, only: [:create]
 
   def index
     groceries = Grocery.groceries(@household)
@@ -26,9 +24,7 @@ class GroceriesController < ApplicationController
       menu_ids = @courses.map { |c| c.meal.menu_id }.uniq
       meal_type = @courses.map { |c| c.meal.meal_type }.uniq
       @users = user_ids.map { |id| User.find(id) }
-      # @users = User.where(id: user_ids)
       @menus = menu_ids.map { |id| Menu.find(id) }
-      # @menus = Menu.where(id: menu_ids)
       @meal_type = meal_type.first
       @erecipe_id = @courses.first.erecipe_id
     end
@@ -44,6 +40,7 @@ class GroceriesController < ApplicationController
 
     @course_ids = params[:course_ids].split
     courses = @course_ids.map { |id| Course.find(id) }
+    # courses = Course.where(id: params[:course_ids])
 
     if @glist_count == @new_glist
       if courses.size > 1
@@ -70,7 +67,7 @@ class GroceriesController < ApplicationController
 
   def multi_edit
     value = false
-    g_ids = params[:g_ids].split
+    g_ids = params[:g_ids].first.split
     Grocery.where(id: g_ids).update_all(list_add: value)
 
     redirect_to groceries_path
@@ -86,18 +83,6 @@ class GroceriesController < ApplicationController
 
   def set_household
     @household = Household.find(current_user.id)
-  end
-
-  def set_menu
-    # params[:menu_id].present? ? @menu = Menu.find(params[:menu_id]) : @menu = nil
-    # @menu = Menu.find(params[:menu_id])
-    # @menu = @course.meal.menu
-  end
-
-  def set_meal
-    # @menu.nil? ? @meal = nil : @meal = @menu.meals.find(params[:meal_id])
-    # @meal = @menu.meals.find(params[:meal_id])
-
   end
 
   def grocery_params

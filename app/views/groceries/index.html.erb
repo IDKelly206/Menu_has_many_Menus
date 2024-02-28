@@ -5,18 +5,7 @@
   </div>
   <div class="section-cards">
 <ul>
-  <% @grocery_list.each do |item| %>
-    <li>
-      <%= form_with url: multi_edit_groceries_path, method: 'get' do |f| %>
-        <%= f.label item[:n] %> |
-        <%= f.label item[:q] %> |
-        <%= f.label item[:m] %> |
-        <%= f.label item[:cat] %>|
-        <%= f.hidden_field :g_ids, value: item[:g_ids] %>
-        <%= f.submit "Got it" %>
-      <% end %>
-    </li><hr>
-  <% end %>
+  <%= render "groceries/bulk_edit_form", grocery_list: @grocery_list %>
 </ul>
 
   </div>
