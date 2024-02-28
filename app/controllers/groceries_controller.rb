@@ -26,7 +26,9 @@ class GroceriesController < ApplicationController
       menu_ids = @courses.map { |c| c.meal.menu_id }.uniq
       meal_type = @courses.map { |c| c.meal.meal_type }.uniq
       @users = user_ids.map { |id| User.find(id) }
+      # @users = User.where(id: user_ids)
       @menus = menu_ids.map { |id| Menu.find(id) }
+      # @menus = Menu.where(id: menu_ids)
       @meal_type = meal_type.first
       @erecipe_id = @courses.first.erecipe_id
     end
@@ -68,27 +70,13 @@ class GroceriesController < ApplicationController
 
   def multi_edit
     value = false
-    @g_ids = params[:g_ids].split
-
-    Grocery.where(id: @g_ids).update_all(list_add: value)
-
-    # courses = params[:course_ids].map { |id| Course.find(id) }
-    # courses.each do |c|
-    #   c.list_add = false
-    #   c.save
-    # end
+    g_ids = params[:g_ids].split
+    Grocery.where(id: g_ids).update_all(list_add: value)
 
     redirect_to groceries_path
   end
 
   def update
-    courses = params[:course_ids].map { |id| Course.find(id) }
-    courses.each do |c|
-      c.list_add = false
-      c.save
-    end
-
-    redirect_to groceries_path
   end
 
   def destroy
