@@ -1,10 +1,13 @@
-  <%= simple_form_for(@user) do |f|%>
+  <%= simple_form_for (:user, url: users_path) do |f|%>
     <%= f.input :name_first,
             autofocus: true  %>
     <%= f.input :name_last %>
     <%= f.input :email,
             required: true,
             input_html: { autocomplete: "email" } %>
+    <div class="checkboxes">
+      <%= f.collection_check_boxes :health_ids, @health_types, :id, :parameter%>
+    </div>
     <%= f.hidden_field :household_id, value: current_user.household_id %>
     <%= f.submit "Add User to Household", class: "btn btn-light" %>
     <%= link_to "Cancel", household_path(@household), class: "btn btn-light"  %>

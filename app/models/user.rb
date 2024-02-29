@@ -27,8 +27,14 @@ class User < ApplicationRecord
 
   private
 
+  def create_dietary_restrictions(health_restrictions)
+    unless health_restrictions.empty?
+      health_restrictions.each { |h| DietaryRestriction.create!(user: self, health: h)}
+    end
+  end
+
   def create_user_meals
-    user_id = User.last.id
+    user_id = self.id
     household = User.last.household_id
     calendar = (Time.now.to_date...(Time.now.to_date+10))
     menu_ids = Menu.where('household_id = ?', household).where('date IN (:cal)', { cal: calendar }).ids
