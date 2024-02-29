@@ -29,8 +29,13 @@ class UsersController < ApplicationController
     end
   end
 
+  def edit
+    @health_types = Health.all.by_name
+  end
+
   def update
     if @user.update(user_params)
+      
       redirect_to household_path(@household), notice: "User was succesfully updated."
     else
       render :edit, status: :unprocessable_entity
