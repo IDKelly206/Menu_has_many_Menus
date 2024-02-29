@@ -1,11 +1,6 @@
-<div>
-  <div class="header">
-    <%= grocery.name %> |
-    <%= grocery.category %> |
-    <%= grocery.quantity %> |
-    <%= grocery.measurement %>
-  </div>
-  <div class="action">
-    <p>"TEST"</p>
-  </div>
-</div>
+<% groceries.each do |grocery| %>
+  <li>
+    <%= render "groceries/bulk_edit_form", item: grocery %>
+  </li>
+  <hr>
+<% end %>

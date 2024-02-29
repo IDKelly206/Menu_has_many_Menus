@@ -23,9 +23,8 @@ class Menu < ApplicationRecord
     meal_types = Meal::MEAL_TYPES
     users.each do |user|
       meal_types.each do |meal_type|
-        Meal.create!(menu_id: menu.id, user_id: user.id, meal_type: meal_type)
+        Meal.create!(menu: menu, user: user, meal_type: meal_type)
       end
     end
   end
-
 end

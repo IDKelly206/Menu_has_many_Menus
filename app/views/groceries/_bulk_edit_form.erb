@@ -1,5 +1,4 @@
-<% grocery_list.each do |item| %>
-  <li>
+
     <%= form_with url: edit_multiple_groceries_path, method: 'patch' do |f| %>
       <%= f.label item[:n] %> |
       <%= f.label item[:q] %> |
@@ -8,5 +7,3 @@
       <%= f.hidden_field :g_ids, name: "g_ids[]", multiple: true, value: item[:g_ids] %>
       <%= f.submit "Got it" %>
     <% end %>
-  </li><hr>
-<% end %>
