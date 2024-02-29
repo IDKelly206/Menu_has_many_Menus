@@ -14,6 +14,8 @@ class User < ApplicationRecord
   belongs_to :household
 
   has_many :meals, dependent: :destroy
+  has_many :dietary_restrictions, dependent: :destroy
+  has_many :healths, through: :dietary_restrictions
 
 
   def assign_household

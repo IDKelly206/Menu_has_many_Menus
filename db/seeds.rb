@@ -1,20 +1,17 @@
-require 'faker'
 
 puts "-------------------"
-puts "seeding Recipes"
+puts "seeding Health"
 puts "-------------------"
 
-recipe = 1
+health_types = [
+  "dairy-free",
+  "egg-free",
+  "kosher",
+  "vegan",
+  "vegetarian"
+]
 
-30.times do
-  Recipe.create!(
-    label: Faker::Book.title,
-    source: Faker::Book.author,
-    yield: rand(1..8)
-  )
-  puts "created Reicpe # #{recipe}"
-  recipe += 1
-end
+health_types.each { |type| Health.create(parameter: type)}
 
 puts "-------------------"
 puts "completed seeding"

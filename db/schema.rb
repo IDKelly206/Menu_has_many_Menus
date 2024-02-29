@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_02_07_074150) do
+ActiveRecord::Schema[7.0].define(version: 2024_02_29_101406) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -21,6 +21,15 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_07_074150) do
     t.datetime "updated_at", null: false
     t.string "erecipe_id", null: false
     t.index ["meal_id"], name: "index_courses_on_meal_id"
+  end
+
+  create_table "dietary_restrictions", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "health_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["health_id"], name: "index_dietary_restrictions_on_health_id"
+    t.index ["user_id"], name: "index_dietary_restrictions_on_user_id"
   end
 
   create_table "groceries", force: :cascade do |t|
@@ -36,6 +45,12 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_07_074150) do
     t.bigint "course_id", null: false
     t.index ["course_id"], name: "index_groceries_on_course_id"
     t.index ["household_id"], name: "index_groceries_on_household_id"
+  end
+
+  create_table "healths", force: :cascade do |t|
+    t.string "parameter"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "households", force: :cascade do |t|
@@ -104,6 +119,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_07_074150) do
   end
 
   add_foreign_key "courses", "meals"
+  add_foreign_key "dietary_restrictions", "healths"
+  add_foreign_key "dietary_restrictions", "users"
   add_foreign_key "groceries", "courses"
   add_foreign_key "groceries", "households"
   add_foreign_key "meals", "menus"
