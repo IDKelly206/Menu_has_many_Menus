@@ -5,13 +5,13 @@
                  user_path(user),
                  data: { turbo_frame: "_top"} %>
     <div class="user_actions">
+      <%= link_to "Edit",
+                  edit_user_path(user),
+                  class: "btn" %>
       <%= button_to "Delete",
                     user_path(user),
                     method: :delete,
                     class: "btn" %>
-      <%= link_to "Edit",
-                  edit_user_path(user),
-                  class: "btn" %>
     </div>
   </div>
 <% end %>

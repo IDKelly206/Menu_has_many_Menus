@@ -14,11 +14,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    # health_ids = user_params[:health_ids].reject { |id| id.empty? }.uniq
-    # health_restrictions = health_ids.map { |id| Health.find(id) }
-
     if @user.save(validate: false) #skips validations
-      # @user.create_dietary_restrictions(health_restrictions)
       respond_to do |format|
         format.html { redirect_to household_path(@household),
                       notice: "User was succesfully created." }
@@ -35,7 +31,6 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-
       redirect_to household_path(@household), notice: "User was succesfully updated."
     else
       render :edit, status: :unprocessable_entity

@@ -4,7 +4,7 @@ module UserFormHelper
     (Health.all - user.healths).each do |health|
       user.dietary_restrictions.build(health: health)
     end
-    user.dietary_restrictions.sort_by { |dr| dr.health.parameter }
+    #  user.dietary_restrictions.sort_by { |dr| dr.health.parameter }
     user
 
   end
