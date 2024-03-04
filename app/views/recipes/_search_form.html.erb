@@ -9,15 +9,15 @@
         <%= select_coursetypes(ft, types: @course_types, type: @course_type) %>
       </div>
       <div class="type">
-        
+
       </div>
     </div>
-
-  <div class="bar">
-    <div class="option">
-      <%= ft.label "Filter by: " %>
-      <%= ft.select :health, Recipe::SEARCH_CRITERIA[:DIETARY_FILTERS] %>
-    </div>
+    <div class="bar">
+      <div class="option">
+        <%= ft.label "Filter by: " %>
+        <%= ft.select :health, Recipe::SEARCH_CRITERIA[:DIETARY_FILTERS] %>
+      </div>
+      <%# <%= hidden_field_tag :health, @dietary_restrictions %> %>
   <% end %>
     <div class="input">
       <%= f.label :query, "Search for:" %>
@@ -26,7 +26,6 @@
     </div>
   </div>
   <%= hidden_field_tag :title, yield(:title) %>
-  <%# hidden_field_tag :health, @dietary_restrictions %>
   <% if @meal_ids.present? %>
     <%= hidden_field_tag 'meal_ids', @meal_ids %>
   <% elsif @meal.present? %>

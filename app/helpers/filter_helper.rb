@@ -39,8 +39,8 @@ module FilterHelper
       dietary = attr[:dietary]
       pills = dietary.map { |dr| "<li class='btn--pill btn--pill--dietary'>#{dr.capitalize}</li>" }
       pill = pills.join(' ')
+      pill.html_safe
     end
-    pill.html_safe
   end
 
   def select_mealtypes(ft , attr = {})
