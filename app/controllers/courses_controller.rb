@@ -22,6 +22,7 @@ class CoursesController < ApplicationController
 
     @course = @meal.courses.build(course_type: @course_type)
     @meal_type = @meal.meal_type
+    @dietary_restrictions = @user.dietary_restrictions.map { |dr| dr.health.parameter }
 
     # For rendering course cards in search bar for meals selected
     # @courses = @meal.courses.reject { |course| course if course.id.nil? }

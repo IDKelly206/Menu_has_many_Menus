@@ -34,6 +34,15 @@ module FilterHelper
     end
   end
 
+  def filter_dietary(attr = {})
+    unless attr[:dietary].nil?
+      dietary = attr[:dietary]
+      pills = dietary.map { |dr| "<li class='btn--pill btn--pill--dietary'>#{dr.capitalize}</li>" }
+      pill = pills.join(' ')
+    end
+    pill.html_safe
+  end
+
   def select_mealtypes(ft , attr = {})
     type = attr[:type]
     types = attr[:types]

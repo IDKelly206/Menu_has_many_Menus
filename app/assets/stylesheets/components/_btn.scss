@@ -70,7 +70,9 @@
     }
 
     &--user,
-    &--user:checked + label {
+    &--user:checked + label,
+    &--dietary,
+    &--dietary:checked + label  {
       background-color: var(--color-primary);
       color: var(--color-text-body);
 
