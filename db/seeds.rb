@@ -4,14 +4,14 @@ puts "seeding Health"
 puts "-------------------"
 
 health_types = [
-  "dairy-free",
+  "vegetarian",
   "egg-free",
   "kosher",
-  "vegan",
-  "vegetarian"
+  "dairy-free",
+  "vegan"
 ]
 
-health_types.each { |type| Health.create(parameter: type)}
+health_types.each { |type| Health.create(parameter: type) }
 
 puts "-------------------"
 puts "completed seeding"

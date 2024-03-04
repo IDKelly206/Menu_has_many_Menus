@@ -15,6 +15,7 @@ class User < ApplicationRecord
   has_many :meals, dependent: :destroy
   has_many :dietary_restrictions, dependent: :destroy
   has_many :healths, through: :dietary_restrictions
+  accepts_nested_attributes_for :dietary_restrictions, allow_destroy: true
 
 
   def assign_household
@@ -30,7 +31,12 @@ class User < ApplicationRecord
     unless health_restrictions.empty?
       health_restrictions.each { |h| DietaryRestriction.create!(user: self, health: h)}
     end
+
+    # create if
+    # destroy if
+    # there is no updating
   end
+
 
   def create_user_meals
     user_id = self.id

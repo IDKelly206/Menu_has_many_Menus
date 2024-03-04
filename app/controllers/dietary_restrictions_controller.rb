@@ -1,2 +1,4 @@
 class DietaryRestrictionsController < ApplicationController
+
+  
 end
