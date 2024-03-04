@@ -1,24 +1,26 @@
 <div class="search-section">
   <div class="search-section__filters">
-    <div class="meal-filters">
-      <ul class="details">
-        <%= filter_types(type: @meal_type) %>
-        <%= filter_types(type: @course_type) %>
-      </ul>
+    <div class="filters">
       <ul class="details">
         <%= filter_users(users: @users) %>
         <%= filter_users(users: @user) %>
       </ul>
       <ul class="details">
-        <%= filter_dates(dates: @menus) %>
-        <%= filter_dates(dates: @menu) %>
+        <%= filter_types(type: @meal_type) %>
+        <%= filter_types(type: @course_type) %>
       </ul>
       <ul class="details">
-        <%= filter_dietary(dietary: @dietary_restrictions) %>
+        <%= filter_dates(dates: @menus) %>
+        <%= filter_dates(dates: @menu) %>
       </ul>
     </div>
   </div>
   <div class="search-section__body">
+    <div class="filters">
+      <ul class="details">
+        <%= filter_dietary(dietary: @dietary_restrictions) %>
+      </ul>
+    </div>
     <div class="search-bar">
       <%= render 'recipes/search_form' %>
     </div>

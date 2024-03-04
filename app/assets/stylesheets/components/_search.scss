@@ -11,7 +11,7 @@
     flex-flow: column nowrap;
     justify-content: flex-start;
 
-    .meal-filters {
+    .filters {
       display: inline-flex;
       flex-flow: column nowrap;
       flex: 1 1 auto;
@@ -41,6 +41,27 @@
     flex: 2 1 0;
     flex-flow: column nowrap;
     justify-content: flex-end;
+
+    .filters {
+      display: inline-flex;
+      flex-flow: column nowrap;
+      flex: 1 1 auto;
+      justify-content: flex-start;
+      gap: var(--space-s);
+      padding: 0 var(--font-size-xs) var(--space-s) ;
+
+        // UL
+      .details {
+        display: flex;
+        flex: 0 0 0;
+        flex-flow: row wrap;
+        justify-content: flex-start;
+        list-style: none;
+        gap: var(--space-xs);
+        margin: 0;
+        padding: 0;
+      }
+    }
 
     .search-bar {
       display: flex;

@@ -4,28 +4,23 @@
       <div class="type">
         <%= select_mealtypes(ft, types: @meal_types, type: @meal_type) %>
       </div>
-
       <div class="type">
         <%= select_coursetypes(ft, types: @course_types, type: @course_type) %>
       </div>
       <div class="type">
-
+        <%= ft.hidden_field :health, name:"health{}", multiple: true, value: @dietary_restrictions %>
       </div>
     </div>
-    <div class="bar">
-      <div class="option">
-        <%= ft.label "Filter by: " %>
-        <%= ft.select :health, Recipe::SEARCH_CRITERIA[:DIETARY_FILTERS] %>
-      </div>
-      <%# <%= hidden_field_tag :health, @dietary_restrictions %> %>
   <% end %>
-    <div class="input">
-      <%= f.label :query, "Search for:" %>
-      <%= f.text_field :query, multiple: true %>
-    <%= f.submit "Search", name: nil, class: "btn btn--light" %>
+    <div class="bar">
+      <div class="input">
+        <%= f.label :query, "Search for:" %>
+        <%= f.text_field :query, multiple: true %>
+      <%= f.submit "Search", name: nil, class: "btn btn--light" %>
+      </div>
     </div>
-  </div>
   <%= hidden_field_tag :title, yield(:title) %>
+
   <% if @meal_ids.present? %>
     <%= hidden_field_tag 'meal_ids', @meal_ids %>
   <% elsif @meal.present? %>
