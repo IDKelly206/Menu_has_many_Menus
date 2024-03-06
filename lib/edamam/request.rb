@@ -13,7 +13,7 @@ class Request
     def where(query, filters)
       type = "?type=public"
       query_string = query.nil? ? "" : query.first.split.join("%20")
-      option = filters.nil? ? "" : filters.each.map { |k, v| "#{k}=""#{v}".split.join("%20") }.join("&").insert(0, '&')
+      option = filters.nil? ? "" : filters.each.map { |k, v| v.class == Array ? v.join(' ').split(' ').map { |va| "#{k}=""#{va}".split.join("%20") } : "#{k}=#{v}".split.join("%20") }.join("&").insert(0, '&')
       path = "#{type}&q=#{query_string}"
       get_json(path, option)
     end

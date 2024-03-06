@@ -43,6 +43,16 @@ module FilterHelper
     end
   end
 
+  def dietary_filters(ft, attr = {})
+    unless attr[:dietary].nil?
+      dietary = attr[:dietary]
+      pills = ''
+      dietary.each { |dr| pills << "#{ ft.hidden_field :health, value: dr }" }
+      pill = pills
+    end
+    pill.html_safe
+  end
+
   def select_mealtypes(ft , attr = {})
     type = attr[:type]
     types = attr[:types]

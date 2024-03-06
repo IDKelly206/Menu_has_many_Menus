@@ -8,7 +8,8 @@
         <%= select_coursetypes(ft, types: @course_types, type: @course_type) %>
       </div>
       <div class="type">
-        <%= ft.hidden_field :health, name:"health{}", multiple: true, value: @dietary_restrictions %>
+        <%= ft.hidden_field :health, name:"[filters][health][]", multiple: true, value: @dietary_restrictions %>
+
       </div>
     </div>
   <% end %>
