@@ -1,6 +1,9 @@
 .checkboxes {
-  display: inline-block;
-  gap: var(--space-m);
+  display: flex;
+  flex: 0 0 auto;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  gap: var(--space-xs);
 }
 
 .check_box {
@@ -11,14 +14,7 @@
 .check_box + label {
   cursor: pointer;
   display: inline-block;
-  // margin-bottom: var(--space-m);
-  // padding: var(--space-xxs) var(--space-m);
-  // border: var(--border-transparent);
-  // border-radius: var(--border-radius);
   background-origin: border-box; // Invisible borders with linear gradients
-  // background-color: transparent;
-  // color: var(--color-dark);
-  // font-weight: bold;
   text-decoration: none;
 
   outline: none;
@@ -34,8 +30,10 @@
 
 }
 
-// .check_box:checked + label {
-//   color: var(--color-dark);
-//   filter: brightness(92%);
 
+// .type {
+//   display: inline-flex;
+//   flex: 2 1 auto;
+//   flex-flow: row nowrap;
+//   gap: var(--space-m);
 // }

@@ -1,13 +1,15 @@
 <%= form_with url: planner_meals_path, method: 'get' do |f| %>
-  <div class="form-body">
+  <div class="form__body">
+    <p>Select Meal</p>
     <div class="radio-btns" >
       <% @meal_types.each do |meal_type| %>
         <div class="radio-item">
           <%= f.radio_button :meal_type, meal_type, class: "radio-btn btn--pill btn--pill--meal" %>
-          <%= f.label "meal_type_#{meal_type.downcase}", meal_type %>
+          <%= f.label "meal_type_#{meal_type.downcase}", meal_type.capitalize %>
         </div>
       <% end %>
     </div>
+    <p>Select Diners</p>
     <div class="checkboxes">
       <%= f.collection_check_boxes :user_ids,
                                    @users,
@@ -18,7 +20,7 @@
         <%= b.label  %>
       <% end %>
     </div>
-
+    <p>Select Days</p>
     <div class="checkboxes">
       <%= f.collection_check_boxes :menu_ids,
                                    @menus,

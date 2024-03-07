@@ -7,7 +7,7 @@ class MenusController < ApplicationController
 
 
   def index
-    calendar = (Time.now.to_date...(Time.now.to_date + 3))
+    calendar = (Time.now.to_date...(Time.now.to_date + 10))
     menu_count = Menu.where('household_id = ?', @household).where('date IN (:cal)', { cal: calendar }).count
     if menu_count >= calendar.count
       @menus = Menu.where('household_id = ?', @household).where('date IN (:cal)', { cal: calendar }).ordered
