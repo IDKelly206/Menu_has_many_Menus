@@ -10,40 +10,10 @@
   </div>
 
   <div class="menu">
-  <%# turbo_frame_tag "menu-meal-body"  %>
     <div class="card-menu-meal__body">
-      <div class= "card-menu-meal-course">
-        <div class="card-menu-meal-course__header">
-          <h4><%= User.find(@meal.user_id).name_first %></h4>
-          <%= link_to menus_path do %>
-            <i class="fa-regular fa-circle-xmark"></i>
-          <% end %>
-        </div>
-        <div class="card-menu-meal-course__body">
-        <%# Go through each course (@courses) and match course_type & render card %>
-          <% @course_types.each do |course_type| %>
-            <div class="course-item">
-              <div class="card-course__action">
-                <%= link_to new_menu_meal_course_path(@menu, @meal,
-                          course_type: course_type),
-                          class: "btn" do %>
-                  <i class="fa-solid fa-circle-plus"></i>
-                <% end %>
-              </div>
-              <div class="card=course__details">
-                <h5><%= course_type.capitalize %>s:</h5>
-              </div>
-            </div>
-              <% unless @courses.find_by(course_type: course_type).nil? %>
-                <%= render @courses.select { |course| course.course_type == course_type },
-                                    meal: @meal,
-                                    recipes: @recipes %>
-              <% else %>
-              <% end %>
-          <% end %>
-        </div>
-      </div>
-    </div>
+  <%# turbo_frame_tag "menu-meal-body"  %>
+    <%= render @meal %>
   <%# Turbo frame end %>
+    </div>
   </div>
 </div>

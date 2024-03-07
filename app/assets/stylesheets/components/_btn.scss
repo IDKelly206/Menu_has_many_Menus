@@ -69,19 +69,10 @@
         }
     }
 
+    &--user,
+    &--user:checked + label,
     &--dietary,
     &--dietary:checked + label {
-      background-color: var(--color-secondary);
-      color: var(--color-light);
-
-      &:hover + label {
-        background-color: var(--color-secondary);
-        color: var(--color-light);
-        }
-    }
-
-    &--user,
-    &--user:checked + label {
       background-color: var(--color-primary);
       color: var(--color-text-body);
 

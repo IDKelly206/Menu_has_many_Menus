@@ -4,6 +4,7 @@
     <%= render "shared/searchbar" %>
   </div>
   <div class="section-cards">
+    <%= turbo_frame_tag dom_id(Grocery.new) %>
     <%= render "recipes/recipes", recipes: @recipes, locals: { title: yield(:title) } %>
   </div>
 </div>
