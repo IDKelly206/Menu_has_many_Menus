@@ -1,5 +1,5 @@
 <%= form_with url: planner_meals_path, method: 'get' do |f| %>
-  <div class="form__body">
+  <div class="form-body form__body">
     <p>Select Meal</p>
     <div class="radio-btns" >
       <% @meal_types.each do |meal_type| %>
@@ -32,7 +32,7 @@
       <% end %>
     </div>
 
-      <%= f.submit "Next", class: "btn btn-light" %>
-      <%= link_to "Cancel", menus_path, class: "btn btn-light"  %>
+      <%= f.submit "Next", class: "btn btn--dark" %>
+      <%= link_to "Cancel", menus_path, class: "btn btn--dark"  %>
   </div>
 <% end %>

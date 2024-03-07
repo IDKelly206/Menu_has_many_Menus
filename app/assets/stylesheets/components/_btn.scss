@@ -69,10 +69,19 @@
         }
     }
 
-    &--user,
-    &--user:checked + label,
     &--dietary,
-    &--dietary:checked + label  {
+    &--dietary:checked + label {
+      background-color: var(--color-secondary);
+      color: var(--color-light);
+
+      &:hover + label {
+        background-color: var(--color-secondary);
+        color: var(--color-light);
+        }
+    }
+
+    &--user,
+    &--user:checked + label {
       background-color: var(--color-primary);
       color: var(--color-text-body);
 
@@ -123,15 +132,16 @@
   }
 
   &--dark {
-    color: var(--color-white);
-    border-color: var(--color-dark);
-    background-color: var(--color-dark);
+    color: var(--color-pearl);
+    border-color: var(--color-onyx);
+    background-color: var(--color-onyx);
 
     &:hover,
     &:focus,
     &:focus-within,
     &:active {
-      color: var(--color-white);
+      color: var(--color-primary-rotate);
+      border-color: var(--color-onyx);
     }
   }
 
