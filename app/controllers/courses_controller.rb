@@ -74,8 +74,8 @@ class CoursesController < ApplicationController
     Course.destroy(params[:course_ids])
 
     redirect_to planner_meals_path( user_ids: @users,
-                               menu_ids: @menus,
-                               meal_type: @meal_type)
+                                    menu_ids: @menus,
+                                    meal_type: @meal_type )
   end
 
   private
