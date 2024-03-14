@@ -69,8 +69,7 @@ class MealsController < ApplicationController
 
 
   def create
-    # @meals = Meal.meals(menus: @menus, users: @users, meal_type: @meal_type)
-
+    # put into namespace w/ g#create fed by g_form. Need c_form to send course_params thru click
     courses = Meal::Multicourse.create(course_params)
     course_ids = courses.map { |course| course.id }
     if @course_count == @new_courses

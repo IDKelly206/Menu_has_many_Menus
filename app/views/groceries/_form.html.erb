@@ -18,8 +18,8 @@
             <%= fields.label ingredient['measure'], for: "grocery_#{n}_list_add"  %>
             <%= fields.hidden_field :measurement, value: ingredient['measure'] %>
           <% else %>
-            <%= fields.label "<Pinch>", for: "grocery_#{n}_list_add"  %>
-            <%= fields.hidden_field :measurement, value: "<Pinch>" %>
+            <%= fields.label "Pinch = <1/8 tsp", for: "grocery_#{n}_list_add"  %>
+            <%= fields.hidden_field :measurement, value: 1/16 %>
           <% end %>
 
           <% if ingredient['foodCategory'].present? %>
@@ -27,7 +27,7 @@
             <%= fields.hidden_field :category, value: ingredient['foodCategory'] %>
           <% else %>
             <%= fields.label "<Blank>", for: "grocery_#{n}_list_add"  %>
-            <%= fields.hidden_field :category, value: "<Blank>" %>
+            <%= fields.hidden_field :category, value: "<BLANK>" %>
           <% end %>
 
           <%= fields.hidden_field :course_ids, value: @course_ids %>
@@ -45,7 +45,7 @@
                     class: "btn" %>
     <% else %>
       <%= button_to "Cancel",
-                    destroy_multiple_courses_path(course_ids: @course_ids,
+                    destroy_multiplez_courses_path(course_ids: @course_ids,
                                           user_ids: @users,
                                           menu_ids: @menus,
                                           meal_type: @meal_type),
