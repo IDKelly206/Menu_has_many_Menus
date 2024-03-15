@@ -61,17 +61,15 @@ class Grocery < ApplicationRecord
           g_item = grocery_list.detect { |item| item[:n] == name }
           g_item[:cat] = g_item[:cat].nil? ? ingredient["foodCategory"] : g_item[:cat].include?(ingredient["foodCategory"]) ? g_item[:cat] : g_item[:cat] << ", #{ingredient["foodCategory"]}"
 
-          # g_item[:m] = ingredient["measure"] if g_item[:m].nil?
-
-          # g_item[:q].nil? ? g_item[:q] = (ingredient["quantity"] * ingredient_multiplier) : g_item[:q] += (ingredient["quantity"] * ingredient_multiplier)
-
 
           m = Converter.set_v_msr(m: ingredient["measure"])
           q = (ingredient["quantity"] * ingredient_multiplier)
           base_v = Converter.v_to_base_v(m:, q:)
-          g_item[:q].nil? ? g_item[:q] = base_v[:q] : g_item[:q] += base_v[:q]
-          g_item[:m] = base_v[:m] if g_item[:m].nil?
+          g_item[:vol_q].nil? ? g_item[:vol_q] = base_v[:q] : g_item[:vol_q] += base_v[:q]
+          g_item[:vol_m] = base_v[:m] if g_item[:vol_m].nil?
 
+          g_item[:wgt_q].nil? ? g_item[:wgt_q] = ingredient["weight"] : g_item[:wgt_q] += ingredient["weight"]
+          g_item[:wgt_m].nil? ? g_item[:wgt_m] = 'g' : 'g'
 
           # Covert ingredient measure & quantity to base_msr with corresponding quantity
           # if volumes.includes?(ingredient["measure"])
