@@ -8,7 +8,10 @@ class Grocery < ApplicationRecord
   validates :erecipe_id, presence: true
   validates :course_id, presence: true
 
-  #  Add ordered sequence of :foodCat then :name
+  include Converter
+
+  # Add ordered sequence of :foodCat then :name
+  # scope :ordered, -> { order(name: :asc)}
 
   def self.groceries(household)
     household.groceries.select { |g| g if g.list_add == true }
@@ -58,8 +61,16 @@ class Grocery < ApplicationRecord
           g_item = grocery_list.detect { |item| item[:n] == name }
           g_item[:cat] = g_item[:cat].nil? ? ingredient["foodCategory"] : g_item[:cat].include?(ingredient["foodCategory"]) ? g_item[:cat] : g_item[:cat] << ", #{ingredient["foodCategory"]}"
 
-          g_item[:q].nil? ? g_item[:q] = (ingredient["quantity"] * ingredient_multiplier) : g_item[:q] += (ingredient["quantity"] * ingredient_multiplier)
-          g_item[:m] = ingredient["measure"] if g_item[:m].nil?
+          # g_item[:m] = ingredient["measure"] if g_item[:m].nil?
+
+          # g_item[:q].nil? ? g_item[:q] = (ingredient["quantity"] * ingredient_multiplier) : g_item[:q] += (ingredient["quantity"] * ingredient_multiplier)
+
+
+          m = Converter.set_v_msr(m: ingredient["measure"])
+          q = (ingredient["quantity"] * ingredient_multiplier)
+          base_v = Converter.v_to_base_v(m:, q:)
+          g_item[:q].nil? ? g_item[:q] = base_v[:q] : g_item[:q] += base_v[:q]
+          g_item[:m] = base_v[:m] if g_item[:m].nil?
 
 
           # Covert ingredient measure & quantity to base_msr with corresponding quantity

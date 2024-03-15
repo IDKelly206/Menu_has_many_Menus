@@ -2,7 +2,6 @@ require 'json'
 
 class Request
   class << self
-
     def get(id)
       type = "?type=public"
       path = "/#{id}#{type}"
