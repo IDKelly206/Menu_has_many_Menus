@@ -13,8 +13,14 @@ module Kroger
     def self.products(response)
       @response = response
       response.fetch(:data).map do |p|
+        if p[:brand].nil?
+          name = p[:description]
+        else
+          name = my_strip(p[:description], p[:brand]).nil? ? p[:description] : my_strip(p[:description], p[:brand])
+        end
+
         Product.new(
-          name:  p[:description],
+          name:,
           brand: p[:brand],
           upc: p[:upc],
           kproduct_id: p[:productId],
@@ -24,5 +30,11 @@ module Kroger
         )
       end
     end
+
+    def self.my_strip(string, chars)
+      chars = Regexp.escape(chars)
+      string.gsub(/\A[#{chars}]+|[#{chars}]+\z/, "")
+    end
+
   end
 end
