@@ -88,11 +88,7 @@ class Grocery < ApplicationRecord
       end
     end
     # grocery_list.each { |item| item[:cat].uniq }
-    # grocery_list.sort_by { |item| item[:cat] }
+    # grocery_list.sort_by { |item| item[:cat] } --> Some missing category (ex. Guacomole)
     grocery_list
   end
-
-
-
-
 end

@@ -14,10 +14,12 @@ module ApplicationHelper
       render 'meals/form', erecipe_id: erecipe_id
     elsif page_title == "Recipes"
       # render 'meals/link', erecipe_id: erecipe_id
-      "More details"
+      # "More details"
     else
       "BLANK Footer Area"
     #  Insert ingredients here. Need to fix Recipe.new for Search function
     end
   end
+
+  
 end

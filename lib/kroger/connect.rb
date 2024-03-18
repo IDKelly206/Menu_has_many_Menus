@@ -18,7 +18,7 @@ class Connect
     #   }
     # )
 
-    if (defined?@token).nil?
+    if (defined? @token).nil?
       response = Token.get_token_request
       @token = response[:token_type]+" "+response[:access_token]
       @time_limit = response[:expires_in]
