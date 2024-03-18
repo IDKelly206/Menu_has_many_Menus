@@ -63,10 +63,12 @@ class Grocery < ApplicationRecord
 
 
           m = Converter.set_v_msr(m: ingredient["measure"])
-          q = (ingredient["quantity"] * ingredient_multiplier)
-          base_v = Converter.v_to_base_v(m:, q:)
-          g_item[:vol_q].nil? ? g_item[:vol_q] = base_v[:q] : g_item[:vol_q] += base_v[:q]
-          g_item[:vol_m] = base_v[:m] if g_item[:vol_m].nil?
+          unless m.empty?
+            q = (ingredient["quantity"] * ingredient_multiplier)
+            base_v = Converter.v_to_base_v(m:, q:)
+            g_item[:vol_q].nil? ? g_item[:vol_q] = base_v[:q] : g_item[:vol_q] += base_v[:q]
+            g_item[:vol_m] = base_v[:m] if g_item[:vol_m].nil?
+          end
 
           g_item[:wgt_q].nil? ? g_item[:wgt_q] = ingredient["weight"] : g_item[:wgt_q] += ingredient["weight"]
           g_item[:wgt_m].nil? ? g_item[:wgt_m] = 'g' : 'g'
@@ -86,7 +88,8 @@ class Grocery < ApplicationRecord
       end
     end
     # grocery_list.each { |item| item[:cat].uniq }
-    grocery_list.sort_by { |item| item[:cat] }
+    # grocery_list.sort_by { |item| item[:cat] }
+    grocery_list
   end
 
 

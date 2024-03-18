@@ -1,8 +1,9 @@
+<%- title "Menu show Meal" %>
+
 <div class="container">
   <div class="header">
     <h1>Meal Type show page: <%= @meal_type.capitalize %></h1>
   </div>
-
   <div class="card-menu__body">
     <%# turbo_frame_tag "menu-body" %>
       <div class= "card-menu-meal">
@@ -11,13 +12,8 @@
         </div>
         <div class="card-menu-meal__body">
           <%= render @meals %>
-
         </div>
       </div>
     <%# end - turbo_frame_tag "menu-body" %>
   </div>
-
-
-
-
 </div>

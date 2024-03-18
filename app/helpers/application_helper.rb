@@ -10,9 +10,9 @@ module ApplicationHelper
     erecipe_id = attrs[:erecipe_id]
     if page_title == "Course"
       render 'courses/form', erecipe_id: erecipe_id
-    elsif page_title == "Multi-Meal"
+    elsif page_title == "Meal Planner"
       render 'meals/form', erecipe_id: erecipe_id
-    elsif page_title == "Recipe"
+    elsif page_title == "Recipes"
       # render 'meals/link', erecipe_id: erecipe_id
       "More details"
     else

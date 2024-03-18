@@ -36,7 +36,7 @@ module Converter
     measure = attr[:m]
     base_v = ''
     msr_ing = measure.to_s.downcase.singularize
-    @volumes.each { |k, v| k.include?(msr_ing) ? base_v = v.to_s : "0" }
+    @volumes.each { |k, v| k.include?(msr_ing) ? base_v = v.to_s : nil }
     base_v
   end
 
