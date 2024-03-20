@@ -10,8 +10,14 @@ module Edamam
 
     def self.find(id)
       r = Request.get(id)
+
+      name = r[:recipe][:label].split.map { |w| w.downcase.singularize }.join(' ')
+      name.slice! 'recipe'
+      name = name.split.map {|w| w.capitalize! }.join(' ')
+
+
       Recipe.new(
-                label:       r[:recipe][:label],
+                label:       name,
                 source:      r[:recipe][:source],
                 source_url:  r[:recipe][:url],
                 yield:       r[:recipe][:yield],
@@ -22,15 +28,14 @@ module Edamam
               )
     end
 
-
     def self.search(query = [], filters = {})
       response = Request.where(query, filters)
-      @response = response
+
       recipes(response)
     end
 
-    def self.next_page
-      @response[:_links][:next]
+    def self.next_page(response)
+      response[:_links][:next]
     end
 
 
@@ -39,8 +44,13 @@ module Edamam
       response.fetch(:hits).map do |r|
         id_ing = "#{r[:_links][:self][:href]}".partition("v2/")
         id = id_ing[-1].partition("?").first
+
+        name = r[:recipe][:label].split.map { |w| w.downcase.singularize }.join(' ')
+        name.slice! 'recipe'
+        name = name.split.map {|w| w.capitalize! }.join(' ')
+
         Recipe.new(
-          label:       r[:recipe][:label],
+          label: name,
           source:      r[:recipe][:source],
           source_url:  r[:recipe][:url],
           yield:       r[:recipe][:yield],
