@@ -1,39 +1,43 @@
 <%# turbo_frame_tag "menu"  %>
-    <div class="card-menu">
-      <div class="card-menu__header">
-        <h2><%= link_to menu.day_of_week, menu %></h2>
-      </div>
-      <div class="card-menu__body">
-        <% @meal_types.each do |meal_type| %>
-          <div class= "card-menu-meal">
-            <div class="card-menu-meal__header">
-              <h3><%= link_to "#{meal_type.capitalize}", show_meal_menu_path(menu, "#{meal_type}"), target: :_top %></h3>
-            </div>
-            <div class="card-menu-meal__body">
-              <% @users.each do |user| %>
-                <div class= "card-menu-meal-user">
-                  <div class="card-menu-meal-user__header">
-                    <h4><%= link_to user.name_first, menu_meal_path(menu, Meal.find_by(user: user, menu: menu, meal_type: meal_type)) %></h4>
-                  </div>
-                  <div class="card-menu-meal-user__body">
-                      <% @course_types.each do |course_type| %>
-                        <% meal_courses = Meal.find_by(user: user, menu: menu, meal_type: meal_type).courses.map { |course| course.course_type } %>
-                        <% if meal_courses.include?(course_type) %>
-                          <div class= "card-menu-meal-user-course">
-                            <i class="fa-solid fa-square-check checked"></i> <%= course_type.capitalize %>
-                          </div>
-                        <% else %>
-                          <div class= "card-menu-meal-user-course">
-                            <i class="fa-regular fa-square"></i> <%= course_type.capitalize %>
-                          </div>
-                        <% end %>
-                      <% end %>
-                  </div>
-                </div>
-              <% end %>
-            </div>
-
+<div class="card-menu">
+  <div class="card-menu__header">
+    <h2><%= link_to menu.day_of_week, menu %></h2>
+  </div>
+  <div class="card-menu__body">
+    <% @meal_types.each do |meal_type| %>
+      <%= turbo_frame_tag "menu_#{menu.id}_#{meal_type}" do %>
+        <div class= "card-menu-meal">
+          <div class="card-menu-meal__header">
+            <h3><%= link_to "#{meal_type.capitalize}", show_meal_menu_path(menu, meal_type) %></h3>
           </div>
-        <% end %>
-      </div>
-    </div>
+          <div class="card-menu-meal__body">
+            <% @users.each do |user| %>
+              <% meal =  Meal.find_by(user: user, menu: menu, meal_type: meal_type) %>
+                <%= turbo_frame_tag "meal_#{meal.id}" do %>
+                  <div class= "card-menu-meal-user">
+                    <div class="card-menu-meal-user__header">
+                      <h4><%= link_to user.name_first, menu_meal_path(menu, meal) %></h4>
+                    </div>
+                    <div class="card-menu-meal-user__body">
+                        <% @course_types.each do |course_type| %>
+                          <% meal_courses = meal.courses.map { |course| course.course_type } %>
+                          <% if meal_courses.include?(course_type) %>
+                            <div class= "card-menu-meal-user-course">
+                              <i class="fa-solid fa-square-check checked"></i> <%= course_type.capitalize %>
+                            </div>
+                          <% else %>
+                            <div class= "card-menu-meal-user-course">
+                              <i class="fa-regular fa-square"></i> <%= course_type.capitalize %>
+                            </div>
+                          <% end %>
+                        <% end %>
+                    </div>
+                  </div>
+                <% end %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>

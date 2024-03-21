@@ -1,13 +1,13 @@
 
     <%= form_with url: edit_multiple_groceries_path, method: 'patch' do |f| %>
-      <%= f.label item[:cat] %>|
-      <%= f.label item[:n] %> |
+      <%= f.submit "Got it" %>|   |
+      <%= f.label item[:cat] %>:
+      <%= f.label item[:n] %>|   |
       <%= f.label item[:wgt_q] %>
-      <%= f.label item[:wgt_m] %> |-|
+      <%= f.label item[:wgt_m] %> |   |
       <%= f.label item[:vol_q] %>
       <%= f.label item[:vol_m] %>
 
 
       <%= f.hidden_field :g_ids, name: "g_ids[]", multiple: true, value: item[:g_ids] %>
-      <%= f.submit "Got it" %>
     <% end %>

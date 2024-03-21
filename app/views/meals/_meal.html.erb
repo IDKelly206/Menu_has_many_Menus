@@ -13,6 +13,7 @@
         <div class="card-course__action">
           <%= link_to new_menu_meal_course_path(@menu, @meal,
                     course_type: course_type),
+                    data: { turbo_frame: "_top" },
                     class: "btn" do %>
             <i class="fa-solid fa-circle-plus"></i>
           <% end %>

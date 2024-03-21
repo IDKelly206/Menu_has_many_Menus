@@ -5,15 +5,8 @@
     <h1>Meal Type show page: <%= @meal_type.capitalize %></h1>
   </div>
   <div class="card-menu__body">
-    <%# turbo_frame_tag "menu-body" %>
-      <div class= "card-menu-meal">
-        <div class="card-menu-meal__header">
-          <%= @meal_type %>
-        </div>
-        <div class="card-menu-meal__body">
-          <%= render @meals %>
-        </div>
-      </div>
-    <%# end - turbo_frame_tag "menu-body" %>
+    <%= turbo_frame_tag "menu_#{@menu.id}_#{@meal_type}" do %>
+      <%= render '/menus/meal_type' %>
+    <% end %>
   </div>
 </div>
