@@ -16,6 +16,21 @@ class Menu < ApplicationRecord
 
   private
 
+  def self.create_menus(household)
+    calendar = (Time.now.to_date...(Time.now.to_date + 5))
+    menu_count = Menu.where('household_id = ?', household).where('date IN (:cal)', { cal: calendar }).count
+    if menu_count >= calendar.count
+      @menus = Menu.where('household_id = ?', household).where('date IN (:cal)', { cal: calendar }).ordered
+    else
+      cal_menu = Menu.where('household_id = ?', household).where('date IN (:cal)', { cal: calendar }).ordered
+      menu_dates = cal_menu.map { |d| d.date }
+      menu_dates_missing = calendar.select { |d| d if menu_dates.exclude?(d) }
+      menu_dates_missing.each { |d| Menu.create!(date: d, household_id: household.id) }
+      @menus = Menu.where('household_id = ?', household).where('date IN (:cal)', { cal: calendar }).ordered
+    end
+  end
+
+
   def create_menu_meals
     menu = self
     household = Household.find(menu.household_id)

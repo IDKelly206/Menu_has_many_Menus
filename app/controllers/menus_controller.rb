@@ -7,18 +7,7 @@ class MenusController < ApplicationController
 
 
   def index
-    calendar = (Time.now.to_date...(Time.now.to_date + 10))
-    menu_count = Menu.where('household_id = ?', @household).where('date IN (:cal)', { cal: calendar }).count
-    if menu_count >= calendar.count
-      @menus = Menu.where('household_id = ?', @household).where('date IN (:cal)', { cal: calendar }).ordered
-    else
-      cal_menu = Menu.where('household_id = ?', @household).where('date IN (:cal)', { cal: calendar }).ordered
-      menu_dates = cal_menu.map { |d| d.date }
-      menu_dates_missing = calendar.select { |d| d if menu_dates.exclude?(d) }
-      menu_dates_missing.each { |d| Menu.create!(date: d, household_id: @household.id) }
-      @menus = Menu.where('household_id = ?', @household).where('date IN (:cal)', { cal: calendar }).ordered
-    end
-
+    @menus = Menu.create_menus(@household)
     console
   end
 
