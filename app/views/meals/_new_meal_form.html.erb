@@ -23,7 +23,7 @@
     <p>Select Days</p>
     <div class="checkboxes">
       <%= f.collection_check_boxes :menu_ids,
-                                   @menus,
+                                   @menus.ordered,
                                    :id,
                                    :day_of_week,
                                    include_hidden: false do |b| %>
