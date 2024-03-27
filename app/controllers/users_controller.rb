@@ -18,7 +18,7 @@ class UsersController < ApplicationController
       respond_to do |format|
         format.html { redirect_to household_path(@household),
                       notice: "User was succesfully created." }
-        format.turbo_stream
+        format.turbo_stream { flash.now[:notice] = "User was succesfully created." }
       end
     else
       render :new, status: :unprocessable_entity
@@ -43,7 +43,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       format.html { redirect_to household_path(@household),
                     notice: "User was succesfully destroyed." }
-      format.turbo_stream
+      format.turbo_stream { flash.now[:notice] = "User was succesfully deleted." }
     end
   end
 

@@ -1,56 +1,52 @@
+<%= form_with url: '/groceries' do |form|  %>
+  <%= form.hidden_field :course_ids, value: @course_ids %>
+  <% n = 0 %>
+  <% @recipe.ingredients.each do |ingredient| %>
+    <% n += 1 %>
+    <%= fields_for 'grocery'+[n].to_s do |fields| %>
+      <%= fields.check_box :list_add, checked: true, class: "toggle" %>
 
-  <div>
-    <%= form_with url: '/groceries' do |form|  %>
-      <%= form.hidden_field :course_ids, value: @course_ids %>
-      <% n = 0 %>
-      <% @recipe.ingredients.each do |ingredient| %>
-        <% n += 1 %>
-        <%= fields_for 'grocery'+[n].to_s do |fields| %>
-          <%= fields.check_box :list_add, checked: true, class: "toggle" %>
+      <%= fields.label ingredient['food'], for: "grocery_#{n}_list_add" %>
+      <%= fields.hidden_field :name, value: ingredient['food'] %>
 
-          <%= fields.label ingredient['food'], for: "grocery_#{n}_list_add" %>
-          <%= fields.hidden_field :name, value: ingredient['food'] %>
+      <%= fields.label ingredient['quantity'], for: "grocery_#{n}_list_add"  %>
+      <%= fields.hidden_field :quantity, value: ingredient['quantity'] %>
 
-          <%= fields.label ingredient['quantity'], for: "grocery_#{n}_list_add"  %>
-          <%= fields.hidden_field :quantity, value: ingredient['quantity'] %>
-
-          <% if  ingredient['measure'].present?  %>
-            <%= fields.label ingredient['measure'], for: "grocery_#{n}_list_add"  %>
-            <%= fields.hidden_field :measurement, value: ingredient['measure'] %>
-          <% else %>
-            <%= fields.label "Pinch = <1/8 tsp", for: "grocery_#{n}_list_add"  %>
-            <%= fields.hidden_field :measurement, value: 1/16 %>
-          <% end %>
-
-          <% if ingredient['foodCategory'].present? %>
-            <%= fields.label ingredient['foodCategory'], for: "grocery_#{n}_list_add"  %>
-            <%= fields.hidden_field :category, value: ingredient['foodCategory'] %>
-          <% else %>
-            <%= fields.label "<Blank>", for: "grocery_#{n}_list_add"  %>
-            <%= fields.hidden_field :category, value: "<BLANK>" %>
-          <% end %>
-
-          <%= fields.hidden_field :course_ids, value: @course_ids %>
-          <%= fields.hidden_field :household_id, value: @household.id %>
-          <%= fields.hidden_field :erecipe_id, value: @erecipe_id %>
-        <% end %>
-        <hr>
+      <% if  ingredient['measure'].present?  %>
+        <%= fields.label ingredient['measure'], for: "grocery_#{n}_list_add"  %>
+        <%= fields.hidden_field :measurement, value: ingredient['measure'] %>
+      <% else %>
+        <%= fields.label "Pinch = <1/8 tsp", for: "grocery_#{n}_list_add"  %>
+        <%= fields.hidden_field :measurement, value: 1/16 %>
       <% end %>
-    <%= form.submit "Add gList items" %>
-    <% end %>
-    <% if @course_ids.size == 1 %>
-      <%= button_to "Cancel",
-                    [@menu, @meal, @course],
-                    method: :delete,
-                    class: "btn" %>
-    <% else %>
-      <%= button_to "Cancel",
-                    destroy_multiple_courses_path(course_ids: @course_ids,
-                                          user_ids: @users,
-                                          menu_ids: @menus,
-                                          meal_type: @meal_type),
-                    method: :delete,
-                    class: "btn" %>
-    <% end %>
 
-  </div>
+      <% if ingredient['foodCategory'].present? %>
+        <%= fields.label ingredient['foodCategory'], for: "grocery_#{n}_list_add"  %>
+        <%= fields.hidden_field :category, value: ingredient['foodCategory'] %>
+      <% else %>
+        <%= fields.label "<Blank>", for: "grocery_#{n}_list_add"  %>
+        <%= fields.hidden_field :category, value: "<BLANK>" %>
+      <% end %>
+
+      <%= fields.hidden_field :course_ids, value: @course_ids %>
+      <%= fields.hidden_field :household_id, value: @household.id %>
+      <%= fields.hidden_field :erecipe_id, value: @erecipe_id %>
+    <% end %>
+    <hr>
+  <% end %>
+<%= form.submit "Add gList items" %>
+<% end %>
+<% if @course_ids.size == 1 %>
+  <%= button_to "Cancel",
+                [@menu, @meal, @course],
+                method: :delete,
+                class: "btn" %>
+<% else %>
+    <%= button_to "Cancel",
+                destroy_multiple_courses_path(course_ids: @course_ids,
+                                      user_ids: @users,
+                                      menu_ids: @menus,
+                                      meal_type: @meal_type),
+                method: :delete,
+                class: "btn" %>
+<% end %>

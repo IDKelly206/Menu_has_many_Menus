@@ -17,8 +17,20 @@
     font-weight: bold;
     font-size: var(--font-size-m);
     a {
-      color: var(--color-onyx)
+      color: var(--color-onyx);
+      text-align: left;
+      display: block;
+      z-index: 1;
     }
+
+    // a::after {
+    //   position: absolute;
+    //   top: 0;
+    //   right: 0;
+    //   bottom: 0;
+    //   left: 0;
+    //   content: ' ';
+    // }
   }
 
   // Contains User & Course cards (turbo-frame-tag)

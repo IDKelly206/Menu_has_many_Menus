@@ -15,7 +15,7 @@ Rails.application.routes.draw do
 
   resources :menus, only: [:show] do
     member do
-      get 'meal_type', to: 'menus#show_meal', as: 'show_meal'
+      get ':meal_type', to: 'menus#show_meal', as: 'show_meal'
     end
   end
 

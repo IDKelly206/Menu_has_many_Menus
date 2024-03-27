@@ -1,7 +1,7 @@
-<% provide(:title, "Grocery New") %>
+<%- title "Grocery New" %>
 <div class="container">
   <h1>Grocery New page </h1>
-  <div class="column">
+  <%# <div class="column"> %>
     <%= turbo_frame_tag dom_id(@grocery) do %>
       <%= turbo_frame_tag "modal", target: :_top do %>
         <%= render "partials/modal",
@@ -10,5 +10,5 @@
                 } %>
       <% end %>
     <% end %>
-  </div>
+  <%# </div> %>
 </div>

@@ -15,10 +15,10 @@
 
   &__message {
     font-size: var(--font-size-s);
-    color: var(--color-white);
+    color: var(--color-pearl);
     padding: var(--space-xs) var(--space-m);
-    background-color: var(--color-dark);
-    animation: appear-then-fade 4s both;
+    background-color: var(--color-onyx);
+    animation: appear-then-fade 10s both;
     border-radius: 999px;
   }
 }

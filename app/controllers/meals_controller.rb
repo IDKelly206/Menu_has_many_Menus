@@ -1,8 +1,8 @@
 class MealsController < ApplicationController
   before_action :set_household
-  # before_action :set_menus, only: [:planner]
-  # before_action :set_users, only: [:planner]
   before_action :set_meal_type, only: [:planner]
+  before_action :set_menus, only: [:planner]
+  before_action :set_users, only: [:planner]
   # before_action :set_meals, only: [:planner, :create]
   # before_action :set_course, only: [:planner]
   before_action :set_meal_types, only: [:index, :show, :meal_new, :planner]
@@ -29,13 +29,9 @@ class MealsController < ApplicationController
   def planner
     @recipes = Edamam::EdamamRecipe.search(params[:query], params[:filters])
 
-    @meals = Meal.meals(meals_params)
+    @meals = Meal.meals(menus: @menus, users: @users, meal_type: @meal_type)
     @meal_ids = @meals.map { |m| m.id }
-
     @dietary_restrictions = @users.map { |u| u.dietary_restrictions }.flatten.map { |dr| dr.health.parameter }.uniq
-
-
-
 
     #  For rendering course cards in search bar for meals selected
     course_groups = []
@@ -67,6 +63,9 @@ class MealsController < ApplicationController
     course_ids = courses.map { |course| course.id }
     if @course_count == @new_courses
       redirect_to new_grocery_path(course_ids: course_ids), notice: "Course successfully added"
+      # redirect_to planner_meals_path(course_ids: course_ids),
+      #             data: { turbo_frame: dom_id(Grocery.new) }
+
     else
       render :new, status: :unprocessable_entity
     end
@@ -97,15 +96,31 @@ class MealsController < ApplicationController
   end
 
   def set_meal_type
-    @meal_type = params[:meal_type]
+    if params[:meal_type].nil? || params[:meal_type].empty?
+      redirect_to meal_new_meals_path, notice: "Select a Meal Type"
+    else
+      @meal_type = params[:meal_type]
+    end
   end
 
-  # def set_menus
-  #   @menus = params[:menu_ids].map { |menu_id| Menu.find(menu_id.to_i) }
-  # end
+  def set_users
+    if params[:user_ids].nil? || params[:user_ids].empty?
+      redirect_to meal_new_meals_path, notice: "Select Diner(s)"
+    else
+      @users = params[:user_ids].map { |user_id| User.find(user_id.to_i) }
+    end
+  end
 
-  # def set_users
-  #   @users = params[:user_ids].map { |user_id| User.find(user_id.to_i) }
+  def set_menus
+    if params[:menu_ids].nil? || params[:menu_ids].empty?
+      redirect_to meal_new_meals_path, notice: "Select Date(s)"
+    else
+      @menus = params[:menu_ids].map { |menu_id| Menu.find(menu_id.to_i) }
+    end
+  end
+
+  # def meals_params
+  #   params.permit(:meal_type, user_ids: [], menu_ids: [] )
   # end
 
   # def set_meals
@@ -126,9 +141,5 @@ class MealsController < ApplicationController
 
   def course_params
     params.permit(:course_type, :erecipe_id, meal_ids: [])
-  end
-
-  def meals_params
-    params.permit(:meal_type, user_ids: [], menu_ids: [] )
   end
 end

@@ -75,7 +75,8 @@ class CoursesController < ApplicationController
 
     redirect_to planner_meals_path( user_ids: @users,
                                     menu_ids: @menus,
-                                    meal_type: @meal_type )
+                                    meal_type: @meal_type ),
+                notice: "Courses deleted"
   end
 
   private
