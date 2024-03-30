@@ -43,13 +43,13 @@ class MenusController < ApplicationController
     @household = Household.find(current_user.id)
   end
 
-    def set_meal_types
-      @meal_types = Meal::MEAL_TYPES
-    end
+  def set_meal_types
+    @meal_types = Meal::MEAL_TYPES
+  end
 
-    def set_course_types
-      @course_types = Course::COURSE_TYPES
-    end
+  def set_course_types
+    @course_types = Course::COURSE_TYPES
+  end
 
   def set_users
     @users = @household.users

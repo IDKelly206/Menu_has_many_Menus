@@ -7,9 +7,21 @@ class RecipesController < ApplicationController
 
   def index
     if params[:query].present?
-      @recipes = Edamam::EdamamRecipe.search(params[:query], params[:filters])
+      @results = Edamam::EdamamRecipe.search(params[:query], params[:filters])
+      if results.instance_of?(Array)
+        @recipes = results.first
+        @next_page = results.last
+      else
+        redirect_to root_path, notice: "Recipe API error: " + results
+      end
     else
-      @recipes = Edamam::EdamamRecipe.search("pasta", params[:filters])
+      @results = Edamam::EdamamRecipe.search("hamburger", params[:filters])
+      if @results.instance_of?(Array)
+        @recipes = @results.first
+        @next_page = @results.last
+      else
+        redirect_to root_path, notice: "Recipe API error: " + @results
+      end
     end
     console
   end
@@ -22,7 +34,13 @@ class RecipesController < ApplicationController
   end
 
   def recipe_search
-    @recipes = Edamam::EdamamRecipe.search(params[:query], params[:filters])
+    results = Edamam::EdamamRecipe.search(params[:query], params[:filters])
+    if results.instance_of?(Array)
+      @recipes = results.first
+      @next_page = results.last
+    else
+      redirect_to root_path, notice: "Recipe API error: " + results
+    end
 
     @title = params["title"]
     params[:course_type].nil? ? @course_type = params[:filters][:dishType] : @course_type = params[:course_type]
@@ -37,9 +55,15 @@ class RecipesController < ApplicationController
   end
 
   private
+
   def set_recipe
     recipe_id = params[:id]
-    @recipe = Edamam::EdamamRecipe.find(recipe_id)
+    @result = Edamam::EdamamRecipe.find(recipe_id)
+    if @result.instance_of?(Hash)
+      @recipe = @result
+    else
+      redirect_to root_path, notice: "Recipe API error: " + @result
+    end
   end
 
   def set_meal_types

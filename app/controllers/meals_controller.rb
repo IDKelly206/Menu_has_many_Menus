@@ -33,6 +33,10 @@ class MealsController < ApplicationController
     @meal_ids = @meals.map { |m| m.id }
     @dietary_restrictions = @users.map { |u| u.dietary_restrictions }.flatten.map { |dr| dr.health.parameter }.uniq
 
+
+    #  FORM object
+
+    
     #  For rendering course cards in search bar for meals selected
     course_groups = []
     @meals.each { |meal| course_groups.push(meal.courses.map { |course| Course.find(course.id) }) }
