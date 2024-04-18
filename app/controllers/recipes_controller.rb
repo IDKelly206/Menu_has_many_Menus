@@ -9,6 +9,7 @@ class RecipesController < ApplicationController
     if params[:query].present?
       @results = Edamam::EdamamRecipe.search(params[:query], params[:filters])
       if results.instance_of?(Array)
+        @r = results
         @recipes = results.first
         @next_page = results.last
       else
@@ -36,6 +37,7 @@ class RecipesController < ApplicationController
   def recipe_search
     results = Edamam::EdamamRecipe.search(params[:query], params[:filters])
     if results.instance_of?(Array)
+      @r = results
       @recipes = results.first
       @next_page = results.last
     else
@@ -59,7 +61,7 @@ class RecipesController < ApplicationController
   def set_recipe
     recipe_id = params[:id]
     @result = Edamam::EdamamRecipe.find(recipe_id)
-    if @result.instance_of?(Hash)
+    if @result.instance_of?(Recipe)
       @recipe = @result
     else
       redirect_to root_path, notice: "Recipe API error: " + @result

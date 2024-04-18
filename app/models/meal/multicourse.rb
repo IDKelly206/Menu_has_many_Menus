@@ -3,7 +3,6 @@ class Meal::Multicourse
     new(course_params).create(course_params)
   end
 
-
   def initialize(course_params)
     @meals = course_params[:meal_ids].first.split.map { |id| Meal.find(id.to_i) }
     #  course_type needs to be predetermined on Meal page

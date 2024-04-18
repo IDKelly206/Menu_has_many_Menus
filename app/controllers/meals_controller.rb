@@ -27,8 +27,23 @@ class MealsController < ApplicationController
   end
 
   def planner
-    @recipes = Edamam::EdamamRecipe.search(params[:query], params[:filters])
-
+    if params[:query].present?
+      @results = Edamam::EdamamRecipe.search(params[:query], params[:filters])
+      if results.instance_of?(Array)
+        @recipes = results.first
+        @next_page = results.last
+      else
+        redirect_to root_path, notice: "Recipe API error: " + results
+      end
+    else
+      @results = Edamam::EdamamRecipe.search("hamburger", params[:filters])
+      if @results.instance_of?(Array)
+        @recipes = @results.first
+        @next_page = @results.last
+      else
+        redirect_to root_path, notice: "Recipe API error: " + @results
+      end
+    end
     @meals = Meal.meals(menus: @menus, users: @users, meal_type: @meal_type)
     @meal_ids = @meals.map { |m| m.id }
     @dietary_restrictions = @users.map { |u| u.dietary_restrictions }.flatten.map { |dr| dr.health.parameter }.uniq
@@ -36,7 +51,7 @@ class MealsController < ApplicationController
 
     #  FORM object
 
-    
+
     #  For rendering course cards in search bar for meals selected
     course_groups = []
     @meals.each { |meal| course_groups.push(meal.courses.map { |course| Course.find(course.id) }) }

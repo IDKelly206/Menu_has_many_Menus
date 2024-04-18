@@ -10,7 +10,7 @@ module Edamam
 
     def self.find(id)
       r = Request.get(id)
-      if !r.fetch(:status).nil?
+      if r.keys.include?(:status)
         r[:message]
       else
         label = label_scrub(r[:recipe][:label])
