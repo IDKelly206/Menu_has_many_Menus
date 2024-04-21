@@ -1,4 +1,4 @@
-class Meal::Multicourse
+class Course::Multicourse
   def self.create(course_params)
     new(course_params).create(course_params)
   end

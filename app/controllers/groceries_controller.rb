@@ -49,24 +49,12 @@ class GroceriesController < ApplicationController
     end
   end
 
-  def show
-  end
-
-  def edit
-  end
-
   def edit_multiple
     value = false
     g_ids = params[:g_ids].first.split
     Grocery.where(id: g_ids).update_all(list_add: value)
 
     redirect_to groceries_path
-  end
-
-  def update
-  end
-
-  def destroy
   end
 
   private

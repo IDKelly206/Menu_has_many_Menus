@@ -5,13 +5,12 @@ class CoursesController < ApplicationController
   before_action :set_menu, only: [:destroy]
   before_action :set_meal, only: [:destroy]
   before_action :set_course, only: [:edit, :update, :destroy]
-  # before_action :set_user, except: [:destroy]
   before_action :set_menus, only: [:multi_destroy]
   before_action :set_users, only: [:multi_destroy]
   before_action :set_meal_type, only: [:multi_destroy]
 
   def create
-    courses = Meal::Multicourse.create(course_params)
+    courses = Course::Multicourse.create(course_params)
     course_ids = courses.map { |course| course.id }
     if @course_count == @new_courses
       redirect_to new_grocery_path(course_ids: course_ids), notice: "Course successfully added"

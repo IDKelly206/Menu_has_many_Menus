@@ -8,27 +8,24 @@ Rails.application.routes.draw do
 
 
   resources :menus, only: [:index, :show, :new] do
-    resources :meals, only: [:index, :show] do
+    resources :meals, only: [:show] do
       resources :courses, only: [:destroy]
     end
   end
 
-  resources :menus, only: [:show] do
+  resources :menus, only: [] do
     member do
       get ':meal_type', to: 'menus#show_meal', as: 'show_meal'
     end
   end
 
-  resources :meals, only: [:new, :create, :destroy] do
-    collection do
-      get 'meal_new'
-      # get 'planner'
-    end
+  resources :meals, only: []  do
+    get 'meal_new', on: :collection
   end
 
   resources :planners, only: [:new]
 
-  resources :courses, only: [:index] do
+  resources :courses, only: [] do
     collection do
       post 'create', to: 'courses#create', as: 'create'
       delete 'multi_destroy', to: 'courses#multi_destroy', as: 'multi_destroy'
@@ -43,7 +40,7 @@ Rails.application.routes.draw do
 
   resources :products, only: [:index]
 
-  resources :groceries do
+  resources :groceries, only: [:index, :new, :create] do
     collection do
       patch 'edit_multiple', to: 'groceries#edit_multiple', as: 'edit_multiple'
     end

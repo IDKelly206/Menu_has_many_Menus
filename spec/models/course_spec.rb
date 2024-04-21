@@ -12,7 +12,7 @@ RSpec.describe Course, type: :model do
     # erecipe_id = "recipeID"
     # course_params = { erecipe_id:, course_type:, meal_ids: [meal.id.to_s] }
 
-    # course = Meal::Multicourse.new(course_params)
+    # course = Course::Multicourse.new(course_params)
 
     it "creates a new Course instance" do
       expect(course).to be_an_instance_of Course
