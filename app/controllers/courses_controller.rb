@@ -1,42 +1,20 @@
 class CoursesController < ApplicationController
-  before_action :set_household, except: [:destroy_multiple]
-  before_action :set_meal_types, only: [:new]
-  before_action :set_course_types, only: [:new]
-  before_action :set_menu, except: [:destroy_multiple]
-  before_action :set_meal, except: [:destroy_multiple]
-  before_action :set_user, except: [:destroy_multiple]
+  before_action :set_household, except: [:create, :destroy_multiple]
+  # before_action :set_meal_types, only: [:new]
+  # before_action :set_course_types, only: [:new]
+  before_action :set_menu, only: [:destroy]
+  before_action :set_meal, only: [:destroy]
   before_action :set_course, only: [:edit, :update, :destroy]
-  before_action :set_menus, only: [:destroy_multiple]
-  before_action :set_users, only: [:destroy_multiple]
-  before_action :set_meal_type, only: [:destroy_multiple]
-
-
-  def new
-    if params[:query].present?
-      @recipes = Edamam::EdamamRecipe.search(params[:query], params[:filters])
-    else
-      @recipes = Edamam::EdamamRecipe.search("pasta", params[:filters])
-    end
-
-    params[:course_type].nil? ? @course_type = params[:filters][:dishType] : @course_type = params[:course_type]
-
-    @course = @meal.courses.build(course_type: @course_type)
-    @meal_type = @meal.meal_type
-    @dietary_restrictions = @user.dietary_restrictions.map { |dr| dr.health.parameter }
-
-    # For rendering course cards in search bar for meals selected
-    # @courses = @meal.courses.reject { |course| course if course.id.nil? }
-    # @course_types = @courses.map { |course| course.course_type }.uniq
-    # @meal_recipes = @courses.map { |course| Edamam::EdamamRecipe.find(course.erecipe_id) }
-
-    console
-  end
+  # before_action :set_user, except: [:destroy]
+  before_action :set_menus, only: [:multi_destroy]
+  before_action :set_users, only: [:multi_destroy]
+  before_action :set_meal_type, only: [:multi_destroy]
 
   def create
-    @course = @meal.courses.build(course_params)
-    if @course.save
-      redirect_to new_grocery_path(course_ids: [@course.id]),
-                  notice: "Course successfully created"
+    courses = Meal::Multicourse.create(course_params)
+    course_ids = courses.map { |course| course.id }
+    if @course_count == @new_courses
+      redirect_to new_grocery_path(course_ids: course_ids), notice: "Course successfully added"
     else
       render :new, status: :unprocessable_entity
     end
@@ -67,13 +45,13 @@ class CoursesController < ApplicationController
   def destroy
     @course.destroy
 
-    redirect_to menu_meal_path(@menu, @meal), notice: "Course deleted"
+    redirect_to menu_meal_path(@menu, @meal), notice: "Courses deleted"
   end
 
-  def destroy_multiple
+  def multi_destroy
     Course.destroy(params[:course_ids])
 
-    redirect_to planner_meals_path( user_ids: @users,
+    redirect_to new_planner_path( user_ids: @users,
                                     menu_ids: @menus,
                                     meal_type: @meal_type ),
                 notice: "Courses deleted"
@@ -82,7 +60,7 @@ class CoursesController < ApplicationController
   private
 
   def course_params
-    params.require(:course).permit(:course_type, :erecipe_id, :meal_id)
+    params.permit(:course_type, :erecipe_id, meal_ids: [])
   end
 
   def set_meal_types

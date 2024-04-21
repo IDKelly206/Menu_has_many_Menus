@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
   resources :menus, only: [:index, :show, :new] do
     resources :meals, only: [:index, :show] do
-      resources :courses, only: [:new, :create, :show, :edit, :update, :destroy]
+      resources :courses, only: [:destroy]
     end
   end
 
@@ -22,13 +22,16 @@ Rails.application.routes.draw do
   resources :meals, only: [:new, :create, :destroy] do
     collection do
       get 'meal_new'
-      get 'planner'
+      # get 'planner'
     end
   end
 
+  resources :planners, only: [:new]
+
   resources :courses, only: [:index] do
     collection do
-      delete 'destroy_multiple', to: 'courses#destroy_multiple', as: 'destroy_multiple'
+      post 'create', to: 'courses#create', as: 'create'
+      delete 'multi_destroy', to: 'courses#multi_destroy', as: 'multi_destroy'
     end
   end
 

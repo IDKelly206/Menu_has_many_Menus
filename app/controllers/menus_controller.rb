@@ -7,7 +7,7 @@ class MenusController < ApplicationController
 
 
   def index
-    @menus = Menu.create_menus(@household)
+    @menus = Menu.create_menus(@household).ordered
     console
   end
 

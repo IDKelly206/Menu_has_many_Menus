@@ -16,7 +16,8 @@ class RecipesController < ApplicationController
         redirect_to root_path, notice: "Recipe API error: " + results
       end
     else
-      @results = Edamam::EdamamRecipe.search("hamburger", params[:filters])
+      s = { query: ["egg"], filters: { mealType: 'lunch', dishType: 'main course' } }
+      @results = Edamam::EdamamRecipe.search(s[:query], s[:filters])
       if @results.instance_of?(Array)
         @recipes = @results.first
         @next_page = @results.last
@@ -52,7 +53,7 @@ class RecipesController < ApplicationController
     elsif params["menu_id"].present?
       @menu = Menu.find(params["menu_id"].to_i)
       @meal = Meal.find(params["meal_id"].to_i)
-      params["course_id"].present? ? @course = Course.find(params["course_id"]) : @course = @meal.courses.build
+      # params["course_id"].present? ? @course = Course.find(params["course_id"]) : @course = @meal.courses.build
     end
   end
 

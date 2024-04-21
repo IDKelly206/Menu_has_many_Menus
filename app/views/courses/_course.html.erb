@@ -8,17 +8,17 @@
   </div>
   <div class="card-course__action">
     <% if @meal.present?  %>
-      <%= link_to "",
+      <%# <%= link_to "",
                     edit_menu_meal_course_path(@menu, @meal, course),
                     class: "btn fa-solid fa-pen-to-square",
-                    target: :_top %>
+                    target: :_top %> %>
       <%= button_to "",
                     [@menu, @meal, course],
                     method: :delete,
                     class: "btn fa-solid fa-circle-minus" %>
     <% else %>
       <%= button_to "",
-                    destroy_multiple_courses_path(course_ids: recipe_keyes[course.erecipe_id],
+                    multi_destroy_courses_path(course_ids: recipe_keyes[course.erecipe_id],
                                              user_ids: @users,
                                              menu_ids: @menus,
                                              meal_type: @meal_type),
