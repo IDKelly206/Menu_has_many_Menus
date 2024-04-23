@@ -6,6 +6,5 @@ module UserFormHelper
     end
     #  user.dietary_restrictions.sort_by { |dr| dr.health.parameter }
     user
-
   end
 end

@@ -1,13 +1,13 @@
 class PlannersController < ApplicationController
-  before_action :set_household
+  before_action :set_household, only: [:index, :new, :create]
   before_action :set_meal_types
   before_action :set_course_types
-  before_action :set_meal_type, only: [:new]
-  before_action :set_course_type, only: [:new]
-  before_action :set_menus, only: [:new]
-  before_action :set_users, only: [:new]
+  before_action :set_meal_type, only: [:index]
+  # before_action :set_course_type, only: [:index]
+  before_action :set_menus, only: [:index]
+  before_action :set_users, only: [:index]
 
-  def new
+  def index
     @meals = Meal.meals(menus: @menus, users: @users, meal_type: @meal_type)
     @meal_ids = @meals.map { |m| m.id }
     @dietary_restrictions = @users.map { |u| u.dietary_restrictions }.flatten.map { |dr| dr.health.parameter }.uniq
@@ -51,7 +51,43 @@ class PlannersController < ApplicationController
     console
   end
 
+  def new
+    @planner = PlannerForm.new
+
+    calendar = (Time.now.to_date...(Time.now.to_date + 10))
+    @menus = Menu.where('household_id = ?', @household).where('date IN (:cal)', { cal: calendar })
+    @users = @household.users
+
+    console
+  end
+
+  def create
+    @planner = PlannerForm.new(planner_params)
+    # @meals = Meal.meals(menus: @menus, users: @users, meal_type: @meal_type)
+    meal_type = @planner.meal_type
+    user_ids = @planner.user_ids
+    menu_ids = @planner.menu_ids
+
+
+
+    if @planner.submit
+      redirect_to planners_path(meal_type: meal_type, user_ids: user_ids, menu_ids: menu_ids)
+    else
+      calendar = (Time.now.to_date...(Time.now.to_date + 10))
+      @menus = Menu.where('household_id = ?', @household).where('date IN (:cal)', { cal: calendar })
+      @users = @household.users
+
+      # flash.now[:alert] = @planner.errors.full_messages.first
+      render :new, status: :unprocessable_entity
+    end
+    console
+  end
+
   private
+
+  def planner_params
+    params.require(:planner_form).permit(:meal_type, user_ids: [], menu_ids: [])
+  end
 
   def set_household
     @household = Household.find(current_user.id)
@@ -66,34 +102,18 @@ class PlannersController < ApplicationController
   end
 
   def set_meal_type
-    if params[:meal_type].nil? || params[:meal_type].empty?
-      redirect_to meal_new_meals_path, notice: "Select a Meal Type"
-    else
-      @meal_type = params[:meal_type]
-    end
+    @meal_type = params[:meal_type]
   end
 
   def set_course_type
-    if params[:meal_type].nil? || params[:meal_type].empty?
-      redirect_to meal_new_meals_path, notice: "Select a Meal Type"
-    else
-      @course_type = params[:course_type]
-    end
+    @course_type = params[:course_type]
   end
 
   def set_users
-    if params[:user_ids].nil? || params[:user_ids].empty?
-      redirect_to meal_new_meals_path, notice: "Select Diner(s)"
-    else
-      @users = params[:user_ids].map { |user_id| User.find(user_id.to_i) }
-    end
+    @users = params[:user_ids].map { |user_id| User.find(user_id.to_i) }
   end
 
   def set_menus
-    if params[:menu_ids].nil? || params[:menu_ids].empty?
-      redirect_to meal_new_meals_path, notice: "Select Date(s)"
-    else
-      @menus = params[:menu_ids].map { |menu_id| Menu.find(menu_id.to_i) }
-    end
+    @menus = params[:menu_ids].map { |menu_id| Menu.find(menu_id.to_i) }
   end
 end

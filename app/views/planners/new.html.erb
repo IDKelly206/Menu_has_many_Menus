@@ -1,11 +1,12 @@
-<%- title "Meal Planner" %>
-
+<%- title "Planner Form" %>
 <div class="container">
-  <div class="header">
-    <%= render 'shared/searchbar' %>
-  </div>
-  <div class="section-cards">
-    <%= turbo_frame_tag dom_id(Grocery.new) %>
-    <%= render "recipes/recipes", recipes: @recipes, locals: { title: yield(:title) } %>
-  </div>
+  <h1>Planner Form</h1>
+  <%= turbo_frame_tag dom_id(@planner) do %>
+    <%= turbo_frame_tag "modal", target: :_top do %>
+      <%= render "partials/modal",
+                  locals: { title: "Choose Meal details",
+                            form: "planners/form"
+                          } %>
+    <% end %>
+  <% end %>
 </div>

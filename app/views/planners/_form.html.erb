@@ -1,6 +1,8 @@
-<%= form_with url: planners_path, method: 'get' do |f| %>
+<%= simple_form_for @planner, url: planners_path do |f| %>
+
   <div class="form-body form__body">
-    <p>Select Meal</p>
+
+    <p>Select Meal <%= form_errors_for(obj: @planner, value: "meal_type" ) %>
     <div class="radio-btns">
       <% @meal_types.each do |meal_type| %>
         <div class="radio-item">
@@ -31,7 +33,7 @@
         <%= b.label  %>
       <% end %>
     </div>
-
+       <%= yield :form_errors %>
       <%= f.submit "Next", class: "btn btn--dark" %>
       <%= link_to "Cancel", menus_path, class: "btn btn--dark"  %>
   </div>

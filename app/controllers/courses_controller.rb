@@ -50,7 +50,7 @@ class CoursesController < ApplicationController
   def multi_destroy
     Course.destroy(params[:course_ids])
 
-    redirect_to new_planner_path( user_ids: @users,
+    redirect_to planners_path( user_ids: @users,
                                     menu_ids: @menus,
                                     meal_type: @meal_type ),
                 notice: "Courses deleted"

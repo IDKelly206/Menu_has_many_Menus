@@ -11,7 +11,7 @@
     <% @course_types.each do |course_type| %>
       <div class="course-item">
         <div class="card-course__action">
-          <%= link_to new_planner_path(
+          <%= link_to planners_path(
                     menu_ids: [@menu.id],
                     user_ids: [@meal.user.id],
                     meal_type: @meal.meal_type,

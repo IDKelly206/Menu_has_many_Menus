@@ -7,7 +7,7 @@ class User < ApplicationRecord
   before_validation :assign_household
   after_create :create_user_meals
 
-  validates :name_first, :name_last, :household_id, presence: true
+  validates :name_first, :name_last, :household_id, :email, presence: true
   validates :email, uniqueness: true
 
   belongs_to :household

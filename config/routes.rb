@@ -19,11 +19,11 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :meals, only: []  do
+  resources :meals, only: [] do
     get 'meal_new', on: :collection
   end
 
-  resources :planners, only: [:new]
+  resources :planners, only: [:index, :new, :create]
 
   resources :courses, only: [] do
     collection do

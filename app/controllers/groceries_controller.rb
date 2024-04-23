@@ -42,7 +42,7 @@ class GroceriesController < ApplicationController
       user_ids = courses.map { |c| c.meal.user_id }.uniq
       menu_ids = courses.map { |c| c.meal.menu_id }.uniq
       meal_type = courses.map { |c| c.meal.meal_type }.uniq.first
-      redirect_to new_planner_path(user_ids: user_ids, menu_ids: menu_ids, meal_type: meal_type),
+      redirect_to planners_path(user_ids: user_ids, menu_ids: menu_ids, meal_type: meal_type),
         notice: "Grocery items successfully added to Grocery List."
     else
       render :new, status: :unprocessable_entity

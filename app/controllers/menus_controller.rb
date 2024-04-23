@@ -23,11 +23,11 @@ class MenusController < ApplicationController
     console
   end
 
-  def new
-  end
+  # def new
+  # end
 
-  def create
-  end
+  # def create
+  # end
 
   private
   def set_household
