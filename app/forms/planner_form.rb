@@ -10,7 +10,7 @@ class PlannerForm
 
   def submit
     return false if invalid?
-    
+
     true
   end
 end

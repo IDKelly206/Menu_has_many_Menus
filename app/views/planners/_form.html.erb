@@ -2,7 +2,16 @@
 
   <div class="form-body form__body">
 
-    <p>Select Meal <%= form_errors_for(obj: @planner, value: "meal_type" ) %>
+    <p>Select Meal</p>
+    <%# f.error_notification message: form_errors_for(obj: @planner, value: "meal_type" ) %>
+    <% invalid = @planner.errors.include?(:meal_type) %>
+    <% if invalid %>
+      <div class="invalid-feedback d-block">
+        <% @planner.errors.full_messages_for(:meal_type).each do |error_message| %>
+          <%= error_message %>
+        <% end %>
+      </div>
+    <% end %>
     <div class="radio-btns">
       <% @meal_types.each do |meal_type| %>
         <div class="radio-item">
@@ -12,24 +21,42 @@
       <% end %>
     </div>
     <p>Select Diners</p>
+    <% invalid = @planner.errors.include?(:user_ids) %>
+    <% if invalid %>
+      <div class="invalid-feedback d-block">
+        <% @planner.errors.full_messages_for(:user_ids).each do |error_message| %>
+          <%= error_message %>
+        <% end %>
+      </div>
+    <% end %>
     <div class="checkboxes">
       <%= f.collection_check_boxes :user_ids,
                                    @users,
                                    :id,
                                    :name_first,
                                    include_hidden: false do |b| %>
-        <%= b.check_box class: "check_box btn--pill btn--pill--user" %>
-        <%= b.label  %>
+        <%= b.check_box(class: "check_box btn--pill btn--pill--user",
+                        checked: @planner.user_ids.nil? ? false : params[:planner_form][:user_ids].include?(b.value.to_s) )  %>
+        <%= b.label %>
       <% end %>
     </div>
     <p>Select Days</p>
+    <% invalid = @planner.errors.include?(:menu_ids) %>
+    <% if invalid %>
+      <div class="invalid-feedback d-block">
+        <% @planner.errors.full_messages_for(:menu_ids).each do |error_message| %>
+          <%= error_message %>
+        <% end %>
+      </div>
+    <% end %>
     <div class="checkboxes">
       <%= f.collection_check_boxes :menu_ids,
                                    @menus.ordered,
                                    :id,
                                    :day_of_week,
                                    include_hidden: false do |b| %>
-        <%= b.check_box class: "check_box btn--pill btn--pill--date" %>
+        <%= b.check_box(class: "check_box btn--pill btn--pill--date",
+                        checked: @planner.menu_ids.nil? ? false : params[:planner_form][:menu_ids].include?(b.value.to_s) ) %>
         <%= b.label  %>
       <% end %>
     </div>

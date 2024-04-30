@@ -64,22 +64,24 @@ class PlannersController < ApplicationController
   def create
     @planner = PlannerForm.new(planner_params)
     # @meals = Meal.meals(menus: @menus, users: @users, meal_type: @meal_type)
-    meal_type = @planner.meal_type
-    user_ids = @planner.user_ids
-    menu_ids = @planner.menu_ids
-
-
+    # meal_type = @planner.meal_type
+    # user_ids = @planner.user_ids
+    # menu_ids = @planner.menu_ids
 
     if @planner.submit
-      redirect_to planners_path(meal_type: meal_type, user_ids: user_ids, menu_ids: menu_ids)
-    else
-      calendar = (Time.now.to_date...(Time.now.to_date + 10))
-      @menus = Menu.where('household_id = ?', @household).where('date IN (:cal)', { cal: calendar })
-      @users = @household.users
-
-      # flash.now[:alert] = @planner.errors.full_messages.first
-      render :new, status: :unprocessable_entity
-    end
+      respond_to do |format|
+        format.html { redirect_to planners_path(meal_type: meal_type, user_ids: user_ids, menu_ids: menu_ids) }
+      end
+      else
+        calendar = (Time.now.to_date...(Time.now.to_date + 10))
+        @menus = Menu.where('household_id = ?', @household).where('date IN (:cal)', { cal: calendar })
+        @users = @household.users
+        # format.turbo_stream { render :new, status: :unprocessable_entity }
+        render :new, status: :unprocessable_entity
+        # format.turbo_stream do
+        #   render turbo_stream: turbo_stream.update(:planner_form, partial: "planners/form", locals: { errors: @planner })
+        # end
+      end
     console
   end
 
