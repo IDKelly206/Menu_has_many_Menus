@@ -69,7 +69,10 @@ class PlannersController < ApplicationController
       user_ids = @planner.user_ids
       menu_ids = @planner.menu_ids
       respond_to do |format|
-        format.html { redirect_to planners_path(meal_type:, user_ids:, menu_ids:) }
+        # format.html { redirect_to planners_path(meal_type:, user_ids:, menu_ids:) }
+        format.turbo_stream do
+          render turbo_stream: turbo_stream.adv_redirect(planners_path(meal_type:, user_ids:, menu_ids:))
+        end
       end
     else
       calendar = (Time.now.to_date...(Time.now.to_date + 10))

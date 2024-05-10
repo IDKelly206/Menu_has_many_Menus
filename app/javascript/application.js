@@ -5,4 +5,10 @@ import "bootstrap"
 
 
 import { Turbo } from "@hotwired/turbo-rails"
-Turbo.session.drive = false
+// Turbo.session.drive = false
+
+// turbo_stream.action(:redirect, XXXX_path )
+Turbo.StreamActions.adv_redirect = function() {
+  console.log(this.target)
+  Turbo.visit(this.target)
+}
