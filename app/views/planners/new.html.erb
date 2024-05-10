@@ -2,7 +2,7 @@
 <div class="container">
   <h1>Planner Form</h1>
   <%= turbo_frame_tag dom_id(@planner) do %>
-    <%= turbo_frame_tag "modal", target: :_top do %>
+    <%= turbo_frame_tag "modal" do %>
       <%= render "partials/modal",
                   locals: { title: "Choose Meal details",
                             form: "planners/form"

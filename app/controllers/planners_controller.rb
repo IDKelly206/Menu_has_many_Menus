@@ -71,17 +71,17 @@ class PlannersController < ApplicationController
       respond_to do |format|
         format.html { redirect_to planners_path(meal_type:, user_ids:, menu_ids:) }
       end
-      else
-        calendar = (Time.now.to_date...(Time.now.to_date + 10))
-        @menus = Menu.where('household_id = ?', @household).where('date IN (:cal)', { cal: calendar })
-        @users = @household.users
-        @errors = @planner.errors
-        render :new, status: :unprocessable_entity
-        # format.turbo_stream { render :new, status: :unprocessable_entity }
-        # format.turbo_stream do
-        #   render turbo_stream: turbo_stream.update(:planner_form, partial: "planners/form", locals: { errors: @planner })
-        # end
-      end
+    else
+      calendar = (Time.now.to_date...(Time.now.to_date + 10))
+      @menus = Menu.where('household_id = ?', @household).where('date IN (:cal)', { cal: calendar })
+      @users = @household.users
+      @errors = @planner.errors
+      render :new, status: :unprocessable_entity
+      # format.turbo_stream { render :new, status: :unprocessable_entity }
+      # format.turbo_stream do
+      #   render turbo_stream: turbo_stream.update(:planner_form, partial: "planners/form", locals: { errors: @planner })
+      # end
+    end
     console
   end
 
