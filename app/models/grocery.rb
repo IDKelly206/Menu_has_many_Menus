@@ -70,7 +70,7 @@ class Grocery < ApplicationRecord
             g_item[:vol_m] = base_v[:m] if g_item[:vol_m].nil?
           end
 
-          g_item[:wgt_q].nil? ? g_item[:wgt_q] = ingredient["weight"] : g_item[:wgt_q] += ingredient["weight"]
+          g_item[:wgt_q].nil? ? g_item[:wgt_q] = (ingredient["weight"] * ingredient_multiplier) : g_item[:wgt_q] += (ingredient["weight"] * ingredient_multiplier)
           g_item[:wgt_m].nil? ? g_item[:wgt_m] = 'g' : 'g'
 
           # Covert ingredient measure & quantity to base_msr with corresponding quantity

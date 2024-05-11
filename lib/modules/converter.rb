@@ -3,17 +3,17 @@ module Converter
   # @volumes = %w(gal qrt pint cup tbsp tsp fl_oz ml)
 
   @volumes = {}
-  v_names = {
+  @v_names = {
     gal: %w(gal Gal GAL gall Gall gallon Gallon g G ),
-    qrt: %w(qrt Qrt QRT qaurt Quart q Q),
+    qrt: %w(qrt Qrt QRT quart Quart q Q),
     pint: %w(pint Pint PINT p P pt PT),
     cup: %w(cup Cup c C cups Cups),
     tbsp: %w(tbsp TBSP tbsps TBSPs tablespoon Tablespoon tablespoons Tablespoons),
     tsp: %w(tsp TSP tsps TSPS teaspoon Teaspoon teaspoons Teaspoons),
     fl_oz: ['fl_oz', 'FL_OZ', 'fluid ounce', 'Fluid Ounce', 'fl oz', 'FL OZ'],
-    ml: %w(ml ML milliter Millitter mls MLS millitters Millitters)
+    ml: %w(ml ML milliliter Milliliter mls MLS milliliters Milliliters)
   }
-  v_names.each { |k , v| @volumes[v] = k.to_s }
+  @v_names.each { |k, v| @volumes[v] = k.to_s }
 
     # @weight = %w(lb oz g)
   @base_v_msr = 'ml'
@@ -36,7 +36,8 @@ module Converter
     measure = attr[:m]
     base_v = ''
     msr_ing = measure.to_s.downcase.singularize
-    @volumes.each { |k, v| k.include?(msr_ing) ? base_v = v.to_s : nil }
+    @v_names.each { |k, v| v.include?(msr_ing) ? base_v = k.to_s : nil}
+    # @volumes.each { |k, v| k.include?(msr_ing) ? base_v = v.to_s : base_v = nil }
     base_v
   end
 
