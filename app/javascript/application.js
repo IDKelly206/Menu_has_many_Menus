@@ -11,6 +11,6 @@ Turbo.session.drive = false
 Turbo.StreamActions.adv_redirect = function() {
   // console.log(this.target)
   let url = this.getAttribute('url')
-  console.log(url)
+  // console.log(url)
   Turbo.visit(url)
 }
