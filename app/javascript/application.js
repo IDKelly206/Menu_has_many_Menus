@@ -5,7 +5,7 @@ import "bootstrap"
 
 
 import { Turbo } from "@hotwired/turbo-rails"
-Turbo.session.drive = false
+// Turbo.session.drive = false
 
 // turbo_stream.adv_redirect(XXXX_path )
 Turbo.StreamActions.adv_redirect = function() {
