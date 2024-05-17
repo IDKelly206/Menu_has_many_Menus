@@ -5,7 +5,9 @@ class PlannerForm
 
   attr_accessor :meal_type, :user_ids, :menu_ids
 
-  validates :user_ids, :menu_ids, :meal_type, presence: true
+  validates :meal_type, presence: { message: "Must select Meal type" }
+  validates :menu_ids, presence: { message: "A date needs to be choosen" }
+  validates :user_ids, presence: { message: "Choose a diner for this meal" }
 
 
   def submit

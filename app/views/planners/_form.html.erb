@@ -7,7 +7,7 @@
     <% invalid = @planner.errors.include?(:meal_type) %>
     <% if invalid %>
       <div class="invalid-feedback d-block">
-        <% @planner.errors.full_messages_for(:meal_type).each do |error_message| %>
+        <% @planner.errors.messages_for(:meal_type).each do |error_message| %>
           <%= error_message %>
         <% end %>
       </div>
@@ -24,7 +24,7 @@
     <% invalid = @planner.errors.include?(:user_ids) %>
     <% if invalid %>
       <div class="invalid-feedback d-block">
-        <% @planner.errors.full_messages_for(:user_ids).each do |error_message| %>
+        <% @planner.errors.messages_for(:user_ids).each do |error_message| %>
           <%= error_message %>
         <% end %>
       </div>
@@ -44,7 +44,7 @@
     <% invalid = @planner.errors.include?(:menu_ids) %>
     <% if invalid %>
       <div class="invalid-feedback d-block">
-        <% @planner.errors.full_messages_for(:menu_ids).each do |error_message| %>
+        <% @planner.errors.messages_for(:menu_ids).each do |error_message| %>
           <%= error_message %>
         <% end %>
       </div>
