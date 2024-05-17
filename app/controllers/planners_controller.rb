@@ -62,7 +62,7 @@ class PlannersController < ApplicationController
   end
 
   def create
-    @planner = PlannerForm.new(planner_params)
+    @planner = params[:planner_form].nil? ? @planner = PlannerForm.new : PlannerForm.new(planner_params)
 
     if @planner.submit
       meal_type = @planner.meal_type
@@ -75,15 +75,12 @@ class PlannersController < ApplicationController
         format.html { redirect_to planners_path(meal_type:, user_ids:, menu_ids:) }
       end
     else
+
       calendar = (Time.now.to_date...(Time.now.to_date + 10))
       @menus = Menu.where('household_id = ?', @household).where('date IN (:cal)', { cal: calendar })
       @users = @household.users
-      @errors = @planner.errors
+
       render :new, status: :unprocessable_entity
-      # format.turbo_stream { render :new, status: :unprocessable_entity }
-      # format.turbo_stream do
-      #   render turbo_stream: turbo_stream.update(:planner_form, partial: "planners/form", locals: { errors: @planner })
-      # end
     end
     console
   end
