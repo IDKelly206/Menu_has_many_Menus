@@ -42,7 +42,7 @@ export default class extends Controller {
       "method": "GET",
       "headers": {
         "Content-Type": "application/json",
-        "Authorization": "Bearer eyJhbGciOiJSUzI1NiIsImprdSI6Imh0dHBzOi8vYXBpLWNlLmtyb2dlci5jb20vdjEvLndlbGwta25vd24vandrcy5qc29uIiwia2lkIjoidnl6bG52Y3dSUUZyRzZkWDBzU1pEQT09IiwidHlwIjoiSldUIn0.eyJhdWQiOiJtZW51aGFzbWFueW1lYWxzLTUwNTMzZWI0MTc5MjA3MDEyNDU1NDBmNTFhM2M2Y2VmOTAwNjc1MzgwMzUzOTY5MjQzNyIsImV4cCI6MTY5NTYzNTcxMSwiaWF0IjoxNjk1NjMzOTA2LCJpc3MiOiJhcGktY2Uua3JvZ2VyLmNvbSIsInN1YiI6ImVmZTE1YjI4LTdlNWUtNTQ5ZC1hMjcyLTA5YTY0OWE3Mjg3NSIsInNjb3BlIjoicHJvZHVjdC5jb21wYWN0IiwiYXV0aEF0IjoxNjk1NjMzOTExNDU5MzkxMzI2LCJhenAiOiJtZW51aGFzbWFueW1lYWxzLTUwNTMzZWI0MTc5MjA3MDEyNDU1NDBmNTFhM2M2Y2VmOTAwNjc1MzgwMzUzOTY5MjQzNyJ9.TApId88HsC0foFpjabluBoVuUJlfllEBgyaNbLeCj9Q8npXxSCtpn3JnNnJOwE2RNXYRO4qUursmHxOm1SrIgdLUxdHIlMvxDH9Z0I8ED2lpeYbAoyNwci5tDQNcYQ2NCq8Xgou4abFGbtjo29xgR43ecjSkY5TCBW3qV8d_ULLzNGjdSJRquZGaq5lqTLVnXqKrt7mWMjgeCfRw6FbtY1LZYwyRm4Kpa3BHhzcpXJPxNVRTkI64oe7JtDIOtZtdazGxDK7USwg4b2Eang4Q1YQzddQ4LZh_JykXPx18KZqTX9Rn0rzkzsLTsA5ZXBqBA5R4hmrlVViR5LsqhcCt0Q"
+        "Authorization": ""
       }
     };
     fetch("https://api-ce.kroger.com/v1/products?filter.term=yogurt%20pack&filter.locationId=01400943&filter.fulfillment=ais&filter.limit=40", request_info)

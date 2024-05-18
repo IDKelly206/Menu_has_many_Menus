@@ -13,7 +13,10 @@ class CoursesController < ApplicationController
     courses = Course::Multicourse.create(course_params)
     course_ids = courses.map { |course| course.id }
     if @course_count == @new_courses
-      redirect_to new_grocery_path(course_ids: course_ids), notice: "Course successfully added"
+      user_ids = courses.map { |c| c.meal.user_id }.uniq
+      menu_ids = courses.map { |c| c.meal.menu_id }.uniq
+      meal_type = courses.map { |c| c.meal.meal_type }.uniq.first
+      redirect_to planners_path(course_ids: course_ids, user_ids: user_ids, menu_ids: menu_ids, meal_type: meal_type), notice: "Course successfully added"
     else
       render :new, status: :unprocessable_entity
     end

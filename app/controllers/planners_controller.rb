@@ -11,7 +11,7 @@ class PlannersController < ApplicationController
     @meals = Meal.meals(menus: @menus, users: @users, meal_type: @meal_type)
     @meal_ids = @meals.map { |m| m.id }
     @dietary_restrictions = @users.map { |u| u.dietary_restrictions }.flatten.map { |dr| dr.health.parameter }.uniq
-
+    params[:course_ids].nil? ? @course_ids = [] : @course_ids = params[:course_ids]
 
     # s = { query: ["egg"], filters: { mealType: 'lunch', dishType: 'main course' } }
     # @results = Edamam::EdamamRecipe.search(s[:query], s[:filters])
