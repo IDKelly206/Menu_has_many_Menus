@@ -8,7 +8,8 @@ export default class extends Controller {
   connect() {
     // console.log("Grocery - Modal")
     // console.log(this.element.attributes)
-    // console.log(this.element.attributes[2].value)
+    // console.log(this.element.attributes["data-path"])
+    // console.log(this.element.attributes["data-path"].value)
     // console.dir(this.element)
     this.openGList(this.idsValue)
   }
@@ -20,10 +21,8 @@ export default class extends Controller {
 
 
   openGList(ids) {
-    const url = this.element.attributes[2].value;
+    const url = this.element.attributes["data-path"].value;
     console.log(`turbo visiting ${url}`);
-    // const path = new_grocery_path;
-    // console.log(`turbo visiting ${path}`);
     if (!ids.length == 0) Turbo.visit(url, { frame: "new_grocery", turbo: true })
 
   };
