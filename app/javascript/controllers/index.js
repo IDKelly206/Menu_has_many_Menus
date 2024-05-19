@@ -19,4 +19,5 @@ application.register("removals", RemovalsController)
 import TurboModalController from "./turbo_modal_controller"
 application.register("turbo-modal", TurboModalController)
 
-
+import CourseTypeRadioSelectorController from "./course_type_radio_selector_controller"
+application.register("course-type-radio-selector", CourseTypeRadioSelectorController)

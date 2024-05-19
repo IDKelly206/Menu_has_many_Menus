@@ -53,24 +53,20 @@ module FilterHelper
     pill.html_safe
   end
 
-  def select_mealtypes(ft , attr = {})
-    type = attr[:type]
-    types = attr[:types]
-    pills = ''
-    if type.nil?
-      pills << "<div class='radio-btns'>"
-      types.map do |t|
-        pills << "<div class='radio-item'>
-                #{ft.radio_button :mealType, t, class: 'radio-btn btn--pill btn--pill--meal', checked: t == types.first }"
-        pills << "#{ft.label 'mealType_'+t, t.capitalize}"
-        pills << "</div>"
-      end
-      pills << "</div>"
-      pill = pills
-    else
-      pill = "#{ ft.hidden_field :mealType, value: @meal_type }"
+  def filter_course_types(attr = {})
+    unless attr[:course_types].nil?
+    course_types = attr[:course_types]
+    selected = attr[:selected].nil? ? course_types.first : attr[:selected]
+    pills = course_types.map { |ct|
+        "<div class='radio-item'>
+        <input class='radio-btn btn--pill btn--pill--course' type='radio' name='course_type' value='#{ct}'
+                >
+        <label for='#{ct}' data-target='course-type-radio-selector.option' data-action='click->course-type-radio-selector#selectRadioOption'>#{ct.capitalize}</label>
+        </div>"
+      }
+      pill = pills.join(' ')
+      pill.html_safe
     end
-    pill.html_safe
   end
 
   def select_coursetypes(ft , attr = {})
@@ -89,6 +85,26 @@ module FilterHelper
       pill = pills
     else
       pill = "#{ ft.hidden_field :dishType, value: @course_type }"
+    end
+    pill.html_safe
+  end
+
+  def select_mealtypes(ft , attr = {})
+    type = attr[:type]
+    types = attr[:types]
+    pills = ''
+    if type.nil?
+      pills << "<div class='radio-btns'>"
+      types.map do |t|
+        pills << "<div class='radio-item'>
+                #{ft.radio_button :mealType, t, class: 'radio-btn btn--pill btn--pill--meal', checked: t == types.first }"
+        pills << "#{ft.label 'mealType_'+t, t.capitalize}"
+        pills << "</div>"
+      end
+      pills << "</div>"
+      pill = pills
+    else
+      pill = "#{ ft.hidden_field :mealType, value: @meal_type }"
     end
     pill.html_safe
   end
