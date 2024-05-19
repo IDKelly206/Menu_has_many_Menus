@@ -8,9 +8,9 @@
   <div class="section-cards">
     <%= turbo_frame_tag dom_id(Grocery.new),
         data: {
-          controller: "grocery-modal",
+          controller: "turbo-modal",
           path: new_grocery_path(course_ids: @course_ids),
-          grocery_modal_ids_value: @course_ids
+          turbo_modal_ids_value: @course_ids
         } %>
     <%= render "recipes/recipes", recipes: @recipes, locals: { title: yield(:title) } %>
   </div>

@@ -19,5 +19,4 @@ application.register("removals", RemovalsController)
 import TurboModalController from "./turbo_modal_controller"
 application.register("turbo-modal", TurboModalController)
 
-import GroceryModalController from "./grocery_modal_controller"
-application.register("grocery-modal", GroceryModalController)
+
