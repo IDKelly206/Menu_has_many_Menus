@@ -5,9 +5,6 @@
         <%= select_mealtypes(ft, types: @meal_types, type: @meal_type) %>
       </div>
       <div>
-        <%= select_coursetypes(ft, types: @course_types, type: @course_type) %>
-      </div>
-      <div>
         <%= ft.hidden_field :health, name:"[filters][health][]", multiple: true, value: @dietary_restrictions %>
       </div>
     </div>

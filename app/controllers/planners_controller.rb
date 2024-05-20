@@ -3,7 +3,7 @@ class PlannersController < ApplicationController
   before_action :set_meal_types
   before_action :set_course_types
   before_action :set_meal_type, only: [:index]
-  # before_action :set_course_type, only: [:index]
+  before_action :set_course_type, only: [:index]
   before_action :set_menus, only: [:index]
   before_action :set_users, only: [:index]
 
@@ -108,7 +108,7 @@ class PlannersController < ApplicationController
   end
 
   def set_course_type
-    @course_type = params[:course_type]
+    params[:course_type].nil? ? @course_type = nil : @course_type = params[:course_type]
   end
 
   def set_users

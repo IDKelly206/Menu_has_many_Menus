@@ -20,10 +20,9 @@
       <ul class="details">
         <%= filter_dietary(dietary: @dietary_restrictions) %>
       </ul>
-
-        <div class="radio-btns" data-controller="course-type-radio-selector">
-          <%= filter_course_types(course_types: @course_types) %>
-        </div>
+    <div class="radio-btns">
+      <%= filter_course_types(course_types: @course_types) %>
+    </div>
 
     </div>
     <div class="search-bar">
