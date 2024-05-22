@@ -56,20 +56,25 @@ module FilterHelper
   def filter_course_types(attr = {})
     unless attr[:course_types].nil?
     course_types = attr[:course_types]
-    selected = attr[:selected].nil? ? course_types.first : attr[:selected]
+    course_type = attr[:course_type].nil? ? nil : attr[:course_type]
+
     pills = course_types.map { |ct|
         "<div class='radio-item'>
         <input class='radio-btn btn--pill btn--pill--course' type='radio'
-               name='course_type' value='#{ct}' id='#{ct}'
+               name='course_type' value='#{ct.capitalize}'
+               data-target='course-type-radio-selector.input'
                >
-        <label for='#{ct}' 
-               data-action='click->course-type-radio-selector#selectRadioOption'>
+        <label for='#{ct}'
+               data-action='click->course-type-radio-selector#selectRadioOption'
+               data-target='course-type-radio-selector.label'
+               >
                #{ct.capitalize} </label>
         </div>"
       }
       pill = pills.join(' ')
       pill.html_safe
     end
+
   end
 
   def select_coursetypes(ft , attr = {})
