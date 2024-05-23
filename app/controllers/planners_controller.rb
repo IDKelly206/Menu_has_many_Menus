@@ -13,16 +13,16 @@ class PlannersController < ApplicationController
     @dietary_restrictions = @users.map { |u| u.dietary_restrictions }.flatten.map { |dr| dr.health.parameter }.uniq
     params[:course_ids].nil? ? @course_ids = [] : @course_ids = params[:course_ids]
 
-    # s = { query: ["egg"], filters: { mealType: 'lunch', dishType: 'main course' } }
-    # @results = Edamam::EdamamRecipe.search(s[:query], s[:filters])
-    # if @results.instance_of?(Array)
-    #   @recipes = @results.first
-    #   @next_page = @results.last
+    s = { query: ["egg"], filters: { mealType: 'lunch', dishType: 'main course' } }
+    @results = Edamam::EdamamRecipe.search(s[:query], s[:filters])
+    if @results.instance_of?(Array)
+      @recipes = @results.first
+      @next_page = @results.last
 
-    # else
-    #   redirect_to root_path, notice: "Recipe API error: " + @results
-    # end
-    @recipes = []
+    else
+      redirect_to root_path, notice: "Recipe API error: " + @results
+    end
+    # @recipes = []
 
 
     #  FORM object
@@ -108,7 +108,7 @@ class PlannersController < ApplicationController
   end
 
   def set_course_type
-    params[:course_type].nil? ? @course_type = nil : @course_type = params[:course_type]
+    params[:course_type].nil? ? @course_type = @course_types.first : @course_type = params[:course_type]
   end
 
   def set_users

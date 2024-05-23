@@ -2,9 +2,9 @@
 <%- title "Meal Planner" %>
 
 <div class="container"
-     value="nil"
+     value="<%= @course_type %>"
      data-controller="course-type-radio-selector"
-     data-target='course-type-radio-selector.output'>
+     data-target="course-type-radio-selector.output">
   <div class="header">
     <%= render 'shared/searchbar' %>
   </div>

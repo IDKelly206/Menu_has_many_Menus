@@ -61,12 +61,11 @@ module FilterHelper
     pills = course_types.map { |ct|
         "<div class='radio-item'>
         <input class='radio-btn btn--pill btn--pill--course' type='radio'
-               name='course_type' value='#{ct.capitalize}'
+               name='course_type' value='#{ct}'
                data-target='course-type-radio-selector.input'
                >
         <label for='#{ct}'
                data-action='click->course-type-radio-selector#selectRadioOption'
-               data-target='course-type-radio-selector.label'
                >
                #{ct.capitalize} </label>
         </div>"

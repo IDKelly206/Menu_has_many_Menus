@@ -8,7 +8,6 @@ export default class extends Controller {
 
   connect() {
     // console.log("Turbo Modal controller")
-    // console.log(this.element.parentElement)
     this.openTurboFrame(this.idsValue)
   }
 
@@ -19,7 +18,7 @@ export default class extends Controller {
 
   openTurboFrame(ids) {
     const url = this.element.attributes["data-path"].value;
-    console.log(`turbo visiting ${url}`);
+    // console.log(`turbo visiting ${url}`);
     if (!ids.length == 0) Turbo.visit(url, { frame: "new_grocery", turbo: true })
   };
 }
