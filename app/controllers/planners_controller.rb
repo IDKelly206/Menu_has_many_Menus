@@ -2,31 +2,24 @@ class PlannersController < ApplicationController
   before_action :set_household, only: [:index, :new, :create]
   before_action :set_meal_types
   before_action :set_course_types
-  before_action :set_meal_type, only: [:index]
-  before_action :set_course_type, only: [:index]
   before_action :set_menus, only: [:index]
   before_action :set_users, only: [:index]
+  before_action :set_dietary_restrictions, only: [:index]
+  before_action :set_meal_type, only: [:index]
+  before_action :set_course_type, only: [:index]
 
   def index
     @meals = Meal.meals(menus: @menus, users: @users, meal_type: @meal_type)
     @meal_ids = @meals.map { |m| m.id }
-    @dietary_restrictions = @users.map { |u| u.dietary_restrictions }.flatten.map { |dr| dr.health.parameter }.uniq
-    params[:course_ids].nil? ? @course_ids = [] : @course_ids = params[:course_ids]
 
-    s = { query: ["egg"], filters: { mealType: 'lunch', dishType: 'main course' } }
+    s = { query: [""], filters: { mealType: @meal_type, health: @dietary_restrictions } }
     @results = Edamam::EdamamRecipe.search(s[:query], s[:filters])
     if @results.instance_of?(Array)
       @recipes = @results.first
       @next_page = @results.last
-
     else
       redirect_to root_path, notice: "Recipe API error: " + @results
     end
-    # @recipes = []
-
-
-    #  FORM object
-
 
     #  For rendering course cards in search bar for meals selected
     course_groups = []
@@ -113,6 +106,10 @@ class PlannersController < ApplicationController
 
   def set_users
     @users = params[:user_ids].map { |user_id| User.find(user_id.to_i) }
+  end
+
+  def set_dietary_restrictions
+    @dietary_restrictions = @users.map { |u| u.dietary_restrictions }.flatten.map { |dr| dr.health.parameter }.uniq
   end
 
   def set_menus
