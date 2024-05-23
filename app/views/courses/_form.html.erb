@@ -1,6 +1,5 @@
 <%= form_with url: create_courses_path do |f| %>
   <%= f.hidden_field :erecipe_id, value: erecipe_id %>
-  <%# <%= f.hidden_field :course_type, value: @course_type %> %>
   <%= f.hidden_field :course_type, value:"test", data: { target: 'course-type-radio-selector.output' } %>
   <%= f.hidden_field :meal_ids, name:"meal_ids[]", mutliple: true, value: @meal_ids %>
   <%= f.submit "Add Course" %>
