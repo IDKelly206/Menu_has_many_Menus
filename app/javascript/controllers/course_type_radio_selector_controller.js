@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="course-type-radio-selector"
 export default class extends Controller {
-  static targets = [ "input", "output" ]
+  static targets = [ "input", "output", "setter" ]
 
 
   connect() {
@@ -11,10 +11,14 @@ export default class extends Controller {
   }
 
   setDefaultCourse() {
-    const value = this.outputTarget.attributes.value.value
+    const value = this.setterTarget.attributes.value.value
     this.inputTargets.forEach((el) => {
       el.value === value ? el.checked = true : el.checked = false
     })
+
+    this.outputTargets.forEach((el) =>
+    el.value = value
+  )
   }
 
   selectRadioOption(event) {
@@ -23,7 +27,7 @@ export default class extends Controller {
     this.inputTargets.forEach((el) => {
       el.value === value ? el.checked = true : el.checked = false
     })
-    // this.outputTarget.attributes["value"].value = value;
+    this.setterTarget.attributes["value"].value = value;
     this.outputTargets.forEach((el) =>
       el.value = value
     )
