@@ -1,5 +1,6 @@
 <%= turbo_frame_tag "recipes" do %>
   <div class="card-deck">
     <%= render @recipes, locals: { title: @title }  %>
+     <div id="recipe_cards"></div>
   </div>
 <% end %>
