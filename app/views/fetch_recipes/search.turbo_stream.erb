@@ -1,0 +1,8 @@
+<%= turbo_stream.replace "recipe_cards" do %>
+  <%= render @recipes, locals: { title: yield(:title) } %>
+  <div id="recipe_cards"></div>
+<% end %>
+
+<%= turbo_stream.replace "load_more" do %>
+  <%= render partial: "/recipes/load_more" %>
+<% end %>

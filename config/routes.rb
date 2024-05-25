@@ -6,7 +6,6 @@ Rails.application.routes.draw do
   devise_for :users, :path_prefix => 'auth'
   resources :users, except: [:index]
 
-
   resources :menus, only: [:index, :show, :new] do
     resources :meals, only: [:show] do
       resources :courses, only: [:destroy]
@@ -23,8 +22,6 @@ Rails.application.routes.draw do
     get 'meal_new', on: :collection
   end
 
-  resources :planners, only: [:index, :new, :create]
-
   resources :courses, only: [] do
     collection do
       post 'create', to: 'courses#create', as: 'create'
@@ -32,13 +29,17 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :planners, only: [:index, :new, :create]
+
   resources :recipes, only: [:index, :show, :new] do
     collection do
       get 'recipe_search'
     end
   end
 
-  resources :products, only: [:index]
+  resources :fetch_recipes, only: [:index] do
+    post "search"
+  end
 
   resources :groceries, only: [:index, :new, :create] do
     collection do
@@ -46,5 +47,5 @@ Rails.application.routes.draw do
     end
   end
 
-
+  resources :products, only: [:index]
 end

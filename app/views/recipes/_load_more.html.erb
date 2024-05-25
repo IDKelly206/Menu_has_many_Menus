@@ -1,0 +1,6 @@
+<% href = @next_page[:links][:href] %>
+<% count = @next_page[:count] %>
+<% total = @next_page[:total] %>
+<div id="load_more" data-controller="fetch-recipes-turbo">
+  <%= link_to "Next Page", fetch_recipe_search_path(total, href: href), class: "btn", data: { turbo_method: :post }   %>
+</div>

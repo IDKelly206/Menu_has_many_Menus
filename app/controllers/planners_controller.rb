@@ -13,13 +13,16 @@ class PlannersController < ApplicationController
     @meal_ids = @meals.map { |m| m.id }
 
     s = { query: [""], filters: { mealType: @meal_type, health: @dietary_restrictions } }
-    @results = Edamam::EdamamRecipe.search(s[:query], s[:filters])
-    if @results.instance_of?(Array)
-      @recipes = @results.first
-      @next_page = @results.last
-    else
+    results = Edamam::EdamamRecipe.search(s[:query], s[:filters])
+    if results.keys.include?(:Status)
       redirect_to root_path, notice: "Recipe API error: " + @results
+    else
+      @recipes = results[:recipes]
+      @next_page = results[:next_page]
     end
+
+    params[:course_ids].nil? ? @course_ids = [] : @course_ids = params[:course_ids]
+
 
     #  For rendering course cards in search bar for meals selected
     course_groups = []

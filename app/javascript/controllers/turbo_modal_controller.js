@@ -7,7 +7,7 @@ export default class extends Controller {
   }
 
   connect() {
-    // console.log("Turbo Modal controller")
+    console.log("Turbo Modal controller")
     this.openTurboFrame(this.idsValue)
   }
 

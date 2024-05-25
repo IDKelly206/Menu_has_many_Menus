@@ -7,29 +7,28 @@ class RecipesController < ApplicationController
 
   def index
     if params[:query].present?
-      @results = Edamam::EdamamRecipe.search(params[:query], params[:filters])
-      if results.instance_of?(Array)
-        @r = results
-        @recipes = results.first
-        @next_page = results.last
+      results = Edamam::EdamamRecipe.search(params[:query], params[:filters])
+      if results.keys.include?(:Status)
+        redirect_to root_path, notice: "Recipe API error: " + @results
       else
-        redirect_to root_path, notice: "Recipe API error: " + results
+        @recipes = results[:recipes]
+        @next_page = results[:next_page]
       end
     else
       s = { query: ["egg"], filters: { mealType: 'lunch', dishType: 'main course' } }
-      @results = Edamam::EdamamRecipe.search(s[:query], s[:filters])
-      if @results.instance_of?(Array)
-        @recipes = @results.first
-        @next_page = @results.last
-      else
+      results = Edamam::EdamamRecipe.search(s[:query], s[:filters])
+      if results.keys.include?(:Status)
         redirect_to root_path, notice: "Recipe API error: " + @results
+      else
+        @recipes = results[:recipes]
+        @next_page = results[:next_page]
       end
     end
     console
   end
 
   def show
-    console
+
   end
 
   def new
@@ -37,12 +36,11 @@ class RecipesController < ApplicationController
 
   def recipe_search
     results = Edamam::EdamamRecipe.search(params[:query], params[:filters])
-    if results.instance_of?(Array)
-      @r = results
-      @recipes = results.first
-      @next_page = results.last
+    if results.keys.include?(:Status)
+      redirect_to root_path, notice: "Recipe API error: " + @results
     else
-      redirect_to root_path, notice: "Recipe API error: " + results
+      @recipes = results[:recipes]
+      @next_page = results[:next_page]
     end
 
     @title = params["title"]
@@ -53,7 +51,6 @@ class RecipesController < ApplicationController
     elsif params["menu_id"].present?
       @menu = Menu.find(params["menu_id"].to_i)
       @meal = Meal.find(params["meal_id"].to_i)
-      # params["course_id"].present? ? @course = Course.find(params["course_id"]) : @course = @meal.courses.build
     end
   end
 

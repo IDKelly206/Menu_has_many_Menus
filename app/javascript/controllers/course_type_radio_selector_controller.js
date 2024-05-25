@@ -6,7 +6,7 @@ export default class extends Controller {
 
 
   connect() {
-    // console.log("Course Type Radio Selector")
+    console.log("Course Type Radio Selector")
     this.setDefaultCourse()
   }
 

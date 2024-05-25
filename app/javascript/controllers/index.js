@@ -21,3 +21,6 @@ application.register("turbo-modal", TurboModalController)
 
 import CourseTypeRadioSelectorController from "./course_type_radio_selector_controller"
 application.register("course-type-radio-selector", CourseTypeRadioSelectorController)
+
+import FetchRecipesTurboController from "./fetch_recipes_turbo_controller"
+application.register("fetch-recipes-turbo", FetchRecipesTurboController)

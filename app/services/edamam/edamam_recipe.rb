@@ -29,11 +29,17 @@ module Edamam
 
     def self.search(query = [], filters = {})
       response = Request.where(query, filters)
-      if response.key?(:status)
+      if response.keys.include?(:status)
         response[:message]
       else
-        [recipes(response), next_page(response)]
+        {recipes: recipes(response), next_page: next_page(response)}
       end
+    end
+
+    def self.update_recipes(href)
+      uri = HTTParty.get(href, format: :plain)
+      response = JSON.parse (uri.body), symbolize_names: true
+      { recipes: recipes(response), next_page: next_page(response) }
     end
 
     def self.recipes(response)
@@ -54,19 +60,10 @@ module Edamam
       end
     end
 
-
     def self.next_page(response)
-      response[:_links][:next]
-    end
-
-    # def self.next_recipes(href)
-    #   resposne = href
-    # end
-
-    def self.update_recipes(url)
-      uri = HTTParty.get(url, format: :plain)
-      response = JSON.parse (uri.body), symbolize_names: true
-      recipes(response)
+      { links: response[:_links][:next],
+        count: response[:count],
+        total: response[:to] }
     end
 
     def self.error_messages(response)
