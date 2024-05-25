@@ -1,5 +1,5 @@
 <%= turbo_stream.replace "recipe_cards" do %>
-  <%= render @recipes, locals: { title: yield(:title) } %>
+  <%= render @recipes, locals: { title: @title } %>
   <div id="recipe_cards"></div>
 <% end %>
 
