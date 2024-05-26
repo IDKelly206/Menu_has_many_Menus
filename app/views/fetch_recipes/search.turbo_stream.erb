@@ -4,5 +4,5 @@
 <% end %>
 
 <%= turbo_stream.replace "load_more" do %>
-  <%= render partial: "/recipes/load_more" %>
+  <%= render partial: "/recipes/load_more", locals: { title: @title } %>
 <% end %>

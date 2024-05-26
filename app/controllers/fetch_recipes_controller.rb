@@ -1,6 +1,9 @@
 class FetchRecipesController < ApplicationController
 
   def search
+    # Need data:
+    # course_type
+    # title cycled
     href = params[:href]
     @title = params[:title]
     results = Edamam::EdamamRecipe.update_recipes(href)
