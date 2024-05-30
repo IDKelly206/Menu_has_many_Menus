@@ -11,9 +11,9 @@ export default class extends Controller {
     // console.log(this.assignTargets)
   }
 
-  assignTargetConnected(element) {
-    console.log("Assign target vefify", this.element)
-    console.dir(this.assignTarget)
+  assignTargetConnected(target) {
+    console.log("Assign target vefify")
+    // console.dir(this.assignTarget)
     this.setDefaultCourse()
   }
 

@@ -1,6 +1,8 @@
 <%= turbo_stream.replace "recipe_cards" do %>
   <%= render @recipes, locals: { title: @title } %>
-  <div id="recipe_cards" data-target="course-type-radio-selector.assign"></div>
+  <div id="recipe_cards"
+       data-course-type-radio-selector-target="assign">
+  </div>
 <% end %>
 
 <%= turbo_stream.replace "load_more" do %>

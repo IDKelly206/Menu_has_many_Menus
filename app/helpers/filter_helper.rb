@@ -62,7 +62,7 @@ module FilterHelper
         "<div class='radio-item'>
         <input class='radio-btn btn--pill btn--pill--course' type='radio'
                name='course_type' value='#{ct}'
-               data-target='course-type-radio-selector.input'
+               data-course-type-radio-selector-target='input'
                >
         <label for='#{ct}'
                data-action='click->course-type-radio-selector#selectRadioOption'

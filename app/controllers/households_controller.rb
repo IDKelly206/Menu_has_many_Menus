@@ -3,7 +3,7 @@ class HouseholdsController < ApplicationController
 
   def show
     @users = @household.users
-    console
+    
   end
 
   private

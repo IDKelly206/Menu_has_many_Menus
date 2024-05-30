@@ -44,7 +44,7 @@ class PlannersController < ApplicationController
     @courses = @recipes_with_course_id.keys.map { |recipe_id| courses_all.detect { |course| course.erecipe_id == recipe_id } }
     @course_recipes = @courses.map { |course| Edamam::EdamamRecipe.find(course.erecipe_id) }
 
-    console
+
   end
 
   def new
@@ -54,7 +54,7 @@ class PlannersController < ApplicationController
     @menus = Menu.where('household_id = ?', @household).where('date IN (:cal)', { cal: calendar })
     @users = @household.users
 
-    console
+
   end
 
   def create
@@ -78,7 +78,7 @@ class PlannersController < ApplicationController
 
       render :new, status: :unprocessable_entity
     end
-    console
+    
   end
 
   private
