@@ -2,11 +2,18 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="course-type-radio-selector"
 export default class extends Controller {
-  static targets = [ "input", "output", "setter" ]
+  static targets = [ "input", "output", "setter", "assign" ]
 
 
   connect() {
-    console.log("Course Type Radio Selector")
+    console.log("Course Type Radio Selector", this.element)
+    this.setDefaultCourse()
+    // console.log(this.assignTargets)
+  }
+
+  assignTargetConnected(element) {
+    console.log("Assign target vefify", this.element)
+    console.dir(this.assignTarget)
     this.setDefaultCourse()
   }
 
@@ -15,9 +22,7 @@ export default class extends Controller {
     this.inputTargets.forEach((el) => {
       el.value === value ? el.checked = true : el.checked = false
     })
-
-    this.outputTargets.forEach((el) =>
-    el.value = value
+    this.outputTargets.forEach((el) => el.value = value
   )
   }
 
@@ -32,4 +37,8 @@ export default class extends Controller {
       el.value = value
     )
   }
+
+
+
+
 }

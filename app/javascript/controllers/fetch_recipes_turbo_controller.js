@@ -3,9 +3,9 @@ import { Controller } from "@hotwired/stimulus"
 // Connects to data-controller="fetch-recipes-turbo"
 export default class extends Controller {
   connect() {
-    console.log("Fetch Recipes turbo controller")
+    console.log("Fetch Recipes turbo controller", this.element)
   }
-  
+
   getTurboSteam(event) {
     event.preventDefault()
     get(event.target.href, {

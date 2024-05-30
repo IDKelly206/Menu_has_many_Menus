@@ -8,7 +8,7 @@ class MenusController < ApplicationController
 
   def index
     @menus = Menu.create_menus(@household).ordered
-    console
+
   end
 
   def show
@@ -20,7 +20,7 @@ class MenusController < ApplicationController
     @erecipe_ids = @meals.map { |m| m.courses.map { |c| c.erecipe_id } }.flatten.uniq
     @recipes = @erecipe_ids.map { |recipe_id| Edamam::EdamamRecipe.find(recipe_id) }
 
-    console
+
   end
 
   # def new

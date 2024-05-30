@@ -2,7 +2,7 @@
 <% count = @next_page[:count] %>
 <% total = @next_page[:total] %>
 <% yield(:title).blank? ? title = title : title = yield(:title) %>
-<div id="load_more" data-controller="fetch-recipes-turbo">
+<div id="load_more">
   <div>
      <%= link_to "Next Page", fetch_recipe_search_path(total, href: href, count: count, title: title), class: "btn", data: { turbo_method: :post }   %>
   </div>

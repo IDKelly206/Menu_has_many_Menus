@@ -11,7 +11,7 @@ class MealsController < ApplicationController
     @courses = @meal.courses
     @recipes = @courses.map { |course| Edamam::EdamamRecipe.find(course.erecipe_id) }
 
-    console
+   
   end
 
   def meal_new
@@ -21,7 +21,7 @@ class MealsController < ApplicationController
     @users = @household.users
 
     @meal = Meal.new
-    console
+
   end
 
   private
