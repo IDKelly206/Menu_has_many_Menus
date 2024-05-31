@@ -10,8 +10,7 @@ export default class extends Controller {
   }
 
   scroll() {
-    console.log(window.scrollY)
-
+    // console.log(window.scrollY)
     const body = document.body,
       html = document.documentElement
     const height = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight)
