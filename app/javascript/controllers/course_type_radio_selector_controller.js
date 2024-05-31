@@ -2,38 +2,51 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="course-type-radio-selector"
 export default class extends Controller {
-  static targets = [ "input", "output", "setter", "assign" ]
+  static targets = [ "input", "course", "meal", "setter", "assign" ]
 
 
   connect() {
     console.log("Course Type Radio Selector", this.element)
     this.setDefaultCourse()
+    const planner = document.getElementById("planner")
+    // console.log(planner)
+    const value = planner.dataset.mealIds
+    console.log(typeof value)
     // console.log(this.assignTargets)
   }
 
   assignTargetConnected(target) {
-    console.log("Assign target vefify")
-    // console.dir(this.assignTarget)
+    // console.log("Assign target vefify")
     this.setDefaultCourse()
+    this.setMealIds()
   }
 
   setDefaultCourse() {
-    const value = this.setterTarget.attributes.value.value
+    const planner = document.getElementById("planner")
+    const value = planner.dataset.courseType
     this.inputTargets.forEach((el) => {
       el.value === value ? el.checked = true : el.checked = false
     })
-    this.outputTargets.forEach((el) => el.value = value
+    this.courseTargets.forEach((el) => el.value = value
   )
+  }
+
+  setMealIds() {
+    const planner = document.getElementById("planner")
+    const value = planner.dataset.mealIds
+    this.mealTargets.forEach((el) =>
+      el.value = value
+    )
   }
 
   selectRadioOption(event) {
     let value = event.target.attributes["for"].value
-    console.log(value)
     this.inputTargets.forEach((el) => {
       el.value === value ? el.checked = true : el.checked = false
     })
-    this.setterTarget.attributes["value"].value = value;
-    this.outputTargets.forEach((el) =>
+    const planner = document.getElementById("planner")
+    planner.dataset.courseType = value;
+    this.courseTargets.forEach((el) =>
       el.value = value
     )
   }

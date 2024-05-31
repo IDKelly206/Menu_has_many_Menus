@@ -1,7 +1,10 @@
 <%- title "Meal Planner" %>
 
 <div class="container"
-     value="<%= @course_type %>"
+     id="planner"
+     data-course-type="<%= @course_type %>"
+     data-meal-ids="<%= @meal_ids.join(", ") %>"
+     data-course-ids="<%= @course_ids %>"
      data-controller="course-type-radio-selector"
      data-course-type-radio-selector-target="setter">
   <div class="header">
