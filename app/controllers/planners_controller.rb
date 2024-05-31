@@ -20,7 +20,7 @@ class PlannersController < ApplicationController
       @recipes = results[:recipes]
       @next_page = results[:next_page]
     end
-
+    
     params[:course_ids].nil? ? @course_ids = [] : @course_ids = params[:course_ids]
 
 

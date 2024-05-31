@@ -15,7 +15,7 @@ export default class extends Controller {
     const body = document.body,
       html = document.documentElement
     const height = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight)
-    if(window.scrollY >= height - window.innerHeight - 50) {
+    if(window.scrollY >= height - window.innerHeight - 100) {
       // console.log("Bottom")
       this.paginationTarget.click()
     }
