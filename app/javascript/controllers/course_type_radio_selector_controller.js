@@ -8,11 +8,8 @@ export default class extends Controller {
   connect() {
     console.log("Course Type Radio Selector", this.element)
     this.setDefaultCourse()
-    const planner = document.getElementById("planner")
+    // const planner = document.getElementById("planner")
     // console.log(planner)
-    const value = planner.dataset.mealIds
-    console.log(typeof value)
-    // console.log(this.assignTargets)
   }
 
   assignTargetConnected(target) {

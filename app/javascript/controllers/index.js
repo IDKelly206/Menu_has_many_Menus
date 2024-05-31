@@ -28,3 +28,6 @@ application.register("course-type-radio-selector", CourseTypeRadioSelectorContro
 
 import FetchRecipesTurboController from "./fetch_recipes_turbo_controller"
 application.register("fetch-recipes-turbo", FetchRecipesTurboController)
+
+import InfiniteScrollController from "./infinite_scroll_controller"
+application.register("infinite-scroll", InfiniteScrollController)

@@ -4,13 +4,15 @@
      id="planner"
      data-course-type="<%= @course_type %>"
      data-meal-ids="<%= @meal_ids.join(", ") %>"
-     data-course-ids="<%= @course_ids %>"
+     data-course-ids="<%= @course_ids.join(", ") %>"
      data-controller="course-type-radio-selector"
      data-course-type-radio-selector-target="setter">
   <div class="header">
     <%= render 'shared/searchbar' %>
   </div>
-  <div class="section-cards">
+  <div class="section-cards"
+       data-controller="infinite-scroll"
+       data-action="scroll@window->infinite-scroll#scroll"
     <%= turbo_frame_tag dom_id(Grocery.new),
         data: {
           controller: "turbo-modal",
