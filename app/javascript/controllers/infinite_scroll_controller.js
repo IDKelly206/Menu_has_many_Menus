@@ -5,8 +5,8 @@ export default class extends Controller {
   static targets = ["entries", "pagination"]
 
   connect() {
-    console.log("Infinite Scroll")
-    console.log(this.paginationTarget)
+    // console.log("Infinite Scroll")
+    // console.log(this.paginationTarget)
   }
 
   scroll() {

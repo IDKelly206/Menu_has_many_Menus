@@ -12,7 +12,7 @@
   </div>
   <div class="section-cards"
        data-controller="infinite-scroll"
-       data-action="scroll@window->infinite-scroll#scroll"
+       data-action="scroll@window->infinite-scroll#scroll">
     <%= turbo_frame_tag dom_id(Grocery.new),
         data: {
           controller: "turbo-modal",

@@ -6,7 +6,7 @@ export default class extends Controller {
 
 
   connect() {
-    console.log("Course Type Radio Selector", this.element)
+    // console.log("Course Type Radio Selector", this.element)
     this.setDefaultCourse()
     // const planner = document.getElementById("planner")
     // console.log(planner)
