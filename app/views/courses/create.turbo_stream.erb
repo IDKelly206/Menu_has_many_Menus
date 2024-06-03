@@ -1,0 +1,9 @@
+<%= turbo_stream.replace "gList" do %>
+  <div id="gList" data-controller="turbo-modal">
+    <%= turbo_frame_tag dom_id(Grocery.new),
+      data: {
+        turbo_modal_target: "grocery",
+        path: new_grocery_path(course_ids: @course_ids)
+      } %>
+  </div>
+<% end %>

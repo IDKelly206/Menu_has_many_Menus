@@ -11,12 +11,15 @@ class CoursesController < ApplicationController
 
   def create
     courses = Course::Multicourse.create(course_params)
-    course_ids = courses.map { |course| course.id }
+    @course_ids = courses.map { |course| course.id }
     if @course_count == @new_courses
       user_ids = courses.map { |c| c.meal.user_id }.uniq
       menu_ids = courses.map { |c| c.meal.menu_id }.uniq
       meal_type = courses.map { |c| c.meal.meal_type }.uniq.first
-      redirect_to planners_path(course_ids: course_ids, user_ids: user_ids, menu_ids: menu_ids, meal_type: meal_type), notice: "Course successfully added"
+      respond_to do |format|
+        # format.html { redirect_to planners_path(course_ids: @course_ids, user_ids: user_ids, menu_ids: menu_ids, meal_type: meal_type), notice: "Course successfully added" }
+        format.turbo_stream { flash.now[:notice] = "Course successfully added!" }
+      end
     else
       render :new, status: :unprocessable_entity
     end
@@ -31,7 +34,7 @@ class CoursesController < ApplicationController
 
     @meal_type = @meal.meal_type
     @course_type = @course.course_type
-   
+
   end
 
   def update
