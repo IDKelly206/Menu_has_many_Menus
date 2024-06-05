@@ -27,7 +27,7 @@ Rails.application.routes.draw do
 
   resources :planners, only: [:index, :new, :create]
 
-  resources :recipes, only: [:index, :show, :new] do
+  resources :recipes, only: [:index, :show] do
     collection do
       get 'recipe_search'
     end

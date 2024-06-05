@@ -1,6 +1,5 @@
 class RecipesController < ApplicationController
   before_action :set_recipe, only: [:show]
-
   before_action :set_meal_types, only: [:index, :recipe_search]
   before_action :set_course_types, only: [:index, :recipe_search]
 
@@ -28,9 +27,6 @@ class RecipesController < ApplicationController
   end
 
   def show
-  end
-
-  def new
   end
 
   def recipe_search
