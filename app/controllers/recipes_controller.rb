@@ -24,11 +24,10 @@ class RecipesController < ApplicationController
         @next_page = results[:next_page]
       end
     end
-    
+
   end
 
   def show
-
   end
 
   def new

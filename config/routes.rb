@@ -18,10 +18,6 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :meals, only: [] do
-    get 'meal_new', on: :collection
-  end
-
   resources :courses, only: [] do
     collection do
       post 'create', to: 'courses#create', as: 'create'
@@ -38,7 +34,7 @@ Rails.application.routes.draw do
   end
 
   resources :fetch_recipes, only: [:index] do
-    post "search"
+    post 'search'
   end
 
   resources :groceries, only: [:index, :new, :create] do

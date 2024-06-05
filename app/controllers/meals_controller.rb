@@ -1,6 +1,6 @@
 class MealsController < ApplicationController
   before_action :set_household
-  before_action :set_meal_types, only: [:show, :meal_new]
+  before_action :set_meal_types, only: [:show]
   before_action :set_course_types, only: [:show]
   before_action :set_menu, only: [:show]
   before_action :set_meal, only: [:show]
@@ -10,18 +10,6 @@ class MealsController < ApplicationController
   def show
     @courses = @meal.courses
     @recipes = @courses.map { |course| Edamam::EdamamRecipe.find(course.erecipe_id) }
-
-   
-  end
-
-  def meal_new
-    # Modal of GET form to meal#new. Selects multi-meal criteria
-    calendar = (Time.now.to_date...(Time.now.to_date + 10))
-    @menus = Menu.where('household_id = ?', @household).where('date IN (:cal)', { cal: calendar })
-    @users = @household.users
-
-    @meal = Meal.new
-
   end
 
   private
