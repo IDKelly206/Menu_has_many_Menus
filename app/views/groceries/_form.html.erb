@@ -36,10 +36,17 @@
   <% end %>
 <%= form.submit "Add gList items" %>
 <% end %>
-<%= button_to "Cancel",
-            multi_destroy_courses_path(course_ids: @course_ids,
-                                  user_ids: @users,
-                                  menu_ids: @menus,
-                                  meal_type: @meal_type),
-            method: :delete,
-            class: "btn" %>
+<% if @course_ids.size == 1 %>
+  <%= button_to "Cancel",
+                [@menu, @meal, @course],
+                method: :delete,
+                class: "btn" %>
+<% else %>
+    <%= button_to "Cancel",
+                destroy_multiple_courses_path(course_ids: @course_ids,
+                                      user_ids: @users,
+                                      menu_ids: @menus,
+                                      meal_type: @meal_type),
+                method: :delete,
+                class: "btn btn--dark" %>
+<% end %>

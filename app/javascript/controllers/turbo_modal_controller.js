@@ -5,7 +5,7 @@ export default class extends Controller {
   static targets = [ "grocery" ]
 
   connect() {
-    // console.log("Turbo Modal controller", this.element)
+    console.log("Turbo Modal controller", this.element)
     // const planner = document.getElementById("planner")
     // ids = planner.dataset.courseIds
     // this.openTurboFrame(this.idsValue)
