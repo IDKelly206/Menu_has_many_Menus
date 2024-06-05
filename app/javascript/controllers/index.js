@@ -8,11 +8,6 @@ import { application } from "./application"
 // import { eagerLoadControllersFrom } from "@hotwired/stimulus-loading"
 // eagerLoadControllersFrom("controllers", application)
 
-
-// import ProductsSearchController from "./products_search_controller"
-// application.register("products-search", ProductsSearchController)
-
-
 import RemovalsController from "./removals_controller"
 application.register("removals", RemovalsController)
 
