@@ -19,8 +19,6 @@ class MenusController < ApplicationController
     @meals = @menu.meals.where(meal_type: @meal_type)
     @erecipe_ids = @meals.map { |m| m.courses.map { |c| c.erecipe_id } }.flatten.uniq
     @recipes = @erecipe_ids.map { |recipe_id| Edamam::EdamamRecipe.find(recipe_id) }
-
-
   end
 
   # def new

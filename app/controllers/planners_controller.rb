@@ -21,8 +21,7 @@ class PlannersController < ApplicationController
       @next_page = results[:next_page]
     end
 
-    params[:course_ids].nil? ? @course_ids = [] : @course_ids = params[:course_ids]
-
+    # params[:course_ids].nil? ? @course_ids = [] : @course_ids = params[:course_ids]
 
     #  For rendering course cards in search bar for meals selected
     course_groups = []
@@ -43,6 +42,7 @@ class PlannersController < ApplicationController
     @recipes_with_course_id = courses_of_meals.select { |recipe_id, course_ids| course_ids.count == @meals.size }
     @courses = @recipes_with_course_id.keys.map { |recipe_id| courses_all.detect { |course| course.erecipe_id == recipe_id } }
     @course_recipes = @courses.map { |course| Edamam::EdamamRecipe.find(course.erecipe_id) }
+    console
   end
 
   def new
