@@ -41,7 +41,7 @@ class User < ApplicationRecord
   def create_user_meals
     user_id = self.id
     household = User.last.household_id
-    calendar = (Time.now.to_date...(Time.now.to_date+10))
+    calendar = Menu.calendar
     menu_ids = Menu.where('household_id = ?', household).where('date IN (:cal)', { cal: calendar }).ids
     meal_types = %w(Breakfast Lunch Dinner)
 

@@ -1,5 +1,4 @@
 <div class= "card-menu-meal-course">
-  <% @meal = meal %>
   <div class="card-menu-meal-course__header">
     <h4><%= User.find(@meal.user_id).name_first %></h4>
     <%= link_to menus_path do %>
@@ -12,9 +11,7 @@
       <div class="course-item">
         <div class="card-course__action">
           <%= link_to planners_path(
-                    menu_ids: [@menu.id],
-                    user_ids: [@meal.user.id],
-                    meal_type: @meal.meal_type,
+                    meal_ids: [@meal.id],
                     course_type: course_type),
                     data: { turbo_frame: "_top" },
                     class: "btn" do %>

@@ -16,8 +16,12 @@ class Menu < ApplicationRecord
 
   private
 
+  def self.calendar
+    (Time.now.to_date...(Time.now.to_date + 7))
+  end
+
   def self.create_menus(household)
-    calendar = (Time.now.to_date...(Time.now.to_date + 5))
+    calendar = Menu.calendar
     menu_count = Menu.where('household_id = ?', household).where('date IN (:cal)', { cal: calendar }).count
     if menu_count >= calendar.count
       @menus = Menu.where('household_id = ?', household).where('date IN (:cal)', { cal: calendar }).ordered
@@ -29,7 +33,6 @@ class Menu < ApplicationRecord
       @menus = Menu.where('household_id = ?', household).where('date IN (:cal)', { cal: calendar }).ordered
     end
   end
-
 
   def create_menu_meals
     menu = self

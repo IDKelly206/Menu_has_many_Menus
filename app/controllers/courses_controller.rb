@@ -30,7 +30,6 @@ class CoursesController < ApplicationController
 
     @meal_type = @meal.meal_type
     @course_type = @course.course_type
-
   end
 
   def update

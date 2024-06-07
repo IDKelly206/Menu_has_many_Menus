@@ -1,7 +1,7 @@
 class MealsController < ApplicationController
-  before_action :set_household
   before_action :set_meal_types, only: [:show]
   before_action :set_course_types, only: [:show]
+  before_action :set_household
   before_action :set_menu, only: [:show]
   before_action :set_meal, only: [:show]
   before_action :set_user, only: [:show]
@@ -10,13 +10,11 @@ class MealsController < ApplicationController
   def show
     @courses = @meal.courses
     @recipes = @courses.map { |course| Edamam::EdamamRecipe.find(course.erecipe_id) }
+
+    console
   end
 
   private
-
-  def set_household
-    @household = Household.find(current_user.id)
-  end
 
   def set_meal_types
     @meal_types = Meal::MEAL_TYPES
@@ -24,6 +22,10 @@ class MealsController < ApplicationController
 
   def set_course_types
     @course_types = Course::COURSE_TYPES
+  end
+
+  def set_household
+    @household = Household.find(current_user.id)
   end
 
   def set_menu

@@ -8,8 +8,6 @@ class UsersController < ApplicationController
   def new
     @user = User.new
     @health_types = Health.all.by_name
-
-
   end
 
   def create
@@ -26,7 +24,6 @@ class UsersController < ApplicationController
   end
 
   def edit
-    
   end
 
   def update

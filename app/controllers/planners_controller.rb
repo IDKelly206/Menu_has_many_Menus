@@ -1,16 +1,16 @@
 class PlannersController < ApplicationController
-  before_action :set_household, only: [:index, :new, :create]
   before_action :set_meal_types
   before_action :set_course_types
-  before_action :set_menus, only: [:index]
+  before_action :set_household, only: [:index, :new, :create]
+  before_action :set_meals, only: [:index]
   before_action :set_users, only: [:index]
   before_action :set_dietary_restrictions, only: [:index]
+  before_action :set_menus, only: [:index]
   before_action :set_meal_type, only: [:index]
   before_action :set_course_type, only: [:index]
 
   def index
-    @meals = Meal.meals(menus: @menus, users: @users, meal_type: @meal_type)
-    @meal_ids = @meals.map { |m| m.id }
+    @meal_ids = params[:meal_ids]
 
     s = { query: [""], filters: { mealType: @meal_type, health: @dietary_restrictions } }
     results = Edamam::EdamamRecipe.search(s[:query], s[:filters])
@@ -47,33 +47,29 @@ class PlannersController < ApplicationController
 
   def new
     @planner = PlannerForm.new
-
-    calendar = (Time.now.to_date...(Time.now.to_date + 10))
+    calendar = Menu.calendar
     @menus = Menu.where('household_id = ?', @household).where('date IN (:cal)', { cal: calendar })
     @users = @household.users
-
-
   end
 
   def create
-    @planner = params[:planner_form].nil? ? @planner = PlannerForm.new : PlannerForm.new(planner_params)
+    planner = params[:planner_form].nil? ? @planner = PlannerForm.new : PlannerForm.new(planner_params)
 
-    if @planner.submit
-      meal_type = @planner.meal_type
-      user_ids = @planner.user_ids
-      menu_ids = @planner.menu_ids
+    if planner.submit
+      meal_type = planner.meal_type
+      users = planner.user_ids.map { |id| User.find(id)}
+      menus = planner.menu_ids.map { |id| Menu.find(id)}
+      meal_ids = Meal.meal_ids(menus:, users:, meal_type:)
       respond_to do |format|
         format.turbo_stream do
-          render turbo_stream: turbo_stream.adv_redirect(planners_path(meal_type:, user_ids:, menu_ids:))
+          render turbo_stream: turbo_stream.adv_redirect(planners_path(meal_ids:))
         end
         format.html { redirect_to planners_path(meal_type:, user_ids:, menu_ids:) }
       end
     else
-
-      calendar = (Time.now.to_date...(Time.now.to_date + 10))
+      calendar = Menu.calendar
       @menus = Menu.where('household_id = ?', @household).where('date IN (:cal)', { cal: calendar })
       @users = @household.users
-
       render :new, status: :unprocessable_entity
     end
 
@@ -85,10 +81,6 @@ class PlannersController < ApplicationController
     params.require(:planner_form).permit(:meal_type, user_ids: [], menu_ids: [])
   end
 
-  def set_household
-    @household = Household.find(current_user.id)
-  end
-
   def set_meal_types
     @meal_types = Meal::MEAL_TYPES
   end
@@ -97,16 +89,16 @@ class PlannersController < ApplicationController
     @course_types = Course::COURSE_TYPES
   end
 
-  def set_meal_type
-    @meal_type = params[:meal_type]
+  def set_household
+    @household = Household.find(current_user.id)
   end
 
-  def set_course_type
-    params[:course_type].nil? ? @course_type = @course_types.first : @course_type = params[:course_type]
+  def set_meals
+    @meals = params[:meal_ids].map { |id| Meal.find(id) }
   end
 
   def set_users
-    @users = params[:user_ids].map { |user_id| User.find(user_id.to_i) }
+    @users = @meals.map { |meal| meal.user }.uniq
   end
 
   def set_dietary_restrictions
@@ -114,6 +106,15 @@ class PlannersController < ApplicationController
   end
 
   def set_menus
-    @menus = params[:menu_ids].map { |menu_id| Menu.find(menu_id.to_i) }
+    @menus = @meals.map { |meal| meal.menu }.uniq
   end
+
+  def set_meal_type
+    @meal_type = @meals.map { |meal| meal.meal_type }.uniq.first
+  end
+
+  def set_course_type
+    params[:course_type].nil? ? @course_type = @course_types.first : @course_type = params[:course_type]
+  end
+
 end

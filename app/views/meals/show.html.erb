@@ -3,7 +3,7 @@
   <div class="header">
     <h2>Meal show page: User meal</h1>
     <ul>
-      <li><p>User: <%= User.find(@meal.user_id).name_first %></p></li>
+      <li><p>User: <%= @user.name_first %></p></li>
       <li><p>Date: <%= @menu.day_of_week %></p></li>
       <li><p>Meal: <%= @meal.meal_type %></p></li>
     </ul>

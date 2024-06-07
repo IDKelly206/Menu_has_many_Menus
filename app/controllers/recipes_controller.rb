@@ -1,7 +1,7 @@
 class RecipesController < ApplicationController
-  before_action :set_recipe, only: [:show]
   before_action :set_meal_types, only: [:index, :recipe_search]
   before_action :set_course_types, only: [:index, :recipe_search]
+  before_action :set_recipe, only: [:show]
 
 
   def index
@@ -51,6 +51,14 @@ class RecipesController < ApplicationController
 
   private
 
+  def set_meal_types
+    @meal_types = Meal::MEAL_TYPES
+  end
+
+  def set_course_types
+    @course_types = Course::COURSE_TYPES
+  end
+
   def set_recipe
     recipe_id = params[:id]
     @result = Edamam::EdamamRecipe.find(recipe_id)
@@ -59,13 +67,5 @@ class RecipesController < ApplicationController
     else
       redirect_to root_path, notice: "Recipe API error: " + @result
     end
-  end
-
-  def set_meal_types
-    @meal_types = Meal::MEAL_TYPES
-  end
-
-  def set_course_types
-    @course_types = Course::COURSE_TYPES
   end
 end

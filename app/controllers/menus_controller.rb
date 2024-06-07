@@ -1,17 +1,12 @@
 class MenusController < ApplicationController
+  before_action :set_meal_types, only: [:index, :show_meal]
+  before_action :set_course_types, only: [:index, :show_meal]
   before_action :set_household
   before_action :set_users
-  before_action :set_menu, only: [:show, :show_meal]
-  before_action :set_meal_types, only: [:index, :show, :show_meal]
-  before_action :set_course_types, only: [:index, :show, :show_meal]
-
+  before_action :set_menu, only: [:show_meal]
 
   def index
     @menus = Menu.create_menus(@household).ordered
-
-  end
-
-  def show
   end
 
   def show_meal
@@ -21,23 +16,17 @@ class MenusController < ApplicationController
     @recipes = @erecipe_ids.map { |recipe_id| Edamam::EdamamRecipe.find(recipe_id) }
   end
 
-  # def new
-  # end
-
-  # def create
-  # end
-
   private
-  def set_household
-    @household = Household.find(current_user.id)
-  end
-
   def set_meal_types
     @meal_types = Meal::MEAL_TYPES
   end
 
   def set_course_types
     @course_types = Course::COURSE_TYPES
+  end
+
+  def set_household
+    @household = Household.find(current_user.id)
   end
 
   def set_users

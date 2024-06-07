@@ -26,4 +26,18 @@ class Meal < ApplicationRecord
     end
     meals.flatten.map { |meal| Meal.find(meal) }
   end
+
+  def self.meal_ids(attr = {})
+    menus = attr[:menus]
+    users = attr[:users]
+    meal_type = attr[:meal_type]
+    meal_ids = []
+    menus.each do |menu|
+      users.each do |user|
+        id = where('user_id = ?', user.id).where('menu_id = ?', menu.id).where('meal_type = ?', meal_type).ids
+        meal_ids.push(id)
+      end
+    end
+    meal_ids.flatten
+  end
 end
