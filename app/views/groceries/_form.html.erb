@@ -28,25 +28,18 @@
         <%= fields.hidden_field :category, value: "<BLANK>" %>
       <% end %>
 
-      <%= fields.hidden_field :course_ids, value: @course_ids %>
-      <%= fields.hidden_field :household_id, value: @household.id %>
-      <%= fields.hidden_field :erecipe_id, value: @erecipe_id %>
+      <%= fields.hidden_field :course_ids, value: @meals_ids %>
+      <%# <%= fields.hidden_field :course_ids, value: @course_ids %> %>
+      <%# <%= fields.hidden_field :household_id, value: @household.id %> %>
+      <%# <%= fields.hidden_field :erecipe_id, value: @erecipe_id %> %>
     <% end %>
     <hr>
   <% end %>
 <%= form.submit "Add gList items" %>
 <% end %>
-<% if @course_ids.size == 1 %>
-  <%= button_to "Cancel",
-                [@menu, @meal, @course],
-                method: :delete,
-                class: "btn" %>
-<% else %>
+
     <%= button_to "Cancel",
-                destroy_multiple_courses_path(course_ids: @course_ids,
-                                      user_ids: @users,
-                                      menu_ids: @menus,
-                                      meal_type: @meal_type),
+                multi_destroy_courses_path(course_ids: @course_ids,
+                                      meal_ids: @meal_ids),
                 method: :delete,
                 class: "btn btn--dark" %>
-<% end %>

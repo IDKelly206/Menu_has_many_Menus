@@ -15,19 +15,22 @@ class GroceriesController < ApplicationController
     @course_ids = params[:course_ids]
     @courses = @course_ids.map { |id| Course.find(id.to_i) }
 
-    user_ids = @courses.map { |c| c.meal.user_id }.uniq
-    @users = user_ids.map { |id| User.find(id) }
+    @meal_ids = @courses.map { |course| course.meal.id }.uniq
 
-    menu_ids = @courses.map { |c| c.meal.menu_id }.uniq
-    @menus = menu_ids.map { |id| Menu.find(id) }
 
-    meal_type = @courses.map { |c| c.meal.meal_type }.uniq
-    @meal_type = meal_type.first
+    # user_ids = @courses.map { |c| c.meal.user_id }.uniq
+    # @users = user_ids.map { |id| User.find(id) }
+
+    # menu_ids = @courses.map { |c| c.meal.menu_id }.uniq
+    # @menus = menu_ids.map { |id| Menu.find(id) }
+
+    # meal_type = @courses.map { |c| c.meal.meal_type }.uniq
+    # @meal_type = meal_type.first
 
     @erecipe_id = @courses.first.erecipe_id
     @recipe = Edamam::EdamamRecipe.find(@erecipe_id)
 
-    
+
   end
 
   def create
@@ -39,10 +42,11 @@ class GroceriesController < ApplicationController
     courses = @course_ids.map { |id| Course.find(id) }
     # courses = Course.where(id: params[:course_ids])
     if @glist_count == @new_glist
-      user_ids = courses.map { |c| c.meal.user_id }.uniq
-      menu_ids = courses.map { |c| c.meal.menu_id }.uniq
-      meal_type = courses.map { |c| c.meal.meal_type }.uniq.first
-      redirect_to planners_path(user_ids: user_ids, menu_ids: menu_ids, meal_type: meal_type),
+      @meal_ids = params[:meal_ids]
+      # user_ids = courses.map { |c| c.meal.user_id }.uniq
+      # menu_ids = courses.map { |c| c.meal.menu_id }.uniq
+      # meal_type = courses.map { |c| c.meal.meal_type }.uniq.first
+      redirect_to planners_path(meal_ids: @meal_ids),
         notice: "Grocery items successfully added to Grocery List."
     else
       render :new, status: :unprocessable_entity

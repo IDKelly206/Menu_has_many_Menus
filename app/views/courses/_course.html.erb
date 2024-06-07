@@ -19,9 +19,7 @@
     <% else %>
       <%= button_to "",
                     multi_destroy_courses_path(course_ids: recipe_keyes[course.erecipe_id],
-                                             user_ids: @users,
-                                             menu_ids: @menus,
-                                             meal_type: @meal_type),
+                                               meal_ids: @meal_ids),
                     method: :delete,
                     class: "btn fa-solid fa-circle-minus" %>
     <% end %>
