@@ -1,5 +1,6 @@
 <%= form_with url: '/groceries' do |form|  %>
-  <%= form.hidden_field :course_ids, value: @course_ids %>
+  <%= form.hidden_field :meal_ids, name:"meal_ids[]", mutliple: true,  value: @meal_ids %>
+
   <% n = 0 %>
   <% @recipe.ingredients.each do |ingredient| %>
     <% n += 1 %>
@@ -28,18 +29,16 @@
         <%= fields.hidden_field :category, value: "<BLANK>" %>
       <% end %>
 
-      <%= fields.hidden_field :course_ids, value: @meals_ids %>
-      <%# <%= fields.hidden_field :course_ids, value: @course_ids %> %>
-      <%# <%= fields.hidden_field :household_id, value: @household.id %> %>
-      <%# <%= fields.hidden_field :erecipe_id, value: @erecipe_id %> %>
+      <%= fields.hidden_field :course_ids, value: @course_ids %>
+      <%= fields.hidden_field :household_id, value: @household.id %>
+      <%= fields.hidden_field :erecipe_id, value: @erecipe_id %>
     <% end %>
     <hr>
   <% end %>
-<%= form.submit "Add gList items" %>
+  <%= form.submit "Add gList items", class: "btn btn--dark" %>
 <% end %>
-
-    <%= button_to "Cancel",
-                multi_destroy_courses_path(course_ids: @course_ids,
-                                      meal_ids: @meal_ids),
-                method: :delete,
-                class: "btn btn--dark" %>
+<%= button_to "Cancel",
+            multi_destroy_courses_path(course_ids: @course_ids,
+                                  meal_ids: @meal_ids),
+            method: :delete,
+            class: "btn btn--dark" %>

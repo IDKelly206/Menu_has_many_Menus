@@ -1,13 +1,11 @@
 class CoursesController < ApplicationController
   before_action :set_household, except: [:create]
-  # before_action :set_meal_types, only: [:new]
-  # before_action :set_course_types, only: [:new]
+  # before_action :set_meal_types, only: [:edi]
+  # before_action :set_course_types, only: [:edit]
   before_action :set_menu, only: [:destroy]
   before_action :set_meal, only: [:destroy]
   before_action :set_course, only: [:edit, :update, :destroy]
-  # before_action :set_menus, only: [:multi_destroy]
-  # before_action :set_users, only: [:multi_destroy]
-  # before_action :set_meal_type, only: [:multi_destroy]
+
 
   def create
     courses = Course::Multicourse.create(course_params)

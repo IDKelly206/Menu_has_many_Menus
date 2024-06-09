@@ -57,8 +57,8 @@ class PlannersController < ApplicationController
 
     if planner.submit
       meal_type = planner.meal_type
-      users = planner.user_ids.map { |id| User.find(id)}
-      menus = planner.menu_ids.map { |id| Menu.find(id)}
+      users = planner.user_ids.map { |id| User.find(id) }
+      menus = planner.menu_ids.map { |id| Menu.find(id) }
       meal_ids = Meal.meal_ids(menus:, users:, meal_type:)
       respond_to do |format|
         format.turbo_stream do

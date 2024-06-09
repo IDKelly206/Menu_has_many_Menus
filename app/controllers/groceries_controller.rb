@@ -1,5 +1,7 @@
 class GroceriesController < ApplicationController
   before_action :set_household
+  # before_action :set_courses, only: [:new]
+
 
   def index
     groceries = Grocery.groceries(@household)
@@ -17,20 +19,10 @@ class GroceriesController < ApplicationController
 
     @meal_ids = @courses.map { |course| course.meal.id }.uniq
 
-
-    # user_ids = @courses.map { |c| c.meal.user_id }.uniq
-    # @users = user_ids.map { |id| User.find(id) }
-
-    # menu_ids = @courses.map { |c| c.meal.menu_id }.uniq
-    # @menus = menu_ids.map { |id| Menu.find(id) }
-
-    # meal_type = @courses.map { |c| c.meal.meal_type }.uniq
-    # @meal_type = meal_type.first
-
     @erecipe_id = @courses.first.erecipe_id
     @recipe = Edamam::EdamamRecipe.find(@erecipe_id)
 
-
+    console
   end
 
   def create
@@ -38,15 +30,9 @@ class GroceriesController < ApplicationController
       Grocery::Importer.create(grocery_params)
     end
 
-    @course_ids = params[:course_ids].split
-    courses = @course_ids.map { |id| Course.find(id) }
-    # courses = Course.where(id: params[:course_ids])
     if @glist_count == @new_glist
-      @meal_ids = params[:meal_ids]
-      # user_ids = courses.map { |c| c.meal.user_id }.uniq
-      # menu_ids = courses.map { |c| c.meal.menu_id }.uniq
-      # meal_type = courses.map { |c| c.meal.meal_type }.uniq.first
-      redirect_to planners_path(meal_ids: @meal_ids),
+      meal_ids = params[:meal_ids]
+      redirect_to planners_path(meal_ids:),
         notice: "Grocery items successfully added to Grocery List."
     else
       render :new, status: :unprocessable_entity
@@ -63,11 +49,15 @@ class GroceriesController < ApplicationController
 
   private
 
+  def grocery_params
+    params.permit(:household_id, :course_id, :erecipe_id, :name, :quantity, :measurement, :category, :list_add)
+  end
+
   def set_household
     @household = Household.find(current_user.id)
   end
 
-  def grocery_params
-    params.permit(:household_id, :course_id, :erecipe_id, :name, :quantity, :measurement, :category, :list_add)
-  end
+  # def set_courses
+  #   @courses = params[:course_ids].map { |id| Course.find(id.to_i) }
+  # end
 end
