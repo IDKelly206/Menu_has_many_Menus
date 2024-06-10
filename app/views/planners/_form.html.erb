@@ -1,7 +1,6 @@
 <%= simple_form_for @planner, url: planners_path do |f| %>
   <div class="form-body form__body">
     <p>Select Meal</p>
-    <%# f.error_notification message: form_errors_for(obj: @planner, value: "meal_type" ) %>
     <% invalid = @planner.errors.include?(:meal_type) %>
     <% if invalid %>
       <div class="invalid-feedback d-block">
@@ -61,7 +60,5 @@
       <%= f.submit "Next", class: "btn btn--dark" %>
   <% end %>
   <%= button_to "Cancel", menus_path,
-      data: { action: "turbo-modal#hideModal" },
-      type: 'button',
       class: "btn btn--dark" %>
   </div>

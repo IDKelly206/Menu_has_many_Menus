@@ -20,29 +20,6 @@ class PlannersController < ApplicationController
       @recipes = results[:recipes]
       @next_page = results[:next_page]
     end
-
-    # params[:course_ids].nil? ? @course_ids = [] : @course_ids = params[:course_ids]
-
-    #  For rendering course cards in search bar for meals selected
-    course_groups = []
-    @meals.each { |meal| course_groups.push(meal.courses.map { |course| Course.find(course.id) }) }
-    courses_all = course_groups.flatten
-    courses_of_meals = {}
-    courses_all.each do |course|
-      course_id = course.id
-      recipe_id = course.erecipe_id
-      if courses_of_meals[recipe_id].nil?
-        courses_of_meals[recipe_id] = []
-        courses_of_meals[recipe_id].push(course_id)
-      else
-        courses_of_meals[recipe_id].push(course_id)
-      end
-    end
-    courses_of_meals
-    @recipes_with_course_id = courses_of_meals.select { |recipe_id, course_ids| course_ids.count == @meals.size }
-    @courses = @recipes_with_course_id.keys.map { |recipe_id| courses_all.detect { |course| course.erecipe_id == recipe_id } }
-    @course_recipes = @courses.map { |course| Edamam::EdamamRecipe.find(course.erecipe_id) }
-    console
   end
 
   def new
@@ -50,21 +27,21 @@ class PlannersController < ApplicationController
     calendar = Menu.calendar
     @menus = Menu.where('household_id = ?', @household).where('date IN (:cal)', { cal: calendar })
     @users = @household.users
+
+    console
   end
 
   def create
-    planner = params[:planner_form].nil? ? @planner = PlannerForm.new : PlannerForm.new(planner_params)
-
-    if planner.submit
-      meal_type = planner.meal_type
-      users = planner.user_ids.map { |id| User.find(id) }
-      menus = planner.menu_ids.map { |id| Menu.find(id) }
+    params[:planner_form].nil? ? @planner = PlannerForm.new : @planner = PlannerForm.new(planner_params)
+    if @planner.submit
+      meal_type = @planner.meal_type
+      users = @planner.user_ids.map { |id| User.find(id) }
+      menus = @planner.menu_ids.map { |id| Menu.find(id) }
       meal_ids = Meal.meal_ids(menus:, users:, meal_type:)
       respond_to do |format|
         format.turbo_stream do
           render turbo_stream: turbo_stream.adv_redirect(planners_path(meal_ids:))
         end
-        format.html { redirect_to planners_path(meal_type:, user_ids:, menu_ids:) }
       end
     else
       calendar = Menu.calendar
