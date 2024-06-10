@@ -5,7 +5,7 @@ export default class extends Controller {
   static targets = [ "grocery" ]
 
   connect() {
-    console.log("Turbo Modal controller", this.element)
+    console.log("Turbo Modal controller")
     // const planner = document.getElementById("planner")
     // ids = planner.dataset.courseIds
     // this.openTurboFrame(this.idsValue)
@@ -17,6 +17,7 @@ export default class extends Controller {
   }
 
   groceryTargetConnected(target) {
+    console.log("grocery target acquired")
     const url = this.groceryTarget.dataset.path
     Turbo.visit(url, { frame: "new_grocery", turbo: true })
   }

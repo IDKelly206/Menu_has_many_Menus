@@ -1,11 +1,33 @@
 class CoursesController < ApplicationController
   before_action :set_household, except: [:create]
-  # before_action :set_meal_types, only: [:edi]
-  # before_action :set_course_types, only: [:edit]
+  before_action :set_meal_types, only: [:index]
+  before_action :set_course_types, only: [:index]
   before_action :set_menu, only: [:destroy]
   before_action :set_meal, only: [:destroy]
   before_action :set_course, only: [:edit, :update, :destroy]
 
+  def index
+    course_groups = []
+    @meals = params[:meal_ids].map { |id| Meal.find(id) }
+    @meals.each { |meal| course_groups.push(meal.courses.map { |course| Course.find(course.id) }) }
+    courses_all = course_groups.flatten
+    courses_of_meals = {}
+    courses_all.each do |course|
+      course_id = course.id
+      recipe_id = course.erecipe_id
+      if courses_of_meals[recipe_id].nil?
+        courses_of_meals[recipe_id] = []
+        courses_of_meals[recipe_id].push(course_id)
+      else
+        courses_of_meals[recipe_id].push(course_id)
+      end
+    end
+    courses_of_meals
+    @recipes_with_course_id = courses_of_meals.select { |recipe_id, course_ids| course_ids.count == @meals.size }
+    @courses = @recipes_with_course_id.keys.map { |recipe_id| courses_all.detect { |course| course.erecipe_id == recipe_id } }
+    @course_recipes = @courses.map { |course| Edamam::EdamamRecipe.find(course.erecipe_id) }
+    console
+  end
 
   def create
     courses = Course::Multicourse.create(course_params)

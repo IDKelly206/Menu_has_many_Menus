@@ -18,7 +18,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :courses, only: [] do
+  resources :courses, only: [:index] do
     collection do
       post 'create', to: 'courses#create', as: 'create'
       delete 'multi_destroy', to: 'courses#multi_destroy', as: 'multi_destroy'

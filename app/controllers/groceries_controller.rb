@@ -32,8 +32,9 @@ class GroceriesController < ApplicationController
 
     if @glist_count == @new_glist
       meal_ids = params[:meal_ids]
-      redirect_to planners_path(meal_ids:),
-        notice: "Grocery items successfully added to Grocery List."
+      respond_to do |format|
+        format.turbo_stream { flash.now[:notice] = "Course successfully added!" }
+      end
     else
       render :new, status: :unprocessable_entity
     end

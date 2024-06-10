@@ -22,3 +22,6 @@ application.register("fetch-recipes-turbo", FetchRecipesTurboController)
 
 import InfiniteScrollController from "./infinite_scroll_controller"
 application.register("infinite-scroll", InfiniteScrollController)
+
+import RefreshFrameController from "./refresh_frame_controller"
+application.register("refresh-frame", RefreshFrameController)
