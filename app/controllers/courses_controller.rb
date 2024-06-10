@@ -70,9 +70,12 @@ class CoursesController < ApplicationController
 
   def multi_destroy
     Course.destroy(params[:course_ids])
-    meal_ids = params[:meal_ids]
-    redirect_to planners_path(meal_ids: meal_ids),
-                notice: "Courses deleted"
+    # meal_ids = params[:meal_ids]
+    # redirect_to planners_path(meal_ids: meal_ids),
+    #             notice: "Courses deleted"
+    respond_to do |format|
+      format.turbo_stream { flash.now[:notice] = "Course REMOVED added!" }
+    end
   end
 
   private
