@@ -18,6 +18,30 @@
     transition: filter 250ms, color 200ms;
   }
 
+  &--new_meal {
+    position: absolute;
+    top: var(--space-vxl);
+    flex: 0 0 auto;
+    padding: var(--space-xxs) var(--space-xs);
+    border: var(--border-dark);
+    border-radius: var(--border-radius-pill);
+    // background-origin: border-box; // Invisible borders with linear gradients
+    background-color: var(--color-pearl);
+    max-height: var(--space-xxl);
+    text-align: center;
+    text-decoration: none;
+    color: var(--color-onyx);
+    font-size: var(--font-size-l);
+    // font-weight: bold;
+
+    &:hover {
+      border: var(--border-light);
+
+      background-color: var(--color-onyx);
+      color: var(--color-pearl);
+      }
+  }
+
   &--pill,
   &--pill + label {
     flex: 0 0 auto;
@@ -98,13 +122,13 @@
 
   &--secondary {
     color: var(--color-white);
-    background-image: linear-gradient(to right, var(--color-secondary), var(--color-secondary-rotate));
+    background-image: linear-gradient(to right, var(--color-onyx), var(--color-secondary-rotate));
 
     &:hover,
     &:focus,
     &:focus-within,
     &:active {
-      color: var(--color-white);
+      color: var(--color-pearl);
       filter: saturate(1.2) brightness(110%);
     }
   }

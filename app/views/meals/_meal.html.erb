@@ -1,4 +1,5 @@
 <div class= "card-menu-meal-course">
+  <% @meal = meal %>
   <div class="card-menu-meal-course__header">
     <h4><%= User.find(@meal.user_id).name_first %></h4>
     <%= link_to menus_path do %>
