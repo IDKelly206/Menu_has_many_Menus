@@ -64,6 +64,18 @@
       left: 0;
       content: ' ';
     }
+
+    &:hover {
+      a {
+        color: var(--color-onyx);
+      }
+      color: var(--color-onxy);
+      background-color: var(--color-pearl);
+      border: var(--border-muted);
+      border-bottom: var(--border-navbar);
+      border-top-left-radius: var(--border-radius);
+      border-top-right-radius: var(--border-radius);
+    }
   }
 
 
