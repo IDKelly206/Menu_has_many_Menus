@@ -19,7 +19,7 @@ export default class extends Controller {
   }
 
   setDefaultCourse() {
-    const planner = document.getElementById("planner")
+    const planner = document.getElementById("Meal Planner")
     const value = planner.dataset.courseType
     this.inputTargets.forEach((el) => {
       el.value === value ? el.checked = true : el.checked = false
@@ -29,7 +29,7 @@ export default class extends Controller {
   }
 
   setMealIds() {
-    const planner = document.getElementById("planner")
+    const planner = document.getElementById("Meal Planner")
     const value = planner.dataset.mealIds
     this.mealTargets.forEach((el) =>
       el.value = value
@@ -41,7 +41,7 @@ export default class extends Controller {
     this.inputTargets.forEach((el) => {
       el.value === value ? el.checked = true : el.checked = false
     })
-    const planner = document.getElementById("planner")
+    const planner = document.getElementById("Meal Planner")
     planner.dataset.courseType = value;
     this.courseTargets.forEach((el) =>
       el.value = value
