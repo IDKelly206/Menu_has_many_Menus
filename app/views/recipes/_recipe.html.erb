@@ -1,9 +1,9 @@
-<div id="<%= dom_id recipe %>">
   <div class="card-recipe">
+<%= turbo_frame_tag recipe.erecipe_id do %>
     <div class="card-recipe__header">
         <p class="label"><%= recipe.label %></p>
         <p class="source"><%= recipe.source %></p>
-        <%= link_to (image_tag recipe.recipe_image(size: "regular")), recipe_path(recipe.erecipe_id), :target => '_blank'%>
+        <%= link_to (image_tag recipe.recipe_image(size: "regular")), recipe.source_url, target: '_blank'%>
     </div>
     <div class="card-recipe__body">
       <div class="content-body">
@@ -17,12 +17,10 @@
             <i class="fa-solid fa-book-open"></i>
             <span class="value"><%= recipe.ingredients.count %></span>
             <span class="title">Ingredients</span>
+            <%= link_to "", recipe_path(recipe.erecipe_id) %>
           </li>
         </ul>
       </div>
     </div>
-    <div class="card-recipe__footer">
-      <%= recipe_form(page_title: locals[:title], erecipe_id: recipe.erecipe_id) %>
-    </div>
+<% end %>
   </div>
-</div>

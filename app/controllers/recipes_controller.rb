@@ -27,6 +27,7 @@ class RecipesController < ApplicationController
   end
 
   def show
+    console
   end
 
   def recipe_search

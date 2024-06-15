@@ -12,16 +12,19 @@
   border: var(--border-muted);
   border-radius: var(--border-radius);
   box-shadow: var(--shadow-small);
-  width: 288px;
-  height: 100%;
+  max-width: 288px;
+  height: 365px;
 
   &__header {
     background-size: cover;
     position: relative;
     float: left;
+    border-bottom: var(--border-muted);
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
+
 
     img {
-      border-radius: var(--border-radius);
+      border-radius: var(--border-radius) var(--border-radius) 0 0;
       max-width: 100%;
       min-height: 100%;
       width: auto;
@@ -80,11 +83,24 @@
     flex: 1 0 auto;
     padding: 0 var(--space-m) var(--space-xs);
     flex-flow: column nowrap;
-    justify-content: space-between;
+    justify-content: flex-start;
+    border-bottom-right-radius: var(--border-radius);
+    border-bottom-left-radius: var(--border-radius);
+    position: relative;
+
+    &:hover {
+      background-color: var(--color-onyx);
+      color: var(--color-pearl);
+
+      a {
+        color: var(--color-pearl)
+      }
+    }
 
     .content-header {
       padding: var(--space-xs) 0 var(--space-xxs);
-      min-height: 20%;
+      // min-height: 20%;
+      border-bottom: var(--border-muted);
 
       a {
         font-weight: bold;
@@ -98,8 +114,6 @@
     }
 
     .content-body {
-      border-top: var(--border-muted);
-
       .details {
         display: flex;
         flex-shrink: 1;
@@ -108,7 +122,6 @@
         margin: 0;
         list-style: none;
 
-
         .item {
           // display: flex;
           flex: 1 1 auto;
@@ -116,20 +129,32 @@
           gap: var(--space-xxs);
 
           i {
-            font-size: var(--font-size-l)
+            font-size: var(--font-size-xl)
           }
 
           .value {
-            font-size: var(--font-size-s);
+            font-size: var(--font-size-m);
+            margin-left: var(--space-xs);
           }
 
           .title {
             display: block;
-            // font-size: var(--font-size-xxxs);
+            font-size: var(--font-size-m);
+          }
+          a {
+            z-index: 1;
+            display: block;
+          }
+
+          a::after {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            content: ' ';
           }
         }
-
-
       }
     }
 
@@ -144,5 +169,6 @@
     margin-left: auto;
     background-color: var(--color-onyx);
     color: var(--color-pearl);
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
   }
 }
