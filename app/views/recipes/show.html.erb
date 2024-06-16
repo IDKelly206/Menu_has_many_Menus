@@ -6,8 +6,9 @@
   </div>
   <div class="section-cards">
     <div class="card-deck">
-        <div class="card-recipe">
       <%= turbo_frame_tag @recipe.erecipe_id do %>
+        <div class="card-recipe">
+
           <div class="card-recipe-show__body">
             <div class="content-header">
               <p><%= @recipe.label %></p>
@@ -28,14 +29,15 @@
             </div>
           </div>
           <div class="card-recipe-show__footer">
-            <ul class="ingredients">
+            <ul class="list">
               <% @recipe.ingredients.each do |i| %>
                 <li><%= i['text'] %></li>
               <% end %>
             </ul>
           </div>
-      <% end %>
+
         </div>
+      <% end %>
     </div>
   </div>
 

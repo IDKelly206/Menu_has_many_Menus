@@ -1,8 +1,7 @@
 .card-recipe-show {
-
   &__body {
     display: flex;
-    flex: 1 0 auto;
+    flex: 0 0 auto;
     padding: 0 var(--space-m) var(--space-xs);
     flex-flow: column nowrap;
     justify-content: flex-start;
@@ -96,25 +95,21 @@
   }
 
   &__footer {
-    flex-shrink: 1;
-    // justify-content: flex-start;
-    // padding: var(--space-xs);
+    flex-flow: column nowrap;
+    justify-content: flex-end;
+    flex: 1 1 auto;
+    padding: var(--space-xs);
     margin-right: auto;
     margin-left: auto;
     background-color: var(--color-onyx);
     color: var(--color-pearl);
     border-radius: 0 0 var(--border-radius) var(--border-radius);
-    // overflow-y: scroll;
+    overflow-y: hidden;
+    overflow-y: scroll;
 
-    .ingredients {
-      // justify-content: flex-start;
-      // padding: var(--space-xs);
-      // margin-right: auto;
-      // margin-left: auto;
-      // background-color: var(--color-onyx);
-      // color: var(--color-pearl);
-      // border-radius: 0 0 var(--border-radius) var(--border-radius);
-      overflow-y: scroll;
+    .list {
+      display: block;
+
     }
   }
 
