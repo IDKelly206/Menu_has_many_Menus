@@ -120,15 +120,6 @@
       content: '';
     }
 
-    &:hover {
-      background-color: var(--color-onyx);
-      color: var(--color-pearl);
-
-      a button{
-        color: var(--color-pearl)
-      }
-    }
-
     .content-header {
       display: block;
       height: auto;
@@ -189,7 +180,14 @@
       }
     }
 
+    &:hover {
+      background-color: var(--color-onyx);
+      color: var(--color-pearl);
 
+      a button{
+        color: var(--color-pearl)
+      }
+    }
   }
 
   &__footer {
@@ -216,12 +214,25 @@
     }
   }
 
- .is-hidden {
-    display: none;
-    height: 0;
-    overflow: hidden;
-    transition: height 900ms ease-in-out;
+  .card-recipe__header,
+  .content-header,
+  .title,
+  .card-recipe__footer {
+    transform: translateY(-100%);
+    transition: transform ease-out 0.5s;
   }
+
+  .is-open {
+    transform: translateY(0);
+  }
+
+
+//  .is-hidden {
+//     display: none;
+//     height: 0;
+//     overflow: hidden;
+//     transition: height 900ms ease-in-out;
+//   }
 
   // &__footer.is-hidden {
   //   display: none;
