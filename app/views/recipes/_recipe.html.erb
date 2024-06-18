@@ -3,11 +3,13 @@
     <div class="card-recipe__header" data-visability-target="hideable">
         <p class="label"><%= recipe.label %></p>
         <p class="source"><%= recipe.source %></p>
-        <%= link_to (image_tag recipe.recipe_image(size: "regular")), recipe.source_url, target: '_blank'%>
+        <%= link_to (image_tag recipe.recipe_image(size: "regular")), recipe.source_url,
+            data: { target: 'visability.hideable' },
+            target: '_blank'%>
     </div>
 
     <div class="card-recipe__body">
-      <div class="content-header" data-visability-target="hideable" hidden>
+      <div class="content-header is-hidden" data-visability-target="hideable">
         <p><%= recipe.label %></p>
         <p><%= recipe.source %></p>
       </div>
@@ -28,30 +30,10 @@
       </div>
     </div>
 
-    <div class="card-recipe-show__body"  hidden>
-      <div class="content-header">
-        <p><%= recipe.label %></p>
-        <p><%= recipe.source %></p>
-      </div>
-      <div class="content-body">
-        <ul class="details">
-          <li class="item">
-            <i class="fa-solid fa-user"></i>
-            <span class="value"><%= recipe.yield %></span>
-          </li>
-          <li class="item">
-            <i class="fa-solid fa-book-open"></i>
-            <span class="value"><%= recipe.ingredients.count %></span>
-          </li>
-        </ul>
-        <button data-action="visability#toggleTargets" ></button>
-      </div>
-    </div>
-
-    <div class="card-recipe__footer" data-visability-target="hideable" hidden>
+    <div class="card-recipe__footer is-hidden" data-visability-target="hideable">
       <ul class="list">
         <% recipe.ingredients.each do |i| %>
-          <li><%= i['text'] %></li>
+          <li class="item"><%= i['text'] %></li>
         <% end %>
       </ul>
     </div>
