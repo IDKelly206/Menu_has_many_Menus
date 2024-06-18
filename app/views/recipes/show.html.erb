@@ -6,9 +6,8 @@
   </div>
   <div class="section-cards">
     <div class="card-deck">
-      <%= turbo_frame_tag @recipe.erecipe_id do %>
-        <div class="card-recipe">
 
+        <div class="card-recipe">
           <div class="card-recipe-show__body">
             <div class="content-header">
               <p><%= @recipe.label %></p>
@@ -25,7 +24,7 @@
                   <span class="value"><%= @recipe.ingredients.count %></span>
                 </li>
               </ul>
-              <%= link_to "", recipes_path(recipe: @recipe) %>
+              <%= link_to "", recipe_path(@recipe.erecipe_id) %>
             </div>
           </div>
           <div class="card-recipe-show__footer">
@@ -35,9 +34,8 @@
               <% end %>
             </ul>
           </div>
-
         </div>
-      <% end %>
+
     </div>
   </div>
 

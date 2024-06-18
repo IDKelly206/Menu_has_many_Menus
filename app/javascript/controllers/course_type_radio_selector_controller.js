@@ -4,7 +4,6 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   static targets = [ "input", "course", "meal", "setter", "assign" ]
 
-
   connect() {
     // console.log("Course Type Radio Selector", this.element)
     // this.setDefaultCourse()
@@ -47,8 +46,4 @@ export default class extends Controller {
       el.value = value
     )
   }
-
-
-
-
 }

@@ -25,3 +25,6 @@ application.register("infinite-scroll", InfiniteScrollController)
 
 import RefreshFrameController from "./refresh_frame_controller"
 application.register("refresh-frame", RefreshFrameController)
+
+import VisabilityController from "./visability_controller"
+application.register("visability", VisabilityController)

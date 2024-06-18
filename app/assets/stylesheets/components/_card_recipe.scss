@@ -12,7 +12,7 @@
   border: var(--border-muted);
   border-radius: var(--border-radius);
   box-shadow: var(--shadow-small);
-  max-width: 288px;
+  width: 288px;
   height: 365px;
 
   &__header {
@@ -81,19 +81,48 @@
 
   &__body {
     display: flex;
-    flex: 1 0 auto;
-    padding: 0 var(--space-m) var(--space-xs);
+    flex: 0 0 auto;
     flex-flow: column nowrap;
     justify-content: flex-start;
-    border-bottom-right-radius: var(--border-radius);
-    border-bottom-left-radius: var(--border-radius);
+    padding: 0 var(--space-m) var(--space-xs);
+    background-color: var(--color-pearl);
+    border-radius: inherit;
     position: relative;
+
+    .body-top-frame {
+      border-radius: var(--border-radius) var(--border-radius) 0 0;
+    }
+
+    .body-bottom-frame {
+      border-radius: 0 0 var(--border-radius) var(--border-radius);
+    }
+
+    button {
+      z-index: 1;
+      display: block;
+      background: none;
+      color: inherit;
+      border: none;
+      padding: 0;
+      font: inherit;
+      cursor: pointer;
+      outline: inherit;
+    }
+
+    button::after {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      content: '';
+    }
 
     &:hover {
       background-color: var(--color-onyx);
       color: var(--color-pearl);
 
-      a {
+      a button{
         color: var(--color-pearl)
       }
     }
@@ -163,13 +192,21 @@
   }
 
   &__footer {
-    flex-shrink: 1;
-    justify-content: flex-start;
+    flex-flow: column nowrap;
+    justify-content: flex-end;
+    flex: 1 1 auto;
     padding: var(--space-xs);
     margin-right: auto;
     margin-left: auto;
     background-color: var(--color-onyx);
     color: var(--color-pearl);
-    border-radius: var(--border-radius) var(--border-radius) 0 0;
+    border-radius: 0 0 var(--border-radius) var(--border-radius);
+    overflow-y: hidden;
+    overflow-y: scroll;
+
+    .list {
+      display: flexbox;
+
+    }
   }
 }

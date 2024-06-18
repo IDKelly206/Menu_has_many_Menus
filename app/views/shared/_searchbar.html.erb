@@ -29,12 +29,14 @@
     </div>
   </div>
   <div class="search-section__courses">
-    <%= turbo_frame_tag id="planner_courses",
-                        src: courses_path(meal_ids: @meal_ids),
-                        data: { refresh_frame_target: "plannerCourses" } %>
-    <div class="footer">
-      <%= link_to "DONE", menus_path, class: "btn btn--light" %>
-      <div id="refreshCourses"></div>
+    <div>
+      <%= turbo_frame_tag id="planner_courses",
+                          src: courses_path(meal_ids: @meal_ids),
+                          data: { refresh_frame_target: "plannerCourses" } %>
+      <div class="footer">
+        <%= link_to "DONE", menus_path, class: "btn btn--light" %>
+        <div id="refreshCourses"></div>
+      </div>
     </div>
   </div>
 </div>
