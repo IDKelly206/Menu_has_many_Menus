@@ -16,10 +16,6 @@
   height: 365px;
 
   &__header {
-    overflow: hidden;
-    transition: all 1.5s ease-in;
-    flex: 1 0 0;
-    // display: block;
     height: auto;
     background-size: cover;
     position: relative;
@@ -84,81 +80,69 @@
   }
 
   &__footer {
-    overflow: hidden;
-    transition: all 1.5s ease-in;
-    // display: block;
     height: auto;
-
     flex-flow: column nowrap;
     justify-content: flex-end;
-    flex: 1 0 0;
     padding: 0 var(--space-xs);
     margin-right: auto;
     margin-left: auto;
     background-color: var(--color-onyx);
     color: var(--color-pearl);
     border-radius: var(--border-radius) var(--border-radius) 0 0;
-    overflow-y: hidden;
-    overflow-y: scroll;
+    // overflow-y: hidden;
+    // overflow-y: scroll;
 
-    .list {
-      .item {
-        width: 100%;
-        display: inline-block;
-      }
-    }
+    // .list {
+    //   .item {
+    //     width: 100%;
+    //     display: inline-block;
+    //   }
+    // }
+
+    // .list::-webkit-scrollbar {
+    //   -webkit-appearance: none;
+    //   background-color: var(--color-white);
+    //   width: 7px;
+    // }
+    // .list::-webkit-scrollbar-thumb {
+    //   border-radius: 4px;
+    //   background-color: var(--color-primary);
+    //   -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, .5);
+    // }
   }
+
 
   &__body {
     display: flex;
-    flex: 0 0 0;
+    flex: 0 1 auto;
     flex-flow: column nowrap;
     justify-content: flex-start;
-    padding: 0 var(--space-m) var(--space-xs);
+    padding: 0;
     background-color: var(--color-pearl);
     border-top: var(--border-muted);
     border-radius: 0 0 var(--border-radius) var(--border-radius);
-    position: relative;
-
-    button {
-      z-index: 1;
-      display: block;
-      background: none;
-      color: inherit;
-      border: none;
-      padding: 0;
-      font: inherit;
-      cursor: pointer;
-      outline: inherit;
-    }
-
-    button::after {
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      content: '';
-    }
 
     .content-header {
-      display: block;
-      height: auto;
-      padding: var(--space-xs) 0 var(--space-xxs);
+      // display: block;
+      // height: auto;
+      padding: var(--space-xs) var(--space-m) var(--space-s);
       border-bottom: var(--border-muted);
 
-      p {
-        font-size: var(--font-size-s);
-        margin: 0;
+      p, a {
+        font-size: var(--font-size-m);
+        margin-bottom: 0;
       }
     }
 
     .content-body {
+      position: relative;
+      border-radius: inherit;
+
       .details {
         display: flex;
-        flex-shrink: 1;
+        flex: 1 1 auto;
         justify-content: space-between;
-        padding: var(--space-xs) 0 var(--space-s);
+        padding: var(--space-s) 0 var(--space-m);
         margin: 0;
         list-style: none;
 
@@ -183,39 +167,66 @@
             font-size: var(--font-size-m);
           }
 
-          a {
-            z-index: 1;
-            display: block;
-          }
-
-          a::after {
-            position: absolute;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            left: 0;
-            content: ' ';
-          }
         }
       }
-    }
 
-    &:hover {
-      background-color: var(--color-onyx);
-      color: var(--color-pearl);
-      border-top: var(--border-light);
+      button {
+        z-index: 1;
+        display: block;
+        background: none;
+        color: inherit;
+        border: none;
+        padding: 0;
+        font: inherit;
+        cursor: pointer;
+        outline: inherit;
+
+      }
+
+      button::after {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        content: '';
+      }
+
+      &:hover {
+        background-color: var(--color-onyx);
+        color: var(--color-pearl);
+        border-top: var(--border-light);
 
 
-      a button{
-        color: var(--color-pearl)
+        // button{
+        //   color: var(--color-pearl)
+        // }
       }
     }
   }
 
+  // Specific classes for stimulus Visability actions
 
-  .collapsed {
+  // Flexbox collapse toggle
+  .hideable-flex {
+    flex: 1 0 0;
+    overflow: hidden;
+    overflow: scroll;
+    transition: all 1.5s ease-in;
+  }
+  .flex-collapsed {
     flex: 0;
   }
+  // Attempt (1st) [is-hidden] using height set and decrease
+ .div-hidden {
+  display: none;
+  height: 0;
+  overflow: hidden;
+  }
+  .hideable-div {
+    transition: all 1.0s ease-out;
+  }
+
 
   // // Attemp (2nd) [is-oepn] using hidden + transform(translateY())
   // .card-recipe__header,
@@ -229,14 +240,6 @@
   // .is-open {
   //   transform: translateY(0);
   // }
-
-// // Attempt (1st) [is-hidden] using height set and decrease
-//  .is-hidden {
-//     display: none;
-//     height: 0;
-//     overflow: hidden;
-//     transition: height 900ms ease-in-out;
-//   }
 
   // &__footer.is-hidden {
   //   display: none;

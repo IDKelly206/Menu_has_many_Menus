@@ -1,6 +1,6 @@
 
   <div class="card-recipe" data-controller="visability">
-    <div class="card-recipe__header" data-visability-target="hideable">
+    <div class="card-recipe__header hideable-flex" data-visability-target="hideableFlex">
         <p class="label"><%= recipe.label %></p>
         <p class="source"><%= recipe.source %></p>
         <%= link_to (image_tag recipe.recipe_image(size: "regular")), recipe.source_url,
@@ -8,7 +8,7 @@
         %>
     </div>
 
-    <div class="card-recipe__footer collapsed" data-visability-target="hideable">
+    <div class="card-recipe__footer hideable-flex flex-collapsed" data-visability-target="hideableFlex">
       <ul class="list">
         <% recipe.ingredients.each do |i| %>
           <li class="item"><%= i['text'] %></li>
@@ -17,8 +17,8 @@
     </div>
 
     <div class="card-recipe__body">
-      <div class="content-header" hidden>
-        <p><%= recipe.label %></p>
+      <div class="content-header hideable-div div-hidden" data-visability-target="hideableDiv">
+        <%= link_to recipe.label, recipe.source_url, target: '_blank' %>
         <p><%= recipe.source %></p>
       </div>
       <div class="content-body">
@@ -26,12 +26,12 @@
           <li class="item">
             <i class="fa-solid fa-user"></i>
             <span class="value"><%= recipe.yield %></span>
-            <span class="title">Servings</span>
+            <span class="title hideable-div" data-visability-target="hideableDiv">Servings</span>
           </li>
           <li class="item">
             <i class="fa-solid fa-book-open"></i>
             <span class="value"><%= recipe.ingredients.count %></span>
-            <span class="title">Ingredients</span>
+            <span class="title hideable-div" data-visability-target="hideableDiv">Ingredients</span>
           </li>
         </ul>
         <button data-action="visability#toggleTargets"></button>
