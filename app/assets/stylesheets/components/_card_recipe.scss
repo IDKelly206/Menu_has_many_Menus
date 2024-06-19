@@ -16,14 +16,15 @@
   height: 365px;
 
   &__header {
-    display: block;
+    overflow: hidden;
+    transition: all 1.5s ease-in;
+    flex: 1 0 0;
+    // display: block;
     height: auto;
     background-size: cover;
     position: relative;
     float: left;
-    border-bottom: var(--border-muted);
     border-radius: var(--border-radius) var(--border-radius) 0 0;
-    transition: ease-in 0.9s;
 
     img {
       border-radius: var(--border-radius) var(--border-radius) 0 0;
@@ -38,6 +39,8 @@
     a {
       z-index: 1;
       display: block;
+      border-radius: inherit;
+
     }
 
     a::after {
@@ -57,7 +60,6 @@
       font-weight: bolder;
       text-shadow: 2px 2px 4px var(--color-onyx);
       opacity: 0;
-      transition: .5s ease;
     }
 
     .label {
@@ -81,23 +83,42 @@
     }
   }
 
+  &__footer {
+    overflow: hidden;
+    transition: all 1.5s ease-in;
+    // display: block;
+    height: auto;
+
+    flex-flow: column nowrap;
+    justify-content: flex-end;
+    flex: 1 0 0;
+    padding: 0 var(--space-xs);
+    margin-right: auto;
+    margin-left: auto;
+    background-color: var(--color-onyx);
+    color: var(--color-pearl);
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
+    overflow-y: hidden;
+    overflow-y: scroll;
+
+    .list {
+      .item {
+        width: 100%;
+        display: inline-block;
+      }
+    }
+  }
+
   &__body {
     display: flex;
-    flex: 0 0 auto;
+    flex: 0 0 0;
     flex-flow: column nowrap;
     justify-content: flex-start;
     padding: 0 var(--space-m) var(--space-xs);
     background-color: var(--color-pearl);
-    border-radius: inherit;
+    border-top: var(--border-muted);
+    border-radius: 0 0 var(--border-radius) var(--border-radius);
     position: relative;
-
-    .body-top-frame {
-      border-radius: var(--border-radius) var(--border-radius) 0 0;
-    }
-
-    .body-bottom-frame {
-      border-radius: 0 0 var(--border-radius) var(--border-radius);
-    }
 
     button {
       z-index: 1;
@@ -123,7 +144,6 @@
     .content-header {
       display: block;
       height: auto;
-
       padding: var(--space-xs) 0 var(--space-xxs);
       border-bottom: var(--border-muted);
 
@@ -183,6 +203,8 @@
     &:hover {
       background-color: var(--color-onyx);
       color: var(--color-pearl);
+      border-top: var(--border-light);
+
 
       a button{
         color: var(--color-pearl)
@@ -190,43 +212,25 @@
     }
   }
 
-  &__footer {
-    display: block;
-    height: auto;
 
-    flex-flow: column nowrap;
-    justify-content: flex-end;
-    flex: 1 1 auto;
-    padding: var(--space-xs);
-    margin-right: auto;
-    margin-left: auto;
-    background-color: var(--color-onyx);
-    color: var(--color-pearl);
-    border-radius: 0 0 var(--border-radius) var(--border-radius);
-    overflow-y: hidden;
-    overflow-y: scroll;
-
-    .list {
-      .item {
-        width: 100%;
-        display: inline-block;
-      }
-    }
+  .collapsed {
+    flex: 0;
   }
 
-  .card-recipe__header,
-  .content-header,
-  .title,
-  .card-recipe__footer {
-    transform: translateY(-100%);
-    transition: transform ease-out 0.5s;
-  }
+  // // Attemp (2nd) [is-oepn] using hidden + transform(translateY())
+  // .card-recipe__header,
+  // .content-header,
+  // .title,
+  // .card-recipe__footer {
+  //   transform: translateY(-100%);
+  //   transition: transform ease-out 0.5s;
+  // }
 
-  .is-open {
-    transform: translateY(0);
-  }
+  // .is-open {
+  //   transform: translateY(0);
+  // }
 
-
+// // Attempt (1st) [is-hidden] using height set and decrease
 //  .is-hidden {
 //     display: none;
 //     height: 0;
