@@ -2,5 +2,8 @@
   <%= f.hidden_field :erecipe_id, value: erecipe_id %>
   <%= f.hidden_field :course_type, value:@course_type, data: { target: 'course-type-radio-selector.course' } %>
   <%= f.hidden_field :meal_ids, name:"meal_ids[]", mutliple: true, value: @meal_ids, data: { target: 'course-type-radio-selector.meal' } %>
-  <%= f.submit "Add Course" %>
+  <%= f.button nil, class:"btn--plus" do %>
+    <i class="fa-solid fa-plus"></i>
+    <span class="button-text">Add Course</span>
+  <% end %>
 <% end %>

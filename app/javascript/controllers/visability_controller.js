@@ -21,14 +21,7 @@ export default class extends Controller {
     el.style.height = height; // Update max-height
     window.setTimeout(function () {
       el.style.height = '';
-    }, 1500);
-
-  // // Attemp (2nd) [is-oepn] using hidden + transform(translateY())
-    // el.removeEventListener('transitionend', listener);
-    // el.hidden = false;
-    // el.removeAttribute('hidden')
-    // const reflow = el.offsetHeight;
-    // el.classList.add('is-open')
+    }, 1000);
   };
 
   hideDivTarget(el) {
@@ -37,20 +30,11 @@ export default class extends Controller {
     // Set height back to zero
     window.setTimeout(function() {
       el.style.height = '0';
-    }, 1500);
+    }, 1000);
     //When transition compelte add class div-hidden
     window.setTimeout(function () {
       el.classList.add("div-hidden");
-    }, 1500);
-
-    // // Attemp (2nd) [is-oepn] using hidden + transform(translateY())
-    // listener(el) {
-    //   el.setAttribute('hidden', true)
-    //   // el.hidden = true;
-    //   el.removeEventListener('transitionend', listener)
-    // };
-    // el.setAttribute('hidden', true)
-    // el.classList.remove('is-open')
+    }, 1000);
   };
 
   toggleTargets() {
@@ -71,15 +55,5 @@ export default class extends Controller {
     this.hideableFlexTargets.forEach((el) => {
       el.classList.toggle("flex-collapsed")
     });
-
-
-      // // Attemp (2nd) [is-oepn] using hidden + transform(translateY())
-      // el.hidden = !el.hidden
-      // this.hideTargets();
-      // if (el.classList.contains('is-open')) {
-      //   this.hideTarget(el)
-      //   return;
-      // }
-      // this.showTarget(el)
   }
 }

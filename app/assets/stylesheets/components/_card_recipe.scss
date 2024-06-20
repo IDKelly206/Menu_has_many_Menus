@@ -7,6 +7,7 @@
 }
 
 .card-recipe {
+  position: relative;
   display: flex;
   flex-flow: column nowrap;
   border: var(--border-muted);
@@ -53,9 +54,10 @@
       margin: 0;
       color: var(--color-white);
       font-size: var(--font-size-l);
-      font-weight: bolder;
+      font-weight: bold;
       text-shadow: 2px 2px 4px var(--color-onyx);
       opacity: 0;
+      border: 2px solid var(--color-black)
     }
 
     .label {
@@ -89,6 +91,8 @@
     background-color: var(--color-onyx);
     color: var(--color-pearl);
     border-radius: var(--border-radius) var(--border-radius) 0 0;
+
+
     // overflow-y: hidden;
     // overflow-y: scroll;
 
@@ -99,18 +103,17 @@
     //   }
     // }
 
-    // .list::-webkit-scrollbar {
+    // .card-recipe__footer::-webkit-scrollbar {
     //   -webkit-appearance: none;
     //   background-color: var(--color-white);
     //   width: 7px;
     // }
-    // .list::-webkit-scrollbar-thumb {
+    // .card-recipe__footer::-webkit-scrollbar-thumb {
     //   border-radius: 4px;
     //   background-color: var(--color-primary);
     //   -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, .5);
     // }
   }
-
 
   &__body {
     display: flex;
@@ -197,12 +200,28 @@
         color: var(--color-pearl);
         border-top: var(--border-light);
 
+        .servings > i,
+        .servings > .value,
+        .servings > .title {
+          // background-color: var(--color-pearl);
+          color: var(--color-onyx);
+        }
+
 
         // button{
         //   color: var(--color-pearl)
         // }
       }
     }
+  }
+
+  .form-button {
+    position: absolute;
+    float: none;
+    bottom: 22%;
+    right: 10%;
+    text-align: center;
+    z-index: 2;
   }
 
   // Specific classes for stimulus Visability actions
@@ -212,7 +231,7 @@
     flex: 1 0 0;
     overflow: hidden;
     overflow: scroll;
-    transition: all 1.5s ease-in;
+    transition: all 1s ease-in;
   }
   .flex-collapsed {
     flex: 0;
@@ -224,27 +243,6 @@
   overflow: hidden;
   }
   .hideable-div {
-    transition: all 1.0s ease-out;
+    transition: all 1s ease-out;
   }
-
-
-  // // Attemp (2nd) [is-oepn] using hidden + transform(translateY())
-  // .card-recipe__header,
-  // .content-header,
-  // .title,
-  // .card-recipe__footer {
-  //   transform: translateY(-100%);
-  //   transition: transform ease-out 0.5s;
-  // }
-
-  // .is-open {
-  //   transform: translateY(0);
-  // }
-
-  // &__footer.is-hidden {
-  //   display: none;
-  //   height: 0;
-  //   overflow: hidden;
-  //   transition: height 350ms ease-in-out;
-  // }
 }
