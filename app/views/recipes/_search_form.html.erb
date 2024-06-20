@@ -1,8 +1,10 @@
 <%= form_with(url: recipe_search_recipes_path, method: "GET", data: {turbo_frame: "recipes" }) do |f| %>
+    <% title = yield :title %>
   <%= f.fields_for :filters do |ft| %>
     <div class="filters">
       <div>
         <%= select_mealtypes(ft, types: @meal_types, type: @meal_type) %>
+        <%= select_coursetypes(ft, types: @course_types, type: @course_type) %>
       </div>
       <div>
         <%= ft.hidden_field :health, name:"[filters][health][]", multiple: true, value: @dietary_restrictions %>
@@ -17,7 +19,9 @@
       </div>
     </div>
   <%= hidden_field_tag :title, yield(:title) %>
-  <%= hidden_field_tag 'course_type', "test", data: { target: 'course-type-radio-selector.course' } %>
+  <% if title == "Meal Planner" %>
+    <%= hidden_field_tag 'course_type', "test", data: { target: 'course-type-radio-selector.course' } %>
+  <% end %>
   <% if @meal_ids.present? %>
     <%= hidden_field_tag 'meal_ids', @meal_ids %>
   <% elsif @meal.present? %>

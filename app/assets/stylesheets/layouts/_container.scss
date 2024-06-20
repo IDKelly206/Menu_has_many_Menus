@@ -8,6 +8,8 @@
   border-left: var(--border-dark);
   border-right: var(--border-dark);
 
+
+
   @include media(tabletAndUp) {
     padding-right: var(--space-m);
     padding-left: var(--space-m);

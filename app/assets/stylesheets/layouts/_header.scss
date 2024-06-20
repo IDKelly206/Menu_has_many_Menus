@@ -1,6 +1,9 @@
 .header {
   display: flex;
   flex-flow: row nowrap;
+  // position: sticky;
+  // top: 0;
+  // z-index: 98;
   // gap: var(--space-s);
   justify-content: space-around;
   padding-top: var(--space-xxs);
