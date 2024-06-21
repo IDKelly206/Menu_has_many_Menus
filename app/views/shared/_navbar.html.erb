@@ -1,25 +1,25 @@
 <header class="navbar">
       <ul class="navbar__nav">
         <li class="navbar__border">
-          <%= link_to root_path do %>
-            <i class="fa-regular fa-calendar-days navbar__brand"></i>
+          <%= link_to root_path, class:"navbar__brand nav-btn" do %>
+            <i class="fa-regular fa-calendar-days"></i>
           <% end %>
         </li>
       <% if user_signed_in? %>
-        <li class="navbar__item navbar__border">
+        <li class="navbar__item navbar__border nav-btn">
           <%= link_to "Menu", menus_path %>
         </li>
-        <li class="navbar__item navbar__border">
+        <li class="navbar__item navbar__border nav-btn">
           <%= link_to "Recipes", recipes_path %>
         </li>
-        <li class="navbar__item navbar__border">
+        <li class="navbar__item navbar__border nav-btn">
           <%= link_to "Products", products_path %>
         </li>
-        <li class="navbar__item navbar__border">
+        <li class="navbar__item navbar__border nav-btn">
           <%= link_to "Grocery List", groceries_path %>
         </li>
         <li class=" navbar__border dropdown">
-          <a href="#" class="avatar navbar__dropdown" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <a href="#" class="avatar navbar__dropdown  nav-btn" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="fa-solid fa-bars"></i>
           </a>
           <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
