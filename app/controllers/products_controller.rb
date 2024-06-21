@@ -8,7 +8,7 @@ class ProductsController < ApplicationController
       @products = Kroger::KrogerProduct.search(["tomato"])
     end
 
-    
+    console
   end
 
 end

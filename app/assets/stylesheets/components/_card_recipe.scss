@@ -10,18 +10,22 @@
   position: relative;
   display: flex;
   flex-flow: column nowrap;
+  justify-content: center;
   border: var(--border-muted);
   border-radius: var(--border-radius);
   box-shadow: var(--shadow-large);
-  width: 288px;
-  height: 365px;
+  width: 256px;
+  height: 312px;
 
   &__header {
+    // width: 100%;
+    // flex-shrink: 1;
     height: auto;
     background-size: cover;
     position: relative;
-    float: left;
+    // float: left;
     border-radius: var(--border-radius) var(--border-radius) 0 0;
+    overflow: hidden;
 
     img {
       border-radius: var(--border-radius) var(--border-radius) 0 0;
@@ -30,7 +34,7 @@
       width: auto;
       height: auto;
       object-fit: cover;
-      object-position: 50% 50%;
+      object-position: bottom;
     }
 
     a {
@@ -62,13 +66,13 @@
 
     .label {
       position: absolute;
-      bottom: var(--space-xl);
+      top: var(--space-xl);
       left: var(--space-s);
     }
 
     .source {
       position: absolute;
-      bottom: var(--space-xxs);
+      top: var(--space-xxs);
       left: var(--space-s);
       font-size: var(--font-size-m);
     }
@@ -83,6 +87,7 @@
 
   &__footer {
     height: auto;
+    // max-width: 250px;
     flex-flow: column nowrap;
     justify-content: flex-end;
     padding: 0 var(--space-xs);
@@ -218,8 +223,8 @@
   .form-button {
     position: absolute;
     float: none;
-    bottom: 22%;
-    right: 10%;
+    top: 4%;
+    right: 8%;
     text-align: center;
     z-index: 2;
   }
