@@ -1,38 +1,45 @@
 .card-product {
   display: flex;
   flex-flow: column nowrap;
+  justify-content: center;
   border: var(--border-muted);
   border-radius: var(--border-radius);
-  box-shadow: var(--shadow-small);
-  width: 288px;
-  height: 360px;
+  box-shadow: var(--shadow-large);
+  width: 256px;
+  height: 312px;
 
 
   &__header {
-    // height: auto;
-    // background-size: cover;
-
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    overflow: hidden;
+    flex: 0 1 auto;
     border-radius: var(--border-radius) var(--border-radius) 0 0;
 
-    img {
-      border-radius: var(--border-radius) var(--border-radius) 0 0;
+    .image-box {
 
-      // border-radius: var(--border-radius) var(--border-radius) 0 0;
+
+    }
+
+    img {
       // max-width: 100%;
       // min-height: 100%;
       // width: auto;
       // height: auto;
       object-fit: cover;
       // object-position: 50% 50%;
-      flex-shrink: 0;
+      // flex-shrink: 1;
       min-width: 100%;
       max-width: 100%;
+
+      border-radius: var(--border-radius) var(--border-radius) 0 0;
     }
   }
 
   &__body {
     display: flex;
-    flex: 0 1 auto;
+    flex: 1 1 auto;
     flex-flow: column nowrap;
     justify-content: flex-start;
     padding: 0;

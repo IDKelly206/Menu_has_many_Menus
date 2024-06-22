@@ -1,11 +1,13 @@
   <div class="card-product">
     <div class="card-product__header">
+ 
       <%= image_tag product.product_img(perspective: "front", size: "medium") %>
+
     </div>
     <div class="card-product__body">
       <div class="content-header">
         <p><%= product.name %></p>
-        <p><%= product.aisle %></p>
+        <%# <p> product.aisle </p> %>
       </div>
       <div class="content-body">
         <p>Serving size: <%= product.item_info.first["size"] %></p>
