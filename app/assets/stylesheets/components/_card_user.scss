@@ -64,11 +64,13 @@
     }
 
     .content-body {
-      display: inline-flex;
+      display: flex;
       flex-flow: row wrap;
       list-style: none;
-      gap: var(--space-s);
+      gap: var(--space-xs);
       padding: var(--space-xs) var(--space-m) var(--space-s);
+      max-width: 256px;
+
     }
 
   }
@@ -85,7 +87,6 @@
   &__edit {
     padding: var(--space-xs);
     display: flex;
-
 
     * {
       flex-shrink: 0 1 auto;
