@@ -48,7 +48,7 @@
       // flex-flow: column nowrap;
 
       padding: var(--space-xs) var(--space-m) var(--space-s);
-      border-bottom: var(--border-muted);
+      // border-bottom: var(--border-muted);
 
       p {
         font-size: var(--font-size-m);
@@ -57,8 +57,8 @@
     }
 
     .content-body {
-      border-radius: inherit;
-
+      // border-radius: inherit;
+      padding: var(--space-xs) var(--space-m) var(--space-s);
       p {
         font-size: var(--font-size-m);
         margin-bottom: 0;

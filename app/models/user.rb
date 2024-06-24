@@ -43,7 +43,7 @@ class User < ApplicationRecord
     household = User.last.household_id
     calendar = Menu.calendar
     menu_ids = Menu.where('household_id = ?', household).where('date IN (:cal)', { cal: calendar }).ids
-    meal_types = %w(Breakfast Lunch Dinner)
+    meal_types = Meal::MEAL_TYPES
 
     menu_ids.each do |menu_id|
       meal_types.each do |meal_type|

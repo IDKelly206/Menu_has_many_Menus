@@ -93,7 +93,7 @@ class CoursesController < ApplicationController
   end
 
   def set_household
-    @household = Household.find(current_user.id)
+    @household = Household.find(current_user.household_id)
   end
 
   def set_menu
