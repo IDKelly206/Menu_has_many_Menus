@@ -5,7 +5,7 @@
   border: var(--border-muted);
   border-radius: var(--border-radius);
   box-shadow: var(--shadow-large);
-  width: 256px;
+  width: 100%;
   height: 312px;
 
   &__header {
@@ -49,7 +49,7 @@
       }
 
       .user-name {
-        font-size: var(--font-size-l);
+        font-size: var(--font-size-m);
         font-weight: bolder;
       }
 
@@ -79,9 +79,22 @@
     flex: 0 1 0;
     align-items: center;
     gap: var(--space-xs);
-    // margin: 0 var(--space-xs);
     font-size: var(--font-size-xs);
+  }
 
+  &__edit {
+    padding: var(--space-xs);
+    display: flex;
+
+
+    * {
+      flex-shrink: 0 1 auto;
+      margin: 0px;
+    }
+
+    label {
+      font-size: var(--font-size-xs);
+    }
 
   }
 }

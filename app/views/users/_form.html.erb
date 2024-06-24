@@ -10,7 +10,7 @@
       <%= f.simple_fields_for :dietary_restrictions do |ff| %>
           <%= ff.hidden_field :health_id %>
           <%= ff.check_box :_destroy, {checked: ff.object.persisted?}, '0', '1' %>
-          <%= ff.label :_destroy, ff.object.health.parameter %>
+          <%= ff.label :_destroy, ff.object.health.parameter.capitalize %>
       <% end %>
     </div>
     <%= f.hidden_field :household_id, value: current_user.household_id %>

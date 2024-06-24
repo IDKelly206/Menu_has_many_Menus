@@ -8,6 +8,10 @@
   </div>
 
   <%= turbo_frame_tag dom_id(@user) do %>
-    <%= render "form", user: @user %>
+    <div class="card-user">
+      <div class="card-user__edit">
+        <%= render "form", user: @user %>
+      </div>
+    </div>
   <% end %>
 </div>
