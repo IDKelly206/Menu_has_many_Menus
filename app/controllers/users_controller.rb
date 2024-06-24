@@ -44,18 +44,16 @@ class UsersController < ApplicationController
     end
   end
 
-
-
-
   private
-  def set_user
-    @user = User.find(params[:id])
-  end
 
   def user_params
     params.require(:user).permit(:name_first, :name_last, :household_id, :email,
                                   dietary_restrictions_attributes:
                                   [:_destroy, :id, :user_id, :health_id ])
+  end
+
+  def set_user
+    @user = User.find(params[:id])
   end
 
   def set_household

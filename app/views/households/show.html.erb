@@ -1,16 +1,18 @@
 <%- title "Household" %>
 <main class="container">
   <div class="header">
-    <h1>Households#show</h3>
-    <h3>Household name: <%= current_user.household.name %></h1>
     <%= link_to "Add a User",
                 new_user_path,
                 data: { turbo_frame: dom_id(User.new) },
-                class: "btn btn-primary" %>
+                class: "btn" %>
+    <h2>The <%= current_user.household.name %> Household</h2>
   </div>
-  <%= turbo_frame_tag dom_id(User.new) %>
-
-  <%= turbo_frame_tag "users" do %>
-    <%= render @users %>
-  <% end %>
+  <div class="section-cards">
+    <%= turbo_frame_tag dom_id(User.new) %>
+    <%= turbo_frame_tag "users" do %>
+      <div class="card-deck">
+        <%= render @users %>
+      </div>
+    <% end %>
+  </div>
 </main>
