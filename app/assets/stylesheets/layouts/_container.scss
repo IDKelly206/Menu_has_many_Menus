@@ -1,18 +1,21 @@
 .container {
-  width: 100%;
-  padding-right: var(--space-xs);
-  padding-left: var(--space-xs);
-  background-color: var(--color-pearl);
-  margin-left: auto;
-  margin-right: auto;
-  border-left: var(--border-dark);
-  border-right: var(--border-dark);
-
-
+  height: 100vh;
+  width: 100vw;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr auto auto;
+  grid-template-areas:
+  "body"
+  "header"
+  "navbar"
+  "body";
 
   @include media(tabletAndUp) {
-    padding-right: var(--space-m);
-    padding-left: var(--space-m);
-    max-width: 90rem;
+    grid-template-areas:
+    "navbar"
+    "header"
+    "body";
+    grid-template-rows: auto auto 1fr;
+
   }
 }

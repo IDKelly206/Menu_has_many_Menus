@@ -12,14 +12,14 @@
   </head>
 
   <body>
-    <%= render "shared/navbar" %>
-
     <div id= "flash" class="flash">
       <%= render "shared/flash" %>
     </div>
-
     <%= turbo_frame_tag "modal" %>
-
-    <%= yield %>
+    <div class="container">
+      <%= render "shared/navbar" %>
+      <%= render "shared/header" %>
+      <%= yield %>
+    </div>
   </body>
 </html>

@@ -1,50 +1,48 @@
-<header class="navbar">
-      <ul class="navbar__nav">
-        <li class="navbar__border <%= active_page(path: root_path, class_name: 'nav-active') %>">
-          <%= link_to root_path, class:"navbar__brand nav-btn
-            " do %>
-            <i class="fa-regular fa-calendar-days"></i>
-          <% end %>
-        </li>
-      <% if user_signed_in? %>
-        <li class="navbar__item navbar__border nav-btn
-                  <%= active_page(path: menus_path, class_name: 'nav-active') %>
-                  <%= active_page(path: planners_path, class_name: 'nav-active') %>">
-          <%= link_to "Menu", menus_path%>
-        </li>
-        <li class="navbar__item navbar__border nav-btn
-                  <%= active_page(path: recipes_path, class_name: 'nav-active') %>">
-          <%= link_to "Recipes", recipes_path %>
-        </li>
-        <li class="navbar__item navbar__border nav-btn
-                    <%= active_page(path: products_path, class_name: 'nav-active') %>">
-          <%= link_to "Products", products_path %>
-        </li>
-        <li class="navbar__item navbar__border nav-btn
-                  <%= active_page(path: groceries_path, class_name: 'nav-active') %>">
-          <%= link_to "Grocery List", groceries_path %>
-        </li>
-        <li class=" navbar__border dropdown
-          <%= active_page(path: household_path(current_user.household_id), class_name: 'nav-active') %>
-        ">
-          <a href="#"
-             class="avatar navbar__dropdown  nav-btn
-                    "
-            id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fa-solid fa-bars"></i>
-          </a>
-          <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-            <p>Welcome back <%= current_user.name_first %></p>
-            <%= link_to "Household", household_path(current_user.household_id) , class: "dropdown-item" %>
-            <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
-          </div>
-        </li>
-      <% else %>
-        <div class="btn>
-          <%= link_to "Login", new_user_session_path, class: "nav-link" %>
-        </div>
+<div class="navbar">
+  <ul class="navbar__nav">
+    <li class="navbar__border <%= active_page(path: root_path, class_name: 'nav-active') %>">
+      <%= link_to root_path, class:"navbar__brand nav-btn
+        " do %>
+        <i class="fa-regular fa-calendar-days"></i>
       <% end %>
-    </ul>
-
-
-</header>
+    </li>
+  <% if user_signed_in? %>
+    <li class="navbar__item navbar__border nav-btn
+              <%= active_page(path: menus_path, class_name: 'nav-active') %>
+              <%= active_page(path: planners_path, class_name: 'nav-active') %>">
+      <%= link_to "Menu", menus_path%>
+    </li>
+    <li class="navbar__item navbar__border nav-btn
+              <%= active_page(path: recipes_path, class_name: 'nav-active') %>">
+      <%= link_to "Recipes", recipes_path %>
+    </li>
+    <li class="navbar__item navbar__border nav-btn
+                <%= active_page(path: products_path, class_name: 'nav-active') %>">
+      <%= link_to "Products", products_path %>
+    </li>
+    <li class="navbar__item navbar__border nav-btn
+              <%= active_page(path: groceries_path, class_name: 'nav-active') %>">
+      <%= link_to "Grocery List", groceries_path %>
+    </li>
+    <li class=" navbar__border dropdown
+      <%= active_page(path: household_path(current_user.household_id), class_name: 'nav-active') %>
+    ">
+      <a href="#"
+          class="avatar navbar__dropdown  nav-btn
+                "
+        id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <i class="fa-solid fa-bars"></i>
+      </a>
+      <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+        <p>Welcome back <%= current_user.name_first %></p>
+        <%= link_to "Household", household_path(current_user.household_id) , class: "dropdown-item" %>
+        <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
+      </div>
+    </li>
+  <% else %>
+    <li class="navbar__item navbar__border nav-btn">
+      <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+    </li>
+  <% end %>
+  </ul>
+</div>

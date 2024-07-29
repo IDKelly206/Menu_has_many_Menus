@@ -1,0 +1,23 @@
+.body {
+  // width: 100%;
+  // padding-right: var(--space-xs);
+  // padding-left: var(--space-xs);
+  // background-color: var(--color-pearl);
+  // margin-left: auto;
+  // margin-right: auto;
+  // border-left: var(--border-dark);
+  // border-right: var(--border-dark);
+  // overflow: hidden;
+  grid-area: body;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr;
+  overflow: hidden;
+
+
+  // @include media(tabletAndUp) {
+  //   padding-right: var(--space-m);
+  //   padding-left: var(--space-m);
+  //   max-width: 90rem;
+  // }
+}

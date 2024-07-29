@@ -1,9 +1,9 @@
-
 .card-menu{
   display: flex;
+  flex: 0 3 auto;
   flex-flow: column nowrap;
   justify-content: flex-start;
-  height: 96%;
+  // height: 96%;
   float: none;
   border: var(--border-muted);
   border-radius: var(--border-radius);
