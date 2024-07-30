@@ -1,15 +1,13 @@
 <%- title "Meal Planner" %>
-<div class="section-recipe">
-     <div
-        id="<%= yield(:title) %>"
-        data-course-type="<%= @course_type %>"
-        data-meal-ids="<%= @meal_ids.join(", ") %>"
-        data-controller="course-type-radio-selector refresh-frame turbo-modal"
-        data-course-type-radio-selector-target="setter">
-      </div>
-  <div class="section-header">
-    <%= render 'shared/searchbar'%>
-  </div>
+<div class="section-recipe"
+      id="<%= yield(:title) %>"
+      data-course-type="<%= @course_type %>"
+      data-meal-ids="<%= @meal_ids.join(", ") %>"
+      data-controller="course-type-radio-selector refresh-frame turbo-modal"
+      data-course-type-radio-selector-target="setter">
+
+  <%= render 'shared/searchbar'%>
+  <%= render 'shared/sidebar' %>
   <div class="section-cards">
     <div id="gList"></div>
     <%= render "recipes/recipes", recipes: @recipes, locals: { title: yield(:title) } %>

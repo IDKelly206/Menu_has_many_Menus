@@ -7,12 +7,11 @@
         <%= filter_users(users: @user) %>
       </ul>
       <ul class="details">
-        <%= filter_types(type: @meal_type) %>
-
-      </ul>
-      <ul class="details">
         <%= filter_dates(dates: @menus) %>
         <%= filter_dates(dates: @menu) %>
+      </ul>
+      <ul class="details">
+        <%= filter_types(type: @meal_type) %>
       </ul>
     </div>
   </div>
@@ -32,16 +31,5 @@
     </div>
   </div>
   <div class="search-section__courses">
-    <% if title == "Meal Planner" %>
-      <div>
-        <%= turbo_frame_tag id="planner_courses",
-                            src: courses_path(meal_ids: @meal_ids),
-                            data: { refresh_frame_target: "plannerCourses" } %>
-        <div class="footer">
-          <%= link_to "DONE", menus_path, class: "btn btn--light" %>
-          <div id="refreshCourses"></div>
-        </div>
-      </div>
-    <% end %>
   </div>
 </div>

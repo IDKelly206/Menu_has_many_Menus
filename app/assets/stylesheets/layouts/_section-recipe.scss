@@ -1,7 +1,10 @@
 .section-recipe {
   grid-area: body;
   display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 60px 1fr;
-  // overflow: hidden;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: auto 1fr;
+  grid-template-areas:
+    "search-section search-section search-section search-section"
+    "sidebar cards cards cards";
+  overflow-y: scroll;
 }

@@ -1,11 +1,17 @@
 .search-section {
-  
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: flex-end;
-  width: 100%;
+
+  // display: flex;
+  // flex-flow: row nowrap;
+  // justify-content: flex-end;
+  // width: 100%;
+  grid-area: search-section;
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-rows: auto;
+  grid-template-areas: "filters body";
 
   &__filters {
+    grid-area: filters;
     display: flex;
     flex: 1 1 0;
     flex-flow: column nowrap;
@@ -37,6 +43,7 @@
   }
 
   &__body {
+    grid-area: body;
     display: flex;
     flex: 2 1 0;
     flex-flow: column nowrap;

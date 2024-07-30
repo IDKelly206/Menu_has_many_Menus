@@ -1,4 +1,5 @@
 module FilterHelper
+
   def filter_types(attr = {})
     unless attr[:type].nil?
       type = attr[:type]
@@ -42,6 +43,8 @@ module FilterHelper
       pill.html_safe
     end
   end
+
+  
 
   def dietary_filters(ft, attr = {})
     unless attr[:dietary].nil?
