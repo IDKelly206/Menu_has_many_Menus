@@ -25,6 +25,11 @@
           <%= filter_course_types(course_types: @course_types) %>
         <% end %>
       </div>
+      <div class="radio-btns">
+
+          <%= filter_meal_types(meal_types: @meal_types) %>
+
+      </div>
     </div>
     <div class="search-bar">
       <%= render 'recipes/search_form' %>

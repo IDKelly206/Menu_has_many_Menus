@@ -23,6 +23,9 @@ application.register("fetch-recipes-turbo", FetchRecipesTurboController)
 import InfiniteScrollController from "./infinite_scroll_controller"
 application.register("infinite-scroll", InfiniteScrollController)
 
+import RadioSelectionController from "./radio_selection_controller"
+application.register("radio-selection", RadioSelectionController)
+
 import RefreshFrameController from "./refresh_frame_controller"
 application.register("refresh-frame", RefreshFrameController)
 

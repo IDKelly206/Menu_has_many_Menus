@@ -1,5 +1,6 @@
 module FilterHelper
 
+  #  Pre-filtered selection for search
   def filter_types(attr = {})
     unless attr[:type].nil?
       type = attr[:type]
@@ -44,8 +45,6 @@ module FilterHelper
     end
   end
 
-
-
   def dietary_filters(ft, attr = {})
     unless attr[:dietary].nil?
       dietary = attr[:dietary]
@@ -55,6 +54,8 @@ module FilterHelper
     end
     pill.html_safe
   end
+
+  # Filtering selection for search
 
   def filter_course_types(attr = {})
     unless attr[:course_types].nil?
@@ -77,7 +78,29 @@ module FilterHelper
       pill = pills.join(' ')
       pill.html_safe
     end
+  end
 
+  def filter_meal_types(attr = {})
+    unless attr[:meal_types].nil?
+
+      meal_types = attr[:meal_types]
+
+      pills = meal_types.map { |mt|
+        "<div class='radio-item'>
+        <input class='radio-btn btn--pill btn--pill--meal' type='radio'
+              name='meal_type'
+              value='#{mt}'
+              data-radio-selection-target='radioInput'
+              >
+        <label for='#{mt}'
+              data-action='click->radio-selection#selectRadioOption'
+              >
+              #{mt.capitalize} </label>
+        </div>"
+      }
+      pill = pills.join(' ')
+      pill.html_safe
+    end
   end
 
   def select_coursetypes(ft , attr = {})
