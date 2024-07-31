@@ -44,7 +44,7 @@ module FilterHelper
     end
   end
 
-  
+
 
   def dietary_filters(ft, attr = {})
     unless attr[:dietary].nil?
@@ -64,7 +64,8 @@ module FilterHelper
     pills = course_types.map { |ct|
         "<div class='radio-item'>
         <input class='radio-btn btn--pill btn--pill--course' type='radio'
-               name='course_type' value='#{ct}'
+               name='course_type'
+               value='#{ct}'
                data-course-type-radio-selector-target='input'
                >
         <label for='#{ct}'

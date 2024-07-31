@@ -40,7 +40,7 @@ class RecipesController < ApplicationController
     end
 
     @title = params["title"]
-    params[:course_type].nil? ? @course_type = params[:filters][:dishType] : @course_type = params[:course_type]
+    @course_type = params[:course_type].nil? ? params[:filters][:dishType] : params[:course_type]
 
     if params["meal_ids"].present?
       @meal_ids = params["meal_ids"]
