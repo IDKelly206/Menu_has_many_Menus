@@ -67,10 +67,12 @@ module FilterHelper
         <input class='radio-btn btn--pill btn--pill--course' type='radio'
                name='course_type'
                value='#{ct}'
-               data-course-type-radio-selector-target='input'
+              data-radio-selection-target='radioInput'
+              data-course-new-form-target='courseRadioInput'
                >
         <label for='#{ct}'
-               data-action='click->course-type-radio-selector#selectRadioOption'
+              data-action='click->radio-selection#selectRadioOption click->course-new-form#assignCourseType'
+       
                >
                #{ct.capitalize} </label>
         </div>"

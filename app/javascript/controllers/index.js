@@ -8,14 +8,8 @@ import { application } from "./application"
 // import { eagerLoadControllersFrom } from "@hotwired/stimulus-loading"
 // eagerLoadControllersFrom("controllers", application)
 
-import RemovalsController from "./removals_controller"
-application.register("removals", RemovalsController)
-
-import TurboModalController from "./turbo_modal_controller"
-application.register("turbo-modal", TurboModalController)
-
-import CourseTypeRadioSelectorController from "./course_type_radio_selector_controller"
-application.register("course-type-radio-selector", CourseTypeRadioSelectorController)
+import CourseNewFormController from "./course_new_form_controller"
+application.register("course-new-form", CourseNewFormController)
 
 import FetchRecipesTurboController from "./fetch_recipes_turbo_controller"
 application.register("fetch-recipes-turbo", FetchRecipesTurboController)
@@ -28,6 +22,12 @@ application.register("radio-selection", RadioSelectionController)
 
 import RefreshFrameController from "./refresh_frame_controller"
 application.register("refresh-frame", RefreshFrameController)
+
+import RemovalsController from "./removals_controller"
+application.register("removals", RemovalsController)
+
+import TurboModalController from "./turbo_modal_controller"
+application.register("turbo-modal", TurboModalController)
 
 import VisabilityController from "./visability_controller"
 application.register("visability", VisabilityController)

@@ -6,9 +6,11 @@ export default class extends Controller {
 
   connect() {
     console.log("Radio Selection controller")
+    // console.dir(this.radioInputTargets)
   }
 
   selectRadioOption(event) {
+    console.log("Radio Option event")
     // set value of selected input
     let value = event.target.attributes["for"].value
     // check option selcted and uncheck prior option

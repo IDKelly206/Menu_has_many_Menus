@@ -23,13 +23,13 @@ export default class extends Controller {
     const planner = document.getElementById("Meal Planner")
     // Assign course value
     const value = planner.dataset.courseType
-    // Check radio button for course_type selection
+    // Set radio button for course_type selection
     this.inputTargets.forEach((el) => {
       el.value === value ? el.checked = true : el.checked = false
     })
     // Assign course_type to course#new form
     this.courseTargets.forEach((el) => el.value = value
-  )
+   )
   }
 
   setMealIds() {

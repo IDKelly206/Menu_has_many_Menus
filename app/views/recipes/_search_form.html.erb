@@ -18,6 +18,7 @@
       <%= f.submit "Search", name: nil, class: "btn btn--light" %>
       </div>
     </div>
+    
   <%= hidden_field_tag :title, yield(:title) %>
   <% if title == "Meal Planner" %>
     <%= hidden_field_tag 'course_type', "test", data: { target: 'course-type-radio-selector.course' } %>

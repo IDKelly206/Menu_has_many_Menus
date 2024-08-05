@@ -8,6 +8,7 @@ import "bootstrap"
 import { Turbo } from "@hotwired/turbo-rails"
 // Turbo.session.drive = false
 
+// Redirect out of turbo frame on-click
 // turbo_stream.adv_redirect(XXXX_path )
 Turbo.StreamActions.adv_redirect = function() {
   // console.log(this.target)
