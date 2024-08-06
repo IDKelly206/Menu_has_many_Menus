@@ -4,6 +4,12 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   static targets = [ "input", "course", "meal"]
 
+//   <div>
+//   <%# <%= select_mealtypes(ft, types: @meal_types, type: @meal_type) %> %>
+//   <%# <%= select_coursetypes(ft, types: @course_types, type: @course_type) %> %>
+// </div>
+
+
   connect() {
     console.log("Course Type Radio Selector", this.element)
     // this.setDefaultCourse()

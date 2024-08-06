@@ -10,6 +10,8 @@
   grid-template-rows: auto;
   grid-template-areas: "filters body";
 
+  padding: var(--space-s) var(--space-xs);
+
   &__filters {
     grid-area: filters;
     display: flex;
@@ -21,9 +23,8 @@
       display: inline-flex;
       flex-flow: column nowrap;
       flex: 1 1 auto;
-      justify-content: flex-start;
-      gap: var(--space-s);
-      padding: 0 var(--font-size-xs) var(--space-s) ;
+      justify-content: flex-end;
+      gap: var(--space-xs);
 
         // UL
       .details {
@@ -54,20 +55,20 @@
       flex-flow: column nowrap;
       flex: 1 1 auto;
       justify-content: flex-start;
-      gap: var(--space-s);
-      padding: 0 var(--font-size-xs) var(--space-s) ;
+      // gap: var(--space-s);
+      // padding: 0 var(--font-size-xs) var(--space-s) ;
 
         // UL
-      .details {
-        display: flex;
-        flex: 0 0 0;
-        flex-flow: row wrap;
-        justify-content: flex-start;
-        list-style: none;
-        gap: var(--space-xs);
-        margin: 0;
-        padding: 0;
-      }
+      // .details {
+      //   display: flex;
+      //   flex: 0 0 0;
+      //   flex-flow: row wrap;
+      //   justify-content: flex-start;
+      //   list-style: none;
+      //   gap: var(--space-xs);
+      //   margin: 0;
+      //   padding: 0;
+      // }
     }
 
     .search-bar {

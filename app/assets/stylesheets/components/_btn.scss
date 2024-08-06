@@ -109,7 +109,7 @@
 
     &--course,
     &--course:checked + label {
-      background-color: var(--color-secondary);
+      background-color: var(--color-secondary-rotate);
       color: var(--color-light);
 
       &:hover + label {
@@ -141,10 +141,20 @@
     }
 
     &--user,
-    &--user:checked + label,
+    &--user:checked + label {
+      background-color: var(--color-primary);
+      color: var(--color-text-body);
+
+      &:hover + label {
+        background-color: var(--color-primary);
+        color: var(--color-text-body);
+      }
+    }
+
+
     &--dietary,
     &--dietary:checked + label {
-      background-color: var(--color-primary);
+      background-color: var(--color-primary-rotate);
       color: var(--color-text-body);
 
       &:hover + label {
