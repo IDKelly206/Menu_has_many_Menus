@@ -6,7 +6,7 @@ export default class extends Controller {
 
   connect() {
     console.log("Radio Selection controller")
-    // console.dir(this.radioInputTargets)
+    console.dir(this.radioInputTargets)
   }
 
   selectRadioOption(event) {

@@ -2,6 +2,11 @@
    <% title = yield :title %>
     <%# <div class="sidebar__courses"> %>
     <% if title == "Meal Planner" %>
+      <div class="radio-btns">
+        <% if title == "Meal Planner" %>
+          <%= select_filter_course_types(course_types: @course_types) %>
+        <% end %>
+      </div>
       <div>
         <%= turbo_frame_tag id="planner_courses",
                             src: courses_path(meal_ids: @meal_ids),
@@ -10,6 +15,15 @@
           <%= link_to "DONE", menus_path, class: "btn btn--light" %>
           <div id="refreshCourses"></div>
         </div>
+      </div>
+    <% end %>
+
+    <% if title = "Recipes" %>
+       <div class="radio-btns">
+        <%= select_filter_course_types(course_types: @course_types)  %>
+      </div>
+       <div class="radio-btns">
+        <%= select_filter_meal_types(meal_types: @meal_types)  %>
       </div>
     <% end %>
   <%# </div> %>

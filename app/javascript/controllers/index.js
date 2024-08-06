@@ -23,6 +23,9 @@ application.register("radio-selection", RadioSelectionController)
 import RefreshFrameController from "./refresh_frame_controller"
 application.register("refresh-frame", RefreshFrameController)
 
+import RecipeSearchFilterController from "./recipe_search_filter_controller"
+application.register("recipe-search-filter", RecipeSearchFilterController)
+
 import RemovalsController from "./removals_controller"
 application.register("removals", RemovalsController)
 

@@ -2,11 +2,14 @@
     <% title = yield :title %>
   <%= f.fields_for :filters do |ft| %>
     <div class="filters">
+      <%# Change into hidden filters assigned by stimulus controller %>
       <div>
-        <%= select_mealtypes(ft, types: @meal_types, type: @meal_type) %>
-        <%= select_coursetypes(ft, types: @course_types, type: @course_type) %>
+        <%# <%= select_mealtypes(ft, types: @meal_types, type: @meal_type) %> %>
+        <%# <%= select_coursetypes(ft, types: @course_types, type: @course_type) %> %>
       </div>
       <div>
+        <%= ft.hidden_field :mealType, name:"[filters][mealType]", value: @meal_type %>
+        <%= ft.hidden_field :dishType, name:"[filters][dishType]", value: @course_type, data: { target: 'recipe-search-filter.courseSearchFilter' } %>
         <%= ft.hidden_field :health, name:"[filters][health][]", multiple: true, value: @dietary_restrictions %>
       </div>
     </div>
@@ -18,11 +21,13 @@
       <%= f.submit "Search", name: nil, class: "btn btn--light" %>
       </div>
     </div>
-    
+
+  <%# Send info to recipe#search controller for recipe rendering %>
   <%= hidden_field_tag :title, yield(:title) %>
   <% if title == "Meal Planner" %>
-    <%= hidden_field_tag 'course_type', "test", data: { target: 'course-type-radio-selector.course' } %>
+    <%= hidden_field_tag 'course_type', @course_type, data: { target: 'course-new-form.formCourseType' } %>
   <% end %>
+
   <% if @meal_ids.present? %>
     <%= hidden_field_tag 'meal_ids', @meal_ids %>
   <% elsif @meal.present? %>
@@ -30,4 +35,5 @@
     <%= hidden_field_tag 'menu_id', @menu.id %>
     <%= hidden_field_tag 'course_id', @course.id %>
   <% end %>
+
 <% end %>
