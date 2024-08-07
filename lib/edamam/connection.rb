@@ -12,3 +12,7 @@ class Connection
   end
 
 end
+
+# type=public&q=oatmeal%20peach  = PATH
+# &app_id=bb5e4702&app_key=7cb8c06cdedbc2d089957cc57703423c
+# &health=vegan&mealType=Breakfast&dishType=Main%20course
