@@ -5,8 +5,8 @@ export default class extends Controller {
   static targets = ["courseRadioInput", "formCourseType", "formMealIds"]
 
   connect() {
-    // console.log("Course New Form controller")
-    // console.dir(this.courseRadioInputTargets)
+    console.log("Course New Form controller")
+    console.dir(this.courseRadioInputTargets)
     this.setInitialSelection()
   }
 

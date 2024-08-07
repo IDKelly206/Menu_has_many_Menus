@@ -5,8 +5,8 @@ export default class extends Controller {
   static targets = [ "radioInput"]
 
   connect() {
-    console.log("Radio Selection controller")
-    console.dir(this.radioInputTargets)
+    // console.log("Radio Selection controller")
+    // console.dir(this.radioInputTargets)
   }
 
   selectRadioOption(event) {

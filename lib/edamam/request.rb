@@ -14,8 +14,6 @@ class Request
       query_string = query.nil? ? "" : query.first.split.join("%20")
       path = "#{type}&q=#{query_string}"
 
-      # option = filters.each.map { |k, v| v.empty? ? "" : v.class == Array ? v.join(' ').split(' ').map { |va| "#{k}=""#{va}".split.join("%20") } : "#{k}=#{v}".split.join("%20") }.join("&").insert(0, '&')
-
       option = []
       filters.each do |k, v|
         unless v.empty?

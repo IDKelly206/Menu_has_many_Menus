@@ -23,7 +23,7 @@ export default class extends Controller {
   }
 
   setMealFilter(value) {
-    this.courseSearchFilterTargets.forEach((el) => el.value = value)
+    this.mealSearchFilterTargets.forEach((el) => el.value = value)
   }
 
 

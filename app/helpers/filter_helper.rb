@@ -57,6 +57,28 @@ module FilterHelper
 
   # Filtering selection for search
 
+  def select_filter_meal_types(attr = {})
+    unless attr[:meal_types].nil?
+      meal_types = attr[:meal_types]
+      pills = meal_types.map do |mt|
+        "<div class='radio-item'>
+        <input class='radio-btn btn--pill btn--pill--meal' type='radio'
+              name='mealType'
+              id='#{mt}'
+              value='#{mt}'
+              >
+        <label for='#{mt}'
+              # data-action='
+              click->recipe-search-filter#assignMealFilter'
+              >
+              #{mt.capitalize} </label>
+        </div>"
+      end
+      pill = pills.join(' ')
+      pill.html_safe
+    end
+  end
+
   def select_filter_course_types(attr = {})
     unless attr[:course_types].nil?
     course_types = attr[:course_types]
@@ -66,12 +88,13 @@ module FilterHelper
         "<div class='radio-item'>
         <input class='radio-btn btn--pill btn--pill--course' type='radio'
                name='dishType'
+               id='#{ct}'
                value='#{ct}'
-              data-radio-selection-target='radioInput'
+
               data-course-new-form-target='courseRadioInput'
                >
         <label for='#{ct}'
-              data-action='click->radio-selection#selectRadioOption
+              data-action='
                            click->course-new-form#assignCourseType
                            click->recipe-search-filter#assignCourseFilter'
                >
@@ -82,68 +105,4 @@ module FilterHelper
       pill.html_safe
     end
   end
-
-  def select_filter_meal_types(attr = {})
-    unless attr[:meal_types].nil?
-
-      meal_types = attr[:meal_types]
-
-      pills = meal_types.map { |mt|
-        "<div class='radio-item'>
-        <input class='radio-btn btn--pill btn--pill--meal' type='radio'
-              name='mealType'
-              value='#{mt}'
-              data-radio-selection-target='radioInput'
-              >
-        <label for='#{mt}'
-              data-action='click->radio-selection#selectRadioOption
-              click->recipe-search-filter#assignMealFilter'
-              >
-              #{mt.capitalize} </label>
-        </div>"
-      }
-      pill = pills.join(' ')
-      pill.html_safe
-    end
-  end
-
-  # def select_coursetypes(ft , attr = {})
-  #   type = attr[:type]
-  #   types = attr[:types]
-  #   pills = ''
-  #   if type.nil?
-  #     pills << "<div class='radio-btns'>"
-  #     types.map do |t|
-  #       pills << "<div class='radio-item'>
-  #               #{ft.radio_button :dishType, t, class: 'radio-btn btn--pill btn--pill--course', checked: t == types.first }"
-  #       pills << "#{ft.label 'dishType_'+t.split(" ").join("_"), t.capitalize}"
-  #       pills << "</div>"
-  #     end
-  #     pills << "</div>"
-  #     pill = pills
-  #   else
-  #     pill = "#{ ft.hidden_field :dishType, value: @course_type }"
-  #   end
-  #   pill.html_safe
-  # end
-
-  # def select_mealtypes(ft , attr = {})
-  #   type = attr[:type]
-  #   types = attr[:types]
-  #   pills = ''
-  #   if type.nil?
-  #     pills << "<div class='radio-btns'>"
-  #     types.map do |t|
-  #       pills << "<div class='radio-item'>
-  #               #{ft.radio_button :mealType, t, class: 'radio-btn btn--pill btn--pill--meal', checked: t == types.first }"
-  #       pills << "#{ft.label 'mealType_'+t, t.capitalize}"
-  #       pills << "</div>"
-  #     end
-  #     pills << "</div>"
-  #     pill = pills
-  #   else
-  #     pill = "#{ ft.hidden_field :mealType, value: @meal_type }"
-  #   end
-  #   pill.html_safe
-  # end
 end
