@@ -16,7 +16,7 @@
   @include media(tabletAndUp) {
     padding-right: 0;
     padding-left: 0;
-    max-width: 90rem;
+    max-width: 100rem;
   }
 
   &__nav {
@@ -26,7 +26,7 @@
     width: 100%;
     list-style: none;
     margin: 0;
-    padding: 0 var(--space-xs);
+    padding: var(--space-xs) var(--space-xs) 0;
   }
 
   &__brand, &__dropdown {
@@ -34,7 +34,7 @@
     flex-grow: 0;
     align-items: center;
     padding: var(--space-m) var(--space-m);
-    color: var(--color-pearl);
+    color: var(--color-onyx);
     text-align: center;
     font-weight: bold;
     font-size: var(--font-size-xxxl);
@@ -55,7 +55,7 @@
       padding: 0 0;
       text-align: center;
       font-weight: bold;
-      color: var(--color-pearl);
+      color: var(--color-onyx);
       font-size: var(--font-size-xxl);
     }
 
@@ -70,19 +70,19 @@
 
     &:hover {
       a, i {
-        color: var(--color-onyx);
+        color: var(--color-pearl);
       }
-      color: var(--color-onxy);
-      background-color: var(--color-pearl);
-      border: var(--border-muted);
-      border-bottom: var(--border-navbar);
+      color: var(--color-pearl);
+      background-color: var(--color-onyx);
+      border: var(--border-frame);
+      border-bottom: var(--border-navbar-botton);
       border-top-left-radius: var(--border-radius);
       border-top-right-radius: var(--border-radius);
     }
   }
 
   &__border{
-    background-color: var(--color-onyx);
+    background-color: var(--color-pearl);
     border: var(--border-navbar);
     border-bottom: var(--border-navbar-botton);
     border-top-left-radius: var(--border-radius);
@@ -91,12 +91,12 @@
 
   .nav-active {
     a, i {
-      color: var(--color-onyx);
+      color: var(--color-pearl);
     }
-    color: var(--color-onxy);
-    background-color: var(--color-pearl);
-    border: var(--border-muted);
-    border-bottom: var(--border-navbar);
+    color: var(--color-pearl);
+    background-color: var(--color-onyx);
+    border: var(--border-frame);
+    border-bottom: var(--border-navbar-botom);
     border-top-left-radius: var(--border-radius);
     border-top-right-radius: var(--border-radius);
   }

@@ -9,6 +9,8 @@
   "header"
   "navbar"
   "body";
+  background-color: var(--color-onyx);
+  color: var(--color-pearl);
 
   @include media(tabletAndUp) {
     grid-template-areas:

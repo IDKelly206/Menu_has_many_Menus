@@ -1,8 +1,8 @@
 <div class="navbar">
   <ul class="navbar__nav">
-    <li class="navbar__border <%= active_page(path: root_path, class_name: 'nav-active') %>">
-      <%= link_to root_path, class:"navbar__brand nav-btn
-        " do %>
+    <li class="navbar__border navbar__brand nav-btn <%= active_page(path: root_path, class_name: 'nav-active') %>
+    ">
+      <%= link_to root_path, class:"" do %>
         <i class="fa-regular fa-calendar-days"></i>
       <% end %>
     </li>
@@ -24,12 +24,11 @@
               <%= active_page(path: groceries_path, class_name: 'nav-active') %>">
       <%= link_to "Grocery List", groceries_path %>
     </li>
-    <li class=" navbar__border dropdown
+    <li class="navbar__border dropdown
       <%= active_page(path: household_path(current_user.household_id), class_name: 'nav-active') %>
     ">
       <a href="#"
-          class="avatar navbar__dropdown  nav-btn
-                "
+          class="avatar navbar__dropdown nav-btn"
         id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <i class="fa-solid fa-bars"></i>
       </a>
