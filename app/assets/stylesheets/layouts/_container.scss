@@ -1,16 +1,15 @@
-.container {
+.container-box {
   height: 100vh;
   width: 100vw;
+  background-color: var(--color-onyx);
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 1fr auto auto;
+  grid-template-rows: 1fr auto;
   grid-template-areas:
-  "body"
   "header"
   "navbar"
   "body";
-  background-color: var(--color-onyx);
-  color: var(--color-pearl);
+
 
   @include media(tabletAndUp) {
     grid-template-areas:

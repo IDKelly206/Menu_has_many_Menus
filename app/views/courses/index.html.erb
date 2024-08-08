@@ -3,7 +3,7 @@
     <% unless @course_recipes.nil? %>
       <% @course_types.each do |course_type| %>
         <div class="section">
-          <span class="title"><h6><%= course_type.split.first.capitalize.pluralize %>:</h6></span>
+          <span class="course-title"><h4><%= course_type.capitalize.pluralize %>:</h4></span>
           <div class="courses">
             <%= render @courses.select { |course| course.course_type == course_type },
                                         recipes: @course_recipes,

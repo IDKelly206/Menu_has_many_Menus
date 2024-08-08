@@ -1,17 +1,10 @@
 <div class="search-section">
   <% title = yield :title %>
   <div class="search-section__filters">
-    <div class="filters">
-      <ul class="details">
-        <%= filter_dietary(dietary: @dietary_restrictions) %>
-      </ul>
-    </div>
   </div>
   <div class="search-section__body">
     <div class="search-bar">
       <%= render 'recipes/search_form' %>
     </div>
-  </div>
-  <div class="search-section__courses">
   </div>
 </div>

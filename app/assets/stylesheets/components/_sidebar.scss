@@ -5,7 +5,7 @@
   grid-template-rows: auto 5fr;
   grid-template-areas:
     "filters"
-    "courses";
+    "planner";
 
   // display: flex;
   // flex-flow: column nowrap;
@@ -13,8 +13,8 @@
 
   padding: 0 var(--font-size-xs);
 
-  &__courses {
-    grid-area: courses;
+  &__planner {
+    grid-area: planner;
     display: flex;
     flex: 1 1 1;
     flex-flow: column nowrap;
@@ -22,18 +22,40 @@
     padding: 0;
     font-size: var(--font-size-xs);
 
+    .title * {
+      color: var(--color-pearl);
+    }
 
+    .course-selection {
+      padding-bottom: var(--space-s);
+    }
+
+    .footer {
+      align-self: center;
+    }
+
+  }
+
+  &__courses {
+  display: flex;
+  flex: 1 1 1;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  padding: 0;
+  font-size: var(--font-size-xs);
 
   .section {
     display: inline-flex;
     flex-flow: column;
     justify-content: flex-start;
 
-    .title {
+    .course-title {
       display: block;
       flex: 1 1 0;
-      padding-top: 10px;
-      font-size: var(--font-size-xs);
+      padding-top: var(--font-size-xs);
+      h4 {
+        color: var(--color-pearl);
+      }
     }
 
     .courses {
@@ -43,10 +65,6 @@
       justify-content: space-between;
       padding: 0;
       font-size: var(--font-size-xs);
-    }
-
-    .footer {
-      display: block;
     }
   }
 }
