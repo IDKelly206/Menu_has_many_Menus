@@ -14,8 +14,11 @@
   border: var(--border-muted);
   border-radius: var(--border-radius);
   box-shadow: var(--shadow-large);
-  width: 192px;
-  height: 256px;
+  width: 224px;
+  height: 288px;
+  // width: 192px; 224 256
+  // height: 256px; 288 320
+
 
   &__header {
 

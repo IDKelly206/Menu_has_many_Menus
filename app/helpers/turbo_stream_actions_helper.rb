@@ -5,3 +5,4 @@ module TurboStreamActionsHelper
 end
 
 Turbo::Streams::TagBuilder.prepend(TurboStreamActionsHelper)
+

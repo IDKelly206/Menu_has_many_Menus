@@ -3,7 +3,7 @@
       controller: "infinite-scroll",
       action: "scroll@window->infinite-scroll#scroll"
     }, target: "_top" do %>
-  <div class="card-deck">
+  <div id="recipe_cards" class="card-deck">
     <%= render recipes, locals: { title: yield(:title) } %>
   </div>
   <%= render partial: "/recipes/load_more" %>

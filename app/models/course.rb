@@ -9,6 +9,6 @@ class Course < ApplicationRecord
   COURSE_TYPES = [
     "main course",
     "starter",
-    "dessert"
+    "desserts"
   ]
 end

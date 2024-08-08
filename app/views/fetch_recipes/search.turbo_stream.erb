@@ -1,5 +1,5 @@
-<%= turbo_stream.replace "recipe_cards" do %>
-  <%= render @recipes, locals: { title: @title } %>
+<%= turbo_stream.append "recipe_cards" do %>
+    <%= render @recipes, locals: { title: @title } %>
 <% end %>
 
 <%= turbo_stream.replace "load_more" do %>
