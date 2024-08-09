@@ -22,8 +22,33 @@
     padding: 0;
     font-size: var(--font-size-xs);
 
-    .title * {
-      color: var(--color-pearl);
+    .title {
+      flex-flow: row nowrap;
+
+      h3 {
+        color: var(--color-pearl);
+      }
+
+      .filters {
+        display: inline-flex;
+        flex-flow: column nowrap;
+        flex: 1 1 auto;
+        justify-content: flex-start;
+        gap: var(--space-xs);
+
+
+          // UL
+        .details {
+          display: flex;
+          flex: 0 0 0;
+          flex-flow: row wrap;
+          justify-content: flex-start;
+          list-style: none;
+          gap: var(--space-xs);
+          margin: 0;
+          padding: 0;
+        }
+      }
     }
 
     .course-selection {
@@ -33,6 +58,9 @@
     .footer {
       align-self: center;
     }
+
+
+
 
   }
 

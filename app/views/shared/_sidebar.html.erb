@@ -20,7 +20,14 @@
         </div>
       </div>
       <div class="sidebar__planner">
-        <span class="title"><h3> Select course:</h3></span>
+        <div class="title">
+          <h3> Select course for</h3>
+          <div class="filters">
+            <ul class="details">
+              <%= filter_types(type: @meal_type) %>
+            </ul>
+          </div>
+        </div>
         <div class="course-selection radio-btns">
             <%= select_filter_course_types(course_types: @course_types) %>
         </div>

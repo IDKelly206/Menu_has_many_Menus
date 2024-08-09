@@ -8,9 +8,28 @@
     "sidebar cards cards cards";
   overflow-y: scroll;
 
-  background-color: var(--color-onyx);
-  color: var(--color-pearl);
+  // background-color: var(--color-onyx);
+  // color: var(--color-pearl);
   margin: 0 var(--space-xs);
   border: var(--border-frame);
   border-top: var(--border-frame-top);
+}
+
+.card-deck {
+  display: flex;
+  justify-content: space-between;
+  flex-flow: row wrap;
+  padding: var(--space-s) var(--space-m) ;
+  gap: var(--space-m);
+
+  // --w: 224px;
+  // --n: 3;
+  // display: grid;
+  // grid-template-columns: repeat(auto-fit,
+  //   minmax(clamp(100%/3 +1) + 0.1%,
+  //                (-500px)*1000,
+  //                100%
+  //         ), 1fr);
+  // gap: 10px;
+
 }

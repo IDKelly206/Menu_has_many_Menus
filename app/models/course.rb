@@ -7,8 +7,11 @@ class Course < ApplicationRecord
   validates :meal_id, presence: true
 
   COURSE_TYPES = [
-    "main course",
     "starter",
-    "desserts"
+    "soup",
+    "salad",
+    "main course",
+    "desserts",
+    "drinks"
   ]
 end

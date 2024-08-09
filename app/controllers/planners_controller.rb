@@ -1,6 +1,7 @@
 class PlannersController < ApplicationController
   before_action :set_meal_types
   before_action :set_course_types
+  before_action :set_health_types
   before_action :set_household, only: [:index, :new, :create]
   before_action :set_meals, only: [:index]
   before_action :set_users, only: [:index]
@@ -66,6 +67,10 @@ class PlannersController < ApplicationController
 
   def set_course_types
     @course_types = Course::COURSE_TYPES
+  end
+
+  def set_health_types
+    @health_types = Health::HEALTH_TYPES
   end
 
   def set_household

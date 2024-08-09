@@ -57,7 +57,7 @@
  --color-pearl:      hsl(45, 36%, 96%);   // Pearl Bright (background)
  --color-onyx:       hsl(195, 4%, 22%);    // Onyx
 
-
+//  BOXES
   // Border radius
   --border-radius: 1rem;
   --border-radius-pill: 3rem;
@@ -68,6 +68,7 @@
   --border-muted: solid 1px var(--color-text-muted);
 
   --border-transparent: solid 2px transparent;
+  
   --border-navbar: solid 0.5px var(--color-onyx);
   --border-navbar-bottom: solid 0px var(--color-white);
 
@@ -77,4 +78,7 @@
   // Shadows
   --shadow-large:  2px 4px 10px hsl(0 0% 0% / 0.1);
   --shadow-small:  1px 3px 6px hsl(0 0% 0% / 0.1);
+
+  // Background
+
 }
