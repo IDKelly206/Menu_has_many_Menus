@@ -1,18 +1,19 @@
-<%= form_with(url: recipe_search_recipes_path, method: "GET", data: {turbo_frame: "recipes" }) do |f| %>
+<%= form_with(url: recipe_search_recipes_path, method: "GET", class:"search-bar", data: {turbo_frame: "recipes" }) do |f| %>
     <% title = yield :title %>
   <%= f.fields_for :filters do |ft| %>
     <div class="filters">
+      <ul class="details">
+        <%= filter_dietary(dietary: @dietary_restrictions) %>
+      </ul>
       <%= ft.hidden_field :mealType, name:"[filters][mealType]", value: @meal_type, data: { target: 'recipe-search-filter.mealSearchFilter' } %>
       <%= ft.hidden_field :dishType, name:"[filters][dishType]", value: @course_type, data: { target: 'recipe-search-filter.courseSearchFilter' }  %>
       <%= ft.hidden_field :health, name:"[filters][health][]", multiple: true, value: @dietary_restrictions %>
     </div>
   <% end %>
     <div class="bar">
-      <div class="input">
         <%# f.label :query, "Search for:" %>
-        <%= f.text_field :query, multiple: true %>
+      <%= f.text_field :query, multiple: true, class: "input", placeholder: "Enter ingredient or recipe name" %>
       <%= f.submit "Search", name: nil, class: "btn btn--light" %>
-      </div>
     </div>
 
   <%# Send info to recipe#search controller for recipe rendering %>

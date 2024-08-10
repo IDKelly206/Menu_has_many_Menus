@@ -2,21 +2,26 @@
   grid-area: cards;
   width: 100%;
   padding: var(--space-m), var(--space-s);
-
   border: var(--border-frame);
-  // margin-left: auto;
-  // margin-right: auto;
-  // background-color: var(--color-text-muted);
-
   overflow-x: hidden;
   overflow-y: scroll;
 
+  background-color: var(--color-background);
+  // Background patterns
   $s: var(--space-vxl);
   $c1: var(--color-pearl);
   $c2: var(--color-onyx);
-  background:
-    repeating-conic-gradient(#{$c1} 0% 25%, transparent 0% 50%)
-      50% / #{$s $s};
+  // Checkered - parallel
+  // background:
+  //   repeating-conic-gradient(#{$c1} 0% 25%, transparent 0% 50%)
+  //     50% / #{$s $s};
+
+  // Checkered - diagonal
+  // background:
+  //   repeating-conic-gradient(from 90deg,
+  //       #{$c1} 0% 25%, transparent 0% 50%)
+  //       50% / #{$s $s};
+
 
 
   // background-image: /* tint image */

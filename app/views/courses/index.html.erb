@@ -1,9 +1,12 @@
 <%= turbo_frame_tag "planner_courses" do %>
   <div class="sidebar__courses">
+    <div class="header">
+      <h3>Selected Courses:</h3>
+    </div>
     <% unless @course_recipes.nil? %>
       <% @course_types.each do |course_type| %>
-        <div class="section">
-          <span class="course-title"><h4><%= course_type.capitalize.pluralize %>:</h4></span>
+        <div class="course-type">
+          <span class="course-title"><h4>+ <%= course_type.capitalize.pluralize %>:</h4></span>
           <div class="courses">
             <%= render @courses.select { |course| course.course_type == course_type },
                                         recipes: @course_recipes,
