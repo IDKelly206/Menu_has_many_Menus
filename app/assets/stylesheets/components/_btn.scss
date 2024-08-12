@@ -103,12 +103,11 @@
     color: var(--color-onyx);
     font-size: var(--font-size-s);
     font-weight: bold;
-
     cursor: none;
     // transition: none;
 
-    &--course,
-    &--course:checked + label {
+    &-course,
+    &-course:checked + label {
       background-color: var(--color-secondary-rotate);
       color: var(--color-light);
 
@@ -118,8 +117,8 @@
         }
     }
 
-    &--date,
-    &--date:checked + label {
+    &-date,
+    &-date:checked + label {
       background-color: var(--color-tertiary);
       color: var(--color-text-body);
 
@@ -129,8 +128,19 @@
       }
     }
 
-    &--meal,
-    &--meal:checked + label {
+    &-dietary,
+    &-dietary:checked + label {
+      background-color: var(--color-primary-rotate);
+      color: var(--color-text-body);
+
+      &:hover + label {
+        background-color: var(--color-primary);
+        color: var(--color-text-body);
+      }
+    }
+
+    &-meal,
+    &-meal:checked + label {
       background-color: var(--color-secondary);
       color: var(--color-light);
 
@@ -140,21 +150,9 @@
         }
     }
 
-    &--user,
-    &--user:checked + label {
+    &-user,
+    &-user:checked + label {
       background-color: var(--color-primary);
-      color: var(--color-text-body);
-
-      &:hover + label {
-        background-color: var(--color-primary);
-        color: var(--color-text-body);
-      }
-    }
-
-
-    &--dietary,
-    &--dietary:checked + label {
-      background-color: var(--color-primary-rotate);
       color: var(--color-text-body);
 
       &:hover + label {

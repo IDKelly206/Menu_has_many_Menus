@@ -5,7 +5,5 @@
 >
   <%= render 'shared/searchbar' %>
   <%= render 'shared/sidebar' %>
-  <div class="section-cards">
-    <%= render "recipes", recipes: @recipes, locals: { title: yield(:title) } %>
-  </div>
+  <%= render "recipes", recipes: @recipes, locals: { title: yield(:title) } %>
 </div>

@@ -1,51 +1,65 @@
 <div class="sidebar">
+
    <% title = yield :title %>
     <% if title == "Meal Planner" %>
-      <div class="sidebar__filters">
-        <div class="filters">
-          <ul class="details">
-            <%= filter_users(users: @users) %>
-            <%= filter_users(users: @user) %>
+      <div class="sidebar__filters filters-section">
+        <div class="filters-section__filter">
+          <div class="filters-section__filter__title">
+            <h3>Household diners:</h3>
+          </div>
+          <ul class="filters-section__filter__list">
+                  <%= filter_users(users: @users) %>
+                  <%= filter_users(users: @user) %>
           </ul>
-          <ul class="details">
-            <%= filter_dates(dates: @menus) %>
+        </div>
+        <div class="filters-section__filter">
+          <div class="filters-section__filter__title">
+            <h3>Dates:</h3>
+          </div>
+          <ul class="filters-section__filter__list">
+              <%= filter_dates(dates: @menus) %>
           </ul>
         </div>
       </div>
       <div class="sidebar__planner">
-        <div class="title">
-          <h3> Select course for</h3>
-          <div class="filters">
-            <ul class="details">
-              <%= filter_types(type: @meal_type) %>
-            </ul>
+        <div class="filters-section__filter">
+          <div class="filters-section__filter__title">
+            <h3> Select courses for <%= @users.count * @menus.count %> </h3>
+            <ul class="filters-section__filter__list"><%= filter_types(type: @meal_type)  %></ul>
+            <h3> meals</h3>
           </div>
+          <ul class="filters-section__filter__list">
+            <%= select_radio_course_types(course_types: @course_types)  %>
+          </ul>
         </div>
-        <div class="course-selection radio-btns">
-            <%= select_filter_course_types(course_types: @course_types) %>
-        </div>
-        <%= turbo_frame_tag id="planner_courses",
-                            src: courses_path(meal_ids: @meal_ids),
-                            data: { refresh_frame_target: "plannerCourses" } %>
         <div class="footer">
-          <%= link_to "Done Planning", menus_path, class: "btn btn--light" %>
           <div id="refreshCourses"></div>
         </div>
       </div>
+      <%= turbo_frame_tag id="planner_courses", class: "sidebar__courses",
+                    src: courses_path(meal_ids: @meal_ids),
+                    data: { refresh_frame_target: "plannerCourses" } %>
     <% end %>
 
-    <% if title == "Recipes" %>
-      <div class="sidebar__filters">
-        <div class="filters">
-          <ul class="details">
-            <%= select_filter_meal_types(meal_types: @meal_types)  %>
-          </ul>
-          <ul class="details">
-            <%= select_filter_course_types(course_types: @course_types)  %>
-          </ul>
 
+    <% if title == "Recipes" %>
+      <div class="sidebar__filters filters-section">
+        <div class="filters-section__filter">
+          <div class="filters-section__filter__title">
+            <h3>Select Meal type to filter</h3>
+          </div>
+          <ul class="filters-section__filter__list">
+            <%= select_radio_meal_types(meal_types: @meal_types)  %>
+          </ul>
+        </div>
+        <div class="filters-section__filter">
+          <div class="filters-section__filter__title">
+            <h3>Select Course type to filter</h3>
+          </div>
+          <ul class="filters-section__filter__list">
+            <%= select_radio_course_types(course_types: @course_types)  %>
+          </ul>
         </div>
       </div>
-
     <% end %>
 </div>

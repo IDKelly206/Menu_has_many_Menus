@@ -3,8 +3,9 @@
       controller: "infinite-scroll",
       action: "scroll@window->infinite-scroll#scroll"
     }, target: "_top" do %>
-  <div id="recipe_cards" class="card-deck">
+  <div id="recipe_cards" class="card-rolodex">
     <%= render @recipes, locals: { title: @title }  %>
   </div>
-   <%= render partial: "/recipes/load_more", locals: { title: @title } %>
+  <%= render partial: "/recipes/load_more", locals: { title: @title } %>
+  <div id="gList"></div>
 <% end %>

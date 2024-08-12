@@ -1,0 +1,39 @@
+.filters-section {
+  display: inline-flex;
+  flex-flow: column nowrap;
+  flex: 1 1 auto;
+  justify-content: flex-start;
+  gap: var(--space-s);
+
+  &__filter {
+    display: inline-flex;
+    flex-flow: column nowrap;
+    flex: 1 1 auto;
+    justify-content: flex-start;
+    gap: var(--space-xs);
+
+    &__title {
+      display: inline-flex;
+      flex-flow: row nowrap;
+      justify-content: flex-start;
+      gap: var(--space-m);
+
+      h3, h4 {
+        color: var(--color-pearl);
+        margin: 0;
+      }
+    }
+
+    &__list {
+      display: flex;
+      flex: 0 0 auto;
+      flex-flow: row wrap;
+      justify-content: flex-start;
+      gap: var(--space-xs);
+      list-style: none;
+      gap: var(--space-xs);
+      margin: 0;
+      padding: 0;
+    }
+  }
+}

@@ -12,7 +12,7 @@
     <div class="radio-btns">
       <% @meal_types.each do |meal_type| %>
         <div class="radio-item">
-          <%= f.radio_button :meal_type, meal_type, class: "radio-btn btn--pill btn--pill--meal" %>
+          <%= f.radio_button :meal_type, meal_type, class: "radio-btn btn--pill btn--pill-meal" %>
           <%= f.label "meal_type_#{meal_type.downcase}", meal_type.capitalize %>
         </div>
       <% end %>
@@ -32,7 +32,7 @@
                                    :id,
                                    :name_first,
                                    include_hidden: false do |b| %>
-        <%= b.check_box(class: "check_box btn--pill btn--pill--user",
+        <%= b.check_box(class: "check_box btn--pill btn--pill-user",
                         checked: @planner.user_ids.nil? ? false : params[:planner_form][:user_ids].include?(b.value.to_s) )  %>
         <%= b.label %>
       <% end %>
@@ -52,7 +52,7 @@
                                    :id,
                                    :day_of_week,
                                    include_hidden: false do |b| %>
-        <%= b.check_box(class: "check_box btn--pill btn--pill--date",
+        <%= b.check_box(class: "check_box btn--pill btn--pill-date",
                         checked: @planner.menu_ids.nil? ? false : params[:planner_form][:menu_ids].include?(b.value.to_s) ) %>
         <%= b.label  %>
       <% end %>

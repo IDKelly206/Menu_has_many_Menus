@@ -4,11 +4,15 @@
   flex-flow: row wrap;
   justify-content: flex-start;
   gap: var(--space-xs);
+  list-style: none;
+
 }
 
 .radio-item {
   flex: 0 1 auto;
+
 }
+
 .radio-btn {
   position: absolute;
   transform: scale(0);

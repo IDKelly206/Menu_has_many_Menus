@@ -3,13 +3,11 @@
       id="<%= yield(:title) %>"
       data-course-type="<%= @course_type %>"
       data-meal-ids="<%= @meal_ids.join(", ") %>"
-      data-controller="course-new-form refresh-frame turbo-modal  recipe-search-filter"
+      data-controller="course-new-form refresh-frame turbo-modal recipe-search-filter"
 >
 
   <%= render 'shared/searchbar'%>
   <%= render 'shared/sidebar' %>
-  <div class="section-cards">
-    <div id="gList"></div>
-    <%= render "recipes/recipes", recipes: @recipes, locals: { title: yield(:title) } %>
-  </div>
+  <%= render "recipes/recipes", recipes: @recipes, locals: { title: yield(:title) } %>
+
 </div>
