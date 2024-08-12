@@ -4,10 +4,12 @@
     <%= ft.hidden_field :mealType, name:"[filters][mealType]", value: @meal_type, data: { target: 'recipe-search-filter.mealSearchFilter' } %>
     <%= ft.hidden_field :dishType, name:"[filters][dishType]", value: @course_type, data: { target: 'recipe-search-filter.courseSearchFilter' }  %>
     <%= ft.hidden_field :health, name:"[filters][health][]", multiple: true, value: @dietary_restrictions %>
-    <div class="filters">
-      <ul class="details">
-        <%= filter_dietary(dietary: @dietary_restrictions) %>
-      </ul>
+    <div class="filters-section">
+      <div class="filtered filtered--vert-ctr filtered--hrzn-r">
+        <ul class="filtered__list filtered__list--hrzn-r filtered__list--nowrap">
+          <%= filter_dietary(dietary: @dietary_restrictions) %>
+        </ul>
+      </div>
     </div>
   <% end %>
     <div class="bar">

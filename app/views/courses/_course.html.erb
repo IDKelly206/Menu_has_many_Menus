@@ -1,4 +1,4 @@
-<div class="card-course card-course--tiny">
+<div class="card-course">
     <% recipe = recipes.detect { |recipe| recipe.erecipe_id == course.erecipe_id } %>
   <div class="card-course__img">
     <%= image_tag recipe.recipe_image(size: "thumbnail") %>

@@ -6,7 +6,7 @@
       <% @course_types.each do |course_type| %>
         <div class="course-type">
           <span class="course-title"><h4>+ <%= course_type.capitalize.pluralize %>:</h4></span>
-          <div class="courses">
+          <div class="list">
             <%= render @courses.select { |course| course.course_type == course_type },
                                         recipes: @course_recipes,
                                         recipe_keyes: @recipes_with_course_id %>
