@@ -4,11 +4,13 @@
   background-color: var(--color-onyx);
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 1fr auto;
+  grid-template-rows: 1fr auto auto;
   grid-template-areas:
+  "body"
   "header"
-  "navbar"
-  "body";
+  "navbar";
+
+
 
 
   @include media(tabletAndUp) {
@@ -17,6 +19,9 @@
     "header"
     "body";
     grid-template-rows: auto auto 1fr;
+
+    margin: 0;
+    padding: 0;
 
   }
 }

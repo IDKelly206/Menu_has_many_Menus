@@ -1,7 +1,7 @@
 .section-cards {
   grid-area: cards;
   width: 100%;
-  padding: var(--space-m), var(--space-s);
+  // padding: var(--space-m), var(--space-s);
   border: var(--border-frame);
   overflow-x: hidden;
   overflow-y: scroll;
@@ -22,8 +22,6 @@
   //       #{$c1} 0% 25%, transparent 0% 50%)
   //       50% / #{$s $s};
 
-
-
   // background-image: /* tint image */
   // linear-gradient(to right, rgba(192, 192, 192, 0.75), rgba(192, 192, 192, 0.75)),
   // /* checkered effect */
@@ -31,21 +29,17 @@
   // linear-gradient(to bottom, black 50%, white 50%);
   // background-blend-mode: normal, difference, normal;
   // background-size: 5em 5em;
-
 }
 
 
 .card-rolodex {
-  --w:250px;
-  --n:3;
-
+  --w: 256px;
+  --n: 4;
   display: grid;
-  // grid-template-columns: repeat(auto-fit, minmax(clamp(25.1%, 250px, 100%),1fr));
-  grid-template-columns: repeat(
-          auto-fit,
-          minmax(clamp((100% / (var(--n) + 1)) + 0.1%, var(--w), 100%), 1fr));
-  gap: var(--space-l);
-  padding: var(--space-l);
+  grid-template-columns: repeat(auto-fit, minmax(clamp(100%/( 4 + 1) + 0.1% , var(--w), 100%), 1fr));
+  // grid-template-columns: repeat(auto-fit, minmax(clamp(100%/( 4 + 1) + 0.1% , (400px - 100vw) * 1000, 100%), 1fr));
+  gap: var(--space-m);
+  padding: var(--space-m);
 
 
   // repeat(auto-fit, minmax(clamp(100% /(var(--n) + 1) + 0.1%, var(--w), 100%), 1fr))
