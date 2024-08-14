@@ -26,7 +26,7 @@ class CoursesController < ApplicationController
     @recipes_with_course_id = courses_of_meals.select { |recipe_id, course_ids| course_ids.count == @meals.size }
     @courses = @recipes_with_course_id.keys.map { |recipe_id| courses_all.detect { |course| course.erecipe_id == recipe_id } }
     @course_recipes = @courses.map { |course| Edamam::EdamamRecipe.find(course.erecipe_id) }
-    console
+
   end
 
   def create

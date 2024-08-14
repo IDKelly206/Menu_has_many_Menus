@@ -10,6 +10,7 @@ class Health < ApplicationRecord
     "egg-free",
     "kosher",
     "dairy-free",
-    "vegan"
+    "vegan",
+    "test"
   ]
 end

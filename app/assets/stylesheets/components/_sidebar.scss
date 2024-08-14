@@ -86,36 +86,36 @@
   //     50% / #{$s $s};
 
 
-    .header {
-      display: inline-flex;
-      flex-flow: column;
-      flex: 1 1 1;
-      justify-content: flex-start;
-      background-color: transparent;
+  .header {
+    display: inline-flex;
+    flex-flow: column;
+    flex: 1 1 1;
+    justify-content: flex-start;
+    background-color: transparent;
 
-      h3 {
+    h3 {
+      color: var(--color-onyx);
+      margin: 0;
+    }
+  }
+
+  .course-type {
+    display: inline-flex;
+    flex-flow: column;
+    flex: 1 1 1;
+    justify-content: flex-start;
+    border: var(--border-frame);
+
+    .course-title {
+      display: block;
+      flex: 1 1 0;
+      padding-left: var(--space-xs);
+      h4 {
         color: var(--color-onyx);
         margin: 0;
+        text-decoration: underline;
       }
     }
-
-    .course-type {
-      display: inline-flex;
-      flex-flow: column;
-      flex: 1 1 1;
-      justify-content: flex-start;
-      border: var(--border-frame);
-
-      .course-title {
-        display: block;
-        flex: 1 1 0;
-        padding-left: var(--space-xs);
-        h4 {
-          color: var(--color-onyx);
-          margin: 0;
-          text-decoration: underline;
-        }
-      }
 
     .list {
       // display: flex;

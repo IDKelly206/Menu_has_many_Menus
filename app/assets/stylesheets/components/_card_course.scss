@@ -31,16 +31,18 @@
 
   &__img {
     display: flex;
-    flex: 0 0 auto;
+    flex: 3 1 auto;
+    overflow: hidden,
+
     img {
-      border: var(--border-muted);
-      border-radius: var(--border-radius);
       max-width: 100%;
       min-height: 100%;
       width: auto;
       height: auto;
-      object-fit: scale-down;
+      object-fit: cover;
       object-position: 50% 50%;
+      border: var(--border-muted);
+      border-radius: var(--border-radius);
     }
   }
 

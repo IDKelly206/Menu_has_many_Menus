@@ -22,7 +22,7 @@ class PlannersController < ApplicationController
       @next_page = results[:next_page]
     end
 
-    console
+
   end
 
   def new
@@ -31,7 +31,7 @@ class PlannersController < ApplicationController
     @menus = Menu.where('household_id = ?', @household).where('date IN (:cal)', { cal: calendar })
     @users = @household.users
 
-    console
+    
   end
 
   def create

@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  # before_action :set_health_types, only: [:new]
   before_action :set_household
 
   def show
@@ -7,7 +8,7 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
-    @health_types = Health.all.by_name
+    @health_types = Health::HEALTH_TYPES
   end
 
   def create
@@ -54,6 +55,10 @@ class UsersController < ApplicationController
 
   def set_user
     @user = User.find(params[:id])
+  end
+
+  def set_health_types
+    @health_types = Health::HEALTH_TYPES
   end
 
   def set_household
