@@ -44,14 +44,15 @@
   }
 
   &--plus {
-    width: var(--space-xxl);
-    height: var(--space-xxl);
-    border-radius: var(--space-xxl);
+    width: var(--space-xl);
+    height: var(--space-xl);
+    border-radius: var(--space-l);
     border: 1px solid var(--color-dark);
     background-color: var(--color-white);
     color: var(--color-dark);
     transition: width 0.7s;
     padding: 0;
+    opacity: .8;
 
 
     i {
@@ -66,13 +67,14 @@
       position: absolute;
       width: 100%;
       left: 0;
-      font-size: var(--font-size-xs);
+      font-size: var(--font-size-l);
     }
 
     &:hover {
       // width: var(--space-vxl);
       width: 120px;
       transition: width 0.4s;
+      opacity: 1;
 
 
       i {
@@ -81,7 +83,7 @@
       }
 
       .button-text {
-        font-size: var(--font-size-l);
+        font-size: var(--font-size-m);
         transition: font-size 1.5s;
         opacity: 1;
         transition: opacity 1s;
