@@ -33,16 +33,46 @@
 
 
 .card-rolodex {
-  --w: 256px;
-  --n: 4;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(clamp(100%/( 4 + 1) + 0.1% , var(--w), 100%), 1fr));
-  // grid-template-columns: repeat(auto-fit, minmax(clamp(100%/( 4 + 1) + 0.1% , (400px - 100vw) * 1000, 100%), 1fr));
+  max-width: 100%;
   gap: var(--space-m);
   padding: var(--space-m);
 
+  grid-template-columns: 1fr;
 
-  // repeat(auto-fit, minmax(clamp(100% /(var(--n) + 1) + 0.1%, var(--w), 100%), 1fr))
+  @include media(tabletAndUp) {
+    --minsize: (100% / 4) + 0.1%;
+
+    grid-template-columns: repeat(auto-fit, minmax(20.1%, 1fr));
+  }
+
+
+  // &--5 {
+
+  //   repeat(auto-fill,
+  //   minmax(clamp(
+  //     100%/(var(--xl) + 1) + 0.1% , (1100px - 100vw)<em>1000,
+  //     100%), 1fr));
+
+
+  //   --b1: 1100px;
+  //   --xl: 5;
+  //   --b2: 992px;
+  //   --l: 4;
+  //   --b3: 768px;
+  //   --m: 3;
+  //   --b4: 675px;
+  //   --s: 2;
+  // }
+
+
+  // grid-template-columns: repeat(auto-fit, minmax(clamp(100%/( 4 + 1) + 0.1% , (400px - 100vw) * 1000, 100%), 1fr))
+
+  // repeat(auto-fit, minmax(clamp(
+                          // 100% /(var(--n) + 1) + 0.1% ,
+                          // var(--w),
+                          // 100%)
+                    // ,1fr))
 
   // display: flex;
   // justify-content: space-between;
