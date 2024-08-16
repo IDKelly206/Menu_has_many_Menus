@@ -27,11 +27,11 @@
 }
   &__body {
     display: flex;
-    flex: 0 1 auto;
+    flex: 1 1 auto;
     flex-direction: column;
     justify-content: space-between;
     padding: 0;
-    font-size: var(--font-size-xxs);
+    // font-size: var(--font-size-xxs);
     // width: 100%;
     // min-width: 100px;
 

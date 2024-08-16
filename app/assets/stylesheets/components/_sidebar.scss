@@ -102,14 +102,15 @@
   .course-type {
     display: inline-flex;
     flex-flow: column;
-    flex: 1 1 1;
+    gap: var(--space-xxxs);
+    // flex: 1 1 1;
     justify-content: flex-start;
     border: var(--border-frame);
 
     .course-title {
       display: block;
       flex: 1 1 0;
-      padding-left: var(--space-xs);
+      // padding-left: var(--space-xs);
       h4 {
         color: var(--color-onyx);
         margin: 0;
@@ -118,12 +119,10 @@
     }
 
     .list {
-      // display: flex;
-      // flex: 7 1 0;
-      // flex-flow: column;
-      // justify-content: space-between;
-      padding: 0;
-      font-size: var(--font-size-xs);
+      display: flex;
+      flex-flow: column nowrap;
+      justify-content: space-around;
+      gap: var(--space-xs);
     }
   }
 }

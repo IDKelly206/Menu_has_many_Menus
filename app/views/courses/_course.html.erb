@@ -1,10 +1,10 @@
 <div class="card-course">
     <% recipe = recipes.detect { |recipe| recipe.erecipe_id == course.erecipe_id } %>
-  <div class="card-course__img">
-    <%= image_tag recipe.recipe_image(size: "thumbnail") %>
+  <div class="card-course__header">
+    <%= image_tag recipe.recipe_image(size: "thumbnail"), class: "card-course__img" %>
   </div>
   <div class="card-course__details">
-    <p> <%= link_to recipe.label, recipe_path(recipe.erecipe_id), :target => '_blank', class: "recipe-title" %></p>
+      <%= link_to recipe.label, recipe_path(recipe.erecipe_id), :target => '_blank', class: "card-course__recipe-title" %>
   </div>
   <div class="card-course__action">
     <% if @meal.present?  %>

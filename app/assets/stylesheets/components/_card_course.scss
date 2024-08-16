@@ -1,15 +1,16 @@
 .card-course {
-  display: inline-flex;
-  flex-flow: row nowrap;
-  // flex-shrink: 2;
-  // justify-content: space-between;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  grid-template-rows: 100px;
+  grid-template-areas: "header details action";
+  justify-content: space-between;
+
   box-sizing: content-box;
-  margin: var(--space-xxs);
+  // margin: var(--space-xxs);
   // background-color: var(--color-white);
   border: var(--border-muted);
   border-radius: var(--border-radius);
   box-shadow: var(--shadow-small);
-  // gap: var(--space-xs);
 
 
   &--small {
@@ -29,12 +30,14 @@
     }
 
 
-  &__img {
+  &__header {
+    grid-area: header;
     display: flex;
-    flex: 3 1 auto;
+    flex: 0 0 auto;
     overflow: hidden,
+  }
 
-    img {
+  &__img {
       max-width: 100%;
       min-height: 100%;
       width: auto;
@@ -43,28 +46,32 @@
       object-position: 50% 50%;
       border: var(--border-muted);
       border-radius: var(--border-radius);
-    }
   }
 
   &__details {
-    display: flex;
-    flex: 1 1 auto;
-    align-items: center;
-    justify-content: flex-start;
+    grid-area: details;
+    align-content: center;
     padding: var(--space-xxxs);
-    // min-width: 10rem;
-    // max-width: 10rem;
+  }
 
+  &__recipe-title {
+    margin: 0;
+    text-decoration: none;
+    text-align: left;
+    margin: auto 0;
+    // font-size: 1.25vh;
+    font-size: clamp(var(--font-size-xxs), calc(0.5em * 2.1vw), var(--font-size-l));
 
-    p {
-      margin: 0;
-      text-decoration: none;
-      text-align: left;
-      font-size: var(--font-size-m);
-    }
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
   }
 
   &__action {
+    grid-area: action;
     display: flex;
     flex-flow: row nowrap;
     flex: 0 1 0;
