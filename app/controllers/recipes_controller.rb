@@ -27,7 +27,7 @@ class RecipesController < ApplicationController
   end
 
   def show
-    
+
   end
 
   def recipe_search
@@ -42,6 +42,7 @@ class RecipesController < ApplicationController
     @title = params["title"]
     @course_type = params[:course_type].nil? ? params[:filters][:dishType] : params[:course_type]
 
+    # Meal Planner params
     if params["meal_ids"].present?
       @meal_ids = params["meal_ids"]
     elsif params["menu_id"].present?

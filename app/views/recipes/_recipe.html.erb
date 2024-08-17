@@ -7,11 +7,11 @@
       %>
   </div>
   <div class="card-recipe__footer hideable-flex flex-collapsed" data-visability-target="hideableFlex">
-    <ul class="list">
+    <div class="list">
       <% recipe.ingredients.each do |i| %>
-        <li class="item">&bull; <%= i['text'] %></li>
+        <div class="item">&bull; <%= i['text']%></div>
       <% end %>
-    </ul>
+    </div>
   </div>
   <div class="card-recipe__body">
     <div class="content-header hideable-div div-hidden" data-visability-target="hideableDiv">

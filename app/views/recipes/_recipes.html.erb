@@ -1,9 +1,8 @@
 <%= turbo_frame_tag "recipes", class: "section-cards",
     data: {
-      controller: "infinite-scroll",
-      action: "scroll@window->infinite-scroll#scroll"
-
-    }, target: "_top" do %>
+        controller: "infinite-scroll",
+        action: "scroll->infinite-scroll#scroll"
+      }, target: "_top" do %>
   <div id="recipe_cards" class="card-rolodex">
     <%= render recipes, locals: { title: yield(:title) } %>
   </div>

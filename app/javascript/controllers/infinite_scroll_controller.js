@@ -6,17 +6,25 @@ export default class extends Controller {
 
   connect() {
     console.log("Infinite Scroll")
-    console.log(this.paginationTarget)
-    // this.scroll()
+
+    console.log(
+      document.getElementById('recipes').scrollHeight,
+      document.getElementById('recipes').offsetHeight,
+      document.getElementById('recipes').clientHeight
+    )
+
+
   }
 
   scroll() {
-    console.log(window.scrollY)
-    const body = document.body,
-      html = document.documentElement
+    // console.log("Scroll started")
+    const body = document.getElementById('recipes'),
+          html = document.documentElement
     const height = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight)
-    if(window.scrollY >= height - window.innerHeight - 100) {
-      console.log("Bottom")
+
+    // console.log(body.scrollTop)
+    if(body.scrollTop >= height - body.clientHeight - 100) {
+      // console.log("Bottom")
       this.paginationTarget.click()
     }
   }

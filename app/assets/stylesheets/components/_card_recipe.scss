@@ -82,9 +82,9 @@
     // max-height: 60%;
     flex-flow: column nowrap;
     justify-content: flex-end;
-    padding: 0 var(--space-xs);
-    margin-right: auto;
-    margin-left: auto;
+    padding: 0 var(--space-m);
+    // margin-right: auto;
+    // margin-left: auto;
     background-color: var(--color-onyx);
     color: var(--color-pearl);
     border-radius: var(--border-radius) var(--border-radius) 0 0;
@@ -92,12 +92,19 @@
     // overflow: scroll;
 
     .list {
-      max-height: 100%;
-      padding-left: 0;
-      
+      // max-height: 100%;
+      display: flex;
+      flex-flow: column nowrap;
+      justify-content: flex-start;
+      padding: var(--space-m);
+      gap: var(--space-xxs);
+
+
 
       .item {
-        display: inline-block;
+        text-indent: -1rem;
+        font-size: var(--font-size-m);
+        // display: inline-block;
         // width: 100%;
       }
     }

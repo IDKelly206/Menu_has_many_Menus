@@ -1,4 +1,4 @@
-<%= turbo_frame_tag "recipes",
+<%= turbo_frame_tag "recipes", class: "section-cards",
     data: {
       controller: "infinite-scroll",
       action: "scroll@window->infinite-scroll#scroll"
