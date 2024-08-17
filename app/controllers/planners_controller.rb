@@ -21,8 +21,6 @@ class PlannersController < ApplicationController
       @recipes = results[:recipes]
       @next_page = results[:next_page]
     end
-
-    console 
   end
 
   def new
