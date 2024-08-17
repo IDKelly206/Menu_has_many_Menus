@@ -12,8 +12,6 @@ export default class extends Controller {
       document.getElementById('recipes').offsetHeight,
       document.getElementById('recipes').clientHeight
     )
-
-
   }
 
   scroll() {
@@ -23,7 +21,7 @@ export default class extends Controller {
     const height = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight)
 
     // console.log(body.scrollTop)
-    if(body.scrollTop >= height - body.clientHeight - 100) {
+    if(body.scrollTop >= height - body.clientHeight - 200) {
       // console.log("Bottom")
       this.paginationTarget.click()
     }
