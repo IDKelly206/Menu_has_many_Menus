@@ -5,7 +5,7 @@
   justify-content: start;
   border: var(--border-muted);
   border-radius: var(--border-radius);
-  background-color: var(--color-pearl);
+  background-color: var(--color-onyx);
 
   &__header {
     display: flex;
@@ -17,7 +17,7 @@
     font-weight: bold;
     font-size: var(--font-size-m);
     a {
-      color: var(--color-onyx);
+      color: var(--color-pearl);
       text-align: left;
       display: block;
       z-index: 1;

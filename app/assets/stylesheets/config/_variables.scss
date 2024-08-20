@@ -78,8 +78,13 @@
   --border-frame-top: solid 0px var(--color-white);
 
   // Shadows
-  --shadow-large:  2px 4px 10px hsl(0 0% 0% / 0.1);
-  --shadow-small:  1px 3px 6px hsl(0 0% 0% / 0.1);
+  --shadow-large-dark:  2px 4px 10px hsl(0 0% 0% / 0.1);
+  --shadow-small-dark:  1px 3px 6px hsl(0 0% 0% / 0.1);
+
+  --shadow-large-light:  2px 4px 10px var(--color-white);
+  --shadow-small-light:  1px 3px 6px var(--color-white);
+
+
 
   // Background
 

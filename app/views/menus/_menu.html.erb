@@ -3,7 +3,7 @@
   <div class="card-menu__header">
     <h2><%= menu.day_of_week %></h2>
   </div>
-  <div class="card-menu__body">
+  <div class="card-menu__body card-menu__body-background-checkered">
     <% @meal_types.each do |meal_type| %>
       <%= turbo_frame_tag "menu_#{menu.id}_#{meal_type}" do %>
         <div class= "card-menu-meal">
