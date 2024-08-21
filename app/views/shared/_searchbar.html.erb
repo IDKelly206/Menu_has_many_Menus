@@ -1,6 +1,6 @@
-<div class="search-section">
+<div class="section--searchbar">
   <% title = yield :title %>
-  <div class="search-section__title">
+  <div class="section--searchbar__title">
     <%# Helper insert %>
     <div class="title">
       <% if title == "Meal Planner" %>
@@ -11,7 +11,7 @@
       <% end %>
     </div>
   </div>
-  <div class="search-section__bar">
+  <div class="section--searchbar__bar">
       <%= render 'recipes/search_form' %>
   </div>
 </div>

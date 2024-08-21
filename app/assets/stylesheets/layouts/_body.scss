@@ -1,26 +1,38 @@
 .body {
-  // width: 100%;
-  // padding-right: var(--space-xs);
-  // padding-left: var(--space-xs);
-
-  // margin-left: auto;
-  // margin-right: auto;
-  // border-left: var(--border-dark);
-  // border-right: var(--border-dark);
-  // overflow: hidden;
-  background-color: var(--color-onyx);
-  color: var(--color-pearl);
   grid-area: body;
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: auto 1fr;
   overflow: hidden;
 
+  padding: 0 var(--space-m);
+
+  @include media(tabletAndUp) {
+    // max-width: 90rem;
+  }
+}
+
+.body--planner,
+.body--recipes {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: auto 1fr;
+  grid-template-areas:
+    "searchbar searchbar searchbar searchbar"
+    "sidebar cards cards cards";
+
+  margin: 0 var(--space-xs);
+  border: var(--border-frame);
+  border-top: var(--border-frame-top);
+}
+
+.body--household {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto 1fr;
+  grid-template-areas:
+    "sec-header"
+    "cards";
+}
 
 
-  // @include media(tabletAndUp) {
-  //   padding-right: var(--space-m);
-  //   padding-left: var(--space-m);
-  //   max-width: 90rem;
-  // }
+.body--menu {
+
 }

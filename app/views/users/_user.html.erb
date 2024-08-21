@@ -1,18 +1,15 @@
-<%= turbo_frame_tag dom_id(user) do %>
-  <div class="card-user">
+<%= turbo_frame_tag dom_id(user), class: "card-user card-user--bg-light" do %>
     <div class="card-user__header">
-
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"/></svg>
+        <svg class="card-user__img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"/></svg>
     </div>
     <div class="card-user__body">
-      <div class="content-header">
+      <div class="card-user__body-header">
         <% full_name = "#{user.name_first}"" ""#{user.name_last}" %>
-        <%=  link_to full_name,
+        <h2><%=  link_to full_name,
                     user_path(user),
-                    class: "user-name",
-                    data: { turbo_frame: "_top"} %>
-        <div class="actions">
-
+                    class: "card-user__name",
+                    data: { turbo_frame: "_top"} %></h2>
+        <div class="card-user__actions">
             <%= link_to "",
                         edit_user_path(user),
                         class: "btn fa-solid fa-pen-to-square" %>
@@ -23,12 +20,16 @@
         </div>
 
       </div>
-      <div class="content-body">
+    </div>
+    <div class="card-user__footer filters-section">
+      <div class="filtered">
         <% dietary = user.dietary_restrictions.map { |dr| dr.health.parameter } %>
-        <%= filter_dietary(dietary:) %>
+        <div class="filter__title">
+          <h6>Dietary Restrictions</h6>
+        </div>
+        <div class="filtered__list">
+         <%= filter_dietary(dietary:) %>
+        </div>
       </div>
     </div>
-    <div class="card-user__footer">
-    </div>
-  </div>
 <% end %>

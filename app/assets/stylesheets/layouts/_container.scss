@@ -1,7 +1,6 @@
 .container-box {
   height: 100vh;
   width: 100vw;
-  background-color: var(--color-onyx);
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr auto auto;
@@ -10,7 +9,8 @@
   "header"
   "navbar";
 
-
+  margin: 0;
+  padding: 0;
 
 
   @include media(tabletAndUp) {
@@ -19,9 +19,9 @@
     "header"
     "body";
     grid-template-rows: auto auto 1fr;
-
-    margin: 0;
-    padding: 0;
-
   }
+}
+
+.container-box--dark {
+  background-color: var(--color-onyx);
 }

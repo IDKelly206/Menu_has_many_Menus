@@ -1,11 +1,10 @@
 <%- title "Meal Planner" %>
-<div class="section-recipe"
+<div class="body body--planner"
       id="<%= yield(:title) %>"
+      data-controller="course-new-form refresh-frame turbo-modal recipe-search-filter"
       data-course-type="<%= @course_type %>"
       data-meal-ids="<%= @meal_ids.join(", ") %>"
-      data-controller="course-new-form refresh-frame turbo-modal recipe-search-filter"
 >
-
   <%= render 'shared/searchbar'%>
   <%= render 'shared/sidebar' %>
   <%= render "recipes/recipes", recipes: @recipes, locals: { title: yield(:title) } %>
