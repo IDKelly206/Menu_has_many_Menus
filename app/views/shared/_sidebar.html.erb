@@ -4,7 +4,7 @@
     <% if title == "Meal Planner" %>
       <div class="sidebar__filters filters-section">
         <div class="filtered">
-          <div class="filtered__title">
+          <div class="filtered__title filtered__title-light">
             <h3>Household diners:</h3>
           </div>
           <ul class="filtered__list">
@@ -13,7 +13,7 @@
           </ul>
         </div>
         <div class="filtered">
-          <div class="filtered__title">
+          <div class="filtered__title filtered__title-light">
             <h3>Dates:</h3>
           </div>
           <ul class="filtered__list">
@@ -23,7 +23,7 @@
       </div>
       <div class="sidebar__planner">
         <div class="filtered">
-          <div class="filtered__title">
+          <div class="filtered__title filtered__title-light">
             <h3>Select courses for <%= @users.count * @menus.count %> Servings of</h3>
           </div>
           <ul class="filtered__list"><%= filter_types(type: @meal_type)  %></ul>
@@ -44,7 +44,7 @@
     <% if title == "Recipes" %>
       <div class="sidebar__filters filters-section">
         <div class="filtered">
-          <div class="filtered__title">
+          <div class="filtered__title filtered__title-light">
             <h3>Select Meal type to filter</h3>
           </div>
           <ul class="filtered__list">
@@ -52,7 +52,7 @@
           </ul>
         </div>
         <div class="filtered">
-          <div class="filtered__title">
+          <div class="filtered__title filtered__title-light">
             <h3>Select Course type to filter</h3>
           </div>
           <ul class="filtered__list">

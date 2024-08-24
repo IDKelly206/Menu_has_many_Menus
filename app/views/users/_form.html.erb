@@ -27,7 +27,10 @@
       <div class="card-user__actions">
         <%= f.hidden_field :household_id, value: current_user.household_id %>
         <%= f.submit "Save", class: "btn btn-light" %>
-        <%= link_to "Cancel", household_path(@household), class: "btn btn-light"  %>
+        <%= link_to "Cancel", "#",
+          data: { action: "turbo-modal#hideModal" },
+          type: 'button',
+          class: "btn btn--light" %>
       </div>
     </div>
   <% end %>
