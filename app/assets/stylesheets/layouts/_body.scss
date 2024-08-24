@@ -2,11 +2,13 @@
   grid-area: body;
   overflow: hidden;
 
+  margin: 0 var(--space-s);
+  border: var(--border-frame);
+  border-top: var(--border-frame-top);
+
   &--bdr-frame {
-    padding: 0 var(--space-m);
-    margin: 0 var(--space-xs);
-    border: var(--border-frame);
-    border-top: var(--border-frame-top);
+    // padding: var(--space-m) 0;
+
   }
 
 
