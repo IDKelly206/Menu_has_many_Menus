@@ -1,10 +1,10 @@
 <%- title "Menu" %>
 <div class="section-menu" id="<%= yield(:title) %>">
-  
+
     <%= link_to new_planner_path,
         data: { turbo_frame: dom_id(PlannerForm.new) },
         class: "new-meal"   do %>
-        <i class="fa-solid fa-circle-plus btn btn--new_meal"> Plan a Meal</i>
+        <i class="fa-solid fa-circle-plus btn btn-new btn--new-meal"> Plan a Meal</i>
     <% end %>
 
 

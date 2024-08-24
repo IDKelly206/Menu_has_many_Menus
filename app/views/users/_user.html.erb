@@ -20,15 +20,15 @@
         </div>
 
       </div>
-    </div>
-    <div class="card-user__footer filters-section">
-      <div class="filtered">
-        <% dietary = user.dietary_restrictions.map { |dr| dr.health.parameter } %>
-        <div class="filter__title">
-          <h6>Dietary Restrictions</h6>
-        </div>
-        <div class="filtered__list">
-         <%= filter_dietary(dietary:) %>
+      <div class="card-user__body-content">
+        <div class="filtered">
+          <% dietary = user.dietary_restrictions.map { |dr| dr.health.parameter } %>
+          <div class="filter__title">
+            <h6>Dietary Restrictions</h6>
+          </div>
+          <div class="filtered__list">
+          <%= filter_dietary(dietary:) %>
+          </div>
         </div>
       </div>
     </div>

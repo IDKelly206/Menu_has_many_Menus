@@ -4,14 +4,12 @@
 <%= link_to household_path(@household) %>
 
   <div class="section--header">
-    <h1>Edit Quote</h1>
+    <h1>Edit User Info page</h1>
   </div>
 
   <%= turbo_frame_tag dom_id(@user) do %>
-    <div class="card-user">
-      <div class="card-user__edit">
+
         <%= render "form", user: @user %>
-      </div>
-    </div>
+
   <% end %>
 </div>

@@ -1,5 +1,5 @@
 <%= simple_form_for @planner, url: planners_path do |f| %>
-  <div class="form-body form__body">
+  <div class="form__body">
     <p>Select Meal</p>
     <% invalid = @planner.errors.include?(:meal_type) %>
     <% if invalid %>
@@ -9,7 +9,7 @@
         <% end %>
       </div>
     <% end %>
-    <div class="radio-btns">
+    <div class="filtered__list">
       <% @meal_types.each do |meal_type| %>
         <div class="radio-item">
           <%= f.radio_button :meal_type, meal_type, class: "radio-btn btn--pill btn--pill-meal" %>
@@ -26,7 +26,7 @@
         <% end %>
       </div>
     <% end %>
-    <div class="checkboxes">
+    <div class="filtered__list">
       <%= f.collection_check_boxes :user_ids,
                                    @users,
                                    :id,
@@ -46,7 +46,7 @@
         <% end %>
       </div>
     <% end %>
-    <div class="checkboxes">
+    <div class="filtered__list">
       <%= f.collection_check_boxes :menu_ids,
                                    @menus.ordered,
                                    :id,

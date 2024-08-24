@@ -6,14 +6,17 @@
 
 .section--header-household {
   display: grid;
-  grid-template-columns: 1fr 4fr 1fr;
+  grid-template-columns: 6fr 1fr;
   grid-template-rows: auto;
-  grid-template-areas: ". banner .";
+  grid-template-areas: "banner .";
 
-  .header-banner {
+  padding: var(--space-m);
+
+  &__banner {
     grid-area: banner;
     display: flex;
-    justify-items: center;
+    flex-flow: row nowrap;
+    justify-content: center;
     align-items: center;
 
 
@@ -21,5 +24,12 @@
       color: var(--color-pearl);
       margin: 0;
     }
+  }
+
+  &__new-user {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-end;
+    align-items: center;
   }
 }

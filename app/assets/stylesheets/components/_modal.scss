@@ -36,10 +36,8 @@
     overflow: hidden;
     overflow-y: scroll;
 
-    .form-body {
-      display: flex;
-      flex-flow: column nowrap;
-      gap: var(--space-s);
-    }
+    display: flex;
+    flex-flow: column nowrap;
+    gap: var(--space-s);
   }
 }

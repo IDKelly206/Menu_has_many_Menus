@@ -1,19 +1,33 @@
-  <%= simple_form_for(setup_user(@user)) do |f| %>
-    <%= f.input :name_first,
+  <%= simple_form_for setup_user(@user) do |f| %>
+    <div class="card-user__edit">
+      <%= f.input :name_first,
             autofocus: true  %>
-    <%= f.input :name_last %>
-    <%= f.input :email,
+      <%= f.input :name_last %>
+      <%= f.input :email,
             required: true,
             input_html: { autocomplete: "email" } %>
-    <h6>Dietary Restrictions</h6>
-    <div class="checkboxes">
-      <%= f.simple_fields_for :dietary_restrictions do |ff| %>
-          <%= ff.hidden_field :health_id %>
-          <%= ff.check_box :_destroy, {checked: ff.object.persisted?}, '0', '1' %>
-          <%= ff.label :_destroy, ff.object.health.parameter.capitalize %>
-      <% end %>
     </div>
-    <%= f.hidden_field :household_id, value: current_user.household_id %>
-    <%= f.submit "Save", class: "btn btn-light" %>
-    <%= link_to "Cancel", household_path(@household), class: "btn btn-light"  %>
+    <div class="card-user__footer filters-section">
+      <div class="filtered">
+        <div class="fitlered__title">
+          <h6>Dietary Restrictions</h6>
+        </div>
+        <div class="filtered__list">
+          <%= f.simple_fields_for :dietary_restrictions do |ff| %>
+              <%= ff.hidden_field :health_id %>
+              <%= ff.check_box :_destroy, {class: "check_box btn--pill btn--pill-dietary",
+                              checked: ff.object.persisted?}, '0', '1'
+                  %>
+              <%= ff.label :_destroy, ff.object.health.parameter.capitalize %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="card-user__footer">
+      <div class="card-user__actions">
+        <%= f.hidden_field :household_id, value: current_user.household_id %>
+        <%= f.submit "Save", class: "btn btn-light" %>
+        <%= link_to "Cancel", household_path(@household), class: "btn btn-light"  %>
+      </div>
+    </div>
   <% end %>

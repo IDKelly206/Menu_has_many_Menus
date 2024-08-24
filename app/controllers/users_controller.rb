@@ -9,6 +9,7 @@ class UsersController < ApplicationController
   def new
     @user = User.new
     @health_types = Health::HEALTH_TYPES
+    console
   end
 
   def create
@@ -17,7 +18,7 @@ class UsersController < ApplicationController
       respond_to do |format|
         format.html { redirect_to household_path(@household),
                       notice: "User was succesfully created." }
-        format.turbo_stream { flash.now[:notice] = "User was succesfully created." }
+        format.turbo_stream { flash.now[:notice] = "New Member succesfully added to Household." }
       end
     else
       render :new, status: :unprocessable_entity
@@ -25,6 +26,7 @@ class UsersController < ApplicationController
   end
 
   def edit
+    console
   end
 
   def update
