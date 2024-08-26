@@ -1,5 +1,6 @@
 class Health < ApplicationRecord
-  before_validation :create_health_options
+  # after_create :create_health_options
+  # after_create :remove_health_options
 
   has_many :dietary_restrictions
 
@@ -15,11 +16,19 @@ class Health < ApplicationRecord
     "kosher",
     "dairy-free",
     "vegan",
-    "test"
+    "test 150"
   ]
 
   def create_health_options
-    HEALTH_TYPES.each { |type| Health.create(parameter: type) }
+    HEALTH_TYPES.each do |t|
+      Health.create(parameter: t) if Health.where(parameter: t).empty?
+    end
+  end
+
+  def remove_health_options
+    Health.all.each do |h|
+      Health.where(parameter: h.parameter).delete_all unless HEALTH_TYPES.include?(h.parameter)
+    end
   end
 
 end

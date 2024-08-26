@@ -1,9 +1,9 @@
 <% provide(:title, "Grocery List") %>
-<div class="body">
-  <div class="section--header">
+<div class="body body--grocery">
+  <div class="section--header section--header-grocery">
     <h1>Grocery List show page</h1>
   </div>
-  <div class="section-cards">
+  <div class="section--cards">
     <ul>
       <%= render "groceries/grocery", groceries: @grocery_list %>
     </ul>

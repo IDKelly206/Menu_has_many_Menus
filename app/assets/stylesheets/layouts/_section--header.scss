@@ -3,7 +3,6 @@
 
 }
 
-
 .section--header-household {
   display: grid;
   grid-template-columns: 6fr 1fr;
@@ -32,4 +31,12 @@
     justify-content: flex-end;
     align-items: center;
   }
+}
+
+.section--header-grocery {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
+  grid-template-areas: "banner";
+  padding: var(--space-m);
 }

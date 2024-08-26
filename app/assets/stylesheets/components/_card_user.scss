@@ -5,7 +5,9 @@
   border: var(--border-muted);
   border-radius: var(--border-radius);
   box-shadow: var(--shadow-large-dark);
-  // aspect-ratio: 4 / 5;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  flex: 0 1 auto;
 
   &--bg-light {
     background-color: var(--color-pearl);
