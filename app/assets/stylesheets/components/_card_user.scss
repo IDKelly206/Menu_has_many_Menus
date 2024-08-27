@@ -4,10 +4,10 @@
   justify-content: flex-start;
   border: var(--border-muted);
   border-radius: var(--border-radius);
-  box-shadow: var(--shadow-large-dark);
+  box-shadow: var(--shadow-small-light);
   width: 100%;
-  aspect-ratio: 4 / 5;
-  flex: 0 1 auto;
+  // aspect-ratio: 4 / 5;
+  // flex: 0 1 auto;
 
   &--bg-light {
     background-color: var(--color-pearl);
