@@ -1,55 +1,67 @@
-<%= form_with url: '/groceries', class:"grocery-list" do |form|  %>
+<%= form_with url: '/groceries', class: 'grocery-list--contents' do |form|  %>
   <%= form.hidden_field :meal_ids, name:"meal_ids[]", mutliple: true,  value: @meal_ids %>
-    <div class="g-list-item g-list-item--header">
-      <div class="g-list-item__actions"></div>
-      <div class="g-list-item__name">Name</div>
-      <div class="g-list-item__quantity-msr">Quantity</div>
-      <div class="g-list-item__category">Category</div>
-    </div>  <% n = 0 %>
-  <% @recipe.ingredients.each do |ingredient| %>
-    <% n += 1 %>
-    <%= fields_for 'grocery'+[n].to_s do |fields| %>
-      <div class="g-list-item">
-
-        <div class="g-list-item__name">
-          <%= fields.check_box :list_add, checked: true, class: "toggle" %>
-          <%= fields.label ingredient['food'], for: "grocery_#{n}_list_add",
-              class:"g-list-item__name"  %>
-          <%= fields.hidden_field :name, value: ingredient['food']%>
+    <div class="grocery-list">
+      <div class="grocery-list__header">
+        <div class="g-list-item">
+          <div class="g-list-item__actions"></div>
+          <div class="g-list-item__name">Name</div>
+          <div class="g-list-item__category">Category</div>
+          <div class="g-list-item__quantity">Qty</div>
+          <div class="g-list-item__measurement">Msr</div>
         </div>
-        <div class="g-item-list__quantity">
-          <%= fields.label ingredient['quantity'], for: "grocery_#{n}_list_add"  %>
-          <%= fields.hidden_field :quantity, value: ingredient['quantity'] %>
-        </div>
-        <div class="g-list-item__quantity-msr">
-          <% if  ingredient['measure'].present?  %>
-            <%= fields.label ingredient['measure'], for: "grocery_#{n}_list_add"  %>
-            <%= fields.hidden_field :measurement, value: ingredient['measure'] %>
-          <% else %>
-            <%= fields.label "Pinch = <1/8 tsp", for: "grocery_#{n}_list_add"  %>
-            <%= fields.hidden_field :measurement, value: 1/16 %>
-          <% end %>
-        </div>
-        <div class="g-list-item__category">
-          <% if ingredient['foodCategory'].present? %>
-            <%= fields.label ingredient['foodCategory'], for: "grocery_#{n}_list_add"  %>
-            <%= fields.hidden_field :category, value: ingredient['foodCategory'] %>
-          <% else %>
-            <%= fields.label "<Blank>", for: "grocery_#{n}_list_add"  %>
-            <%= fields.hidden_field :category, value: "<BLANK>" %>
-          <% end %>
-        </div>
-
-        <%= fields.hidden_field :course_ids, value: @course_ids %>
-        <%= fields.hidden_field :household_id, value: @household.id %>
-        <%= fields.hidden_field :erecipe_id, value: @erecipe_id %>
       </div>
-    <% end %>
-  <% end %>
-  <%= form.submit "Add gList items", class: "btn btn--dark" %>
-<% end %>
-<%= button_to "Cancel",
-            multi_destroy_courses_path(course_ids: @course_ids,
-                                  meal_ids: @meal_ids),
-            method: :delete,
-            class: "btn btn--dark" %>
+      <div class="grocery-list__content">
+        <% n = 0 %>
+        <% @recipe.ingredients.each do |ingredient| %>
+          <% n += 1 %>
+          <%= fields_for 'grocery'+[n].to_s do |fields| %>
+            <div class="g-list-item g-list-item--light">
+
+                <%= fields.check_box :list_add, checked: true, class: "toggle" %>
+                <%= fields.label "", for: "grocery_#{n}_list_add", class:"g-list-item__action"  %>
+
+
+                <%= fields.label ingredient['food'], for: "grocery_#{n}_list_add", class:"g-list-item__name"  %>
+                <%= fields.hidden_field :name, value: ingredient['food']%>
+
+
+                <% if ingredient['foodCategory'].present? %>
+                  <%= fields.label ingredient['foodCategory'], for: "grocery_#{n}_list_add", class:"g-list-item__category" %>
+                  <%= fields.hidden_field :category, value: ingredient['foodCategory'] %>
+                <% else %>
+                  <%= fields.label "____________", for: "grocery_#{n}_list_add", class:"g-list-item__category"   %>
+                  <%= fields.hidden_field :category, value: "<BLANK>" %>
+                <% end %>
+
+
+                <%= fields.label ingredient['quantity'].round(2), for: "grocery_#{n}_list_add", class: "g-item-list__quantity"  %>
+                <%= fields.hidden_field :quantity, value: ingredient['quantity'] %>
+
+
+                <% if  ingredient['measure'].present?  %>
+                  <%= fields.label ingredient['measure'].downcase, for: "grocery_#{n}_list_add",
+                             class: "g-list-item__measurement"   %>
+                  <%= fields.hidden_field :measurement, value: ingredient['measure'] %>
+                <% else %>
+                  <%= fields.label "Pinch = <1/8 tsp", for: "grocery_#{n}_list_add",
+                             class: "g-list-item__measurement"  %>
+                  <%= fields.hidden_field :measurement, value: 1/16 %>
+                <% end %>
+
+              <%= fields.hidden_field :course_ids, value: @course_ids %>
+              <%= fields.hidden_field :household_id, value: @household.id %>
+              <%= fields.hidden_field :erecipe_id, value: @erecipe_id %>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+      <div class="grocery-list__footer">
+          <%= form.submit "Add gList items", class: "btn btn--dark" %>
+        <% end %>
+        <%= button_to "Cancel",
+                    multi_destroy_courses_path(course_ids: @course_ids,
+                                          meal_ids: @meal_ids),
+                    method: :delete,
+                    class: "btn btn--dark" %>
+      </div>
+  </div>

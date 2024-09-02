@@ -1,66 +1,119 @@
 .grocery-list {
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: flex-start;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto auto;
+  grid-template-areas:
+    "g-list-header"
+    "g-list-content"
+    "g-list-footer";
 
-  .g-list-item {
-    display: flex;
-    align-items: start;
-    flex-flow: row wrap;
+  overflow: hidden;
+  gap: var(--space-xs);
+
+  background-color: var(--color-background);
+
+  &__header {
+    grid-area: g-list-header;
+    display: inline-grid;
+    grid-template-columns: repeat(10, 1fr);
+    padding: 0 5px;
+  }
+
+
+
+  &__content {
+    grid-area: g-list-content;
+    display: inline-grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: auto;
+    gap: var(--space-xs);
+    overflow-y: scroll;
+    border: var(--border-muted);
+    padding: 5px;
+  }
+
+  &__footer {
+    grid-area: g-list-footer;
+  }
+}
+
+.g-list-header {
+  color: var(--color-onyx);
+
+  // background-color: var(--color-white);
+  // border: var(--color-onyx) solid 1px;
+  // margin-bottom: var(--space-xs);
+  // padding: var(--space-xxs);
+  // border-radius: var(--border-radius);
+}
+
+.g-list-item {
+  display: inline-grid;
+  grid-column: 1 / 11;
+  grid-template-columns: subgrid;
+  box-sizing: border-box;
+  // gap: var(--space-xs);
+  // grid-template-columns: repeat(6, auto);
+
+  // display: contents;
+
+  // display: flex;
+  // align-items: start;
+  // flex-flow: row wrap;
+
+  &--light {
     color: var(--color-onyx);
     background-color: var(--color-white);
     border: var(--color-onyx) solid 1px;
 
-    margin-bottom: var(--space-xs);
-    padding: var(--space-xxs);
+    // margin-bottom: var(--space-xs);
+    // padding: var(--space-xxs);
     border-radius: var(--border-radius);
-
-    > * {
-      margin-bottom: 0;
-    }
-
-    &__actions {
-      display: flex;
-      order: -1;
-      flex: 0 0 2.5rem;
-    }
-
-    &__name {
-      flex: 1 1 auto;
-      font-weight: bold;
-    }
-
-    &__quantity{
-      flex: 1 0 auto;
-      align-self: flex-end;
-      justify-self: flex-end;
-      order: 3;
-
-      font-weight: bold;
-    }
-
-    &__quantity-msr {
-      flex: 0 1 7rem;
-      display: flex;
-    }
-
-    &__category {
-      flex: 1 0 9rem;
-      display: flex;
-    }
-
-    &--header {
-      display: flex;
-      background-color: var(--color-white);
-      margin-bottom: var(--space-s);
-
-
-      & > * {
-        font-size: var(--font-size-s);
-        font-weight: bold ;
-        letter-spacing: 1px;
-        text-transform: uppercase;
-      }
-    }
   }
+
+  // > * {
+  //   margin-bottom: 0;
+  // }
+
+  &__action {
+    grid-column: 1;
+    // display: flex;
+    // justify-content: center;
+    // align-items: center;
+    // order: -1;
+    // flex: 0 0 2.5rem;
+  }
+
+  &__name {
+    grid-column:  2 / 6;
+    // flex: 1 1 auto;
+    font-weight: bold;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  &__category {
+    grid-column: 6 / 9;
+    // flex: 1 0 9rem;
+    // display: flex;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  &__quantity {
+    grid-column: 9;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  &__measurement {
+    grid-column: 10;
+    white-space: nowrap;
+    overflow: hidden;
+    text-transform: lowercase;
+  }
+}
+
+.grocery-list--contents {
+  display: contents
 }

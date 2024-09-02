@@ -15,16 +15,15 @@ html {
 }
 
 body {
-  // display: flex;
-  // flex-direction: column;
-  // min-height: 100%;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  overflow: hidden;
 
   background-color: var(--color-background);
   color: var(--color-text-body);
   line-height: var(--line-height-body);
   font-family: var(--font-family-sans);
-
-  overflow: hidden;
 }
 
 img,
