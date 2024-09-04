@@ -8,6 +8,7 @@ class GroceriesController < ApplicationController
     grocery_list = Grocery.grocery_hash(groceries)
     recipe_ids = groceries.map { |g_item| g_item.erecipe_id }.uniq
     @grocery_list = Grocery.grocery_list(groceries:, grocery_list:, recipe_ids:)
+
     console
   end
 
@@ -22,6 +23,7 @@ class GroceriesController < ApplicationController
     @erecipe_id = @courses.first.erecipe_id
     @recipe = Edamam::EdamamRecipe.find(@erecipe_id)
 
+    console
   end
 
   def create
@@ -40,8 +42,14 @@ class GroceriesController < ApplicationController
   end
 
   def edit_multiple
+    items = params["product"]
     value = false
-    g_ids = params[:g_ids].first.split
+    g_ids = []
+    items.each do |_k, v|
+      n = v["list_add"].to_i
+      g_ids.push(v["g_ids"].first) if n == 1
+    end
+    
     Grocery.where(id: g_ids).update_all(list_add: value)
 
     redirect_to groceries_path

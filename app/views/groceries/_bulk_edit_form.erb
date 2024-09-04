@@ -1,15 +1,15 @@
 
 <%= form_with url: edit_multiple_groceries_path, method: 'patch', class: 'grocery-list--contents' do |form| %>
 
-    <div class="grocery-list__header">
-      <div class="g-list-item">
-        <div class="g-list-item__actions"></div>
-        <div class="g-list-item__name">Name</div>
-        <div class="g-list-item__category">Category</div>
-        <div class="g-list-item__quantity">Qty</div>
-        <div class="g-list-item__measurement">Msr</div>
-      </div>
+  <div class="grocery-list__header">
+    <div class="g-list-item">
+      <div class="g-list-item__actions"></div>
+      <div class="g-list-item__name">Name</div>
+      <div class="g-list-item__category">Category</div>
+      <div class="g-list-item__quantity">Qty</div>
+      <div class="g-list-item__measurement">Msr</div>
     </div>
+  </div>
 
   <div class="grocery-list__content">
     <% n = 0 %>
@@ -17,16 +17,17 @@
       <% n += 1 %>
       <%= fields_for 'product'+[n].to_s do |fields| %>
         <div class="g-list-item g-list-item--light">
+          <%= fields.check_box :list_add, checked: false, class: "toggle" %>
+          <%= fields.label "", for: "product_#{n}_list_add", class:"g-list-item__action"  %>
+
+
           <%= fields.label item[:n], class:"g-list-item__name" %>
           <%= fields.label item[:cat], class:"g-list-item__category" %>
 
-          <%= fields.label item[:wgt_q], class:"g-list-item__quantity" %>
-          <%= fields.label item[:wgt_m], class:"g-list-item__measurement" %>
+          <%= fields.label item[:q], class: "g-list-item__quantity" %>
+          <%= fields.label item[:m], class:"g-list-item__measurement" %>
 
-          <%= fields.label item[:vol_q], class:"g-list-item__quantity" %>
-          <%= fields.label item[:vol_m], class:"g-list-item__measurement"  %>
-
-          <%= fields.hidden_field :g_ids, name: "g_ids[]", multiple: true, value: item[:g_ids] %>
+          <%= fields.hidden_field :g_ids, for: "product_#{n}_g_ids", multiple: true, value: item[:g_ids] %>
         </div>
      <% end %>
     <% end %>

@@ -27,7 +27,6 @@ class RecipesController < ApplicationController
   end
 
   def show
-
   end
 
   def recipe_search

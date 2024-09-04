@@ -8,7 +8,7 @@ class Grocery::Importer
     @courses = grocery_params.fetch(:course_ids).split.map { |id| Course.find(id) }
     @erecipe_id = grocery_params.fetch(:erecipe_id)
 
-    @name = grocery_params.fetch(:name)
+    @name = grocery_params.fetch(:name).gsub(/-/, " ")
     @quantity = grocery_params.fetch(:quantity).to_f
     @measurement = grocery_params.fetch(:measurement)
     @category = grocery_params.fetch(:category)
