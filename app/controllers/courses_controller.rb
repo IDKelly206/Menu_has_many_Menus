@@ -26,7 +26,7 @@ class CoursesController < ApplicationController
     @recipes_with_course_id = courses_of_meals.select { |recipe_id, course_ids| course_ids.count == @meals.size }
     @courses = @recipes_with_course_id.keys.map { |recipe_id| courses_all.detect { |course| course.erecipe_id == recipe_id } }
     @course_recipes = @courses.map { |course| Edamam::EdamamRecipe.find(course.erecipe_id) }
-
+    console
   end
 
   def create
@@ -70,11 +70,12 @@ class CoursesController < ApplicationController
 
   def multi_destroy
     Course.destroy(params[:course_ids])
-    # meal_ids = params[:meal_ids]
-    # redirect_to planners_path(meal_ids: meal_ids),
-    #             notice: "Courses deleted"
+    meal_ids = params[:meal_ids]
     respond_to do |format|
-      format.turbo_stream { flash.now[:notice] = "Course REMOVED added!" }
+      format.turbo_stream { flash.now[:notice] = "COURSE was succesfully deleted." }
+      format.html { redirect_to planners_path(meal_ids: meal_ids),
+                    notice: "Canceled. Recipe not added to new course" }
+      # format.html { notice: "User was succesfully destroyed." }
     end
   end
 

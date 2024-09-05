@@ -18,7 +18,7 @@ class Grocery < ApplicationRecord
   end
 
   def self.grocery_hash(groceries)
-    ingredient_names = groceries.map { | g_item | g_item.name.singularize.downcase }.uniq
+    ingredient_names = groceries.map { |g_item| g_item.name.singularize.downcase }.uniq
     grocery_list_names = []
     ingredient_names.each_with_index do |name, index|
       grocery_list_names[index] = {}
@@ -63,7 +63,7 @@ class Grocery < ApplicationRecord
 
           g_item[:m] = ingredient["measure"] if g_item[:m].nil?
           g_item[:q].nil? ? g_item[:q] = (ingredient["quantity"] * ingredient_multiplier) : g_item[:q] += (ingredient["quantity"] * ingredient_multiplier)
-          
+
           m = Converter.set_v_msr(m: ingredient["measure"])
           unless m.empty?
             q = (ingredient["quantity"] * ingredient_multiplier)

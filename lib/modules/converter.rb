@@ -1,5 +1,4 @@
 module Converter
-
   # @volumes = %w(gal qrt pint cup tbsp tsp fl_oz ml)
 
   @volumes = {}
@@ -13,11 +12,32 @@ module Converter
     fl_oz: ['fl_oz', 'FL_OZ', 'fluid ounce', 'Fluid Ounce', 'fl oz', 'FL OZ'],
     ml: %w(ml ML milliliter Milliliter mls MLS milliliters Milliliters)
   }
-  @v_names.each { |k, v| @volumes[v] = k.to_s }
+  @v_names.each { |k, value| @volumes[value] = k.to_s }
 
-    # @weight = %w(lb oz g)
+  @weights = {}
+  @w_names = {
+    g: %w(g G gram Gram grams Grams GRAM GRAMS),
+    lb: %w(lb LB lbs LBS pound Pound pounds Pounds POUND POUNDS),
+    oz: %w(oz ozs ounce ounces Ounce Ounces)
+  }
+  @w_names.each { |k, value| @weights[value] = k.to_s }
+
+  # @weight = %w(lb oz g)
+
+  @base_w_msr = 'g'
   @base_v_msr = 'ml'
-    # @base_w_msr = 'g'
+
+  def self.set_msr_name(attr = {})
+    name = ''
+    measurement = attr[:m].to_s.downcase.singularize.gsub(/[<>]/, "")
+
+    @w_names.each { |k, v| v.include?(measurement) ? name = k.to_s : name = measurement }
+    name
+    @v_names.each { |k, v| v.include?(name) ? name = k.to_s : name }
+    name
+  end
+
+
 
   @vol_msr = @volumes.values.each_with_index.map { |n, i| [n, i] }.to_h
 

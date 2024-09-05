@@ -1,19 +1,15 @@
-  <%= render "groceries/grocery", item: groceries %>
 
 
 <div class="g-list-item g-list-item--light">
+  <%= fields.check_box :list_add, checked: false, class: "toggle" %>
+  <%= fields.label "", for: "product_#{n}_list_add", class:"g-list-item__action "  %>
 
-  <%= f.check_box :list_add, checked: true, class: "toggle" %>
 
-  <%= f.label item[:n], class:"g-list-item__name" %>
-  <%= f.label item[:cat], class:"g-list-item__category" %>
+  <%= fields.label item[:n], class:"g-list-item__name" %>
+  <%= fields.label item[:cat], class:"g-list-item__category" %>
 
-  <%= f.label item[:wgt_q].round(2), class:"g-list-item__quantity" %>
-  <%= f.label item[:wgt_m], class:"g-list-item__measurement" %>
+  <%= fields.label item[:q], class: "g-list-item__quantity" %>
+  <%= fields.label item[:m], class:"g-list-item__measurement" %>
 
-  <%= f.label item[:vol_q].round(2), class:"g-list-item__quantity" %>
-  <%= f.label item[:vol_m], class:"g-list-item__measurement"  %>
-
-  <%= f.hidden_field :g_ids, name: "g_ids[]", multiple: true, value: item[:g_ids] %>
-
+  <%= fields.hidden_field :g_ids, for: "product_#{n}_g_ids", multiple: true, value: item[:g_ids] %>
 </div>

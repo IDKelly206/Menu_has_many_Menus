@@ -1,4 +1,6 @@
 class Grocery::Importer
+  include Converter
+
   def self.create(grocery_params)
     new(grocery_params).create(grocery_params)
   end
@@ -8,9 +10,9 @@ class Grocery::Importer
     @courses = grocery_params.fetch(:course_ids).split.map { |id| Course.find(id) }
     @erecipe_id = grocery_params.fetch(:erecipe_id)
 
-    @name = grocery_params.fetch(:name).gsub(/-/, " ")
-    @quantity = grocery_params.fetch(:quantity).to_f
-    @measurement = grocery_params.fetch(:measurement)
+    @name = grocery_params.fetch(:name).gsub(/[-()]/, " ")
+    @quantity = grocery_params.fetch(:quantity).to_f.round(2)
+    @measurement = Converter.set_msr_name(m: grocery_params.fetch(:measurement))
     @category = grocery_params.fetch(:category)
     @list_add = grocery_params.fetch(:list_add).to_i
   end
@@ -47,5 +49,4 @@ class Grocery::Importer
     raise "Invalid params" unless @category.present?
     raise "Invalid params" unless @erecipe_id.present?
   end
-
 end

@@ -66,7 +66,11 @@
   background-color: var(--color-background);
 }
 
-
+.section--cards-grocery {
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+}
 
 
 .card-rolodex {

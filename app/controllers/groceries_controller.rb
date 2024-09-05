@@ -49,7 +49,7 @@ class GroceriesController < ApplicationController
       n = v["list_add"].to_i
       g_ids.push(v["g_ids"].first) if n == 1
     end
-    
+
     Grocery.where(id: g_ids).update_all(list_add: value)
 
     redirect_to groceries_path
