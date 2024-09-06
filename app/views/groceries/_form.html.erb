@@ -43,14 +43,18 @@
                              class: "g-list-item__measurement"   %>
                   <%= fields.hidden_field :measurement, value: ingredient['measure'] %>
                 <% else %>
-                  <%= fields.label "Pinch = <1/8 tsp", for: "grocery_#{n}_list_add",
+                  <%= fields.label "TINY", for: "grocery_#{n}_list_add",
                              class: "g-list-item__measurement"  %>
-                  <%= fields.hidden_field :measurement, value: 1/16 %>
+                  <%= fields.hidden_field :measurement, value: 'NULL' %>
                 <% end %>
+
+              <%= fields.hidden_field :base_wgt_qty, value: ingredient['weight'] %>
+              <%= fields.hidden_field :base_wgt_msr, value: Grocery::BASE_WGT_MSR %>
 
               <%= fields.hidden_field :course_ids, value: @course_ids %>
               <%= fields.hidden_field :household_id, value: @household.id %>
               <%= fields.hidden_field :erecipe_id, value: @erecipe_id %>
+              <%= fields.hidden_field :erecipe_servings, value: @recipe.yield %>
             </div>
           <% end %>
         <% end %>

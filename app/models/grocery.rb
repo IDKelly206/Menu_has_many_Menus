@@ -10,6 +10,9 @@ class Grocery < ApplicationRecord
 
   include Converter
 
+  BASE_WGT_MSR = 'g'
+  BASE_VOL_MSR = 'ml'
+
   # Add ordered sequence of :foodCat then :name
   # scope :ordered, -> { order(name: :asc)}
 
@@ -39,58 +42,114 @@ class Grocery < ApplicationRecord
     recipe_ids = attrs[:recipe_ids]
     groceries = attrs[:groceries]
     grocery_list = attrs[:grocery_list]
-    recipes = []
-    # Need to insert check if new ingredients before accessing API
-    recipe_ids.each do |recipe_id|
-      recipe = Edamam::EdamamRecipe.find(recipe_id)
-      recipes << recipe
-    end
-    recipes.each do |recipe|
-      g_items_per_recipe = groceries.select { |g_item| g_item.erecipe_id == recipe.erecipe_id }
+
+    recipe_ids.each do |r|
+      g_items_per_recipe = groceries.select { |g_item| g_item.erecipe_id == r }
       g_items_count = g_items_per_recipe.count
       g_items_uniq_count = g_items_per_recipe.map { |i| i.name }.uniq.count
-
       number_courses_per_recipe = (g_items_count / g_items_uniq_count)
-      servings = recipe.yield.to_f
-      ingredient_multiplier = (number_courses_per_recipe / servings).ceil
+      servings = groceries.detect { |g_item| g_item.erecipe_id == r }.erecipe_servings
+      ingredient_multiplier = (number_courses_per_recipe / servings.to_f).ceil
+      # ingredient_multiplier = 1
 
-      recipe.ingredients.each do |ingredient|
-        # FILTER: not all ingredients, only those that are select to add
-        name = ingredient["food"].singularize.downcase
-        unless grocery_list.detect { |item| item[:n] == name }.nil?
-          g_item = grocery_list.detect { |item| item[:n] == name }
-          g_item[:cat] = g_item[:cat].nil? ? ingredient["foodCategory"] : g_item[:cat].include?(ingredient["foodCategory"]) ? g_item[:cat] : g_item[:cat] << ", #{ingredient["foodCategory"]}"
 
-          g_item[:m] = ingredient["measure"] if g_item[:m].nil?
-          g_item[:q].nil? ? g_item[:q] = (ingredient["quantity"] * ingredient_multiplier) : g_item[:q] += (ingredient["quantity"] * ingredient_multiplier)
+      g_items_per_recipe.each do |g_item|
+        name = g_item.name
+        unless grocery_list.detect { |list_item| list_item[:n] == name }.nil?
+          list_item = grocery_list.detect { |item| item[:n] == name }
 
-          m = Converter.set_v_msr(m: ingredient["measure"])
-          unless m.empty?
-            q = (ingredient["quantity"] * ingredient_multiplier)
-            base_v = Converter.v_to_base_v(m:, q:)
-            g_item[:vol_q].nil? ? g_item[:vol_q] = base_v[:q] : g_item[:vol_q] += base_v[:q]
-            g_item[:vol_m] = base_v[:m] if g_item[:vol_m].nil?
+          list_item[:cat] = []
+          list_item[:cat].push(g_item.category) unless list_item[:cat].include?(g_item.category)
+
+          if g_item.measurement == "NULL"
+            list_item[:base_wgt_qty].nil? ?
+              list_item[:base_wgt_qty] = g_item.base_wgt_qty * ingredient_multiplier :
+              list_item[:base_wgt_qty] += g_item.base_wgt_qty * ingredient_multiplier
+
+              list_item[:base_wgt_msr] = g_item.base_wgt_msr if list_item[:base_wgt_msr].nil?
+
+          elsif Converter::VOL_NAMES.keys.include?(g_item.measurement.to_sym)
+            base_vol_q = Converter.v_to_base_v(m: g_item.measurement, q: g_item.quantity)
+
+            list_item[:base_vol_qty].nil? ?
+              list_item[:base_vol_qty] = base_vol_q * ingredient_multiplier :
+              list_item[:base_vol_qty] += base_vol_q * ingredient_multiplier
+            list_item[:base_vol_msr] = BASE_VOL_MSR if list_item[:base_vol_msr].nil?
+
+          elsif Converter::WGT_NAMES.keys.include?(g_item.measurement.to_sym)
+            list_item[:base_wgt_qty].nil? ?
+              list_item[:base_wgt_qty] = g_item.base_wgt_qty * ingredient_multiplier :
+              list_item[:base_wgt_qty] += g_item.base_wgt_qty * ingredient_multiplier
+            list_item[:base_wgt_msr] = g_item.base_wgt_msr if list_item[:base_wgt_msr].nil?
+
+          elsif list_item[:m] == g_item.measurement
+            list_item[:q] += g_item.quantity * ingredient_multiplier
+
+          else
+            list_item[:m] = g_item.measurement
+            list_item[:q] = g_item.quantity
+            list_item[:base_wgt_qty] = g_item.base_wgt_qty * ingredient_multiplier
+            list_item[:base_wgt_msr] = g_item.base_wgt_msr
           end
-
-
-
-          g_item[:wgt_q].nil? ? g_item[:wgt_q] = (ingredient["weight"] * ingredient_multiplier).round(2) : g_item[:wgt_q] += (ingredient["weight"] * ingredient_multiplier).round(2)
-          g_item[:wgt_m].nil? ? g_item[:wgt_m] = 'g' : 'g'
-
-          # Covert ingredient measure & quantity to base_msr with corresponding quantity
-          # if volumes.includes?(ingredient["measure"])
-          #   base_v = Covert.v_to_base_v(m: ingredient["measure"], q: (ingredient["quantity"] * ingredient_multiplier))
-          #   g_item[:q].nil? ? g_item[:q] = base_v[:q] : g_item[:q] += base_v[:q]
-          #   g_item[:m] = base_v[:m] if g_item[:m].nil?
-          # elsif weights.include?(ingredient["measure"])
-          #   base_w = Covert.w_to_base_w(m: ingredient["measure"], q: (ingredient["quantity"] * ingredient_multiplier))
-          #
-          # else
-          #   g_item[:m] = ingredient["measure"]
-
         end
       end
     end
+
+# PREVIOUS - start
+    # recipes = []
+    # # # Need to insert check if new ingredients before accessing API
+    # recipe_ids.each do |recipe_id|
+    #   recipe = Edamam::EdamamRecipe.find(recipe_id)
+    #   recipes << recipe
+    # end
+    # recipes.each do |recipe|
+    #   g_items_per_recipe = groceries.select { |g_item| g_item.erecipe_id == recipe.erecipe_id }
+    #   g_items_count = g_items_per_recipe.count
+    #   g_items_uniq_count = g_items_per_recipe.map { |i| i.name }.uniq.count
+
+    #   number_courses_per_recipe = (g_items_count / g_items_uniq_count)
+    #   servings = recipe.yield.to_f
+    #   ingredient_multiplier = (number_courses_per_recipe / servings).ceil
+
+    #   recipe.ingredients.each do |ingredient|
+    #     # FILTER: not all ingredients, only those that are select to add
+    #     name = ingredient["food"].singularize.downcase
+    #     unless grocery_list.detect { |item| item[:n] == name }.nil?
+    #       g_item = grocery_list.detect { |item| item[:n] == name }
+    #       g_item[:cat] = g_item[:cat].nil? ? ingredient["foodCategory"] : g_item[:cat].include?(ingredient["foodCategory"]) ? g_item[:cat] : g_item[:cat] << ", #{ingredient["foodCategory"]}"
+
+    #       g_item[:m] = ingredient["measure"] if g_item[:m].nil?
+    #       g_item[:q].nil? ? g_item[:q] = (ingredient["quantity"] * ingredient_multiplier) : g_item[:q] += (ingredient["quantity"] * ingredient_multiplier)
+
+    #       m = Converter.set_v_msr(m: ingredient["measure"])
+    #       unless m.empty?
+    #         q = (ingredient["quantity"] * ingredient_multiplier)
+    #         base_v = Converter.v_to_base_v(m:, q:)
+    #         g_item[:vol_q].nil? ? g_item[:vol_q] = base_v[:q] : g_item[:vol_q] += base_v[:q]
+    #         g_item[:vol_m] = base_v[:m] if g_item[:vol_m].nil?
+    #       end
+
+
+
+    #       g_item[:wgt_q].nil? ? g_item[:wgt_q] = (ingredient["weight"] * ingredient_multiplier).round(2) : g_item[:wgt_q] += (ingredient["weight"] * ingredient_multiplier).round(2)
+    #       g_item[:wgt_m].nil? ? g_item[:wgt_m] = 'g' : 'g'
+
+    #       # Covert ingredient measure & quantity to base_msr with corresponding quantity
+    #       # if volumes.includes?(ingredient["measure"])
+    #       #   base_v = Covert.v_to_base_v(m: ingredient["measure"], q: (ingredient["quantity"] * ingredient_multiplier))
+    #       #   g_item[:q].nil? ? g_item[:q] = base_v[:q] : g_item[:q] += base_v[:q]
+    #       #   g_item[:m] = base_v[:m] if g_item[:m].nil?
+    #       # elsif weights.include?(ingredient["measure"])
+    #       #   base_w = Covert.w_to_base_w(m: ingredient["measure"], q: (ingredient["quantity"] * ingredient_multiplier))
+    #       #
+    #       # else
+    #       #   g_item[:m] = ingredient["measure"]
+
+    #     end
+    #   end
+    # end
+# PREVIOUS - end
+
     # grocery_list.each { |item| item[:cat].uniq }
     # grocery_list.sort_by { |item| item[:cat] } --> Some missing category (ex. Guacomole)
     grocery_list

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_02_29_152444) do
+ActiveRecord::Schema[7.0].define(version: 2024_09_06_084405) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -44,6 +44,11 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_29_152444) do
     t.datetime "updated_at", null: false
     t.boolean "list_add", default: true, null: false
     t.bigint "course_id", null: false
+    t.integer "erecipe_servings", null: false
+    t.integer "base_vol_qty"
+    t.string "base_vol_msr"
+    t.integer "base_wgt_qty"
+    t.string "base_wgt_msr"
     t.index ["course_id"], name: "index_groceries_on_course_id"
     t.index ["household_id"], name: "index_groceries_on_household_id"
   end

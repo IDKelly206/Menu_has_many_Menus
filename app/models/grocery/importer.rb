@@ -8,12 +8,23 @@ class Grocery::Importer
   def initialize(grocery_params)
     @household = Household.find(grocery_params.fetch(:household_id).to_i)
     @courses = grocery_params.fetch(:course_ids).split.map { |id| Course.find(id) }
-    @erecipe_id = grocery_params.fetch(:erecipe_id)
 
-    @name = grocery_params.fetch(:name).gsub(/[-()]/, " ")
+    @name = grocery_params.fetch(:name).gsub(/[-()]/, " ").downcase.singularize
+    @category = grocery_params.fetch(:category).downcase
+
+    msr = grocery_params.fetch(:measurement).gsub(/<>]/, " ").downcase.singularize
+    @measurement = Converter.set_msr_name(m: msr)
     @quantity = grocery_params.fetch(:quantity).to_f.round(2)
-    @measurement = Converter.set_msr_name(m: grocery_params.fetch(:measurement))
-    @category = grocery_params.fetch(:category)
+
+    @erecipe_id = grocery_params.fetch(:erecipe_id)
+    @erecipe_servings = grocery_params.fetch(:erecipe_servings).to_i
+
+    # @base_vol_msr = grocery_params.fetch(:base_vol_msr) unless grocery_params.fetch(:base_vol_msr).nil?
+    # @base_vol_qty = grocery_params.fetch(:base_vol_qty) unless grocery_params.fetch(:base_vol_qty).nil?
+
+    @base_wgt_qty = grocery_params.fetch(:base_wgt_qty).to_f.round(2)
+    @base_wgt_msr = grocery_params.fetch(:base_wgt_msr)
+
     @list_add = grocery_params.fetch(:list_add).to_i
   end
 
@@ -29,11 +40,14 @@ class Grocery::Importer
         Grocery.create!(
           household: @household,
           course: course,
-          name: @name.downcase,
+          name: @name,
           quantity: @quantity,
-          measurement: @measurement.downcase,
-          category: @category.downcase,
-          erecipe_id: @erecipe_id
+          measurement: @measurement,
+          category: @category,
+          erecipe_id: @erecipe_id,
+          erecipe_servings: @erecipe_servings,
+          base_wgt_qty: @base_wgt_qty,
+          base_wgt_msr: @base_wgt_msr
         )
       end
       @new_glist += 1

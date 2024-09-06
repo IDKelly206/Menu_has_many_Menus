@@ -1,6 +1,23 @@
 module Converter
   # @volumes = %w(gal qrt pint cup tbsp tsp fl_oz ml)
 
+  VOL_NAMES = {
+    gal: %w(gal Gal GAL gall Gall gallon Gallon g G ),
+    qrt: %w(qrt Qrt QRT quart Quart q Q),
+    pint: %w(pint Pint PINT p P pt PT),
+    cup: %w(cup Cup c C cups Cups),
+    tbsp: %w(tbsp TBSP tbsps TBSPs tablespoon Tablespoon tablespoons Tablespoons),
+    tsp: %w(tsp TSP tsps TSPS teaspoon Teaspoon teaspoons Teaspoons),
+    fl_oz: ['fl_oz', 'FL_OZ', 'fluid ounce', 'Fluid Ounce', 'fl oz', 'FL OZ'],
+    ml: %w(ml ML milliliter Milliliter mls MLS milliliters Milliliters)
+  }
+
+  WGT_NAMES = {
+    g: %w(g G gram Gram grams Grams GRAM GRAMS),
+    lb: %w(lb LB lbs LBS pound Pound pounds Pounds POUND POUNDS),
+    oz: %w(oz ozs ounce ounces Ounce Ounces)
+  }
+
   @volumes = {}
   @v_names = {
     gal: %w(gal Gal GAL gall Gall gallon Gallon g G ),
@@ -37,8 +54,6 @@ module Converter
     name
   end
 
-
-
   @vol_msr = @volumes.values.each_with_index.map { |n, i| [n, i] }.to_h
 
   @v_formulas = {
@@ -68,6 +83,6 @@ module Converter
     msr_to = @vol_msr[@base_v_msr]
     multiplier = @v_formulas[msr_from][msr_to]
     base_v_q = multiplier * q
-    { q: base_v_q, m: @base_v_msr }
+    base_v_q
   end
 end
