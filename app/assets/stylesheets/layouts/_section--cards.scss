@@ -55,7 +55,7 @@
 
 .section-cards,
 .section--cards-recipes {
-  grid-area: cards;
+  // grid-area: cards;
   width: 100%;
   // padding: var(--space-m), var(--space-s);
 
@@ -67,7 +67,8 @@
 }
 
 .section--cards-grocery {
-  display: flex;
+  // grid-area: cards;
+  display: grid;
   justify-content: center;
   overflow: hidden;
 }

@@ -7,8 +7,9 @@ class GroceriesController < ApplicationController
     groceries = Grocery.groceries(@household)
     grocery_list = Grocery.grocery_hash(groceries)
     recipe_ids = groceries.map { |g_item| g_item.erecipe_id }.uniq
-    @grocery_list = Grocery.grocery_list(groceries:, grocery_list:, recipe_ids:)
-
+    grocery_list = Grocery.grocery_list(groceries:, grocery_list:, recipe_ids:)
+    # @grocery_list = grocery_list
+    @grocery_list = grocery_list.sort_by! { |item| [item[:cat], item[:n]] }
     console
   end
 
@@ -59,7 +60,7 @@ class GroceriesController < ApplicationController
 
   def grocery_params
     params.permit(:household_id, :course_id, :erecipe_id, :erecipe_servings,
-                  :name, :category, :quantity, :measurement, :list_add,
+                  :name, :category, :quantity, :measurement, :list_add, :food_id,
                   :base_vol_qty, :base_vol_msr, :base_wgt_qty, :base_wgt_msr )
   end
 

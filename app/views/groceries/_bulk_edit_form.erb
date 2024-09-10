@@ -1,42 +1,40 @@
-
-<%= form_with url: edit_multiple_groceries_path, method: 'patch', class: 'grocery-list--contents' do |form| %>
-  <div class="grocery-list">
-
-    <div class="grocery-list__header">
-      <div class="g-list-item">
-        <div class="g-list-item__actions"></div>
-        <div class="g-list-item__name">Name</div>
-        <div class="g-list-item__category">Category</div>
-        <div class="g-list-item__quantity">Qty</div>
-        <div class="g-list-item__measurement">Msr</div>
-      </div>
+<%= form_with url: edit_multiple_groceries_path, method: 'patch', class: 'grocery-list' do |form| %>
+  <div class="grocery-list__header">
+    <div class="g-list-item">
+      <div class="g-list-item__actions"></div>
+      <div class="g-list-item__name">Name</div>
+      <div class="g-list-item__category">Category</div>
+      <div class="g-list-item__other-qty">Qty</div>
+      <div class="g-list-item__other-msr">Msr</div>
+      <div class="g-list-item__wgt-qty">Qty</div>
+      <div class="g-list-item__qft-msr">Msr</div>
     </div>
+  </div>
+  <div class="grocery-list__content">
+    <% n = 0 %>
+    <% groceries.each do |item| %>
+      <% n += 1 %>
+      <%= fields_for 'product'+[n].to_s do |fields| %>
+        <div class="g-list-item g-list-item--light">
+          <%= fields.check_box :list_add, checked: false, class: "toggle" %>
+          <%= fields.label "", for: "product_#{n}_list_add", class:"g-list-item__action "  %>
 
-    <div class="grocery-list__content">
-      <% n = 0 %>
-      <% groceries.each do |item| %>
-        <% n += 1 %>
-        <%= fields_for 'product'+[n].to_s do |fields| %>
-          <div class="g-list-item g-list-item--light">
-            <%= fields.check_box :list_add, checked: false, class: "toggle" %>
-            <%= fields.label "", for: "product_#{n}_list_add", class:"g-list-item__action "  %>
 
+          <%= fields.label item[:n], class:"g-list-item__name" %>
+          <%= fields.label item[:cat].join(", "), class:"g-list-item__category" %>
 
-            <%= fields.label item[:n], class:"g-list-item__name" %>
-            <%= fields.label item[:cat].join(", "), class:"g-list-item__category" %>
+          <%= fields.label item[:q], class: "g-list-item__other-qty" %>
+          <%= fields.label item[:m], class:"g-list-item__other-msr" %>
 
-            <%= fields.label item[:q], class: "g-list-item__quantity" %>
-            <%= fields.label item[:m], class:"g-list-item__measurement" %>
+          <%= fields.label item[:base_wgt_qty], class: "g-list-item__wgt-qty" %>
+          <%= fields.label item[:base_wgt_msr], class:"g-list-item__wgt-msr" %>
 
-            <%= fields.hidden_field :g_ids, for: "product_#{n}_g_ids", multiple: true, value: item[:g_ids] %>
-          </div>
-        <% end %>
+          <%= fields.hidden_field :g_ids, for: "product_#{n}_g_ids", multiple: true, value: item[:g_ids] %>
+        </div>
       <% end %>
-    </div>
-
-    <div class="grocery-list__footer">
-      <%= form.submit "Got it" %>
-    </div>
-
+    <% end %>
+  </div>
+  <div class="grocery-list__footer">
+    <%= form.submit "Finished Shopping" %>
   </div>
 <% end %>

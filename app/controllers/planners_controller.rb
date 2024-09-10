@@ -13,7 +13,7 @@ class PlannersController < ApplicationController
   def index
     @meal_ids = params[:meal_ids]
 
-    s = { query: ["peach"], filters: { mealType: @meal_type, health: @dietary_restrictions } }
+    s = { query: ["peach"], filters: { mealType: @meal_type, dishType: @course_type, health: @dietary_restrictions } }
     results = Edamam::EdamamRecipe.search(s[:query], s[:filters])
     if results.keys.include?(:Status)
       redirect_to root_path, notice: "Recipe API error: " + @results

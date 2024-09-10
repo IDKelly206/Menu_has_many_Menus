@@ -16,11 +16,13 @@ class Grocery::Importer
     @measurement = Converter.set_msr_name(m: msr)
     @quantity = grocery_params.fetch(:quantity).to_f.round(2)
 
+    @food_id = grocery_params.fetch(:food_id)
+
     @erecipe_id = grocery_params.fetch(:erecipe_id)
     @erecipe_servings = grocery_params.fetch(:erecipe_servings).to_i
 
-    # @base_vol_msr = grocery_params.fetch(:base_vol_msr) unless grocery_params.fetch(:base_vol_msr).nil?
-    # @base_vol_qty = grocery_params.fetch(:base_vol_qty) unless grocery_params.fetch(:base_vol_qty).nil?
+    @base_vol_msr = grocery_params.fetch(:base_vol_msr) if Converter::VOL_NAMES.keys.include?(@measurement.to_sym)
+    @base_vol_qty = Converter.BASE_VOL_MSR if Converter::VOL_NAMES.keys.include?(@measurement.to_sym)
 
     @base_wgt_qty = grocery_params.fetch(:base_wgt_qty).to_f.round(2)
     @base_wgt_msr = grocery_params.fetch(:base_wgt_msr)
@@ -47,7 +49,8 @@ class Grocery::Importer
           erecipe_id: @erecipe_id,
           erecipe_servings: @erecipe_servings,
           base_wgt_qty: @base_wgt_qty,
-          base_wgt_msr: @base_wgt_msr
+          base_wgt_msr: @base_wgt_msr,
+          food_id: @food_id
         )
       end
       @new_glist += 1

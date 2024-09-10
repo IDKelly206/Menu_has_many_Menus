@@ -10,9 +10,6 @@ class Grocery < ApplicationRecord
 
   include Converter
 
-  BASE_WGT_MSR = 'g'
-  BASE_VOL_MSR = 'ml'
-
   # Add ordered sequence of :foodCat then :name
   # scope :ordered, -> { order(name: :asc)}
 
@@ -61,35 +58,27 @@ class Grocery < ApplicationRecord
           list_item[:cat] = []
           list_item[:cat].push(g_item.category) unless list_item[:cat].include?(g_item.category)
 
-          if g_item.measurement == "NULL"
-            list_item[:base_wgt_qty].nil? ?
-              list_item[:base_wgt_qty] = g_item.base_wgt_qty * ingredient_multiplier :
-              list_item[:base_wgt_qty] += g_item.base_wgt_qty * ingredient_multiplier
-
-              list_item[:base_wgt_msr] = g_item.base_wgt_msr if list_item[:base_wgt_msr].nil?
-
-          elsif Converter::VOL_NAMES.keys.include?(g_item.measurement.to_sym)
-            base_vol_q = Converter.v_to_base_v(m: g_item.measurement, q: g_item.quantity)
-
-            list_item[:base_vol_qty].nil? ?
-              list_item[:base_vol_qty] = base_vol_q * ingredient_multiplier :
-              list_item[:base_vol_qty] += base_vol_q * ingredient_multiplier
-            list_item[:base_vol_msr] = BASE_VOL_MSR if list_item[:base_vol_msr].nil?
-
-          elsif Converter::WGT_NAMES.keys.include?(g_item.measurement.to_sym)
-            list_item[:base_wgt_qty].nil? ?
-              list_item[:base_wgt_qty] = g_item.base_wgt_qty * ingredient_multiplier :
-              list_item[:base_wgt_qty] += g_item.base_wgt_qty * ingredient_multiplier
-            list_item[:base_wgt_msr] = g_item.base_wgt_msr if list_item[:base_wgt_msr].nil?
-
-          elsif list_item[:m] == g_item.measurement
-            list_item[:q] += g_item.quantity * ingredient_multiplier
-
+          list_item[:base_wgt_msr] = Converter::BASE_WGT_MSR if list_item[:base_wgt_msr].nil?
+          if list_item[:base_wgt_qty].nil?
+            list_item[:base_wgt_qty] = g_item.base_wgt_qty * ingredient_multiplier
           else
+            list_item[:base_wgt_qty] += g_item.base_wgt_qty * ingredient_multiplier
+          end
+
+          unless list_item[:base_vol_qty].nil?
+            list_item[:base_vol_msr] = Converter::BASE_VOL_MSR if list_item[:base_vol_msr].nil?
+            if list_item[:base_vol_qty].nil?
+              list_item[:base_vol_qty] = base_vol_q * ingredient_multiplier
+            else
+              list_item[:base_vol_qty] += base_vol_q * ingredient_multiplier
+            end
+          end
+
+          list_item[:q] += g_item.quantity * ingredient_multiplier if list_item[:m] == g_item.measurement
+
+          if Converter::VOL_NAMES.keys.include?(g_item.measurement.to_sym) == Converter::WGT_NAMES.keys.include?(g_item.measurement.to_sym)
             list_item[:m] = g_item.measurement
             list_item[:q] = g_item.quantity
-            list_item[:base_wgt_qty] = g_item.base_wgt_qty * ingredient_multiplier
-            list_item[:base_wgt_msr] = g_item.base_wgt_msr
           end
         end
       end

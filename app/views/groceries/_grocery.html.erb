@@ -1,15 +1,15 @@
 
 
-<div class="g-list-item g-list-item--light">
-  <%= fields.check_box :list_add, checked: false, class: "toggle" %>
-  <%= fields.label "", for: "product_#{n}_list_add", class:"g-list-item__action "  %>
+        <div class="g-list-item g-list-item--light">
+          <%= fields.check_box :list_add, checked: false, class: "toggle" %>
+          <%= fields.label "", for: "product_#{n}_list_add", class:"g-list-item__action "  %>
 
 
-  <%= fields.label item[:n], class:"g-list-item__name" %>
-  <%= fields.label item[:cat], class:"g-list-item__category" %>
+          <%= fields.label item[:n], class:"g-list-item__name" %>
+          <%= fields.label item[:cat].join(", "), class:"g-list-item__category" %>
 
-  <%= fields.label item[:q], class: "g-list-item__quantity" %>
-  <%= fields.label item[:m], class:"g-list-item__measurement" %>
+          <%= fields.label item[:q], class: "g-list-item__quantity" %>
+          <%= fields.label item[:m], class:"g-list-item__measurement" %>
 
-  <%= fields.hidden_field :g_ids, for: "product_#{n}_g_ids", multiple: true, value: item[:g_ids] %>
-</div>
+          <%= fields.hidden_field :g_ids, for: "product_#{n}_g_ids", multiple: true, value: item[:g_ids] %>
+        </div>

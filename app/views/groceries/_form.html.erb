@@ -1,71 +1,79 @@
-<%= form_with url: '/groceries', class: 'grocery-list--contents' do |form|  %>
+<%= form_with url: '/groceries', class: 'grocery-list' do |form|  %>
   <%= form.hidden_field :meal_ids, name:"meal_ids[]", mutliple: true,  value: @meal_ids %>
-    <div class="grocery-list">
-      <div class="grocery-list__header">
-        <div class="g-list-item">
-          <div class="g-list-item__actions"></div>
-          <div class="g-list-item__name">Name</div>
-          <div class="g-list-item__category">Category</div>
-          <div class="g-list-item__quantity">Qty</div>
-          <div class="g-list-item__measurement">Msr</div>
-        </div>
-      </div>
-      <div class="grocery-list__content">
-        <% n = 0 %>
-        <% @recipe.ingredients.each do |ingredient| %>
-          <% n += 1 %>
-          <%= fields_for 'grocery'+[n].to_s do |fields| %>
-            <div class="g-list-item g-list-item--light">
+  <div class="grocery-list__header">
+    <div class="g-list-item">
+      <div class="g-list-item__actions"></div>
+      <div class="g-list-item__name">Name</div>
+      <div class="g-list-item__category">Category</div>
+      <div class="g-list-item__quantity">Qty</div>
+      <div class="g-list-item__measurement">Msr</div>
+    </div>
+  </div>
 
-                <%= fields.check_box :list_add, checked: true, class: "toggle" %>
-                <%= fields.label "", for: "grocery_#{n}_list_add", class:"g-list-item__action"  %>
+  <div class="grocery-list__content">
+    <% n = 0 %>
+    <% @recipe.ingredients.each do |ingredient| %>
+      <% n += 1 %>
+      <%= fields_for 'grocery'+[n].to_s do |fields| %>
+        <div class="g-list-item g-list-item--light">
+          <%= fields.check_box :list_add, checked: true, class: "toggle" %>
 
+          <%= fields.label "", for: "grocery_#{n}_list_add", class:"g-list-item__action"  %>
+          <%= fields.label ingredient['food'], for: "grocery_#{n}_list_add", class:"g-list-item__name"  %>
 
-                <%= fields.label ingredient['food'], for: "grocery_#{n}_list_add", class:"g-list-item__name"  %>
-                <%= fields.hidden_field :name, value: ingredient['food']%>
-
-
-                <% if ingredient['foodCategory'].present? %>
-                  <%= fields.label ingredient['foodCategory'], for: "grocery_#{n}_list_add", class:"g-list-item__category" %>
-                  <%= fields.hidden_field :category, value: ingredient['foodCategory'] %>
-                <% else %>
-                  <%= fields.label "____________", for: "grocery_#{n}_list_add", class:"g-list-item__category"   %>
-                  <%= fields.hidden_field :category, value: "<BLANK>" %>
-                <% end %>
-
-
-                <%= fields.label ingredient['quantity'].round(2), for: "grocery_#{n}_list_add", class: "g-item-list__quantity"  %>
-                <%= fields.hidden_field :quantity, value: ingredient['quantity'] %>
-
-
-                <% if  ingredient['measure'].present?  %>
-                  <%= fields.label ingredient['measure'].downcase, for: "grocery_#{n}_list_add",
-                             class: "g-list-item__measurement"   %>
-                  <%= fields.hidden_field :measurement, value: ingredient['measure'] %>
-                <% else %>
-                  <%= fields.label "TINY", for: "grocery_#{n}_list_add",
-                             class: "g-list-item__measurement"  %>
-                  <%= fields.hidden_field :measurement, value: 'NULL' %>
-                <% end %>
-
-              <%= fields.hidden_field :base_wgt_qty, value: ingredient['weight'] %>
-              <%= fields.hidden_field :base_wgt_msr, value: Grocery::BASE_WGT_MSR %>
-
-              <%= fields.hidden_field :course_ids, value: @course_ids %>
-              <%= fields.hidden_field :household_id, value: @household.id %>
-              <%= fields.hidden_field :erecipe_id, value: @erecipe_id %>
-              <%= fields.hidden_field :erecipe_servings, value: @recipe.yield %>
-            </div>
+          <%= fields.hidden_field :name, value: ingredient['food']%>
+          <% if ingredient['foodCategory'].present? %>
+            <%= fields.label ingredient['foodCategory'], for: "grocery_#{n}_list_add", class:"g-list-item__category" %>
+            <%= fields.hidden_field :category, value: ingredient['foodCategory'] %>
+          <% else %>
+            <%= fields.label "____________", for: "grocery_#{n}_list_add", class:"g-list-item__category"   %>
+            <%= fields.hidden_field :category, value: "<BLANK>" %>
           <% end %>
-        <% end %>
-      </div>
-      <div class="grocery-list__footer">
-        <%= form.submit "Add gList items", class: "btn btn--dark" %>
-        <% end %>
-        <%= button_to "Cancel",
-                    multi_destroy_courses_path(course_ids: @course_ids,
-                                          meal_ids: @meal_ids),
-                    method: :delete,
-                    class: "btn btn--dark" %>
-      </div>
+
+
+          <% if  ingredient['measure'].present?  %>
+            <%= fields.label ingredient['quantity'].round(2), for: "grocery_#{n}_list_add", class: "g-list-item__quantity"  %>
+            <%= fields.hidden_field :quantity, value: ingredient['quantity'] %>
+            <% m = Converter.set_msr_name(m: ingredient['measure']) %>
+            <%= fields.label m, for: "grocery_#{n}_list_add", class: "g-list-item__measurement"   %>
+            <%= fields.hidden_field :measurement, value: ingredient['measure'] %>
+
+          <% elsif ingredient['food'].include?('salt') || ingredient['food'].include?('pepper') %>
+            <%= fields.label "", for: "grocery_#{n}_list_add", class: "g-list-item__quantity"  %>
+            <%= fields.hidden_field :quantity, value: 0.0625 %>
+            <%= fields.label 'pinch', for: "grocery_#{n}_list_add",
+                        class: "g-list-item__measurement"   %>
+            <%= fields.hidden_field :measurement, value: 'tsp' %>
+          <% else %>
+            <%= fields.label "", for: "grocery_#{n}_list_add", class: "g-list-item__quantity"  %>
+            <%= fields.hidden_field :quantity, value: 0 %>
+            <%= fields.label "", for: "grocery_#{n}_list_add",
+                        class: "g-list-item__measurement"  %>
+            <%= fields.hidden_field :measurement, value: 0 %>
+          <% end %>
+
+
+
+          <%= fields.hidden_field :base_wgt_qty, value: ingredient['weight'] %>
+          <%= fields.hidden_field :base_wgt_msr, value: Grocery::BASE_WGT_MSR %>
+
+          <%= fields.hidden_field :course_ids, value: @course_ids %>
+          <%= fields.hidden_field :household_id, value: @household.id %>
+          <%= fields.hidden_field :food_id, value: ingredient['foodId'] %>
+          <%= fields.hidden_field :erecipe_id, value: @erecipe_id %>
+          <%= fields.hidden_field :erecipe_servings, value: @recipe.yield %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class="grocery-list__footer">
+    <%= form.submit "Add gList items", class: "btn btn--dark" %>
+
+<% end %>
+    <%= button_to "Cancel",
+                multi_destroy_courses_path(course_ids: @course_ids,
+                                      meal_ids: @meal_ids),
+                method: :delete,
+                class: "btn btn--dark" %>
   </div>
