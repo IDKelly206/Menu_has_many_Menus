@@ -10,7 +10,7 @@
       <div class="g-list-item__msr">Msr</div>
     </div>
   </div>
-  <div class="grocery-list__content">
+  <div class="grocery-list__content grocery-list--light">
     <% n = 0 %>
     <% groceries.each do |item| %>
       <% n += 1 %>
@@ -39,6 +39,6 @@
     <% end %>
   </div>
   <div class="grocery-list__footer">
-    <%= form.submit "Finished Shopping" %>
+    <%= form.submit "Finished Shopping", class: "btn btn-dark" %>
   </div>
 <% end %>

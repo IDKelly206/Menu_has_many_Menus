@@ -4,19 +4,18 @@
 
 .section--cards-bg-checkered {
   // Background patterns
-  $s: var(--space-vxl);
+  $s: var(--space-xxxxl);
   $c1: var(--color-pearl);
   $c2: var(--color-onyx);
   // Checkered - parallel
-  background:
-    repeating-conic-gradient(#{$c1} 0% 25%, transparent 0% 50%)
-      50% / #{$s $s};
+  // background:
+  //   repeating-conic-gradient(#{$c1} 0% 25%, transparent 0% 50%)
+  //     50% / #{$s $s};
 
   // Checkered - diagonal
-  // background:
-  //   repeating-conic-gradient(from 90deg,
-  //       #{$c1} 0% 25%, transparent 0% 50%)
-  //       50% / #{$s $s};
+  background:
+    repeating-conic-gradient(from 45deg, #{$c1} 0% 25%, transparent 0% 50%)
+        50% / #{$s $s};
 
   // background-image: /* tint image */
   // linear-gradient(to right, rgba(192, 192, 192, 0.75), rgba(192, 192, 192, 0.75)),
