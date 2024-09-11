@@ -65,12 +65,12 @@ class Grocery < ApplicationRecord
             list_item[:base_wgt_qty] += g_item.base_wgt_qty * ingredient_multiplier
           end
 
-          unless list_item[:base_vol_qty].nil?
+          unless g_item.base_vol_msr.blank?
             list_item[:base_vol_msr] = Converter::BASE_VOL_MSR if list_item[:base_vol_msr].nil?
             if list_item[:base_vol_qty].nil?
-              list_item[:base_vol_qty] = base_vol_q * ingredient_multiplier
+              list_item[:base_vol_qty] = g_item.base_vol_qty * ingredient_multiplier
             else
-              list_item[:base_vol_qty] += base_vol_q * ingredient_multiplier
+              list_item[:base_vol_qty] += g_item.base_vol_qty * ingredient_multiplier
             end
           end
 

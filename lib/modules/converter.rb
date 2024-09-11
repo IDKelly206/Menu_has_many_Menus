@@ -41,8 +41,8 @@ module Converter
   def self.set_msr_name(attr = {})
     name = ''
     measurement = attr[:m].to_s.downcase.singularize.gsub(/[<>]/, "")
+    VOL_NAMES.each { |k, v| v.include?(measurement) ? name = k.to_s : name }
     WGT_NAMES.each { |k, v| v.include?(measurement) ? name = k.to_s : name }
-    VOL_NAMES.each { |k, v| v.include?(name) ? name = k.to_s : name }
     name = measurement if name.blank?
     name
   end

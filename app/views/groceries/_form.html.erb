@@ -20,8 +20,8 @@
 
           <%= fields.label "", for: "grocery_#{n}_list_add", class:"g-list-item__action"  %>
           <%= fields.label ingredient['food'], for: "grocery_#{n}_list_add", class:"g-list-item__name"  %>
-
           <%= fields.hidden_field :name, value: ingredient['food']%>
+
           <% if ingredient['foodCategory'].present? %>
             <%= fields.label ingredient['foodCategory'], for: "grocery_#{n}_list_add", class:"g-list-item__category" %>
             <%= fields.hidden_field :category, value: ingredient['foodCategory'] %>
@@ -37,6 +37,11 @@
             <% m = Converter.set_msr_name(m: ingredient['measure']) %>
             <%= fields.label m, for: "grocery_#{n}_list_add", class: "g-list-item__measurement"   %>
             <%= fields.hidden_field :measurement, value: ingredient['measure'] %>
+            <% if Converter::VOL_NAMES.keys.include?(m.to_sym)  %>
+              <%= fields.hidden_field :base_vol_msr, value: Grocery::BASE_VOL_MSR %>
+            <% else %>
+              <%= fields.hidden_field :base_vol_msr, value: nil %>
+            <% end %>
 
           <% elsif ingredient['food'].include?('salt') || ingredient['food'].include?('pepper') %>
             <%= fields.label "", for: "grocery_#{n}_list_add", class: "g-list-item__quantity"  %>
@@ -49,13 +54,17 @@
             <%= fields.hidden_field :quantity, value: 0 %>
             <%= fields.label "", for: "grocery_#{n}_list_add",
                         class: "g-list-item__measurement"  %>
-            <%= fields.hidden_field :measurement, value: 0 %>
+            <%= fields.hidden_field :measurement, value: '0' %>
           <% end %>
+
+
 
 
 
           <%= fields.hidden_field :base_wgt_qty, value: ingredient['weight'] %>
           <%= fields.hidden_field :base_wgt_msr, value: Grocery::BASE_WGT_MSR %>
+
+
 
           <%= fields.hidden_field :course_ids, value: @course_ids %>
           <%= fields.hidden_field :household_id, value: @household.id %>

@@ -19,12 +19,16 @@
           <%= fields.check_box :list_add, checked: false, class: "toggle" %>
           <%= fields.label "", for: "product_#{n}_list_add", class:"g-list-item__action "  %>
 
-
           <%= fields.label item[:n], class:"g-list-item__name" %>
           <%= fields.label item[:cat].join(", "), class:"g-list-item__category" %>
 
-          <%= fields.label item[:q], class: "g-list-item__other-qty" %>
-          <%= fields.label item[:m], class:"g-list-item__other-msr" %>
+          <% if item[:base_vol_msr].blank? || item[:base_vol_msr].nil? %>
+            <%= fields.label item[:q], class: "g-list-item__other-qty" %>
+            <%= fields.label item[:m], class:"g-list-item__other-msr" %>
+          <% else %>
+            <%= fields.label item[:base_vol_qty], class: "g-list-item__other-qty" %>
+            <%= fields.label item[:base_vol_msr], class:"g-list-item__other-msr" %>
+          <% end %>
 
           <%= fields.label item[:base_wgt_qty], class: "g-list-item__wgt-qty" %>
           <%= fields.label item[:base_wgt_msr], class:"g-list-item__wgt-msr" %>
