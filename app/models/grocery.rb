@@ -18,21 +18,31 @@ class Grocery < ApplicationRecord
   end
 
   def self.grocery_hash(groceries)
-    ingredient_names = groceries.map { |g_item| g_item.name.singularize.downcase }.uniq
-    grocery_list_names = []
-    ingredient_names.each_with_index do |name, index|
-      grocery_list_names[index] = {}
-      grocery_list_names[index][:n] = name.singularize.downcase
-      grocery_list_names[index][:g_ids] = []
+    # ingredient_names = groceries.map { |g_item| g_item.name.singularize.downcase }.uniq
+    # grocery_list_names = []
+    food_ids = groceries.map { |g_item| g_item.food_id }.uniq
+    g_list_food_ids = []
+    food_ids.each_with_index do |id, index|
+      g_list_food_ids[index] = {}
+      g_list_food_ids[index][:food_id] = id
+      g_list_food_ids[index][:g_ids] = []
     end
+    # ingredient_names.each_with_index do |name, index|
+    #   grocery_list_names[index] = {}
+    #   grocery_list_names[index][:n] = name.singularize.downcase
+    #   grocery_list_names[index][:g_ids] = []
+    # end
 
     groceries.each do |g|
-      name = g.name.singularize.downcase
-      g_item = grocery_list_names.detect { |i| i[:n] == name }
+      # name = g.name.singularize.downcase
+      # g_item = grocery_list_names.detect { |i| i[:n] == name }
+      food_id = g.food_id
+      g_item = g_list_food_ids.detect { |i| i[:food_id] == food_id }
       g_item[:g_ids].push(g.id.to_s)
     end
 
-    grocery_list_names
+    # grocery_list_names
+    g_list_food_ids
   end
 
   def self.grocery_list(attrs = {} )
@@ -51,9 +61,13 @@ class Grocery < ApplicationRecord
 
 
       g_items_per_recipe.each do |g_item|
-        name = g_item.name
-        unless grocery_list.detect { |list_item| list_item[:n] == name }.nil?
-          list_item = grocery_list.detect { |item| item[:n] == name }
+        # name = g_item.name
+        # unless grocery_list.detect { |list_item| list_item[:n] == name }.nil?
+        food_id = g_item.food_id
+        unless grocery_list.detect { |list_item| list_item[:food_id] == food_id }.nil?
+          list_item = grocery_list.detect { |item| item[:food_id] == food_id }
+
+          list_item[:n] = g_item.name.singularize.downcase if list_item[:n].nil?
 
           list_item[:cat] = []
           list_item[:cat].push(g_item.category) unless list_item[:cat].include?(g_item.category)
