@@ -17,7 +17,7 @@
 
       <% n += 1 %>
       <%= fields_for 'grocery'+[n].to_s do |fields| %>
-        <div class="g-list-item g-list-item--light">
+        <div class="g-list-item g-list-item--light-on-dark">
           <%= fields.check_box :list_add, checked: true, class: "toggle" %>
 
           <%= fields.label "", for: "grocery_#{n}_list_add", class:"g-list-item__action"  %>

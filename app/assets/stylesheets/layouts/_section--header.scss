@@ -39,4 +39,9 @@
   grid-template-rows: auto;
   grid-template-areas: "banner";
   padding: var(--space-m);
+
+  h1, h2, h3  {
+    color: var(--color-pearl);
+    margin: 0;
+  }
 }
