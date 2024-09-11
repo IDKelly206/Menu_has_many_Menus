@@ -8,8 +8,8 @@
           <%= fields.label item[:n], class:"g-list-item__name" %>
           <%= fields.label item[:cat].join(", "), class:"g-list-item__category" %>
 
-          <%= fields.label item[:q], class: "g-list-item__quantity" %>
-          <%= fields.label item[:m], class:"g-list-item__measurement" %>
+          <%= fields.label item[:q], class: "g-list-item___default-qty" %>
+          <%= fields.label item[:m], class:"g-list-item__default-msr" %>
 
           <%= fields.hidden_field :g_ids, for: "product_#{n}_g_ids", multiple: true, value: item[:g_ids] %>
         </div>

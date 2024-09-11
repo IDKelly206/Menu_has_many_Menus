@@ -20,6 +20,9 @@
     align-items: center;
     gap: var(--space-xs);
     padding: 0 5px;
+
+    text-transform: uppercase;
+
   }
 
   &__content {
@@ -46,14 +49,6 @@
   grid-column: 1 / 13;
   grid-template-columns: subgrid;
   box-sizing: border-box;
-  // gap: var(--space-xs);
-  // grid-template-columns: repeat(6, auto);
-
-  // display: contents;
-
-  // display: flex;
-  // align-items: start;
-  // flex-flow: row wrap;
 
   &--light {
     color: var(--color-onyx);
@@ -63,72 +58,62 @@
     box-shadow: var(--shadow-small-dark);
   }
 
-  // > * {
-  //   margin-bottom: 0;
-  // }
+
+  > * {
+    overflow: hidden;
+    white-space: nowrap;
+  }
 
   &__action {
     grid-column: 1;
-    // display: flex;
-    // justify-content: center;
-    // align-items: center;
-    // order: -1;
-    // flex: 0 0 2.5rem;
   }
 
   &__name {
     grid-column:  2 / 6;
-    // flex: 1 1 auto;
     font-weight: bold;
-    white-space: nowrap;
-    overflow: hidden;
   }
 
   &__category {
     grid-column: 6 / 9;
-    // flex: 1 0 9rem;
-    // display: flex;
-    white-space: nowrap;
-    overflow: hidden;
+
   }
 
-  &__quantity {
+  &__qty,
+  &__msr {
+    text-align: center;
+  }
+
+  &__default-qty {
     grid-column: 9 / 11;
-    white-space: nowrap;
-    overflow: hidden;
-    // text-align: end;
   }
 
-  &__measurement {
+  &__default-msr {
     grid-column: 11 / 13;
-    white-space: nowrap;
-    overflow: hidden;
   }
 
-  &__other-qty {
+  &__other-qty,
+  &__vol-qty {
     grid-column: 9 / 10;
-    white-space: nowrap;
-    overflow: hidden;
-    // text-align: end;
+    text-align: end;
   }
 
-  &__other-msr {
+  &__other-msr,
+  &__vol-msr {
     grid-column: 10 / 11;
-    white-space: nowrap;
-    overflow: hidden;
+    text-align: center;
+    text-transform: lowercase;
   }
+
 
   &__wgt-qty {
     grid-column: 11 / 12;
-    white-space: nowrap;
-    // text-align: end;
+    text-align: end;
   }
 
   &__wgt-msr {
     grid-column: 12 / 13;
-    white-space: nowrap;
-    overflow: hidden;
-
+    text-align: center;
+    text-transform: lowercase;
   }
 
 }

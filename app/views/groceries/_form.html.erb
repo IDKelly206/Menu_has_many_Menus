@@ -5,14 +5,16 @@
       <div class="g-list-item__actions"></div>
       <div class="g-list-item__name">Name</div>
       <div class="g-list-item__category">Category</div>
-      <div class="g-list-item__quantity">Qty</div>
-      <div class="g-list-item__measurement">Msr</div>
+      <div class="g-list-item__qty g-list-item__default-qty">Qty</div>
+      <div class="g-list-item__msr g-list-item__default-msr">Msr</div>
     </div>
   </div>
 
   <div class="grocery-list__content">
     <% n = 0 %>
-    <% @recipe.ingredients.each do |ingredient| %>
+    <% ingredients = @recipe.ingredients.sort_by! { |item| [item['foodCategory'], item['food']] } %>
+    <% ingredients.each do |ingredient| %>
+
       <% n += 1 %>
       <%= fields_for 'grocery'+[n].to_s do |fields| %>
         <div class="g-list-item g-list-item--light">
@@ -32,10 +34,10 @@
 
 
           <% if  ingredient['measure'].present?  %>
-            <%= fields.label ingredient['quantity'].round(2), for: "grocery_#{n}_list_add", class: "g-list-item__quantity"  %>
+            <%= fields.label ingredient['quantity'].round(2), for: "grocery_#{n}_list_add", class: "g-list-item__qty g-list-item__default-qty"  %>
             <%= fields.hidden_field :quantity, value: ingredient['quantity'] %>
             <% m = Converter.set_msr_name(m: ingredient['measure']) %>
-            <%= fields.label m, for: "grocery_#{n}_list_add", class: "g-list-item__measurement"   %>
+            <%= fields.label m, for: "grocery_#{n}_list_add", class: "g-list-item__msr g-list-item__default-msr"   %>
             <%= fields.hidden_field :measurement, value: ingredient['measure'] %>
             <% if Converter::VOL_NAMES.keys.include?(m.to_sym)  %>
               <%= fields.hidden_field :base_vol_msr, value: Grocery::BASE_VOL_MSR %>
@@ -44,16 +46,16 @@
             <% end %>
 
           <% elsif ingredient['food'].include?('salt') || ingredient['food'].include?('pepper') %>
-            <%= fields.label "", for: "grocery_#{n}_list_add", class: "g-list-item__quantity"  %>
+            <%= fields.label "", for: "grocery_#{n}_list_add", class: "g-list-item__qty g-list-item__default-qty"  %>
             <%= fields.hidden_field :quantity, value: 0.0625 %>
             <%= fields.label 'pinch', for: "grocery_#{n}_list_add",
-                        class: "g-list-item__measurement"   %>
+                        class: "g-list-item__msr g-list-item__default-msr"   %>
             <%= fields.hidden_field :measurement, value: 'tsp' %>
           <% else %>
-            <%= fields.label "", for: "grocery_#{n}_list_add", class: "g-list-item__quantity"  %>
+            <%= fields.label "", for: "grocery_#{n}_list_add", class: "g-list-item__qty g-list-item__default-qty"  %>
             <%= fields.hidden_field :quantity, value: 0 %>
             <%= fields.label "", for: "grocery_#{n}_list_add",
-                        class: "g-list-item__measurement"  %>
+                        class: "g-list-item__msr g-list-item__default-msr"  %>
             <%= fields.hidden_field :measurement, value: '0' %>
           <% end %>
 

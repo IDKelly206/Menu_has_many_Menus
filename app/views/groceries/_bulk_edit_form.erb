@@ -4,10 +4,10 @@
       <div class="g-list-item__actions"></div>
       <div class="g-list-item__name">Name</div>
       <div class="g-list-item__category">Category</div>
-      <div class="g-list-item__other-qty">Qty</div>
-      <div class="g-list-item__other-msr">Msr</div>
-      <div class="g-list-item__wgt-qty">Qty</div>
-      <div class="g-list-item__qft-msr">Msr</div>
+      <div class="g-list-item__qty">Qty</div>
+      <div class="g-list-item__msr">Msr</div>
+      <div class="g-list-item__qty">Qty</div>
+      <div class="g-list-item__msr">Msr</div>
     </div>
   </div>
   <div class="grocery-list__content">
@@ -26,8 +26,8 @@
             <%= fields.label item[:q], class: "g-list-item__other-qty" %>
             <%= fields.label item[:m], class:"g-list-item__other-msr" %>
           <% else %>
-            <%= fields.label item[:base_vol_qty], class: "g-list-item__other-qty" %>
-            <%= fields.label item[:base_vol_msr], class:"g-list-item__other-msr" %>
+            <%= fields.label item[:base_vol_qty], class: "g-list-item__vol-qty" %>
+            <%= fields.label item[:base_vol_msr], class:"g-list-item__vol-msr" %>
           <% end %>
 
           <%= fields.label item[:base_wgt_qty], class: "g-list-item__wgt-qty" %>
