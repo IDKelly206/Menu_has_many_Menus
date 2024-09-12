@@ -10,14 +10,18 @@
       <div class="g-list-item__msr">Msr</div>
     </div>
   </div>
-  <div class="grocery-list__content grocery-list__content--light grocery-list__content--light-on-dark">
+  <div class="grocery-list__content grocery-list__content--light-on-dark"
+              data-controller="grocery-item">
     <% n = 0 %>
     <% groceries.each do |item| %>
       <% n += 1 %>
       <%= fields_for 'product'+[n].to_s do |fields| %>
-        <div class="g-list-item g-list-item--light-on-dark">
-          <%= fields.check_box :list_add, checked: false, class: "toggle" %>
-          <%= fields.label "", for: "product_#{n}_list_add", class:"g-list-item__action "  %>
+        <div class="g-list-item g-list-item--light-on-dark"
+             data-grocery-item-target="gItemList">
+          <%= fields.check_box :list_add, checked: false, class: "toggle",
+                      data: { action: "click->grocery-item#selectGListItem" } %>
+          <%= fields.label "", for: "product_#{n}_list_add", class:"g-list-item__action"
+            %>
 
           <%= fields.label item[:n], class:"g-list-item__name" %>
           <%= fields.label item[:cat].join(", "), class:"g-list-item__category" %>

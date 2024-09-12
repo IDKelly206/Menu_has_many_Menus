@@ -4,6 +4,7 @@ class Menu < ApplicationRecord
   belongs_to :household
 
   has_many :meals, dependent: :destroy
+  has_many :groceries
 
   validates :date, presence: true
 

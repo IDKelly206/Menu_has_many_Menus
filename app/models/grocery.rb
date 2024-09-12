@@ -1,11 +1,13 @@
 class Grocery < ApplicationRecord
   belongs_to :household
+  belongs_to :menu
   belongs_to :course
 
   validates :name, presence: true
   validates :quantity, presence: true
   validates :measurement, presence: true
   validates :erecipe_id, presence: true
+  validates :menu_id, presence: true
   validates :course_id, presence: true
 
   include Converter
@@ -92,7 +94,7 @@ class Grocery < ApplicationRecord
 
           if Converter::VOL_NAMES.keys.include?(g_item.measurement.to_sym) == Converter::WGT_NAMES.keys.include?(g_item.measurement.to_sym)
             list_item[:m] = g_item.measurement
-            list_item[:q] = g_item.quantity
+            list_item[:q] = g_item.quantity * ingredient_multiplier
           end
         end
       end

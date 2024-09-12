@@ -73,8 +73,9 @@
 
     &__border{
       background-color: var(--color-pearl);
-      border: var(--border-navbar);
-      border-bottom: var(--border-navbar-botton);
+      border-left: var(--border-navbar);
+      border-right: var(--border-navbar);
+      border-top: var(--border-navbar-top);
       border-top-left-radius: var(--border-radius);
       border-top-right-radius: var(--border-radius);
     }

@@ -8,11 +8,12 @@ export default class extends Controller {
 
   connect() {
     console.log("Course New Form controller")
-    // console.dir(this.courseRadioInputTargets)
+    console.dir(this.courseRadioInputTargets)
     this.setInitialSelection()
   }
 
   assignCourseType(event) {
+    console.log("Assign course type selection")
     let value = event.target.attributes["for"].value
     this.setCourseType(value)
   }
@@ -45,9 +46,9 @@ export default class extends Controller {
   newRecipesTargetConnected(target) {
     console.log("Set course form details for new recipes")
     const planner = document.getElementById("Meal Planner")
-    console.log(planner)
+    // console.log(planner)
     const value = planner.dataset.courseType
-    console.log(value)
+    // console.log(value)
     this.setCourseType(value)
     this.setMealIds()
   }

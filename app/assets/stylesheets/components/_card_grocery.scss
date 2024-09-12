@@ -66,10 +66,11 @@
   grid-template-columns: subgrid;
   box-sizing: border-box;
   font-size: var(--font-size-s);
-
+  padding: 1px;
 
   @include media(tabletAndUp) {
     font-size: var(--font-size-xl);
+    padding: 1px;
   }
 
   &--light {
@@ -77,21 +78,18 @@
     background-color: var(--color-white);
     border: var(--color-onyx) solid 1px;
     border-radius: var(--border-radius);
+
     box-shadow: var(--shadow-small-dark);
-
-    &-on-dark {
-      box-shadow: var(--shadow-small-light);
-
-    }
   }
 
-  // &--light-on-dark {
-  //   color: var(--color-onyx);
-  //   background-color: var(--color-white);
-  //   border: var(--color-pearl) solid 1px;
-  //   border-radius: var(--border-radius);
+  &--light-on-dark {
+    color: var(--color-onyx);
+    background-color: var(--color-white);
+    border: var(--color-onyx) solid 1px;
+    border-radius: var(--border-radius);
 
-  // }
+    box-shadow: var(--shadow-small-light);
+  }
 
   > * {
     overflow: hidden;
@@ -153,6 +151,10 @@
 
 }
 
-.grocery-list--contents {
+.g-list-item input[type=checkbox]:checked ~ div {
+  background-color: gray;
+}
+
+.list--contents {
   display: contents
 }

@@ -10,15 +10,17 @@
     </div>
   </div>
 
-  <div class="grocery-list__content">
+  <div class="grocery-list__content " data-controller="grocery-item">
     <% n = 0 %>
     <% ingredients = @recipe.ingredients.sort_by! { |item| [item['foodCategory'], item['food']] } %>
     <% ingredients.each do |ingredient| %>
 
       <% n += 1 %>
       <%= fields_for 'grocery'+[n].to_s do |fields| %>
-        <div class="g-list-item g-list-item--light">
-          <%= fields.check_box :list_add, checked: true, class: "toggle" %>
+        <div class="g-list-item g-list-item--light"
+             data-grocery-item-target="gItemNew">
+          <%= fields.check_box :list_add, checked: true, class: "toggle",
+                      data: { action: "click->grocery-item#selectGListItem" } %>
 
           <%= fields.label "", for: "grocery_#{n}_list_add", class:"g-list-item__action"  %>
           <%= fields.label ingredient['food'], for: "grocery_#{n}_list_add", class:"g-list-item__name"  %>

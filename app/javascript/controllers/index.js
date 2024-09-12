@@ -14,6 +14,9 @@ application.register("course-new-form", CourseNewFormController)
 import FetchRecipesTurboController from "./fetch_recipes_turbo_controller"
 application.register("fetch-recipes-turbo", FetchRecipesTurboController)
 
+import GroceryItemController from "./grocery_item_controller"
+application.register("grocery-item", GroceryItemController)
+
 import InfiniteScrollController from "./infinite_scroll_controller"
 application.register("infinite-scroll", InfiniteScrollController)
 
