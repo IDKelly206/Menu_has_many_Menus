@@ -1,14 +1,15 @@
 #modal {
-  width: 50vw;
-  max-width: 100%;
+  max-width: 50vw;
+  // max-width: 100%;
   position: fixed;
   z-index: 3;
   left: 25vw;
   top: 13vh;
 
   word-break: break-word;
+  border: var(--color-pearl solid var(--space-xxs));
   border-radius: var(--border-radius);
-  box-shadow: var(--shadow-large-dark);
+  box-shadow: var(--shadow-large-light);
   background: var(--color-onyx);
   // background: ;
 }
@@ -31,10 +32,9 @@
   }
 
   &__body{
-    padding: var(--space-s) var(--space-l);
+    // padding: var(--space-s) var(--space-l);
     max-height: 48vh;
     overflow: hidden;
-    // overflow-y: scroll;
 
     display: flex;
     flex-flow: column nowrap;

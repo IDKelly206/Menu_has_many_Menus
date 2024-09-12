@@ -12,6 +12,10 @@
 
   // background-color: var(--color-background);
 
+  &--dark {
+    background-color: var(--color-onyx);
+  }
+
   &__header {
     grid-area: g-list-header;
     display: inline-grid;
@@ -26,7 +30,6 @@
 
     &--light {
       color: var(--color-white);
-      background-color: var(--color-onyx);
     }
   }
 
@@ -45,14 +48,15 @@
 
     &--light {
       color: var(--color-white);
-      background-color: var(--color-onyx);
     }
   }
 
   &__footer {
     grid-area: g-list-footer;
     display: flex;
+    flex-flow: column nowrap;
     gap: var(--space-m);
+    padding: var(--space-s)
   }
 }
 
@@ -75,18 +79,19 @@
     border-radius: var(--border-radius);
     box-shadow: var(--shadow-small-dark);
 
+    &-on-dark {
+      box-shadow: var(--shadow-small-light);
+
+    }
   }
 
-  &--light-on-dark {
-    color: var(--color-onyx);
-    background-color: var(--color-white);
-    border: var(--color-pearl) solid 1px;
-    border-radius: var(--border-radius);
-    box-shadow: var(--shadow-small-light);
+  // &--light-on-dark {
+  //   color: var(--color-onyx);
+  //   background-color: var(--color-white);
+  //   border: var(--color-pearl) solid 1px;
+  //   border-radius: var(--border-radius);
 
-  }
-
-
+  // }
 
   > * {
     overflow: hidden;
