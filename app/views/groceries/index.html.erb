@@ -1,7 +1,11 @@
 <% provide(:title, "Grocery List") %>
 <div class="body body--grocery">
   <div class="section--header section--header-grocery">
-    <h1>Grocery List show page</h1>
+    <h1>Grocery List
+      <% unless @menus.empty? %>
+        for <%= @menus.first.day_of_week %> - <%= @menus.last.day_of_week %>
+      <% end %>
+    </h1>
   </div>
   <div class="section--cards section--cards-grocery section--cards-bg-checkered">
     <%= render "groceries/bulk_edit_form", groceries: @grocery_list  %>

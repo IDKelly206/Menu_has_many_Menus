@@ -5,6 +5,8 @@ class GroceriesController < ApplicationController
 
   def index
     groceries = Grocery.groceries(@household)
+    menu_ids = groceries.map { |g| g.menu_id }.uniq
+    @menus = menu_ids.map { |id| Menu.find(id) }
     grocery_list = Grocery.grocery_hash(groceries)
     recipe_ids = groceries.map { |g_item| g_item.erecipe_id }.uniq
     grocery_list = Grocery.grocery_list(groceries:, grocery_list:, recipe_ids:)
@@ -48,9 +50,9 @@ class GroceriesController < ApplicationController
     g_ids = []
     items.each do |_k, v|
       n = v["list_add"].to_i
-      g_ids.push(v["g_ids"].first) if n == 1
+      g_ids.push(v["g_ids"].first.split) if n == 1
     end
-
+    g_ids.flatten!
     Grocery.where(id: g_ids).update_all(list_add: value)
 
     redirect_to groceries_path

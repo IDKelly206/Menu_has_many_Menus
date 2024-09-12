@@ -35,9 +35,10 @@
 
 .section--header-grocery {
   display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: auto;
-  grid-template-areas: "banner";
+  // grid-template-columns: 1fr;
+  // grid-template-rows: auto;
+  // grid-template-areas: "banner";
+  justify-content: center;
   padding: var(--space-m);
 
   h1, h2, h3  {
