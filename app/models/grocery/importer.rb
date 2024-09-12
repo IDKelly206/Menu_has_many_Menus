@@ -8,6 +8,7 @@ class Grocery::Importer
   def initialize(grocery_params)
     @household = Household.find(grocery_params.fetch(:household_id).to_i)
     @courses = grocery_params.fetch(:course_ids).split.map { |id| Course.find(id) }
+    # @menus = grocery_params.fetch(:menu_ids).split.uniq.map { |id| Menu.find(id) }
 
     @name = grocery_params.fetch(:name).gsub(/[-()]/, " ").downcase.singularize
     @category = grocery_params.fetch(:category).downcase
@@ -47,6 +48,7 @@ class Grocery::Importer
         Grocery.create!(
           household: @household,
           course: course,
+          menu_id: course.meal.menu.id,
           name: @name,
           quantity: @quantity,
           measurement: @measurement,
@@ -67,6 +69,7 @@ class Grocery::Importer
   def validate_params!
     raise "Invalid params" unless @household.present?
     raise "Invalid params" unless @courses.present?
+    # raise "Invalid params" unless @menus.present?
     raise "Invalid params" unless @name.present?
     raise "Invalid params" unless @quantity.present?
     raise "Invalid params" unless @measurement.present?

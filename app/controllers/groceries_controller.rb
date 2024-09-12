@@ -60,7 +60,7 @@ class GroceriesController < ApplicationController
 
   def grocery_params
     params.permit(:household_id, :course_id, :erecipe_id, :erecipe_servings,
-                  :name, :category, :quantity, :measurement, :list_add, :food_id,
+                  :food_id, :name, :category, :quantity, :measurement, :list_add,
                   :base_vol_msr, :base_wgt_qty, :base_wgt_msr)
   end
 
