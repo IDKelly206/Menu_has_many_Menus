@@ -14,4 +14,38 @@ class Course < ApplicationRecord
     "desserts",
     "drinks"
   ]
+
+  meal_types = [
+    'breakfast',
+    'brunch',
+    'lunch/dinner',
+    'snack'
+  ]
+
+  dish_types = [
+    'alcohol cocktail',
+    'biscuits and cookies',
+    'bread',
+    'cereals',
+    'condiments and sauces',
+    'desserts',
+    'drinks',
+    'egg',
+    'ice cream and custard',
+    'main course',
+    'pancake',
+    'pasta',
+    'pastry',
+    'pies and tarts',
+    'pizza',
+    'preps',
+    'preserve',
+    'salad',
+    'sandwiches',
+    'seafood',
+    'side dish',
+    'special occasions',
+    'starter',
+    'sweets'
+  ]
 end

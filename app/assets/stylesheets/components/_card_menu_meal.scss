@@ -6,6 +6,8 @@
   border: var(--border-muted);
   border-radius: var(--border-radius);
   background-color: var(--color-onyx);
+  box-shadow: var(--shadow-small-light);
+
 
   &__header {
     display: flex;

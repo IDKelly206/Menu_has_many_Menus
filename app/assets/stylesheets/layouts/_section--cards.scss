@@ -66,7 +66,7 @@
   padding: var(--gutter) 0;
   display: grid;
   grid-gap: var(--gutter) 0;
-  grid-template-columns: var(--space-m) 1fr var(--space-m);
+  grid-template-columns: var(--gutter) 1fr var(--gutter);
   align-content: start;
   overflow-y: scroll;
 
@@ -83,10 +83,10 @@
 .card-rolodex--hs {
   display: grid;
   grid-gap: calc(var(--gutter) /2);
-  grid-template-columns: 10px;
+  grid-template-columns: var(--gutter);
   grid-template-rows: minmax(150px, 1fr);
   grid-auto-flow: column;
-  grid-auto-columns: calc(50% - var(--gutter) * 2);
+  // grid-auto-columns: calc(50% - var(--gutter) * 2);
   overflow-x: scroll;
   overflow-y: hidden;
 }

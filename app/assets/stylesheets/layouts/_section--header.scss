@@ -49,4 +49,6 @@
 
 .section--header-menu {
   display: grid;
+  justify-content: start;
+  padding: var(--space-s);
 }
