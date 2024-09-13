@@ -1,6 +1,6 @@
 .card-course {
   display: grid;
-  grid-template-columns: auto 1fr auto;
+  grid-template-columns: 100px 1fr auto;
   grid-template-rows: 100px;
   grid-template-areas: "header details action";
   justify-content: space-between;

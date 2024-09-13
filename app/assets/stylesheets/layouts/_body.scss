@@ -38,7 +38,13 @@
 
 
 .body--menu {
-
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto 1fr;
+  grid-template-areas:
+    "sec-header"
+    "cards"
+    ".";
 }
 
 .body--grocery {
