@@ -12,7 +12,7 @@ class GroceriesController < ApplicationController
     grocery_list = Grocery.grocery_list(groceries:, grocery_list:, recipe_ids:)
     # @grocery_list = grocery_list
     @grocery_list = grocery_list.sort_by! { |item| [item[:cat], item[:n]] }
-    console
+
   end
 
   def new
@@ -26,7 +26,7 @@ class GroceriesController < ApplicationController
     @erecipe_id = @courses.first.erecipe_id
     @recipe = Edamam::EdamamRecipe.find(@erecipe_id)
 
-    console
+
   end
 
   def create

@@ -22,7 +22,7 @@ class PlannersController < ApplicationController
       @next_page = results[:next_page]
     end
 
-    console
+
   end
 
   def new

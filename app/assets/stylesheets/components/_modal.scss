@@ -1,10 +1,17 @@
 #modal {
   max-width: 50vw;
   // max-width: 100%;
-  position: fixed;
+  // position: fixed;
   z-index: 3;
-  left: 25vw;
+  // left: 25vw;
   top: 13vh;
+  position: absolute;
+  left: 0;
+  right: 0;
+  // bottom: 0;
+  // top: 0;
+  margin: 0 auto;
+
 
   word-break: break-word;
   border: var(--color-pearl solid var(--space-xxs));
@@ -22,6 +29,7 @@
   margin: var(--space-l);
 
   background: var(--color-pearl);
+  border: 1px solid var(--color-white);
 
   &__header{
     padding: var(--space-s) var(--space-l);

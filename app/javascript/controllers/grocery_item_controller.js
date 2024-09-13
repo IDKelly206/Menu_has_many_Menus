@@ -17,28 +17,10 @@ export default class extends Controller {
 
   selectGListItem(event) {
     console.log("gList Item event")
-    console.log(event.target)
-    console.dir(event.target)
-    // console.log(event.target.checked.value)
-    // console.dir(event.target.parentElement.style["background"])
+    // console.log(event.target)
+    // console.dir(event.target)
+
     const element = event.target
-    // console.log(event.target.parentElement.dataset.groceryItemTarget)
-    // if (element.parentElement.dataset.groceryItemTarget == 'gItemNew') {
-    //   if (element.checked == true) {
-    //     event.target.parentElement.style["background"] = 'gray';
-    //     } else {
-    //     event.target.parentElement.style["background"] = '';
-    //   }
-
-    //   else {
-    //   if (element.checked == false) {
-    //     event.target.parentElement.style["background"] = 'gray';
-    //     } else {
-    //     event.target.parentElement.style["background"] = '';
-    //     }
-    //   }
-    // }
-
     if (element.checked == true) {
       if (element.parentElement.dataset.groceryItemTarget == 'gItemList') {
         event.target.parentElement.style["background"] = 'gray';
@@ -55,22 +37,6 @@ export default class extends Controller {
         event.target.parentElement.style["background"] = 'gray';
       }
     }
-
-
-    // if equals gItemNew
-
-    // console.log(event.target.checked)
-    // if true <below>= gray
-    // console.log(event.target.parentElement.style["background"])
-    // else = ""
-
-
-
-
-
-    // this.gItemListTargets.forEach((item) => {
-    //   console.log(item.children)
-    // })
   }
 
 }

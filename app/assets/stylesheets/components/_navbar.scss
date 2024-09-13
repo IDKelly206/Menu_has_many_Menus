@@ -17,6 +17,7 @@
       list-style: none;
       padding: 0;
       margin: 0;
+      gap: 2px;
     }
 
     &__brand, &__dropdown {
@@ -86,8 +87,8 @@
       }
       color: var(--color-pearl);
       background-color: var(--color-onyx);
-      border: var(--border-frame);
-      border-bottom: var(--border-navbar-botom);
+      border-top: var(--border-frame);
+      // border-bottom: var(--border-navbar-botom);
       border-top-left-radius: var(--border-radius);
       border-top-right-radius: var(--border-radius);
     }

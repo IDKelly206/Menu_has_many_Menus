@@ -8,7 +8,8 @@
     "g-list-footer";
 
   overflow: hidden;
-  // gap: var(--space-xs);
+  padding: 0 var(--space-m);
+  gap: var(--space-s);
 
   // background-color: var(--color-background);
 
@@ -22,8 +23,8 @@
     grid-template-columns: 50px repeat(11, 1fr);
     grid-auto-rows: max-content;
     align-items: center;
+    // padding: 0 var(--space-m);
     gap: var(--space-xs);
-    padding: 0 var(--space-m);
 
     text-transform: uppercase;
     font-weight: bold;
@@ -40,8 +41,8 @@
     grid-template-columns: 50px repeat(11, 1fr);
     grid-auto-rows: max-content;
     align-items: center;
+    padding: var(--space-s) 0;
     gap: var(--space-s);
-    padding: var(--space-m);
     overflow-y: scroll;
     border-top: var(--border-muted);
     border-bottom: var(--border-muted);
@@ -55,8 +56,8 @@
     grid-area: g-list-footer;
     display: flex;
     flex-flow: column nowrap;
+    padding-bottom: var(--space-xs);
     gap: var(--space-m);
-    padding: var(--space-s)
   }
 }
 
