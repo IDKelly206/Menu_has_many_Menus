@@ -6,6 +6,7 @@
 .toggle + label {
   position: relative;
   display: inline-block;
+  min-height: 100%;
 }
 
 .toggle + label::before {

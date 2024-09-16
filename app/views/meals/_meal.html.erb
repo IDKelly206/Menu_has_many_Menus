@@ -7,6 +7,10 @@
     <% end %>
   </div>
   <div class="card-menu-meal-course__body">
+
+  <%= turbo_frame_tag id="planner_courses", class: "sidebar__courses",
+          src: courses_path(meal_ids: @meal_ids) %>
+
   <%# Go through each course (@courses) and match course_type & render card %>
     <% @course_types.each do |course_type| %>
       <div class="course-item">

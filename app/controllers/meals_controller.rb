@@ -8,10 +8,12 @@ class MealsController < ApplicationController
 
 
   def show
+    @meal_ids = []
+    @meal_ids.push(@meal.id.to_s)
     @courses = @meal.courses
     @recipes = @courses.map { |course| Edamam::EdamamRecipe.find(course.erecipe_id) }
 
-    
+    console
   end
 
   private

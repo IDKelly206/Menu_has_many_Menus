@@ -20,8 +20,7 @@
              data-grocery-item-target="gItemList">
           <%= fields.check_box :list_add, checked: false, class: "toggle",
                       data: { action: "click->grocery-item#selectGListItem" } %>
-          <%= fields.label "", for: "product_#{n}_list_add", class:"g-list-item__action"
-            %>
+          <%= fields.label "", for: "product_#{n}_list_add", class:"g-list-item__action" %>
 
           <%= fields.label item[:n], class:"g-list-item__name" %>
           <%= fields.label item[:cat].join(", "), class:"g-list-item__category" %>

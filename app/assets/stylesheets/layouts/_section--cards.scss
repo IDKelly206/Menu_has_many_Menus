@@ -89,6 +89,7 @@
   // grid-auto-columns: calc(50% - var(--gutter) * 2);
   overflow-x: scroll;
   overflow-y: hidden;
+  padding: var(--gutter) 0;
 }
 
 .card-rolodex--hs:before,
@@ -112,6 +113,16 @@
     --minsize: calc((100% / (var(--num-cards) + 1)) + 0.1%);
 
     grid-template-columns: repeat(auto-fit, minmax(var(--minsize), 1fr));
+  }
+
+  .no-scrollbar {
+    scrollbar-width: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
   }
 
 

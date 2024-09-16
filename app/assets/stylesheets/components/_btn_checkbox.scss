@@ -12,7 +12,7 @@
 }
 
 .check_box + label {
-  cursor: pointer;
+  cursor: pointer !important;
   display: inline-block;
   background-origin: border-box; // Invisible borders with linear gradients
   text-decoration: none;
