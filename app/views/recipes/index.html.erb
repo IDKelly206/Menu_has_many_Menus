@@ -1,8 +1,7 @@
 <%- title "Recipes" %>
 <div class="body body--recipes"
       id="<%= yield(:title) %>"
-      data-controller="recipe-search-filter"
->
+      data-controller="recipe-search-filter">
   <%= render 'shared/searchbar' %>
   <%= render 'shared/sidebar' %>
   <%= render "recipes", recipes: @recipes, locals: { title: yield(:title) } %>

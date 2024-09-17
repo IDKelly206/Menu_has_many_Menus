@@ -6,7 +6,6 @@ class Meal < ApplicationRecord
 
   validates :meal_type, presence: true
 
-
   MEAL_TYPES = [
     "breakfast",
     "lunch",

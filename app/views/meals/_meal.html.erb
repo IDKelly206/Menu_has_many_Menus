@@ -9,30 +9,8 @@
   <div class="card-menu-meal-course__body">
 
   <%= turbo_frame_tag id="planner_courses", class: "sidebar__courses",
-          src: courses_path(meal_ids: @meal_ids) %>
+          src: courses_path(meal_ids: [@meal.id]) %>
 
   <%# Go through each course (@courses) and match course_type & render card %>
-    <% @course_types.each do |course_type| %>
-      <div class="course-item">
-        <div class="card-course__action">
-          <%= link_to planners_path(
-                    meal_ids: [@meal.id],
-                    course_type: course_type),
-                    data: { turbo_frame: "_top" },
-                    class: "btn" do %>
-            <i class="fa-solid fa-circle-plus"></i>
-          <% end %>
-        </div>
-        <div class="card=course__details">
-          <h6><%= course_type.capitalize %>s:</h6>
-        </div>
-      </div>
-        <% unless @meal.courses.find_by(course_type: course_type).nil? %>
-          <%= render @meal.courses.select { |course| course.course_type == course_type },
-                              meal: @meal,
-                              recipes: @recipes %>
-        <% else %>
-        <% end %>
-    <% end %>
   </div>
 </div>

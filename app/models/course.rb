@@ -6,21 +6,22 @@ class Course < ApplicationRecord
   validates :course_type, presence: true
   validates :meal_id, presence: true
 
-  COURSE_TYPES = [
-    "starter",
-    "soup",
-    "salad",
-    "main course",
-    "desserts",
-    "drinks"
-  ]
+  COURSE_TYPES = ['main', 'starter', 'side']
 
-  meal_types = [
-    'breakfast',
-    'brunch',
-    'lunch/dinner',
-    'snack'
-  ]
+  DISH_TYPES = {
+    main: ['main course', 'egg', 'salad', 'soup'],
+    starter: ['starter', 'pancake', 'salad', 'soup'],
+    side: ['alcohol cocktail',
+           'biscuits and cookies',
+           'bread',
+           'cereals',
+           'condiments and sauces',
+           'desserts',
+           'preserve',
+           'salad',
+           'sandwich',
+           'special occasions']
+  }
 
   dish_types = [
     'alcohol cocktail',
@@ -44,6 +45,7 @@ class Course < ApplicationRecord
     'sandwiches',
     'seafood',
     'side dish',
+    'soup',
     'special occasions',
     'starter',
     'sweets'

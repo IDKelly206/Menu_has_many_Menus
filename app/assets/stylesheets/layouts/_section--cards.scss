@@ -63,7 +63,7 @@
 }
 
 .section--cards-menus {
-  padding: var(--gutter) 0;
+  padding: var(--space-m) 0;
   display: grid;
   grid-gap: var(--gutter) 0;
   grid-template-columns: var(--gutter) 1fr var(--gutter);
@@ -89,7 +89,7 @@
   // grid-auto-columns: calc(50% - var(--gutter) * 2);
   overflow-x: scroll;
   overflow-y: hidden;
-  padding: var(--gutter) 0;
+  // padding: var(--gutter) 0;
 }
 
 .card-rolodex--hs:before,

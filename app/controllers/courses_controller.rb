@@ -8,7 +8,8 @@ class CoursesController < ApplicationController
 
   def index
     course_groups = []
-    @meals = params[:meal_ids].map { |id| Meal.find(id) }
+    @meal_ids = params[:meal_ids]
+    @meals = params[:meal_ids].map { |id| Meal.find(id) }.flatten
     @meals.each { |meal| course_groups.push(meal.courses.map { |course| Course.find(course.id) }) }
     courses_all = course_groups.flatten
     courses_of_meals = {}

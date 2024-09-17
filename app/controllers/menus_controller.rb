@@ -7,6 +7,8 @@ class MenusController < ApplicationController
 
   def index
     @menus = Menu.create_menus(@household).ordered
+
+    console
   end
 
   def show_meal

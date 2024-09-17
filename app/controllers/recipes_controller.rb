@@ -14,7 +14,9 @@ class RecipesController < ApplicationController
         @next_page = results[:next_page]
       end
     else
-      s = { query: ["egg"], filters: { mealType: 'lunch', dishType: 'main course' } }
+      s = { query: ["peach"],
+            filters: { "mealType" => "", "dishType" => "" }
+          }
       results = Edamam::EdamamRecipe.search(s[:query], s[:filters])
       if results.keys.include?(:Status)
         redirect_to root_path, notice: "Recipe API error: " + @results
@@ -23,14 +25,21 @@ class RecipesController < ApplicationController
         @next_page = results[:next_page]
       end
     end
-
   end
 
   def show
   end
 
   def recipe_search
-    results = Edamam::EdamamRecipe.search(params[:query], params[:filters])
+    query = params[:query]
+    filters = params[:filters]
+      unless filters["dishType"].empty?
+        course_type = filters['dishType']
+        dish_types = Course::DISH_TYPES[course_type.to_sym]
+        filters["dishType"] = dish_types
+      end
+    filters
+    results = Edamam::EdamamRecipe.search(query, filters)
     if results.keys.include?(:Status)
       redirect_to root_path, notice: "Recipe API error: " + @results
     else

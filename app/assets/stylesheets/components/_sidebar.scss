@@ -108,8 +108,9 @@
     border: var(--border-frame);
 
     .course-title {
-      display: block;
+      display: inline-flex;
       flex: 1 1 0;
+      align-items: center;
       // padding-left: var(--space-xs);
       h4 {
         color: var(--color-onyx);

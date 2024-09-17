@@ -1,13 +1,22 @@
-<% href = @next_page[:links][:href] %>
-<% count = @next_page[:count] %>
-<% total = @next_page[:total] %>
+<% if @next_page[:links].nil? %>
+  <% href = "" %>
+  <% count = "" %>
+  <% total = "" %>
+<% else %>
+  <% href = @next_page[:links][:href] %>
+  <% count = @next_page[:count] %>
+  <% total = @next_page[:total] %>
+<% end %>
+
 <% yield(:title).blank? ? title = title : title = yield(:title) %>
 <div id="load_more" >
-  <div class="load_recipes">
-     <%= link_to "", fetch_recipe_search_path(total, href: href, count: count, title: title),
-          class: "",
-          data: { turbo_method: :post,
-                  target: 'infinite-scroll.pagination' }   %>
-  </div>
+
+    <div class="load_recipes">
+      <%= link_to "", fetch_recipe_search_path(total, href: href, count: count, title: title),
+            class: "",
+            data: { turbo_method: :post,
+                    target: 'infinite-scroll.pagination' }   %>
+    </div>
+
   <div data-course-new-form-target="newRecipes"></div>
 </div>
