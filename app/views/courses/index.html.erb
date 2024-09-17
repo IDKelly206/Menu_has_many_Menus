@@ -1,22 +1,13 @@
 <%- title "Course Index" %>
 
+<div class="body">
 
-
-<%= turbo_frame_tag "planner_courses", class: "sidebar__courses" do %>
-    <div class="header">
-      <h3>Selected Courses:</h3>
-    </div>
+<%= turbo_frame_tag "courses", class: "sidebar__courses" do %>
     <% unless @course_recipes.nil? %>
       <% @course_types.each do |course_type| %>
         <div class="course-type">
           <span class="course-title">
-            <%= link_to planners_path(
-                      meal_ids: [@meal_ids],
-                      course_type: course_type),
-                      data: { turbo_frame: "_top" },
-                      class: "btn" do %>
-              <i class="fa-solid fa-circle-plus"></i>
-            <% end %>
+
             <h4><%= course_type.capitalize.pluralize %>:</h4>
           </span>
           <div class="list">
@@ -28,3 +19,4 @@
       <% end %>
     <% end %>
 <% end %>
+</div>

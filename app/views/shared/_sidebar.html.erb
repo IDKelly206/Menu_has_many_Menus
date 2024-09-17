@@ -26,7 +26,9 @@
           <div class="filtered__title filtered__title-light">
             <h3>Select courses for <%= @users.count * @menus.count %> Servings of</h3>
           </div>
-          <ul class="filtered__list"><%= filter_types(type: @meal_type)  %></ul>
+          <ul class="filtered__list">
+            <%= filter_types(type: @meal_type) %>
+          </ul>
           <ul class="filtered__list">
             <%= select_radio_course_types(course_types: @course_types)  %>
           </ul>
@@ -35,10 +37,16 @@
           <div id="refreshCourses"></div>
         </div>
       </div>
-      <%= turbo_frame_tag id="planner_courses", class: "sidebar__courses",
-                    src: courses_path(meal_ids: @meal_ids),
-                    data: { refresh_frame_target: "plannerCourses" } %>
+      <div class="sidebar__courses">
+         <div class="header">
+          <h3>Selected Courses:</h3>
+        </div>
+        <%= turbo_frame_tag id="courses", class: "sidebar__courses",
+                      src: courses_path(meal_ids: @meal_ids),
+                      data: { refresh_frame_target: "plannerCourses" } %>
+      </div>
     <% end %>
+
 
 
     <% if title == "Recipes" %>

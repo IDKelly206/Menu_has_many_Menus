@@ -126,7 +126,11 @@
   }
 
 
-  // &--5 {
+.load_recipes {
+  height: 0;
+}
+
+  // &--repeat-5 {
 
   //   repeat(auto-fill,
   //   minmax(clamp(
@@ -159,8 +163,4 @@
   // padding: var(--space-s) var(--space-m) ;
   // gap: var(--space-m);
 
-}
-
-.load_recipes {
-  height: 0;
 }

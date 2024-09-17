@@ -7,21 +7,12 @@
       <%= link_to recipe.label, recipe_path(recipe.erecipe_id), :target => '_blank', class: "card-course__recipe-title" %>
   </div>
   <div class="card-course__action">
-    <% if @meal.present?  %>
-      <%= link_to "",
-                    planners_path(meal_ids: [@meal.id], course_type: course.course_type),
-                    class: "btn fa-solid fa-pen-to-square",
-                    target: :_top %>
-      <%= button_to "",
-                    [@menu, @meal, course],
-                    method: :delete,
-                    class: "btn fa-solid fa-circle-minus" %>
-    <% else %>
+
       <%= button_to "",
                     multi_destroy_courses_path(course_ids: recipe_keyes[course.erecipe_id],
                                                meal_ids: @meal_ids),
                     method: :delete,
                     class: "btn fa-solid fa-circle-minus" %>
-    <% end %>
+
   </div>
 </div>

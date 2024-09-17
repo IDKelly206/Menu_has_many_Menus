@@ -93,8 +93,9 @@ class Grocery < ApplicationRecord
           list_item[:q] += g_item.quantity * ingredient_multiplier if list_item[:m] == g_item.measurement
 
           if Converter::VOL_NAMES.keys.include?(g_item.measurement.to_sym) == Converter::WGT_NAMES.keys.include?(g_item.measurement.to_sym)
-            list_item[:m] = g_item.measurement
             list_item[:q] = g_item.quantity * ingredient_multiplier
+            list_item[:q] >= 2 ? list_item[:m] = g_item.measurement.pluralize : list_item[:m] = g_item.measurement
+            # list_item[:m] = g_item.measurement
           end
         end
       end

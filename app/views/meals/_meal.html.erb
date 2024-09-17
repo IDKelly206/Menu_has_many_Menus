@@ -1,6 +1,14 @@
 <div class= "card-menu-meal-course">
   <% @meal = meal %>
   <div class="card-menu-meal-course__header">
+
+
+    <%= link_to planners_path(
+              meal_ids: [@meal_ids]),
+              data: { turbo_frame: "_top" },
+              class: "btn" do %>
+      <i class="fa-solid fa-circle-plus"></i>
+    <% end %>
     <h4><%= User.find(@meal.user_id).name_first %></h4>
     <%= link_to menus_path do %>
       <i class="fa-regular fa-circle-xmark"></i>
@@ -8,8 +16,9 @@
   </div>
   <div class="card-menu-meal-course__body">
 
-  <%= turbo_frame_tag id="planner_courses", class: "sidebar__courses",
-          src: courses_path(meal_ids: [@meal.id]) %>
+  <%= turbo_frame_tag id="courses", class: "sidebar__courses",
+                src: courses_path(meal_ids: [@meal.id]),
+                data: { refresh_frame_target: "plannerCourses" } %>
 
   <%# Go through each course (@courses) and match course_type & render card %>
   </div>
