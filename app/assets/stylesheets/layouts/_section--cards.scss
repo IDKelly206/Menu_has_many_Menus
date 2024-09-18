@@ -79,6 +79,18 @@
   }
 }
 
+.section--cards-courses {
+
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  gap: var(--space-s);
+
+  // background-color: var(--color-white);
+  // padding: var(--space-xs) var(--space-s);
+
+}
+
 
 .card-rolodex--hs {
   display: grid;

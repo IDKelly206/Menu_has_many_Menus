@@ -1,0 +1,30 @@
+.card-course-type {
+  display: inline-flex;
+  flex-flow: column;
+  gap: var(--space-xxxs);
+  // flex: 1 1 1;
+  justify-content: flex-start;
+  // border: var(--border-frame);
+
+  &__title {
+    display: inline-flex;
+    flex: 1 1 0;
+    align-items: center;
+    // padding-left: var(--space-xs);
+    h4 {
+      color: var(--color-onyx);
+      margin: 0;
+      text-decoration: underline;
+    }
+  }
+
+  &__list {
+    .list {
+      display: flex;
+      flex-flow: column nowrap;
+      justify-content: space-around;
+      gap: var(--space-xs);
+      // background-color: var(--color-white);
+    }
+  }
+}

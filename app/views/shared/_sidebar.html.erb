@@ -37,13 +37,15 @@
           <div id="refreshCourses"></div>
         </div>
       </div>
-      <div class="sidebar__courses">
-         <div class="header">
+      <div class="sidebar__courses ">
+         <div class="sidebar__courses-header">
           <h3>Selected Courses:</h3>
         </div>
-        <%= turbo_frame_tag id="courses", class: "sidebar__courses",
-                      src: courses_path(meal_ids: @meal_ids),
-                      data: { refresh_frame_target: "plannerCourses" } %>
+        <div class="sidebar__courses-content">
+          <%= turbo_frame_tag id="courses", class: "section--cards-courses",
+                        src: courses_path(meal_ids: @meal_ids),
+                        data: { refresh_frame_target: "plannerCourses" } %>
+        </div>
       </div>
     <% end %>
 

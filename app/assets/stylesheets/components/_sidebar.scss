@@ -14,35 +14,6 @@
 
   &__filters {
     grid-area: filters;
-    // display: flex;
-    // // flex: 1 1 ;
-    // flex-flow: column nowrap;
-    // justify-content: flex-start;
-    // padding-bottom: var(--space-xs);
-
-    // .filters {
-    //   display: inline-flex;
-    //   flex-flow: column nowrap;
-    //   flex: 1 1 auto;
-    //   justify-content: flex-start;
-    //   gap: var(--space-xs);
-
-
-    //     // UL
-    //   .details {
-    //     display: flex;
-    //     flex: 0 0 0;
-    //     flex-flow: row wrap;
-    //     justify-content: flex-start;
-    //     list-style: none;
-    //     gap: var(--space-xs);
-    //     margin: 0;
-    //     padding: 0;
-    //   }
-    // }
-
-
-
   }
 
 
@@ -60,74 +31,30 @@
       align-self: center;
     }
   }
-
+// section-cards-courses
   &__courses {
-  grid-area: courses;
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: flex-start;
-  gap: var(--space-s);
+    grid-area: courses;
+    display: flex;
 
-  // border: var(--border-frame);
-  // border-radius: var(--border-radius);
-  background-color: var(--color-white);
-  padding: var(--space-xs) var(--space-s);
-
-  overflow: hidden;
-  overflow-y: scroll;
-
-  // Background patterns
-  $s: var(--space-xl);
-  $c1: var(--color-pearl);
-  $c2: var(--color-onyx);
-  // Checkered - parallel
-  // background:
-  //   repeating-conic-gradient(#{$c1} 0% 25%, transparent 0% 50%)
-  //     50% / #{$s $s};
-
-
-  .header {
-    display: inline-flex;
-    flex-flow: column;
-    flex: 1 1 1;
+    flex-flow: column nowrap;
     justify-content: flex-start;
-    background-color: transparent;
+    padding-bottom: var(--space-s);
+    background-color: var(--color-pearl);
+    border-radius: var(--border-radius);
 
-    h3 {
-      color: var(--color-onyx);
-      margin: 0;
-    }
+    overflow: hidden;
   }
 
-  .course-type {
-    display: inline-flex;
-    flex-flow: column;
-    gap: var(--space-xxxs);
-    // flex: 1 1 1;
-    justify-content: flex-start;
-    // border: var(--border-frame);
-
-    .course-title {
-      display: inline-flex;
-      flex: 1 1 0;
-      align-items: center;
-      // padding-left: var(--space-xs);
-      h4 {
-        color: var(--color-onyx);
-        margin: 0;
-        text-decoration: underline;
-      }
-    }
-
-    .list {
-      display: flex;
-      flex-flow: column nowrap;
-      justify-content: space-around;
-      gap: var(--space-xs);
-      // background-color: var(--color-white);
-    }
+  &__courses-header {
+    border-top-left-radius: inherit;
+    border-top-right-radius: inherit;
+    padding: 0 var(--space-m);
   }
-}
 
+  &__courses-content {
+    padding: var(--space-xs);
+    overflow: hidden;
+    overflow-y: scroll;
+  }
 
 }

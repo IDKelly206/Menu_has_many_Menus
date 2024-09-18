@@ -1,8 +1,6 @@
 <div class= "card-menu-meal-course">
   <% @meal = meal %>
   <div class="card-menu-meal-course__header">
-
-
     <%= link_to planners_path(
               meal_ids: [@meal_ids]),
               data: { turbo_frame: "_top" },
@@ -16,7 +14,7 @@
   </div>
   <div class="card-menu-meal-course__body">
 
-  <%= turbo_frame_tag id="courses", class: "sidebar__courses",
+  <%= turbo_frame_tag id="courses", class: "section--cards-courses",
                 src: courses_path(meal_ids: [@meal.id]),
                 data: { refresh_frame_target: "plannerCourses" } %>
 
