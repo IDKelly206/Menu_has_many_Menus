@@ -5,11 +5,11 @@
 <%= turbo_frame_tag "courses", class: "section--cards-courses" do %>
     <% unless @course_recipes.nil? %>
       <% @course_types.each do |course_type| %>
-        <div class="card-course-type">
-          <span class="card-course-type__title">
-            <h4><%= course_type.capitalize.pluralize %>:</h4>
+        <div class="card-coursetype">
+          <span class="card-coursetype__title">
+            <h4><%= course_type.capitalize %>:</h4>
           </span>
-          <div class="card-course-type__list">
+          <div class="card-coursetype__list">
             <%= render @courses.select { |course| course.course_type == course_type },
                                         recipes: @course_recipes,
                                         recipe_keyes: @recipes_with_course_id %>

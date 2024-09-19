@@ -1,4 +1,4 @@
-.card-course-type {
+.card-coursetype {
   display: inline-flex;
   flex-flow: column;
   gap: var(--space-xxxs);
@@ -19,12 +19,9 @@
   }
 
   &__list {
-    .list {
       display: flex;
       flex-flow: column nowrap;
       justify-content: space-around;
       gap: var(--space-xs);
-      // background-color: var(--color-white);
-    }
   }
 }

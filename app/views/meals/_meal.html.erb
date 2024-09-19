@@ -1,18 +1,16 @@
-<div class= "card-menu-meal-course">
+<div class= "card-meal">
   <% @meal = meal %>
-  <div class="card-menu-meal-course__header">
-    <%= link_to planners_path(
-              meal_ids: [@meal_ids]),
-              data: { turbo_frame: "_top" },
-              class: "btn" do %>
-      <i class="fa-solid fa-circle-plus"></i>
-    <% end %>
+  <div class="card-meal__header">
+
     <h4><%= User.find(@meal.user_id).name_first %></h4>
-    <%= link_to menus_path do %>
-      <i class="fa-regular fa-circle-xmark"></i>
-    <% end %>
+    <%= link_to "Edit this Meal", planners_path(
+              meal_ids: [@meal.id]),
+              data: { turbo_frame: "_top" },
+              class: "btn btn-dark" %>
+
+
   </div>
-  <div class="card-menu-meal-course__body">
+  <div class="card-meal__body">
 
   <%= turbo_frame_tag id="courses", class: "section--cards-courses",
                 src: courses_path(meal_ids: [@meal.id]),

@@ -13,8 +13,11 @@ class MenusController < ApplicationController
   def show_meal
     @meal_type = params["meal_type"]
     @meals = @menu.meals.where(meal_type: @meal_type)
+    @meal_ids = @meals.map { |m| m.id }.uniq
     @erecipe_ids = @meals.map { |m| m.courses.map { |c| c.erecipe_id } }.flatten.uniq
     @recipes = @erecipe_ids.map { |recipe_id| Edamam::EdamamRecipe.find(recipe_id) }
+
+    console
   end
 
   private

@@ -1,0 +1,36 @@
+.card-mealtype {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  border: var(--border-muted);
+  border-radius: var(--border-radius);
+  background-color: var(--color-pearl);
+  box-shadow: var(--shadow-small-light);
+
+  &__header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: var(--space-xs);
+    height: 10%;
+    font-weight: bold;
+    font-size: var(--font-size-m);
+    a {
+      color: var(--color-dark);
+      text-align: left;
+      display: block;
+      z-index: 1;
+    }
+  }
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: var(--space-xs) 0;
+    gap: var(--space-m)
+  }
+}

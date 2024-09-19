@@ -21,9 +21,10 @@ export default class extends Controller {
     const height = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight)
 
     // console.log(body.scrollTop)
-    if(body.scrollTop >= height - body.clientHeight - 200) {
-      // console.log("Bottom")
-      this.paginationTarget.click()
-    }
+    // !! ISSUE: runs multiple times b/c of a calc. Run once & stop.
+    // if(body.scrollTop >= height - body.clientHeight - 200) {
+    //   // console.log("Bottom")
+    //   this.paginationTarget.click()
+    // }
   }
 }
