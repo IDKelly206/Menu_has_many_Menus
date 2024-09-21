@@ -6,11 +6,6 @@
   border: var(--border-frame);
   border-top: var(--border-frame-top);
 
-  &--bdr-frame {
-    // padding: var(--space-m) 0;
-
-  }
-
   @include media(tabletAndUp) {
     // max-width: 90rem;
   }

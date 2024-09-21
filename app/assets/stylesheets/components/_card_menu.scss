@@ -36,9 +36,9 @@
     flex-flow: column nowrap;
     justify-content: flex-start;
     gap: var(--space-l);
-    padding: var(--space-m);
+    padding: 0 var(--space-s) var(--space-m);
     overflow: hidden;
-    overflow-y: scroll;
+    overflow-y: auto;
   }
 
 

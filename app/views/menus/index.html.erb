@@ -2,17 +2,15 @@
 <div class="body body--menu" id="<%= yield(:title) %>">
     <div class="section--header section--header-menu">
      <%= turbo_frame_tag dom_id(PlannerForm.new) %>
+    </div>
+    <div class="section--cards section--cards-menus">
       <%= link_to new_planner_path,
           data: { turbo_frame: dom_id(PlannerForm.new) },
           class: ""   do %>
           <i class="fa-solid fa-circle-plus btn btn-new btn--new-meal"> Plan a Meal</i>
       <% end %>
-    </div>
-    <div class="section--cards section--cards-menus">
-
       <div class="card-rolodex--hs full rolodex-menus">
         <%= render @menus %>
       </div>
-
     </div>
 </div>

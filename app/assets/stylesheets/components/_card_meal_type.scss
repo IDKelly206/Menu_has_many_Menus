@@ -8,6 +8,8 @@
   background-color: var(--color-pearl);
   box-shadow: var(--shadow-small-light);
 
+  min-width: 360px;
+
   &__header {
     display: flex;
     flex-direction: column;
