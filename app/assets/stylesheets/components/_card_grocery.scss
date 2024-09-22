@@ -66,6 +66,7 @@
   grid-column: 1 / 13;
   grid-template-columns: subgrid;
   align-items: center;
+  border-radius: var(--border-radius-pill);
   box-sizing: border-box;
   font-size: var(--font-size-s);
   padding: 1px;
@@ -79,7 +80,6 @@
     color: var(--color-onyx);
     background-color: var(--color-white);
     border: var(--color-onyx) solid 1px;
-    border-radius: var(--border-radius);
 
     box-shadow: var(--shadow-small-dark);
   }
@@ -88,7 +88,6 @@
     color: var(--color-onyx);
     background-color: var(--color-white);
     border: var(--color-onyx) solid 1px;
-    border-radius: var(--border-radius);
 
     box-shadow: var(--shadow-small-light);
   }

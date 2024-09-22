@@ -3,11 +3,10 @@
   <div class="card-meal__header">
 
     <h4><%= User.find(@meal.user_id).name_first %></h4>
-    <%= link_to "Edit this Meal", planners_path(
-              meal_ids: [@meal.id]),
-              data: { turbo_frame: "_top" },
-              class: "btn btn-dark" %>
-
+    <%= link_to planners_path(  meal_ids: [@meal_ids]),
+                                data: { turbo_frame: "_top" } do %>
+      <i class="fa-solid fa-pen-to-square"></i>
+     <% end %>
 
   </div>
   <div class="card-meal__body">

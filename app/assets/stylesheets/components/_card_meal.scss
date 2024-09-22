@@ -12,16 +12,22 @@
   box-shadow: var(--shadow-small-dark);
 
   &__header {
-    display: inline-flex;
-    justify-content: space-between;
-    align-items: center;
+    // display: inline-flex;
+    // justify-content: space-between;
+    // align-items: center;
     // padding-left: var(--space-s);
+    min-width: 100%;
+    display: grid;
+    grid-template-columns: 9fr 1fr;
+    justify-items: start;
+    align-items: center;
+    // font-size: var(--font-size-xs);
+    padding-left: var(--space-m);
+    padding-right: var(--space-xs);
     border-bottom: var(--border-muted);
-    font-size: var(--font-size-xs);
     background-color: var(--color-muted);
     border-top-left-radius: inherit;
     border-top-right-radius: inherit;
-    padding: 0 var(--space-xs);
 
     > * {
       margin: 0;
