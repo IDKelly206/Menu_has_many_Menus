@@ -1,13 +1,13 @@
 <div class= "card-mealtype">
   <div class="card-mealtype__header">
-    <%= @meal_type.capitalize %>
+   <h4><%= @meal_type.capitalize %></h4>
     <%= link_to menus_path do %>
       <i class="fa-regular fa-circle-xmark"></i>
     <% end %>
-        <%= link_to "Edit ALL Meals", planners_path(
-              meal_ids: [@meal_ids]),
-              data: { turbo_frame: "_top" },
-              class: "btn btn-dark" %>
+    <%= link_to "Edit ALL Meals", planners_path(
+          meal_ids: [@meal_ids]),
+          data: { turbo_frame: "_top" },
+          class: "btn btn-dark" %>
   </div>
   <div class="section--cards-meals">
     <div class="card-rolodex--hs full rolodex-meals ">

@@ -65,7 +65,7 @@
 .section--cards-menus {
   // padding: var(--space-m) 0;
   display: grid;
-  grid-template-columns: var(--gutter) 1fr var(--gutter);
+  grid-template-columns: var(--gutter) 1fr var(--gutter) !important;
   grid-template-rows: auto minmax(0, 1fr) !important;
 
   > * {
@@ -80,7 +80,7 @@
 .section--cards-meals {
   // padding: var(--space-m) 0;
   display: grid;
-  grid-template-columns: calc(var(--gutter)/4) 1fr calc(var(--gutter)/4);
+  grid-template-columns: calc(var(--gutter)/4) 1fr calc(var(--gutter)/4) !important;
   grid-template-rows: minmax(0, 1fr) !important;
 
 
@@ -130,19 +130,20 @@
 
   overflow-x: auto;
   overflow-y: hidden;
-  padding-bottom: var(--space-m);
+  padding-bottom: var(--space-l);
 }
 
 .rolodex-menus {
   grid-template-rows: minmax(0, 1fr) !important;
-  grid-template-columns: var(--gutter);
+  grid-template-columns: var(--gutter) !important;
   grid-auto-columns: minmax(auto, 1fr) !important;
 }
 
 .rolodex-meals {
     grid-auto-rows: auto !important;
-    grid-template-columns: calc(var(--gutter) / 4);
-    grid-auto-columns: calc(100% - var(--gutter) * 2) !important;
+    grid-template-columns: calc(var(--gutter) / 4) !important;
+    grid-auto-columns: calc(100% - calc(var(--gutter) / 4) * 2) !important;
+    padding: var(--space-xs);
 }
 
 .card-rolodex--hs:before,

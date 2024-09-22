@@ -77,8 +77,8 @@
   &--plan-meal {
     position: absolute;
     left: var(--space-xxl);
-    flex: 0 0 auto;
-    top: var(--space-vxl);
+  //  top: var(--space-vxl);
+    z-index: 2;
     padding: var(--space-xxs) var(--space-xs);
     border: var(--border-dark);
     border-radius: var(--border-radius-pill);
@@ -90,7 +90,6 @@
     color: var(--color-onyx);
     font-size: var(--font-size-l);
     // font-weight: bold;
-    z-index: 2;
 
     &:hover {
       border: var(--border-light);
