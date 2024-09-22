@@ -74,7 +74,7 @@
 
 
 
-  &--new-meal {
+  &--plan-meal {
     position: absolute;
     left: var(--space-xxl);
     flex: 0 0 auto;
@@ -90,6 +90,7 @@
     color: var(--color-onyx);
     font-size: var(--font-size-l);
     // font-weight: bold;
+    z-index: 2;
 
     &:hover {
       border: var(--border-light);

@@ -66,7 +66,7 @@
   // padding: var(--space-m) 0;
   display: grid;
   grid-template-columns: var(--gutter) 1fr var(--gutter);
-  grid-template-rows: minmax(0, 1fr) !important;
+  grid-template-rows: auto minmax(0, 1fr) !important;
 
   > * {
     grid-column: 2 / -2

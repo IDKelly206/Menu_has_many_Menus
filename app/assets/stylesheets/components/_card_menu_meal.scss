@@ -3,10 +3,23 @@
   flex-direction: column;
   align-items: center;
   justify-content: start;
+  position: relative;
+
   border: var(--border-muted);
   border-radius: var(--border-radius);
   background-color: var(--color-pearl);
   box-shadow: var(--shadow-small-light);
+
+  &:hover,
+  &:focus,
+  &:focus-within,
+  &:active {
+    color: var(--color-secondary);
+    filter: brightness(92%);
+    opacity: 1;
+    box-shadow: var(--shadow-small-dark);
+    cursor: pointer;
+  }
 
 
   &__header {
@@ -18,21 +31,23 @@
     height: 10%;
     font-weight: bold;
     font-size: var(--font-size-m);
+
     a {
-      color: var(--color-dark);
+      color: var(--color-text-body);
       text-align: left;
       display: block;
       z-index: 1;
     }
 
-    // a::after {
-    //   position: absolute;
-    //   top: 0;
-    //   right: 0;
-    //   bottom: 0;
-    //   left: 0;
-    //   content: ' ';
-    // }
+    a::after {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      content: ' ';
+    }
+
   }
 
   // Contains User & Course cards (turbo-frame-tag)

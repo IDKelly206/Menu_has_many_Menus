@@ -13,10 +13,10 @@
           <div class="card-menu-meal__body">
             <% @users.each do |user| %>
               <% meal =  Meal.find_by(user: user, menu: menu, meal_type: meal_type) %>
-              <%= turbo_frame_tag "meal_#{meal.id}" do %>
+
                 <div class= "card-menu-meal-user">
                   <div class="card-menu-meal-user__header">
-                    <h4><%= link_to user.name_first, menu_meal_path(menu, meal) %></h4>
+                    <h4><%= user.name_first %></h4>
                   </div>
                   <div class="card-menu-meal-user__body">
                       <% @course_types.each do |course_type| %>
@@ -33,7 +33,7 @@
                       <% end %>
                   </div>
                 </div>
-              <% end %>
+              
             <% end %>
           </div>
         </div>
