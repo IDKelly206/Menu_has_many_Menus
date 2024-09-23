@@ -16,7 +16,7 @@
 
                 <div class= "card-menu-meal-user">
                   <div class="card-menu-meal-user__header">
-                    <h4><%= user.name_first %></h4>
+                    <h4><%= user.name_first.capitalize %></h4>
                   </div>
                   <div class="card-menu-meal-user__body">
                       <% @course_types.each do |course_type| %>
@@ -33,7 +33,7 @@
                       <% end %>
                   </div>
                 </div>
-              
+
             <% end %>
           </div>
         </div>
