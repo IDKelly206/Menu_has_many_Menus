@@ -1,5 +1,5 @@
-<%= simple_form_for @planner, url: planners_path do |f| %>
-  <div class="form__body filters-section">
+<%= simple_form_for @planner, url: planners_path, class: "planner-form" do |f| %>
+  <div class="filters-section">
     <div class="filtered">
       <div class="filtered__title filtered__title-dark">
         <h5>Select Meal</h5>
@@ -42,7 +42,7 @@
                                     include_hidden: false do |b| %>
           <%= b.check_box(class: "check_box btn--pill btn--pill-user",
                           checked: @planner.user_ids.nil? ? false : params[:planner_form][:user_ids].include?(b.value.to_s) )  %>
-          <%= b.label %>
+          <%= b.label { b.text.capitalize } %>
         <% end %>
       </div>
     </div>
@@ -67,7 +67,7 @@
                                     include_hidden: false do |b| %>
           <%= b.check_box(class: "check_box btn--pill btn--pill-date",
                           checked: @planner.menu_ids.nil? ? false : params[:planner_form][:menu_ids].include?(b.value.to_s) ) %>
-          <%= b.label  %>
+          <%= b.label %>
         <% end %>
       </div>
     </div>

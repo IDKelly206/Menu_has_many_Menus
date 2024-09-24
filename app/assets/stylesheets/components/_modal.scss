@@ -1,31 +1,38 @@
 #modal {
   max-width: 50vw;
-  // max-width: 100%;
-  // position: fixed;
-  z-index: 3;
-  // left: 25vw;
-  top: 13vh;
+  width: max-content;
+  z-index: 1000;
+  top: 15vh;
   position: absolute;
   left: 0;
   right: 0;
-  // bottom: 0;
-  // top: 0;
   margin: 0 auto;
 
 
   word-break: break-word;
-  border: var(--color-pearl solid var(--space-xxs));
+  // border: var(--color-pearl) solid var(--space-xxxs);
   border-radius: var(--border-radius);
   box-shadow: var(--shadow-large-light);
   background: var(--color-onyx);
   // background: ;
 }
 
+#modal-overlay {
+  z-index: 990;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(2px);
+}
+
+
 .card-modal {
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
-  flex-grow: 1;
   margin: var(--space-l);
 
   background: var(--color-pearl);
@@ -41,8 +48,9 @@
 
   &__body{
     // padding: var(--space-s) var(--space-l);
-    max-height: 48vh;
+    max-height: 60vh;
     overflow: hidden;
+    overflow-y: auto;
 
     display: flex;
     flex-flow: column nowrap;

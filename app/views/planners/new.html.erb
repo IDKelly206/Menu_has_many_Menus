@@ -2,11 +2,12 @@
 <div class="body">
   <h1>Planner Form</h1>
   <%= turbo_frame_tag dom_id(@planner) do %>
-    <%= turbo_frame_tag "modal" do %>
+    <%= turbo_frame_tag "modal", data: { controller: "turbo-modal" } do %>
       <%= render "partials/modal",
                   locals: { title: "Choose Meal details",
                             form: "planners/form"
                           } %>
     <% end %>
+    <div id="modal-overlay"></div>
   <% end %>
 </div>

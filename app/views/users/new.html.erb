@@ -1,16 +1,13 @@
 <%- title "User New" %>
-
 <div class="body">
   <h1>New User</h1>
-
   <%= turbo_frame_tag dom_id(@user) do %>
-    <%= turbo_frame_tag "modal" do %>
-            <%= render "partials/modal",
-                  locals: { title: "Add new User to Household",
+    <%= turbo_frame_tag "modal", data: { controller: "turbo-modal" } do %>
+      <%= render "partials/modal",
+                  locals: { title: "Add new Member to household",
                             form: "users/form"
                           } %>
-            <%# "form", user: @user %>
-
     <% end %>
+    <div id="modal-overlay"></div>
   <% end %>
 </div>
