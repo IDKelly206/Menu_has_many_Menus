@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="turbo-modal"
 export default class extends Controller {
-  static targets = [ "grocery", "overlay" ]
+  static targets = [ "grocery" ]
 
   connect() {
     console.log("Turbo Modal controller")
