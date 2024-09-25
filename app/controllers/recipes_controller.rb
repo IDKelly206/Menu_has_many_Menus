@@ -1,6 +1,7 @@
 class RecipesController < ApplicationController
   before_action :set_meal_types, only: [:index, :recipe_search]
   before_action :set_course_types, only: [:index, :recipe_search]
+  before_action :set_dietary_filters, only: [:index, :recipe_search]
   before_action :set_recipe, only: [:show]
 
 
@@ -25,6 +26,8 @@ class RecipesController < ApplicationController
         @next_page = results[:next_page]
       end
     end
+
+    console
   end
 
   def show
@@ -67,6 +70,10 @@ class RecipesController < ApplicationController
 
   def set_course_types
     @course_types = Course::COURSE_TYPES
+  end
+
+  def set_dietary_filters
+    @dietary_filters = Health::HEALTH_TYPES
   end
 
   def set_recipe

@@ -15,8 +15,7 @@ class Health < ApplicationRecord
     "egg-free",
     "kosher",
     "dairy-free",
-    "vegan",
-    "test 150"
+    "vegan"
   ]
 
   def create_health_options

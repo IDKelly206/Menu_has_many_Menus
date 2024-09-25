@@ -44,15 +44,6 @@ module FilterHelper
     end
   end
 
-  # def dietary_filters(ft, attr = {})
-  #   unless attr[:dietary].nil?
-  #     dietary = attr[:dietary]
-  #     pills = ''
-  #     dietary.each { |dr| pills << "#{ ft.hidden_field :health, value: dr }" }
-  #     pill = pills
-  #   end
-  #   pill.html_safe
-  # end
 
   # Filtering radio selection for recipe search
   def select_radio_meal_types(attr = {})
@@ -60,14 +51,14 @@ module FilterHelper
       meal_types = attr[:meal_types]
       pills = meal_types.map do |mt|
         "<li class='radio-item'>
-          <input class='radio-btn btn--pill btn--pill-meal' type='radio'
+          <input class='radio-btn btn--pill btn--pill-meal'
+                type='radio'
                 name='mealType'
                 id='#{mt}'
                 value='#{mt}'
                 >
           <label for='#{mt}'
-                data-action='
-                  click->recipe-search-filter#assignMealFilter'
+                data-action='click->recipe-search-filter#assignMealFilter'
                 >
                 #{mt.capitalize}
           </label>
@@ -80,10 +71,9 @@ module FilterHelper
 
   def select_radio_course_types(attr = {})
     unless attr[:course_types].nil?
-    course_types = attr[:course_types]
-    course_type = attr[:course_type].nil? ? nil : attr[:course_type]
-
-    pills = course_types.map { |ct|
+      course_types = attr[:course_types]
+      course_type = attr[:course_type].nil? ? nil : attr[:course_type]
+      pills = course_types.map { |ct|
         "<li class='radio-item'>
           <input class='radio-btn btn--pill btn--pill-course'
                 type='radio'
@@ -105,4 +95,40 @@ module FilterHelper
       pill.html_safe
     end
   end
+
+  def select_checkbox_health_types(attr = {})
+    unless attr[:dietary_filters].nil?
+      dietary_filters = attr[:dietary_filters]
+
+      pills = dietary_filters.map { |df|
+        "<li class='checkboxes'>
+        <input class='check_box btn--pill btn--pill-dietary'
+              type='checkbox'
+              name='health'
+              id='#{df}'
+              value='#{df}'
+              >
+        <label for='#{df}'
+              data-action='click->recipe-search-filter#assignHealthFilter'
+              >
+              #{df.capitalize}
+        </label>
+        </li>"
+      }
+      pill = pills.join(' ')
+      pill.html_safe
+    end
+  end
+
+    # def dietary_filters(ft, attr = {})
+  #   unless attr[:dietary].nil?
+  #     dietary = attr[:dietary]
+  #     pills = ''
+  #     dietary.each { |dr| pills << "#{ ft.hidden_field :health, value: dr }" }
+  #     pill = pills
+  #   end
+  #   pill.html_safe
+  # end
+
+
 end

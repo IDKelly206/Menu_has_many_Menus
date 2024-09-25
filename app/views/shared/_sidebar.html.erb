@@ -70,5 +70,13 @@
           </ul>
         </div>
       </div>
+      <div class="filtered">
+        <div class="filtered__title filtered__title-light">
+          <h3>Select Dietary Restrictions to filter</h3>
+        </div>
+        <ul class="filtered__list">
+          <%= select_checkbox_health_types(dietary_filters: @dietary_filters) %>
+        </ul>
+      </div>
     <% end %>
 </div>
