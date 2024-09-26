@@ -1,10 +1,10 @@
 <div class="navbar">
   <ul class="navbar__nav">
-    <li class="navbar__border navbar__brand nav-btn
+    <li class="navbar__brand navbar__border nav-btn
               <%= active_page(path: root_path, class_name: 'nav-active') %>">
-      <%= link_to root_path do %>
-        <i class="fa-regular fa-calendar-days"></i>
-      <% end %>
+
+        <i class="fa-regular fa-calendar-days"> <%= link_to "", root_path %> </i>
+
     </li>
   <% if user_signed_in? %>
     <li class="navbar__item navbar__border nav-btn
@@ -24,7 +24,7 @@
               <%= active_page(path: groceries_path, class_name: 'nav-active') %>">
       <%= link_to "Grocery List", groceries_path %>
     </li>
-    <li class="navbar__border dropdown
+    <li class="dropdown navbar__border
       <%= active_page(path: household_path(current_user.household_id), class_name: 'nav-active') %>
     ">
       <a href="#"
