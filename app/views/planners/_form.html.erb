@@ -73,10 +73,10 @@
     </div>
 
 
-      <%= f.submit "Next", class: "btn btn--dark" %>
+      <%= f.submit "Next", class: "btn btn--dark btn--go" %>
   <% end %>
   <%= link_to "Cancel", "#",
       data: { action: "turbo-modal#hideModal" },
       type: 'button',
-      class: "btn btn--dark" %>
+      class: "btn btn--dark btn--stop" %>
   </div>

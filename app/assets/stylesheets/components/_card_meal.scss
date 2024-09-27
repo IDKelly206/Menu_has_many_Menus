@@ -12,16 +12,11 @@
   box-shadow: var(--shadow-small-dark);
 
   &__header {
-    // display: inline-flex;
-    // justify-content: space-between;
-    // align-items: center;
-    // padding-left: var(--space-s);
     min-width: 100%;
     display: grid;
     grid-template-columns: 9fr 1fr;
     justify-items: start;
     align-items: center;
-    // font-size: var(--font-size-xs);
     padding-left: var(--space-m);
     padding-right: var(--space-xs);
     border-bottom: var(--border-muted);
@@ -31,6 +26,11 @@
 
     > * {
       margin: 0;
+    }
+
+    a {
+      color: var(--color-dark);
+      font-size: var(--font-size-l);
     }
   }
 

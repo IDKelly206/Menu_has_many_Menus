@@ -55,9 +55,14 @@
   }
 
   &__name {
-    font-size: clamp(var(--font-size-xs), calc(0.5 * 2.1vw), var(--font-size-l));
+    font-size: var(--font-size-xs);
     font-weight: bolder;
     margin: 0;
+
+    @include media(tabletAndUp) {
+      font-size: var(--font-size-l);
+
+    }
   }
 
   &__actions {
@@ -68,8 +73,9 @@
     // margin: 0 var(--space-xs);
     // font-size: var(--font-size-xs);
 
-    a {
+    button {
       padding: var(--space-xxs);
+      font-size: var(--font-size-l);
     }
   }
 
@@ -84,14 +90,13 @@
   }
 
   &__footer {
-    // gap: var(--space-xs);
-    flex: 1;
-    order: 5;
-    padding: var(--space-xs) var(--space-m) var(--space-s);
-    justify-content: center;
-    align-items: center;
-  }
+    display: flex;
+    flex-flow: column nowrap;
+    padding-bottom: var(--space-xs);
+    gap: var(--space-s);
+    padding: var(--space-xs) var(--space-s) var(--space-s) var(--space-m);
 
+  }
 
 
   &__edit {

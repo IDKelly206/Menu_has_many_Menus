@@ -7,6 +7,9 @@ class User < ApplicationRecord
   before_validation :assign_household
   after_create :create_user_meals
 
+  before_create { |user| user.name_first = user.name_first.capitalize }
+  before_create { |user| user.name_last = user.name_last.capitalize }
+
   validates :name_first, :name_last, :household_id, :email, presence: true
   validates :email, uniqueness: true
 

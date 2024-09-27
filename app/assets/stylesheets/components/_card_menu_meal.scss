@@ -14,10 +14,11 @@
   &:focus,
   &:focus-within,
   &:active {
-    color: var(--color-secondary);
+    color: var(--color-white);
+    background-color: var(--color-muted);
     filter: brightness(92%);
     opacity: 1;
-    box-shadow: var(--shadow-small-dark);
+    box-shadow: var(--shadow-large-light);
     cursor: pointer;
   }
 

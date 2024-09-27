@@ -1,12 +1,12 @@
 <div class= "card-mealtype">
   <div class="card-mealtype__header">
    <h3><%= @meal_type.capitalize %></h3>
-    <%= link_to menus_path do %>
-      <i class="fa-regular fa-circle-xmark"></i>
-    <% end %>
     <%= link_to planners_path(  meal_ids: [@meal_ids]),
                                 data: { turbo_frame: "_top" } do %>
-      <i class="fa-solid fa-pen-to-square"></i>
+      <i class="btn--edit fa-solid fa-pen-to-square"></i>
+    <% end %>
+    <%= link_to menus_path do %>
+      <i class="btn--stop fa-regular fa-circle-xmark"></i>
     <% end %>
   </div>
   <div class="section--cards-meals">

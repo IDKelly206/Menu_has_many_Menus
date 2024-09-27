@@ -10,13 +10,13 @@
                     class: "card-user__name",
                     data: { turbo_frame: "_top"} %></h2>
         <div class="card-user__actions">
-            <%= link_to "",
+            <%= button_to "",
                         edit_user_path(user),
-                        class: "btn fa-solid fa-pen-to-square" %>
+                        class: "btn btn--edit fa-solid fa-pen-to-square" %>
             <%= button_to "",
                           user_path(user),
                           method: :delete,
-                          class: "btn fa-solid fa-circle-minus" %>
+                          class: "btn btn--stop fa-solid fa-circle-minus" %>
         </div>
 
       </div>

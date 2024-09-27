@@ -20,7 +20,7 @@
   // Three different text colors
   --color-text-header: hsl(0, 1%, 16%);
   --color-text-body:   hsl(105, 5%, 25%);
-  --color-text-muted:  hsl(0, 2%, 44%);
+  --color-text-muted: var(--color-gray);
 
 // SPACING
   // Padding & Margins
@@ -41,25 +41,61 @@
   --gutter: var(--space-xl);
 
 // COLORS
+
+
  // Application colors
- --color-primary:          hsl(101, 78%, 41%);  // Kelly-Green
- --color-primary-rotate:   hsl(120, 45%, 56%);
- --color-secondary:        hsl(6, 43%, 42%);    // Cognac
- --color-secondary-rotate: hsl(10, 73%, 54%);   // TBD  // TBD
- //  --color-tertiary:         hsl(199, 77%, 44%);  // Powder Blue
- --color-tertiary:         #bad5ff;  // Powder Blue
- --color-glint:            hsl(210, 100%, 82%); // TBD
- --color-primary-bg:       hsl(42, 100%, 96%);   // Pearl (background)
+ // --color-red: hsl(350, 98.4%, 48,8%);         // Cheery Red HEX f7022a
+ // --color-green: hsl(91, 68.7%, 47.6%);        // Green Apple HEX 76cd26
+
+  --color-green:      hsl(58.5, 36.1%, 57.6%); // Olive Green HEX bab86c
+  --color-red:        hsl(3,100%, 69%);        // Pastel Red HEX f7022a
+  --color-yellow:     hsl(58.1, 100%, 50%);     // Lemon HEX fff700
+  --color-yellow-light: hsl(51.1, 100%, 60.4%);   // Banana HEX ffe135
+
+  --color-blue:       hsl(220.4, 91.3%, 63.9%); // Blueberry HEX 4f86f7
+  --color-blue-dark:   hsl(272.2, 57.7%, 41.8%); // Grape HEX 6f2da8
+  // --color-purple:     hsl(300, 47.3%, 74.7%);    // Plum HEX dda0dd
+  --color-purple:     hsl(307.4, 34.6%, 41.4%);    // Plum HEX 8e4585
+  --color-orange:     hsl(38.8, 100%, 50%);     // Orange HEX ffa500
+  --color-orange-dark: hsl(24.2, 100%, 54.7%);   // Pumpkin HEX ff7518
 
  // Neutral colors
- --color-white:      hsl(0, 0%, 100%);
+  --color-white:      hsl(0, 0%, 100%);
+  --color-pearl:      hsl(45, 36%, 96%);    // Pearl Bright (background)
+  --color-onyx:       hsl(195, 4%, 22%);    // Onyx
+  --color-gray:       hsl(0, 2%, 44%);      // HEX 725e6e
+  --color-gray-light:   hsl(0, 0%, 65.1%);    // HEX a6a6a6
+
+
+
+
  --color-background: hsl(30, 50%, 98%);
  --color-light:      hsl(0, 6%, 93%);
  --color-dark:       var(--color-text-header);
- --color-muted:      hsl(0, 0%, 65.1%);
+ --color-muted:      var(--color-gray-light);
 
- --color-pearl:      hsl(45, 36%, 96%);   // Pearl Bright (background)
- --color-onyx:       hsl(195, 4%, 22%);    // Onyx
+
+
+  // Named colors
+  --color-go: var(--color-green);
+  --color-stop: var(--color-red);
+  --color-edit: var(--color-yellow);
+
+  --color-user: var(--color-blue-dark);
+  --color-health: var(--color-blue);
+  --color-date: var(--color-purple);
+  --color-meal: var(--color-orange-dark);
+  --color-course: var(--color-orange);
+
+  --color-primary:          var(--color-green);
+  --color-primary-rotate:   hsl(120, 45%, 56%);
+  --color-secondary:        var(--color-red);    // Cognac
+  --color-secondary-rotate: hsl(10, 73%, 54%);   // TBD  // TBD
+  --color-tertiary:         hsl(199, 77%, 44%);  // Powder Blue
+
+ --color-glint:            hsl(210, 100%, 82%); // TBD
+
+ --color-primary-bg:       hsl(42, 100%, 96%);   // Pearl (background)
 
 //  BOXES
   // Border radius

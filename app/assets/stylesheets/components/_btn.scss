@@ -1,6 +1,6 @@
 .btn {
   display: inline-block;
-  padding: var(--space-xxs) var(--space-m);
+  padding: var(--space-xxs) var(--space-s);
   border-radius: var(--border-radius);
   background-origin: border-box; // Invisible borders with linear gradients
   background-color: transparent;
@@ -19,29 +19,46 @@
   }
 
 
-  &--primary {
-    color: var(--color-white);
-    background-image: linear-gradient(to right, var(--color-primary), var(--color-primary-rotate));
+  &--go {
+    // color: var(--color-go);
+    // background-image: linear-gradient(to right, var(--color-primary), var(--color-primary-rotate));
 
     &:hover,
     &:focus,
     &:focus-within,
     &:active {
-      color: var(--color-white);
-      filter: saturate(1.4) brightness(115%);
+      color: var(--color-go) !important;
+      // background-color: var(--color-go);
+      // filter: saturate(1.4) brightness(115%);
     }
   }
 
-  &--secondary {
-    color: var(--color-white);
-    background-image: linear-gradient(to right, var(--color-onyx), var(--color-secondary-rotate));
+  &--edit {
+    // color: var(--color-go);
+    // background-image: linear-gradient(to right, var(--color-primary), var(--color-primary-rotate));
 
     &:hover,
     &:focus,
     &:focus-within,
     &:active {
-      color: var(--color-pearl);
-      filter: saturate(1.2) brightness(110%);
+      // color: var(--color-edit) !important;
+      color: var(--color-edit) !important;
+      // background-color: var(--color-edit);
+      // filter: saturate(1.4) brightness(115%);
+    }
+  }
+
+  &--stop {
+    // color: var(--color-stop);
+    // background-image: linear-gradient(to right, var(--color-onyx), var(--color-secondary-rotate));
+
+    &:hover,
+    &:focus,
+    &:focus-within,
+    &:active {
+      color: var(--color-red) !important;
+      // background-color: var(--color-red) !important;
+      // filter: saturate(1.4) brightness(115%);
     }
   }
 
@@ -54,7 +71,10 @@
     &:focus-within,
     &:active {
       color: var(--color-dark);
-      filter: brightness(92%);
+      border-color: var(--color-onyx);
+      background-color: transparent;
+      border-color: var(--color-pearl);
+      // filter: brightness(92%);
     }
   }
 
@@ -62,18 +82,19 @@
     color: var(--color-pearl);
     border-color: var(--color-onyx);
     background-color: var(--color-onyx);
+    box-shadow: var(--shadow-small-dark);
 
     &:hover,
     &:focus,
     &:focus-within,
     &:active {
-      color: var(--color-onyx);
+      color: var(--color-white);
       border-color: var(--color-onyx);
     }
   }
 
 
-
+  // Menu#Index --> planner#new
   &--plan-meal {
     position: absolute;
     left: var(--space-xxl);
@@ -98,13 +119,13 @@
       color: var(--color-pearl);
       }
   }
-
+  // Household#Show --> user#new
   &--new {
     flex: 0 0 auto;
     top: var(--space-vxl);
     padding: var(--space-xxs) var(--space-xs);
-    border: var(--border-dark);
     border-radius: var(--border-radius-pill);
+    border: var(--border-dark);
     // background-origin: border-box; // Invisible borders with linear gradients
     background-color: var(--color-pearl);
     max-height: var(--space-xxl);
@@ -116,13 +137,12 @@
 
     &:hover {
       border: var(--border-light);
-
-      background-color: var(--color-onyx);
+      background-color: var(--color-go);
       color: var(--color-pearl);
       }
   }
 
-
+  // _Recipe --> course#new
   &--plus {
     width: var(--space-xl);
     height: var(--space-xl);
@@ -185,7 +205,7 @@
     color: var(--color-onyx);
     font-size: var(--font-size-s);
     font-weight: bold;
-    cursor: none;
+    cursor: auto;
     // transition: none;
 
     @include media(tabletAndUp) {
@@ -194,56 +214,56 @@
 
     &-course,
     &-course:checked + label {
-      background-color: var(--color-secondary-rotate);
+      background-color: var(--color-course);
       color: var(--color-light);
 
       &:hover + label {
-        background-color: var(--color-secondary);
+        background-color: var(--color-course);
         color: var(--color-light);
         }
     }
 
     &-date,
     &-date:checked + label {
-      background-color: var(--color-tertiary);
-      color: var(--color-text-body);
+      background-color: var(--color-date);
+      color: var(--color-light);
 
       &:hover + label {
-        background-color: var(--color-tertiary);
-        color: var(--color-text-body);
+        background-color: var(--color-date);
+        color: var(--color-light);
       }
     }
 
     &-dietary,
     &-dietary:checked + label {
-      background-color: var(--color-primary-rotate);
-      color: var(--color-text-body);
+      background-color: var(--color-health);
+      color: var(--color-pearl);
 
       &:hover + label {
-        background-color: var(--color-primary);
-        color: var(--color-text-body);
+        background-color: var(--color-health);
+        color: var(--color-light);
       }
     }
 
     &-meal,
     &-meal:checked + label {
-      background-color: var(--color-secondary);
+      background-color: var(--color-meal);
       color: var(--color-light);
 
       &:hover + label {
-        background-color: var(--color-secondary);
+        background-color: var(--color-meal);
         color: var(--color-light);
         }
     }
 
     &-user,
     &-user:checked + label {
-      background-color: var(--color-primary);
-      color: var(--color-text-body);
+      background-color: var(--color-user);
+      color: var(--color-light);
 
       &:hover + label {
-        background-color: var(--color-primary);
-        color: var(--color-text-body);
+        background-color: var(--color-user);
+        color: var(--color-light);
       }
     }
   }

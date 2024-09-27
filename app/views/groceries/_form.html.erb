@@ -75,13 +75,13 @@
   </div>
 
   <div class="grocery-list__footer">
-    <%= form.submit "Add gList items", class: "btn btn--dark" %>
+    <%= form.submit "Add Items", class: "btn btn--dark btn--go" %>
 
 <% end %>
     <%= button_to "Cancel",
                 multi_destroy_courses_path(course_ids: @course_ids,
                                       meal_ids: @meal_ids),
                 method: :delete,
-                class: "btn btn--dark",
+                class: "btn btn--dark btn--stop",
                 style: "min-width: 100%" %>
   </div>

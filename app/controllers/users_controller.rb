@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   # before_action :set_health_types, only: [:new]
   before_action :set_household
 
+
   def show
   end
 
@@ -53,6 +54,7 @@ class UsersController < ApplicationController
                                   dietary_restrictions_attributes:
                                   [:_destroy, :id, :user_id, :health_id ])
   end
+
 
   def set_user
     @user = User.find(params[:id])
