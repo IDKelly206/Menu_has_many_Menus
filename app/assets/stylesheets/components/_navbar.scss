@@ -4,7 +4,7 @@
   flex-direction: row;
   flex-wrap: nowrap;
   width: 100%;
-  background-color: var(--color-onyx);
+  background-color: var(--color-bg-dark);
   margin: 0;
   padding: var(--space-xs) var(--space-s) 0;
 
@@ -25,7 +25,7 @@
       flex-grow: 0;
       align-items: center;
       padding: var(--space-m) var(--space-m);
-      color: var(--color-onyx);
+      color: var(--color-txt-dark);
       text-align: center;
       font-weight: bold;
       font-size: var(--font-size-xxxl);
@@ -33,13 +33,13 @@
 
     &__brand {
       &:hover {
-        border-left: var(--border-navbar-top);
+        border-left: var(--border-navbar-light);
       }
     }
 
     &__dropdown {
       &:hover {
-        border-right: var(--border-navbar-top);
+        border-right: var(--border-navbar-light);
       }
     }
 
@@ -54,13 +54,15 @@
     }
 
     .nav-btn {
+      box-sizing: border-box;
+
       a {
         z-index: 1;
         display: block;
         padding: 0 0;
         text-align: center;
         font-weight: bold;
-        color: var(--color-onyx);
+        color: var(--color-txt-dark);
         font-size: var(--font-size-xxxl);
       }
 
@@ -75,22 +77,23 @@
 
       &:hover {
         a, i {
-          color: var(--color-pearl);
+          color: var(--color-text-light);
         }
-        color: var(--color-pearl);
-        background-color: var(--color-onyx);
-        // border-top: var(--border-navbar);
-        // border-bottom: var(--border-navbar-botton);
+        color: var(--color-text-light);
+        background-color: var(--color-bg-dark);
+        border: var(--border-navbar-light);
+        border-bottom: none;
+
         border-top-left-radius: var(--border-radius);
         border-top-right-radius: var(--border-radius);
       }
     }
 
     &__border {
-      background-color: var(--color-pearl);
-      border-left: var(--border-navbar);
-      border-right: var(--border-navbar);
-      border-top: var(--border-navbar-top);
+      background-color: var(--color-bg-light);
+      border-right: var(--border-transparent);
+      border-left: var(--border-transparent);
+
       border-top-left-radius: var(--border-radius);
       border-top-right-radius: var(--border-radius);
     }
@@ -98,22 +101,25 @@
 
     .nav-active {
       a, i {
-        color: var(--color-pearl);
+        color: var(--color-text-light);
       }
-      color: var(--color-pearl);
-      background-color: var(--color-onyx);
-      border-top: var(--border-navbar-top);
-      // border-bottom: var(--border-navbar-botom);
+      color: var(--color-text-light);
+      background-color: var(--color-bg-dark);
+      border-top: var(--border-navbar-light);
+      border-right: var(--border-transparent);
+      border-left: var(--border-transparent);
+
+
       border-top-left-radius: var(--border-radius);
       border-top-right-radius: var(--border-radius);
     }
 
     &__brand.nav-active {
-      border-left: var(--border-navbar-top);
+      border-left: var(--border-navbar-light);
     }
 
     &__dropdown.nav-active {
-      border-right: var(--border-navbar-top);
+      border-right: var(--border-navbar-light);
     }
   }
 }

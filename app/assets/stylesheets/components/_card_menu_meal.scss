@@ -5,9 +5,9 @@
   justify-content: start;
   position: relative;
 
-  border: var(--border-muted);
+  border: var(--border-shaded);
   border-radius: var(--border-radius);
-  background-color: var(--color-pearl);
+  background-color: var(--color-bg-light);
   box-shadow: var(--shadow-small-light);
 
   &:hover,
@@ -15,7 +15,7 @@
   &:focus-within,
   &:active {
     color: var(--color-white);
-    background-color: var(--color-muted);
+    background-color: var(--color-bg-muted);
     filter: brightness(92%);
     opacity: 1;
     box-shadow: var(--shadow-large-light);

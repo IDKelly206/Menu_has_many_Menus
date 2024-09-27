@@ -5,7 +5,7 @@
     flex-flow: column nowrap;
     justify-content: flex-start;
     padding: 0 var(--space-m) var(--space-xs);
-    background-color: var(--color-pearl);
+    background-color: var(--color-bg-light);
     border-radius: var(--border-radius) var(--border-radius) 0 0;
     position: relative;
 
@@ -31,18 +31,18 @@
     }
 
     &:hover {
-      background-color: var(--color-onyx);
-      color: var(--color-pearl);
+      background-color: var(--color-bg-dark);
+      color: var(--color-text-light);
 
       button {
-        color: var(--color-pearl)
+        color: var(--color-text-light)
       }
     }
 
     .content-header {
       padding: var(--space-xs) 0 var(--space-xxs);
       // min-height: 20%;
-      border-bottom: var(--border-muted);
+      border-bottom: var(--border-shaded);
 
       a {
         font-weight: bold;
@@ -109,8 +109,8 @@
     padding: var(--space-xs);
     margin-right: auto;
     margin-left: auto;
-    background-color: var(--color-onyx);
-    color: var(--color-pearl);
+    background-color: var(--color-bg-dark);
+    color: var(--color-text-light);
     border-radius: 0 0 var(--border-radius) var(--border-radius);
     overflow-y: hidden;
     overflow-y: scroll;

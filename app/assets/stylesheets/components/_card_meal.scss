@@ -6,8 +6,8 @@
   justify-content: start;
 
   // padding: var(--space-xxs);
-  background-color: var(--color-white);
-  border: var(--border-muted);
+  background-color: var(--color-bg-white);
+  border: var(--border-shaded);
   border-radius: var(--border-radius);
   box-shadow: var(--shadow-small-dark);
 
@@ -19,8 +19,8 @@
     align-items: center;
     padding-left: var(--space-m);
     padding-right: var(--space-xs);
-    border-bottom: var(--border-muted);
-    background-color: var(--color-muted);
+    border-bottom: var(--border-shaded);
+    background-color: var(--color-bg-muted);
     border-top-left-radius: inherit;
     border-top-right-radius: inherit;
 
@@ -29,7 +29,7 @@
     }
 
     a {
-      color: var(--color-dark);
+      color: var(--color-text-black);
       font-size: var(--font-size-l);
     }
   }

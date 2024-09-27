@@ -3,9 +3,9 @@
   flex: 0 3 auto;
   flex-flow: column nowrap;
   justify-content: flex-start;
-  border: var(--border-muted);
+  border: var(--border-shaded);
   border-radius: var(--border-radius);
-  background-color: var(--color-dark);
+  background-color: var(--color-bg-black);
   box-shadow: var(--shadow-large-light);
   box-shadow: var(--shadow-small-light);
 
@@ -21,10 +21,10 @@
     font-weight: bold;
     font-size: var(--font-size-m);
     h2 {
-      color: var(--color-pearl);
+      color: var(--color-text-light);
       }
     a {
-      color: var(--color-pearl);
+      color: var(--color-text-light);
       }
   }
 

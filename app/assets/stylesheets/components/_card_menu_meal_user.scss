@@ -54,14 +54,15 @@
   }
 
 
-  // &:hover,
-  // &:focus,
-  // &:focus-within,
-  // &:active {
-  //   color: var(--color-user);
-  //   filter: brightness(92%);
-  //   opacity: 1;
-  //   box-shadow: var(--shadow-small-dark);
-  // }
+
+  &:hover,
+  &:focus,
+  &:focus-within,
+  &:active {
+    // color: var(--color-user);
+    filter: brightness(92%);
+    // opacity: 1;
+    box-shadow: var(--shadow-small-light);
+  }
 
 }

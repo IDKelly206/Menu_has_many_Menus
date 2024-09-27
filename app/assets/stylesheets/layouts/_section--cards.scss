@@ -55,11 +55,11 @@
 .section--cards-recipes {
   width: 100%;
   // padding: var(--space-m), var(--space-s);
-  border: var(--border-frame);
+  border: var(--border-frame-light);
   overflow-x: hidden;
   overflow-y: scroll;
 // ADD: card-rolodex and combine section in turbo_frame
-  background-color: var(--color-background);
+  background-color: var(--color-bg-light);
 }
 
 .section--cards-menus {
@@ -100,7 +100,7 @@
   justify-content: flex-start;
   gap: var(--space-s);
 
-  // background-color: var(--color-white);
+  // background-color: var(--color-bg-white);
   // padding: var(--space-xs) var(--space-s);
 
   overflow: hidden;

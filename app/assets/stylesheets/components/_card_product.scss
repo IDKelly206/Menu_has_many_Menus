@@ -2,7 +2,7 @@
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
-  border: var(--border-muted);
+  border: var(--border-shaded);
   border-radius: var(--border-radius);
   box-shadow: var(--shadow-large-dark);
   width: 256px;
@@ -39,8 +39,8 @@
     flex-flow: column nowrap;
     justify-content: flex-start;
     padding: 0;
-    background-color: var(--color-pearl);
-    border-top: var(--border-muted);
+    background-color: var(--color-bg-light);
+    border-top: var(--border-shaded);
     border-radius: 0 0 var(--border-radius) var(--border-radius);
 
     .content-header {
@@ -48,7 +48,7 @@
       // flex-flow: column nowrap;
 
       padding: var(--space-xs) var(--space-m) var(--space-s);
-      // border-bottom: var(--border-muted);
+      // border-bottom: var(--border-shaded);
 
       p {
         font-size: var(--font-size-m);

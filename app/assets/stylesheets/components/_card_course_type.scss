@@ -4,7 +4,7 @@
   gap: var(--space-xxxs);
   // flex: 1 1 1;
   justify-content: flex-start;
-  // border: var(--border-frame);
+  // border: var(--border-frame-light);
 
   &__title {
     display: inline-flex;
@@ -12,7 +12,7 @@
     align-items: center;
     // padding-left: var(--space-xs);
     h4 {
-      color: var(--color-onyx);
+      color: var(--color-txt-dark);
       margin: 0;
       text-decoration: underline;
     }

@@ -71,17 +71,17 @@
     &:focus-within,
     &:active {
       color: var(--color-dark);
-      border-color: var(--color-onyx);
+      border-color: var(--color-dark);
       background-color: transparent;
-      border-color: var(--color-pearl);
+      border-color: var(--color-text-light);
       // filter: brightness(92%);
     }
   }
 
   &--dark {
-    color: var(--color-pearl);
-    border-color: var(--color-onyx);
-    background-color: var(--color-onyx);
+    color: var(--color-text-light);
+    border-color: var(--color-dark);
+    background-color: var(--color-bg-dark);
     box-shadow: var(--shadow-small-dark);
 
     &:hover,
@@ -89,10 +89,9 @@
     &:focus-within,
     &:active {
       color: var(--color-white);
-      border-color: var(--color-onyx);
+      border-color: var(--color-dark);
     }
   }
-
 
   // Menu#Index --> planner#new
   &--plan-meal {
@@ -104,21 +103,22 @@
     border: var(--border-dark);
     border-radius: var(--border-radius-pill);
     // background-origin: border-box; // Invisible borders with linear gradients
-    background-color: var(--color-pearl);
+    background-color: var(--color-bg-light);
     max-height: var(--space-xxl);
     text-align: center;
     text-decoration: none;
-    color: var(--color-onyx);
+    color: var(--color-txt-dark);
     font-size: var(--font-size-l);
     // font-weight: bold;
 
     &:hover {
       border: var(--border-light);
 
-      background-color: var(--color-onyx);
-      color: var(--color-pearl);
+      background-color: var(--color-bg-dark);
+      color: var(--color-text-light);
       }
   }
+
   // Household#Show --> user#new
   &--new {
     flex: 0 0 auto;
@@ -127,18 +127,18 @@
     border-radius: var(--border-radius-pill);
     border: var(--border-dark);
     // background-origin: border-box; // Invisible borders with linear gradients
-    background-color: var(--color-pearl);
+    background-color: var(--color-bg-light);
     max-height: var(--space-xxl);
     text-align: center;
     text-decoration: none;
-    color: var(--color-onyx);
+    color: var(--color-txt-dark);
     font-size: var(--font-size-l);
     // font-weight: bold;
 
     &:hover {
       border: var(--border-light);
       background-color: var(--color-go);
-      color: var(--color-pearl);
+      color: var(--color-text-light);
       }
   }
 
@@ -148,7 +148,7 @@
     height: var(--space-xl);
     border-radius: var(--space-l);
     border: 1px solid var(--color-dark);
-    background-color: var(--color-white);
+    background-color: var(--color-bg-white);
     color: var(--color-dark);
     transition: width 0.7s;
     padding: 0;
@@ -198,11 +198,11 @@
     border: var(--border-dark);
     border-radius: var(--border-radius-pill);
     // background-origin: border-box; // Invisible borders with linear gradients
-    background-color: var(--color-white);
+    background-color: var(--color-bg-white);
     max-height: var(--space-xxl);
     text-align: center;
     text-decoration: none;
-    color: var(--color-onyx);
+    color: var(--color-txt-dark);
     font-size: var(--font-size-s);
     font-weight: bold;
     cursor: auto;
@@ -237,7 +237,7 @@
     &-dietary,
     &-dietary:checked + label {
       background-color: var(--color-health);
-      color: var(--color-pearl);
+      color: var(--color-text-light);
 
       &:hover + label {
         background-color: var(--color-health);

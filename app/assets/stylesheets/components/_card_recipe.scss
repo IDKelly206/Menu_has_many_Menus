@@ -3,7 +3,7 @@
   display: flex;
   flex-flow: column nowrap;
   justify-content: flex-end;
-  border: var(--border-muted);
+  border: var(--border-shaded);
   border-radius: var(--border-radius);
   box-shadow: var(--shadow-large-dark);
   aspect-ratio: 4 / 5;
@@ -43,7 +43,7 @@
       right: 0;
       bottom: 0;
       left: 0;
-      content: ' ';
+      content: '';
     }
 
     p {
@@ -53,7 +53,7 @@
       font-weight: bold;
       text-shadow: 2px 2px 4px var(--color-onyx);
       opacity: 0;
-      border: 2px solid var(--color-black)
+      border: var(--color-transparent);
     }
 
     .label {
@@ -85,8 +85,8 @@
     padding: 0 var(--space-m);
     // margin-right: auto;
     // margin-left: auto;
-    background-color: var(--color-onyx);
-    color: var(--color-pearl);
+    background-color: var(--color-bg-dark);
+    color: var(--color-text-light);
     border-radius: var(--border-radius) var(--border-radius) 0 0;
     // overflow: hidden;
     // overflow: scroll;
@@ -111,12 +111,12 @@
 
     // .card-recipe__footer::-webkit-scrollbar {
     //   -webkit-appearance: none;
-    //   background-color: var(--color-white);
+    //   background-color: var(--color-bg-white);
     //   width: 7px;
     // }
     // .card-recipe__footer::-webkit-scrollbar-thumb {
     //   border-radius: 4px;
-    //   background-color: var(--color-primary);
+    //   background-color: var(--color-bg-black);
     //   -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, .5);
     // }
   }
@@ -127,13 +127,13 @@
     flex-flow: column nowrap;
     justify-content: flex-start;
     padding: 0;
-    background-color: var(--color-white);
-    border-top: var(--border-muted);
+    background-color: var(--color-bg-white);
+    border-top: var(--border-shaded);
     border-radius: 0 0 var(--border-radius) var(--border-radius);
 
     .content-header {
       padding: var(--space-xs) var(--space-m) var(--space-s);
-      border-bottom: var(--border-muted);
+      border-bottom: var(--border-shaded);
 
       a {
         font-size: var(--font-size-s);
@@ -206,20 +206,20 @@
       }
 
       &:hover {
-        background-color: var(--color-onyx);
-        color: var(--color-pearl);
+        background-color: var(--color-bg-dark);
+        color: var(--color-text-light);
         border-top: var(--border-light);
 
         .servings > i,
         .servings > .value,
         .servings > .title {
-          // background-color: var(--color-pearl);
-          color: var(--color-onyx);
+          // background-color: var(--color-bg-light);
+          color: var(--color-txt-dark);
         }
 
 
         // button{
-        //   color: var(--color-pearl)
+        //   color: var(--color-text-light)
         // }
       }
     }

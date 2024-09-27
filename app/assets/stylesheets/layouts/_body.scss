@@ -3,7 +3,7 @@
   overflow: hidden;
 
   margin: 0 var(--space-s);
-  border: var(--border-frame);
+  border: var(--border-frame-light);
   border-top: var(--border-frame-top);
 
   @include media(tabletAndUp) {

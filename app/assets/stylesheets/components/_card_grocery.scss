@@ -11,10 +11,9 @@
   padding: 0 var(--space-m);
   gap: var(--space-s);
 
-  // background-color: var(--color-background);
 
   &--dark {
-    background-color: var(--color-onyx);
+    background-color: var(--color-bg-dark);
   }
 
   &__header {
@@ -42,8 +41,8 @@
     padding: var(--space-s);
     gap: var(--space-s);
     overflow-y: scroll;
-    border-top: var(--border-muted);
-    border-bottom: var(--border-muted);
+    border-top: var(--border-shaded);
+    border-bottom: var(--border-shaded);
 
     &--light {
       color: var(--color-white);
@@ -75,15 +74,15 @@
   }
 
   &--light {
-    color: var(--color-onyx);
-    background-color: var(--color-white);
+    color: var(--color-txt-dark);
+    background-color: var(--color-bg-white);
     border: var(--color-muted) solid .5px;
     box-shadow: var(--shadow-small-dark);
   }
 
   &--light-on-dark {
-    color: var(--color-onyx);
-    background-color: var(--color-white);
+    color: var(--color-txt-dark);
+    background-color: var(--color-bg-white);
     border: var(--color-muted) solid 0.5px;
     box-shadow: var(--shadow-small-light);
   }

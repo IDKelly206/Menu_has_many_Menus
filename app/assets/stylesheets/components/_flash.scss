@@ -15,9 +15,9 @@
 
   &__message {
     font-size: var(--font-size-s);
-    color: var(--color-pearl);
+    color: var(--color-text-light);
     padding: var(--space-xs) var(--space-m);
-    background-color: var(--color-onyx);
+    background-color: var(--color-bg-dark);
     animation: appear-then-fade 10s both;
     border-radius: 999px;
   }

@@ -17,11 +17,6 @@
   --font-size-xxxl: 2rem;    // 32px
   --font-size-xxxxl: 2.5rem; // 40px
 
-  // Three different text colors
-  --color-text-header: hsl(0, 1%, 16%);
-  --color-text-body:   hsl(105, 5%, 25%);
-  --color-text-muted: var(--color-gray);
-
 // SPACING
   // Padding & Margins
   // Classical and robust spacing system
@@ -59,21 +54,26 @@
   --color-orange:     hsl(38.8, 100%, 50%);     // Orange HEX ffa500
   --color-orange-dark: hsl(24.2, 100%, 54.7%);   // Pumpkin HEX ff7518
 
+  --color-eggplant: hsl(329.1, 20.5%, 31.6%); // HEX 614051
+
+
  // Neutral colors
-  --color-white:      hsl(0, 0%, 100%);
+  --color-white:      hsl(0, 0%, 100%); // HEX ffffff
+  --color-black:      hsl(0, 0%, 0%); // HEX 000000
   --color-pearl:      hsl(45, 36%, 96%);    // Pearl Bright (background)
   --color-onyx:       hsl(195, 4%, 22%);    // Onyx
   --color-gray:       hsl(0, 2%, 44%);      // HEX 725e6e
   --color-gray-light:   hsl(0, 0%, 65.1%);    // HEX a6a6a6
 
 
+  --color-dark:       var(--color-onyx);
+  --color-light:      var(--color-pearl); // HEX eeecec
+  --color-muted:      var(--color-gray-light);
+  --color-shaded:      var(--color-gray);
 
-
- --color-background: hsl(30, 50%, 98%);
- --color-light:      hsl(0, 6%, 93%);
- --color-dark:       var(--color-text-header);
- --color-muted:      var(--color-gray-light);
-
+  // --color-dark:       var(--color-text-header);
+  // --color-light:      hsl(0, 6%, 93%); // HEX eeecec
+  --color-background: hsl(30, 50%, 98%); // HEX fcfaf7
 
 
   // Named colors
@@ -98,33 +98,47 @@
  --color-primary-bg:       hsl(42, 100%, 96%);   // Pearl (background)
 
 //  BOXES
+  // Different text colors
+  --color-text-header: hsl(0, 1%, 16%);  // HEX 292828
+  --color-text-body:   hsl(105, 5%, 25%); // 3e433d
+  --color-text-dark: var(--color-dark);
+  --color-text-light: var(--color-light);
+  --color-text-muted: var(--color-gray);
+
+  // Background
+  --color-bg-light: var(--color-pearl);
+  --color-bg-dark: var(--color-onyx);
+  --color-bg-black: var(--color-black);
+  --color-bg-white: var(--color-white);
+  --color-bg-muted: var(--color-muted);
+  --color-bg-shaded: var(--color-shaded);
+
+
   // Border radius
   --border-radius: 1rem;
   --border-radius-pill: 3rem;
   --border-radius-circle: 50%;
 
   // Border
-  --border-dark: solid 2px var(--color-dark);
-  --border-light: solid 2px var(--color-light);
-  --border-muted: solid 1px var(--color-text-muted);
-
+  --border-dark: solid 1px var(--color-dark);
+  --border-light: solid 1px var(--color-light);
+  --border-muted: solid 1px var(--color-muted);
+  --border-shaded: solid 1px var(--color-shaded);
   --border-transparent: solid 2px transparent;
 
-  --border-navbar-top: solid 0.5px var(--color-pearl);
-  --border-navbar: solid 0.5px var(--color-onxy);
+  --border-navbar-light: solid 0.5px var(--color-light);
+  --border-navbar-dark: solid 0.5px var(--color-dark);
 
-  --border-frame: solid 0.5px var(--color-pearl);
-  --border-frame-top: solid 0px var(--color-onxy);
+  --border-frame-light: solid 0.5px var(--color-light);
+  --border-frame-dark: solid 0px var(--color-dark);
 
   // Shadows
-  --shadow-large-dark:  2px 4px 10px hsl(0 0% 0% / 0.1);
-  --shadow-small-dark:  1px 3px 6px hsl(0 0% 0% / 0.1);
+  --shadow-large-dark:  2px 4px 10px var(--color-dark);
+  --shadow-small-dark:  1px 3px 6px var(--color-dark);
 
   --shadow-large-light:  2px 4px 10px var(--color-pearl);
   --shadow-small-light:  1px 3px 6px var(--color-pearl);
 
 
-
-  // Background
 
 }

@@ -3,9 +3,9 @@
   flex-direction: column;
   align-items: center;
   justify-content: start;
-  border: var(--border-muted);
+  border: var(--border-shaded);
   border-radius: var(--border-radius);
-  background-color: var(--color-pearl);
+  background-color: var(--color-bg-light);
   box-shadow: var(--shadow-small-light);
 
   min-width: 360px;
@@ -18,8 +18,8 @@
     align-items: center;
     padding-left: var(--space-m);
     padding-right: var(--space-xs);
-    border-bottom: var(--border-muted);
-    background-color: var(--color-onyx);
+    border-bottom: var(--border-shaded);
+    background-color: var(--color-bg-dark);
     border-top-left-radius: inherit;
     border-top-right-radius: inherit;
 
