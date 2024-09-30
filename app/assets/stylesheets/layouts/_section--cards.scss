@@ -5,8 +5,8 @@
 &--checkered_bg {
   // Background patterns
   $s: var(--space-xxxxl);
-  $c1: var(--color-pearl);
-  $c2: var(--color-onyx);
+  $c1: var(--color-white);
+  $c2: var(--color-black);
   // Checkered - parallel
   // background:
   //   repeating-conic-gradient(#{$c1} 0% 25%, transparent 0% 50%)
@@ -17,6 +17,28 @@
     repeating-conic-gradient(from 45deg, #{$c1} 0% 25%, transparent 0% 50%)
         50% / #{$s $s};
 }
+
+&--checked_bg_footer {
+    max-height: 10vh;
+    // Background patterns
+    $s: var(--space-xxxxl);
+    $c1: var(--color-white);
+    $c2: var(--color-black);
+    // Checkered - parallel
+    // background:
+    //   repeating-conic-gradient(#{$c1} 0% 25%, transparent 0% 50%)
+    //     50% / #{$s $s};
+
+    // Checkered - diagonal
+    background:
+      repeating-conic-gradient(from 45deg, #{$c1} 0% 25%, transparent 0% 50%)
+          50% / #{$s $s};
+    transform-origin: top;
+    transform: rotateX(65deg);
+
+    // https://codepen.io/bousahla-mounir/pen/BaWrOvq
+}
+
 }
 
 

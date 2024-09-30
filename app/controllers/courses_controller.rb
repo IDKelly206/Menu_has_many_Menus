@@ -32,8 +32,8 @@ class CoursesController < ApplicationController
 
   def create
     courses = Course::Multicourse.create(course_params)
-    @course_ids = courses.map { |course| course.id }
-    if @course_count == @new_courses
+    if courses.count >= 1
+      @course_ids = courses.map { |course| course.id }
       respond_to do |format|
         format.turbo_stream { flash.now[:notice] = "Course successfully added!" }
       end
@@ -73,10 +73,10 @@ class CoursesController < ApplicationController
     Course.destroy(params[:course_ids])
     meal_ids = params[:meal_ids]
     respond_to do |format|
+      # HTML tirggers when cancelling gList#new form
+      format.html { redirect_to planners_path(meal_ids: meal_ids), notice: "Canceled. Course not added to meal" }
+      # Turbo triggers when Course deleted from course#index in sidebar on planner
       format.turbo_stream { flash.now[:notice] = "COURSE was succesfully deleted." }
-      format.html { redirect_to planners_path(meal_ids: meal_ids),
-                    notice: "Canceled. Recipe not added to new course" }
-      # format.html { notice: "User was succesfully destroyed." }
     end
   end
 

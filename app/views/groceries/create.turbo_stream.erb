@@ -5,3 +5,5 @@
 <%= turbo_stream.replace "refreshCourses" do %>
   <div id="refreshCourses" data-refresh-frame-target="refreshCourses"></div>
 <% end %>
+
+<%= turbo_stream.prepend "flash", partial: "shared/flash" %>

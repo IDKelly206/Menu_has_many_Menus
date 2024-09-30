@@ -30,14 +30,16 @@ class GroceriesController < ApplicationController
   end
 
   def create
+    @glist_count = 0
     params[:grocery].each do |k, grocery_params|
       Grocery::Importer.create(grocery_params)
+      @glist_count += grocery_params["list_add"].to_i
     end
 
-    if @glist_count == @new_glist
+    if @glist_count >= 1
       meal_ids = params[:meal_ids]
       respond_to do |format|
-        format.turbo_stream { flash.now[:notice] = "Course successfully added!" }
+        format.turbo_stream { flash.now[:notice] = "Course added and #{@glist_count} grocery items added." }
       end
     else
       render :new, status: :unprocessable_entity

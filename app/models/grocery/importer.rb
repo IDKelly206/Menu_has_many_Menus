@@ -39,10 +39,6 @@ class Grocery::Importer
   def create(grocery_params)
     validate_params!
 
-    @glist_count = 0
-    @glist_count += @list_add
-    @new_glist = 0
-
     if grocery_params.fetch(:list_add).to_i >= 1
       @courses.each do |course|
         Grocery.create!(
@@ -62,7 +58,6 @@ class Grocery::Importer
           food_id: @food_id
         )
       end
-      @new_glist += 1
     end
   end
 
