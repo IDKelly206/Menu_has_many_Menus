@@ -36,10 +36,10 @@ class GroceriesController < ApplicationController
       @glist_count += grocery_params["list_add"].to_i
     end
 
-    if @glist_count >= 1
+    if @glist_count >= 0
       meal_ids = params[:meal_ids]
       respond_to do |format|
-        format.turbo_stream { flash.now[:notice] = "Course added and #{@glist_count} grocery items added." }
+        format.turbo_stream { flash.now[:notice] = "#{@glist_count} grocery items added." }
       end
     else
       render :new, status: :unprocessable_entity
@@ -57,7 +57,7 @@ class GroceriesController < ApplicationController
     g_ids.flatten!
     Grocery.where(id: g_ids).update_all(list_add: value)
 
-    redirect_to groceries_path
+    redirect_back fallback_location: root_path
   end
 
   private

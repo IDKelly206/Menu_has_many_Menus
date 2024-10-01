@@ -14,11 +14,11 @@
   padding: 0 var(--space-m);
 
   &__message {
-    font-size: var(--font-size-s);
-    color: var(--color-text-light);
-    background-color: var(--color-bg-dark);
-    padding: var(--space-xs) var(--space-m);
-    animation: appear-then-fade 10s both;
+    font-size: var(--font-size-m);
+    color: var(--color-text-white);
+    background-color: var(--color-bg-black);
+    padding: var(--space-s) var(--space-m);
+    animation: appear-then-fade 7s both;
     border-radius: 999px;
   }
 }
