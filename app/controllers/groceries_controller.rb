@@ -57,7 +57,7 @@ class GroceriesController < ApplicationController
     g_ids.flatten!
     Grocery.where(id: g_ids).update_all(list_add: value)
 
-    redirect_back fallback_location: root_path
+    redirect_to root_path
   end
 
   private
