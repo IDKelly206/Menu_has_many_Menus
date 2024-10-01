@@ -44,4 +44,8 @@
     padding: var(--space-xs) 0;
     gap: var(--space-m)
   }
+
+  &__footer {
+    height: 0;
+  }
 }

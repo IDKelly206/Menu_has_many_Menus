@@ -1,4 +1,4 @@
-<div class= "card-meal">
+<div class= "card-meal" data-controller="refresh-frame">
   <% @meal = meal %>
   <div class="card-meal__header">
 
@@ -15,5 +15,8 @@
                 data: { refresh_frame_target: "plannerCourses" } %>
 
   <%# Go through each course (@courses) and match course_type & render card %>
+  </div>
+  <div class="card-meal__footer">
+    <div id="refreshCourses"></div>
   </div>
 </div>

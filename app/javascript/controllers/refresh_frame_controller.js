@@ -15,9 +15,9 @@ export default class extends Controller {
     // this.refresh()
   }
 
-  refresh() {
-    this.plannerCoursesTarget.reload()
-  }
+  // refresh() {
+  //   this.plannerCoursesTarget.reload()
+  // }
 
   refreshCoursesTargetConnected(target) {
     console.log("Refresh Courses target acquired")

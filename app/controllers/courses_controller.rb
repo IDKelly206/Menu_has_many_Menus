@@ -66,10 +66,14 @@ class CoursesController < ApplicationController
   def destroy
     @course.destroy
 
-    redirect_to menu_meal_path(@menu, @meal), notice: "Courses deleted"
+    respond_to do |format|
+      format.html { redirect_to menu_meal_path(@menu, @meal), notice: "Courses deleted" }
+      format.turbo_stream { flash.now[:notice] = "Course deleted" }
+    end
   end
 
   def multi_destroy
+    @course = Course.find(params[:course_ids].first.to_i)
     Course.destroy(params[:course_ids])
     meal_ids = params[:meal_ids]
     respond_to do |format|
