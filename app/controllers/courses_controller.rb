@@ -33,6 +33,7 @@ class CoursesController < ApplicationController
   def create
     courses = Course::Multicourse.create(course_params)
     if courses.count >= 1
+      @course = courses.first
       @course_ids = courses.map { |course| course.id }
       respond_to do |format|
         format.turbo_stream

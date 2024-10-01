@@ -1,23 +1,17 @@
 <%= turbo_frame_tag dom_id(course), class: "card-course" do %>
+    <% recipe = recipes.detect { |recipe| recipe.erecipe_id == course.erecipe_id } %>
+  <div class="card-course__header">
+    <%= image_tag recipe.recipe_image(size: "thumbnail"), class: "card-course__img" %>
+  </div>
+  <div class="card-course__details">
+      <%= link_to recipe.label, recipe.source_url, :target => '_blank', class: "card-course__recipe-title" %>
+  </div>
+  <div class="card-course__action">
+      <%= button_to "",
+                    multi_destroy_courses_path(course_ids: recipe_keyes[course.erecipe_id],
+                                              meal_ids: @meal_ids),
+                    method: :delete,
+                    class: "btn btn--stop fa-solid fa-circle-minus" %>
 
-
-
-      <% recipe = recipes.detect { |recipe| recipe.erecipe_id == course.erecipe_id } %>
-    <div class="card-course__header">
-      <%= image_tag recipe.recipe_image(size: "thumbnail"), class: "card-course__img" %>
-    </div>
-    <div class="card-course__details">
-        <%= link_to recipe.label, recipe.source_url, :target => '_blank', class: "card-course__recipe-title" %>
-    </div>
-    <div class="card-course__action">
-        <%= button_to "",
-                      multi_destroy_courses_path(course_ids: recipe_keyes[course.erecipe_id],
-                                                meal_ids: @meal_ids),
-                      method: :delete,
-                      class: "btn btn--stop fa-solid fa-circle-minus" %>
-
-    </div>
-
-
-
+  </div>
 <% end %>
