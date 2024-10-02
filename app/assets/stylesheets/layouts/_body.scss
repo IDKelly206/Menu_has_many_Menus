@@ -21,6 +21,18 @@
     "sidebar cards cards cards";
 }
 
+.body--home {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto 1fr 1fr 10vh;
+  grid-template-areas:
+    "sec-header sec-header"
+    "menu-mealtype menu-mealtype"
+    "glist ingredients"
+    "sec-footer sec-footer";
+
+}
+
 .body--household {
   display: grid;
   grid-template-columns: 1fr;

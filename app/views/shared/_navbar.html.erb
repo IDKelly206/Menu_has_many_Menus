@@ -42,6 +42,17 @@
     <li class="navbar__item navbar__border nav-btn">
       <%= link_to "Login", new_user_session_path, class: "nav-link" %>
     </li>
+    <li class="dropdown navbar__border">
+      <a href="#"
+          class="avatar navbar__dropdown nav-btn"
+        id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <i class="fa-solid fa-bars"></i>
+      </a>
+      <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+        <p>Welcome to mhmm</p>
+        <p>About Us (link)</p>
+      </div>
+    </li>
   <% end %>
   </ul>
 </div>

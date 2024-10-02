@@ -1,13 +1,30 @@
 <%- title "Menu has_many Meals" %>
 
-<div class="body" data-controller="removals">
+<div class="body body--home" data-controller="removals">
+  <div class="section--header section--header-household">
+    <div class="section--header-household__banner">
+      <h1>Pages#home</h1>
+      <p>Find me in app/views/pages/home.html.erb</p>
+      <p>Unsigned in section area</p>
+    </div>
+  </div>
+  <div class="card-modal card-modal--mealtype">
+    <div class="card-modal__header">
+      Menu for the moment.
+    </div>
+    <% menu = @household.menus.detect { |d| d.date == Date.today } %>
+    <% meal_type = 'lunch' %>
+    <%= turbo_frame_tag "menu_#{menu.id}_#{meal_type}", src: show_meal_menu_path(id: menu.id, meal_type: meal_type) do %>
+      <p>Loading ... </p>
+    <% end %>
+  </div>
+  <div class="card-modal card-modal--glist">
+  </div>
+  <div class="card-modal card-modal--ingredients">
+  </div>
+  <div class="section--footer section--footer-home ">
+    <div class="section--footer-home--checkered section--footer-home-small">
 
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
-<p>Unsigned in section area</p>
-<% if user_signed_in? %>
-  <p><strong><u>First name</u>:</strong> <%= current_user.name_first %></p>
-  <p><strong><u>Last name</u>:</strong> <%= current_user.name_last %></p>
-<% end %>
-
+    </div>
+  </div>
 </div>

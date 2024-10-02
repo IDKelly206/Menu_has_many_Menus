@@ -1,0 +1,53 @@
+.section--footer {
+  grid-area: sec-footer;
+
+}
+
+
+.section--footer-home {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  overflow: hidden;
+
+  &--checkered {
+    position: relative;
+    width: 100%;
+
+    $s: var(--space-xxxxl);
+    $c1: var(--color-white);
+    $c2: var(--color-black);
+
+    background:
+      repeating-conic-gradient(from 45deg, #{$c1} 0% 25%, transparent 0% 50%)
+      50% / #{$s $s};
+      // repeating-linear-gradient(0deg , #{$c2} 0 50px , #{$c1} 50px 100px);
+  }
+
+  &--checkered::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    $s: var(--space-xxxxl);
+    $c1: var(--color-white);
+    $c2: var(--color-black);
+
+    background:
+      repeating-conic-gradient(from 45deg, #{$c2} 0% 25%, transparent 0% 50%)
+      50% / #{$s $s};
+      // repeating-linear-gradient(90deg , #{$c2} 0 50px , #{$c1} 50px 100px);
+    mix-blend-mode: difference;
+  }
+
+  &-small {
+    height: 20vh;
+    transform-origin: top;
+    transform: rotateX(65deg);
+  }
+}

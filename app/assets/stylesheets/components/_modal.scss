@@ -56,4 +56,28 @@
     flex-flow: column nowrap;
     gap: var(--space-s);
   }
+
+  &--mealtype {
+    grid-area: menu-mealtype;
+
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-large-light);
+    // background: var(--color-onyx);
+  }
+
+  &--glist {
+    grid-area: glist;
+
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-large-light);
+    // background: var(--color-onyx);
+  }
+
+  &--ingredients {
+    grid-area: ingredients;
+
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-large-light);
+    // background: var(--color-onyx);
+  }
 }
