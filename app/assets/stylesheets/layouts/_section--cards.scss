@@ -160,12 +160,12 @@
 }
 
 .rolodex-meals {
-    grid-auto-rows: auto !important;
-    grid-template-columns: calc(var(--gutter) / 4) !important;
-    // grid-auto-columns: calc(100% - calc(var(--gutter) / 4) * 2) !important;
-    // grid-auto-columns: minmax(clamp(calc(100% - calc(var(--gutter) / 4) * 2), calc((100% - 70vw) * 1000), 340px), 1fr);
-    grid-auto-columns: minmax(340px, 1fr);
-    padding: var(--space-xs);
+  grid-auto-rows: auto !important;
+  grid-template-columns: calc(var(--gutter) / 4) !important;
+  grid-auto-columns: minmax(340px, 1fr);
+  padding: var(--space-xs);
+  // grid-auto-columns: calc(100% - calc(var(--gutter) / 4) * 2) !important;
+  // grid-auto-columns: minmax(clamp(calc(100% - calc(var(--gutter) / 4) * 2), calc((100% - 70vw) * 1000), 340px), 1fr);
 }
 
 

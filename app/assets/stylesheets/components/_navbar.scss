@@ -33,16 +33,10 @@
 
     &__brand {
       border-left: var(--border-navbar-light);
-      &:hover {
-        border-left: var(--border-navbar-light);
-      }
     }
 
     &__dropdown {
-      // border-right: var(--border-navbar-light);
-      &:hover {
-        // border-right: var(--border-navbar-light);
-      }
+      border-right: var(--border-navbar-light);
     }
 
 
@@ -77,13 +71,30 @@
         left: 0;
       }
 
+    }
+
+    &__border {
+      background-color: var(--color-bg-light);
+
+      border-top: var(--border-transparent);
+      border-right: var(--border-muted);
+      border-left: var(--border-muted);
+
+      border-top-left-radius: var(--border-radius);
+      border-top-right-radius: var(--border-radius);
+
       &:hover {
         a, i {
           color: var(--color-text-light);
         }
+
+        a.dropdown-item {
+          color: var(--color-text-dark);
+        }
+
         color: var(--color-text-light);
         background-color: var(--color-bg-dark);
-        border: var(--border-navbar-light);
+        border: var(--border-light);
         border-bottom: none;
 
         border-top-left-radius: var(--border-radius);
@@ -91,27 +102,19 @@
       }
     }
 
-    &__border {
-      box-sizing: border-box;
-
-      background-color: var(--color-bg-light);
-      border-right: var(--border-transparent);
-      border-left: var(--border-transparent);
-
-      border-top-left-radius: var(--border-radius);
-      border-top-right-radius: var(--border-radius);
-    }
-
 
     .nav-active {
+      box-sizing: border-box;
+
       a, i {
         color: var(--color-text-light);
       }
+
       color: var(--color-text-light);
       background-color: var(--color-bg-dark);
-      border-top: var(--border-navbar-light);
-      border-right: var(--border-shaded);
-      border-left: var(--border-shaded);
+      border-top: var(--border-light);
+      border-right: var(--border-light);
+      border-left: var(--border-light);
       // border-right: var(--border-transparent);
       // border-left: var(--border-transparent);
 
@@ -120,12 +123,17 @@
       border-top-right-radius: var(--border-radius);
     }
 
-    &__brand.nav-active {
-      border-left: var(--border-navbar-light);
-    }
+    // &__brand.nav-active {
+    //   border-left: var(--border-navbar-light);
+    // }
 
     &__dropdown.nav-active {
-      border-right: var(--border-navbar-light);
+      a {
+        color: var(--color-text-dark) !important;
+      }
+      &:hover {
+        color: var(--color-text-dark) !important;
+      }
     }
   }
 }

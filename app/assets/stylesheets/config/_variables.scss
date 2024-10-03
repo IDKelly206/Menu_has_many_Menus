@@ -127,13 +127,14 @@
   --border-light: solid 1px var(--color-light);
   --border-muted: solid 1px var(--color-muted);
   --border-shaded: solid 1px var(--color-shaded);
-  --border-transparent: solid 1px transparent;
+
+  --border-transparent: solid 0.5px transparent;
 
   --border-navbar-light: solid 0.5px var(--color-light);
   --border-navbar-dark: solid 0.5px var(--color-dark);
 
   --border-frame-light: solid 0.5px var(--color-light);
-  --border-frame-dark: solid 0px var(--color-dark);
+  --border-frame-dark: solid 0.5px var(--color-dark);
 
   // Shadows
   --shadow-large-dark:  2px 4px 10px var(--color-dark);
