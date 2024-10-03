@@ -134,11 +134,14 @@
     .content-header {
       padding: var(--space-xs) var(--space-m) var(--space-s);
       border-bottom: var(--border-shaded);
+      overflow: hidden;
+      text-overflow: ellipsis;
 
       a {
         font-size: var(--font-size-s);
         font-weight: bolder;
         margin-bottom: 0;
+        white-space: nowrap;
       }
 
       p {
