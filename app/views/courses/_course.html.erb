@@ -7,11 +7,11 @@
       <%= link_to recipe.label, recipe.source_url, :target => '_blank', class: "card-course__recipe-title" %>
   </div>
   <div class="card-course__action">
-      <%= button_to "",
-                    multi_destroy_courses_path(course_ids: recipe_keyes[course.erecipe_id],
-                                              meal_ids: @meal_ids),
-                    method: :delete,
-                    class: "btn btn--stop fa-solid fa-circle-minus" %>
-
+      <%= button_to "", multi_destroy_courses_path(
+                          course_ids: recipe_keyes[course.erecipe_id],
+                          meal_ids: @meal_ids),
+                        method: :delete,
+                        class: "btn btn--stop fa-solid fa-circle-minus",
+                        data: { turbo_confirm: "Are you sure?" }  %>
   </div>
 <% end %>
