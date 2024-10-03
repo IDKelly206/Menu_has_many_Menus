@@ -4,10 +4,14 @@
   <% menu = @household.menus.detect { |d| d.date == Date.current } %>
   <% meal_type = mealtime(Time.now.hour) %>
   <div class="section--header section--header-home">
-      <div>
-        <h2>Welcome to Today!</h2>
-        <h4><%= menu.day_of_week %></h4>
-      </div>
+
+
+
+  <h2 class="section--header-home__welcome">Welcome to Today! </h2>
+
+  <h3 class="section--header-home__date"><%= Date.current.strftime("%A") %>, <%= Date.current.strftime("%b") %> <%= Date.current.strftime("%d") %>  </h3>
+
+
   </div>
   <div class="section--cards section--cards-home">
     <div class="card-modal card-modal--mealtype">
@@ -20,9 +24,8 @@
     <div class="card-modal card-modal--ingredients">
     </div> %>
   </div>
-  <div class="section--footer section--footer-home ">
+  <div class="section--footer section--footer-home">
     <div class="section--footer-home--checkered section--footer-home-small">
-
     </div>
   </div>
 </div>

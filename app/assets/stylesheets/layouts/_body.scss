@@ -41,6 +41,16 @@
     ".";
 }
 
+.body--frame {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr 10vh;
+  grid-template-areas:
+    "sec-header "
+    "cards"
+    "sec-footer";
+}
+
 
 .body--menu {
   display: grid;

@@ -1,10 +1,14 @@
-<%- title "mhmm : Log-In" %>
-<div class="body">
+<%- title "Log-In" %>
+<div class="body body--frame">
   <%= turbo_frame_tag "modal", target: :_top do %>
     <%= render "partials/modal",
-              locals: { title: "Log Into mhmm",
+              locals: { title: "Log into Menu has many Meals",
               form: "devise/sessions/form"
               } %>
   <% end %>
   <div id="modal-overlay"></div>
+  <div class="section--footer section--footer-home">
+    <div class="section--footer-home--checkered section--footer-home-small">
+    </div>
+  </div>
 </div>

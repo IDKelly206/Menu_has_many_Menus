@@ -134,6 +134,7 @@
     color: var(--color-txt-dark);
     font-size: var(--font-size-l);
     // font-weight: bold;
+    box-shadow: var(--shadow-small-light);
 
     &:hover {
       border: var(--border-light);

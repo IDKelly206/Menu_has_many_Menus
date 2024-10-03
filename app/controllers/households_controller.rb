@@ -2,8 +2,8 @@ class HouseholdsController < ApplicationController
   before_action :set_household, only: [:show]
 
   def show
-    @users = @household.users
-  
+    @users = @household.users.order(:id)
+
   end
 
   private
