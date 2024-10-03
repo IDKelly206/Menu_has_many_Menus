@@ -20,11 +20,10 @@ class User < ApplicationRecord
   has_many :healths, through: :dietary_restrictions
   accepts_nested_attributes_for :dietary_restrictions, allow_destroy: true
 
-
   def assign_household
     if self.household_id.nil?
-      Household.create
-      self.household_id = Household.last.id
+      household = Household.create
+      self.household_id = household.id
     end
   end
 
@@ -43,7 +42,8 @@ class User < ApplicationRecord
 
   def create_user_meals
     user_id = self.id
-    household = User.last.household_id
+    user = User.find(user_id)
+    household = user.household_id
     calendar = Menu.calendar
     menu_ids = Menu.where('household_id = ?', household).where('date IN (:cal)', { cal: calendar }).ids
     meal_types = Meal::MEAL_TYPES
