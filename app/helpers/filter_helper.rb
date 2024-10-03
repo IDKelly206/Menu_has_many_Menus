@@ -129,6 +129,13 @@ module FilterHelper
   #   end
   #   pill.html_safe
   # end
-
+  def mealtime(currenthour)
+    time_periods = {
+      breakfast: (0...11),
+      lunch: (11...17),
+      dinner: (17..24)
+    }
+    time_periods.detect { |k, v| v.include?(currenthour) }.first.to_s
+  end
 
 end

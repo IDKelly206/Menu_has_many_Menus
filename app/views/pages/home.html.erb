@@ -1,26 +1,24 @@
 <%- title "Menu has_many Meals" %>
 
 <div class="body body--home" data-controller="removals">
-  <div class="section--header section--header-household">
-    <div class="section--header-household__banner">
-      <h1>Pages#home</h1>
-      <p>Find me in app/views/pages/home.html.erb</p>
-      <p>Unsigned in section area</p>
+  <% menu = @household.menus.detect { |d| d.date == Date.current } %>
+  <% meal_type = mealtime(Time.now.hour) %>
+  <div class="section--header section--header-home">
+      <div>
+        <h2>Welcome to Today!</h2>
+        <h4><%= menu.day_of_week %></h4>
+      </div>
+  </div>
+  <div class="section--cards section--cards-home">
+    <div class="card-modal card-modal--mealtype">
+      <%= turbo_frame_tag "menu_#{menu.id}_#{meal_type}", src: show_meal_menu_path(id: menu.id, meal_type: meal_type) do %>
+        <p>Loading ... </p>
+      <% end %>
     </div>
-  </div>
-  <div class="card-modal card-modal--mealtype">
-    <div class="card-modal__header">
-      Menu for the moment.
+    <%# <div class="card-modal card-modal--glist">
     </div>
-    <% menu = @household.menus.detect { |d| d.date == Date.today } %>
-    <% meal_type = 'lunch' %>
-    <%= turbo_frame_tag "menu_#{menu.id}_#{meal_type}", src: show_meal_menu_path(id: menu.id, meal_type: meal_type) do %>
-      <p>Loading ... </p>
-    <% end %>
-  </div>
-  <div class="card-modal card-modal--glist">
-  </div>
-  <div class="card-modal card-modal--ingredients">
+    <div class="card-modal card-modal--ingredients">
+    </div> %>
   </div>
   <div class="section--footer section--footer-home ">
     <div class="section--footer-home--checkered section--footer-home-small">

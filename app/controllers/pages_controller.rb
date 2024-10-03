@@ -5,8 +5,8 @@ class PagesController < ApplicationController
   before_action :set_household, only: [:home]
 
   def home
+    console
   end
-
 
   private
 

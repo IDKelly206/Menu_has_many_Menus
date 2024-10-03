@@ -23,14 +23,12 @@
 
 .body--home {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: auto 1fr 1fr 10vh;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr 10vh;
   grid-template-areas:
-    "sec-header sec-header"
-    "menu-mealtype menu-mealtype"
-    "glist ingredients"
-    "sec-footer sec-footer";
-
+    "sec-header "
+    "cards"
+    "sec-footer";
 }
 
 .body--household {

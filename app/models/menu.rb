@@ -18,7 +18,7 @@ class Menu < ApplicationRecord
   private
 
   def self.calendar
-    (Time.now.to_date...(Time.now.to_date + 7))
+    (Date.current...(Date.current + 10))
   end
 
   def self.create_menus(household)

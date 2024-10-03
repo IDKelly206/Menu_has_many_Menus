@@ -55,5 +55,9 @@
 
 
 .section--header-home {
-  
+  grid-template-columns: repeat(6, 1fr);
+
+  * {
+    color: var(--color-text-light);
+  }
 }

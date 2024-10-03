@@ -1,25 +1,7 @@
 .section--cards {
   grid-area: cards;
 
-
-&--checkered_bg {
-  // Background patterns
-  $s: var(--space-xxxxl);
-  $c1: var(--color-white);
-  $c2: var(--color-black);
-  // Checkered - parallel
-  // background:
-  //   repeating-conic-gradient(#{$c1} 0% 25%, transparent 0% 50%)
-  //     50% / #{$s $s};
-
-  // Checkered - diagonal
-  background:
-    repeating-conic-gradient(from 45deg, #{$c1} 0% 25%, transparent 0% 50%)
-        50% / #{$s $s};
-}
-
-&--checked_bg_footer {
-    max-height: 10vh;
+  &--checkered_bg {
     // Background patterns
     $s: var(--space-xxxxl);
     $c1: var(--color-white);
@@ -33,14 +15,30 @@
     background:
       repeating-conic-gradient(from 45deg, #{$c1} 0% 25%, transparent 0% 50%)
           50% / #{$s $s};
-    transform-origin: top;
-    transform: rotateX(65deg);
+  }
 
-    // https://codepen.io/bousahla-mounir/pen/BaWrOvq
+  &--checked_bg_footer {
+      max-height: 10vh;
+      // Background patterns
+      $s: var(--space-xxxxl);
+      $c1: var(--color-white);
+      $c2: var(--color-black);
+      // Checkered - parallel
+      // background:
+      //   repeating-conic-gradient(#{$c1} 0% 25%, transparent 0% 50%)
+      //     50% / #{$s $s};
+
+      // Checkered - diagonal
+      background:
+        repeating-conic-gradient(from 45deg, #{$c1} 0% 25%, transparent 0% 50%)
+            50% / #{$s $s};
+      transform-origin: top;
+      transform: rotateX(65deg);
+
+      // https://codepen.io/bousahla-mounir/pen/BaWrOvq
+  }
+
 }
-
-}
-
 
 .section--cards-users {
   display: grid;
@@ -71,7 +69,6 @@
   justify-content: center;
   overflow: hidden;
 }
-
 
 .section-cards,
 .section--cards-recipes {
@@ -115,7 +112,6 @@
   }
 }
 
-
 .section--cards-courses {
   display: flex;
   flex-flow: column nowrap;
@@ -129,18 +125,14 @@
   overflow-y: scroll;
 }
 
-.horizontal-scroll-container {
+.section--cards-home {
+  min-width: 100%;
   display: grid;
-  grid-template-columns: var(--gutter) 1fr var(--gutter);
-  grid-template-rows: minmax(0, 1fr) !important;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-auto-rows: max-content;
 
-  > * {
-    grid-column: 2 / -2
-  }
-
-  .full {
-    grid-column: 1 / -1;
-  }
+  overflow: hidden;
+  overflow-y: auto;
 }
 
 .card-rolodex--hs {
@@ -153,6 +145,12 @@
   overflow-x: auto;
   overflow-y: hidden;
   padding-bottom: var(--space-s);
+}
+
+.card-rolodex--hs:before,
+.card-rolodex--hs:after {
+  content: '';
+  width: calc(var(--gutter) /2);
 }
 
 .rolodex-menus {
@@ -170,11 +168,6 @@
     padding: var(--space-xs);
 }
 
-.card-rolodex--hs:before,
-.card-rolodex--hs:after {
-  content: '';
-  width: calc(var(--gutter) /2);
-}
 
 
 .card-rolodex {
