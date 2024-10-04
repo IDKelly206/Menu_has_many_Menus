@@ -19,6 +19,11 @@
           <ul class="filtered__list">
               <%= filter_dates(dates: @menus) %>
           </ul>
+          <ul class="filtered__list">
+              <%= filter_types(type: @meal_type) %>
+          </ul>
+
+
         </div>
       </div>
       <div class="sidebar__planner">
@@ -26,9 +31,7 @@
           <div class="filtered__title filtered__title-light">
             <h3>Select courses for <%= @users.count * @menus.count %> Servings of</h3>
           </div>
-          <ul class="filtered__list">
-            <%= filter_types(type: @meal_type) %>
-          </ul>
+
           <ul class="filtered__list">
             <%= select_radio_course_types(course_types: @course_types)  %>
           </ul>
@@ -69,14 +72,6 @@
             <%= select_radio_course_types(course_types: @course_types)  %>
           </ul>
         </div>
-      </div>
-      <div class="filtered">
-        <div class="filtered__title filtered__title-light">
-          <h3>Select Dietary Restrictions to filter</h3>
-        </div>
-        <ul class="filtered__list">
-          <%= select_checkbox_health_types(dietary_filters: @dietary_filters) %>
-        </ul>
       </div>
     <% end %>
 </div>

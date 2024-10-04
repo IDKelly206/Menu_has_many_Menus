@@ -27,8 +27,13 @@
   <%# Send info to recipe#search controller for recipe rendering %>
   <%= hidden_field_tag :title, yield(:title) %>
   <% if title == "Meal Planner" %>
+      <div class="bar-footer">
+      <%= link_to "Finish Planning", menus_path, class: "btn btn--light btn--stop" %>
+    </div>
+
     <%= hidden_field_tag 'course_type', @course_type, data: { target: 'course-new-form.formCourseType' } %>
   <% end %>
+
 
   <% if @meal_ids.present? %>
     <%= hidden_field_tag 'meal_ids', @meal_ids %>
