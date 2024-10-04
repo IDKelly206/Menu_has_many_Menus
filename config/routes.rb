@@ -43,5 +43,5 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :products, only: [:index]
+  # resources :products, only: [:index]
 end
