@@ -6,6 +6,16 @@
   <div id="recipe_cards" class="card-rolodex">
     <%= render recipes, locals: { title: yield(:title) } %>
   </div>
+
+      <%= turbo_frame_tag "fetch-recipes",
+        src: fetch_recipes_path(href: @next_page[:links][:href], title: yield(:title), format: :turbo_stream),
+        loading: :lazy do %>
+        Fetching more recipes .... ... .. .
+        <% end %>
+
+
   <%= render partial: "/recipes/load_more", locals: { title: @title } %>
+
+
   <div id="gList"></div>
 <% end %>

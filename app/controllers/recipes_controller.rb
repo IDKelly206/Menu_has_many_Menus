@@ -6,26 +6,21 @@ class RecipesController < ApplicationController
 
 
   def index
-    if params[:query].present?
-      results = Edamam::EdamamRecipe.search(params[:query], params[:filters])
-      if results.keys.include?(:Status)
-        redirect_to root_path, notice: "Recipe API error: " + @results
-      else
-        @recipes = results[:recipes]
-        @next_page = results[:next_page]
-      end
-    else
-      s = { query: ["peach"],
-            filters: { "mealType" => "", "dishType" => "" }
+      s = { query: ["peanut butter"],
+            filters: { "mealType" => "",
+                       "dishType" => "",
+                       "health" => "" }
           }
       results = Edamam::EdamamRecipe.search(s[:query], s[:filters])
       if results.keys.include?(:Status)
         redirect_to root_path, notice: "Recipe API error: " + @results
       else
         @recipes = results[:recipes]
-        @next_page = results[:next_page]
+        unless results[:next_page].nil?
+          @next_page = results[:next_page]
+
+        end
       end
-    end
 
     console
   end

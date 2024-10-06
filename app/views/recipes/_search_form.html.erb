@@ -21,7 +21,9 @@
     <div class="bar">
         <%# f.label :query, "Search for:" %>
       <%= f.text_field :query, multiple: true, class: "input", placeholder: "Enter ingredient or recipe name" %>
-      <%= f.submit "Search", name: nil, class: "btn btn--light btn--go" %>
+      <%= f.submit "", name: nil, class: "btn btn--light btn--go" do %>
+        <i class="fa-solid fa-magnifying-glass"></i>
+      <% end %>
     </div>
 
   <%# Send info to recipe#search controller for recipe rendering %>
