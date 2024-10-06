@@ -1,5 +1,4 @@
 class FetchRecipesController < ApplicationController
-
   def search
     # Need data:
     # course_type
@@ -12,9 +11,13 @@ class FetchRecipesController < ApplicationController
     else
       @recipes = results[:recipes]
       @next_page = results[:next_page]
+
     end
     respond_to do |format|
       format.turbo_stream { }
     end
+
+
+
   end
 end

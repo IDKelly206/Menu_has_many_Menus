@@ -11,9 +11,9 @@
 <% yield(:title).blank? ? title = title : title = yield(:title) %>
 <div id="load_more" >
 
-    <div class="load_recipes">
-      <%= link_to "", fetch_recipe_search_path(total, href: href, count: count, title: title),
-            class: "",
+    <div class="load_recipes ">
+      <%= link_to "Next Page", fetch_recipe_search_path(total, href: href, count: count, title: title),
+            class: "btn btn--dark btn--go",
             data: { turbo_method: :post,
                     target: 'infinite-scroll.pagination' }   %>
     </div>

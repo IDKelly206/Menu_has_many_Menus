@@ -26,6 +26,7 @@ class RecipesController < ApplicationController
         @next_page = results[:next_page]
       end
     end
+
     console
   end
 
