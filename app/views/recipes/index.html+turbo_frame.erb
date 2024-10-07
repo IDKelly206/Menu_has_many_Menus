@@ -1,1 +1,11 @@
 <%= render "recipes", recipes: @recipes, locals: { title: yield(:title) } %>
+
+  <%= turbo_frame_tag "fetch-recipes",
+    src: fetch_recipes_path(href: @next_page[:links][:href],
+                              title: @title,
+                              count: @next_page[:count],
+                              total: @next_page[:total],
+                              format: :turbo_stream),
+    loading: :lazy do %>
+    Fetching more recipes .... ... .. .
+  <% end %>

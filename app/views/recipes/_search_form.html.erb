@@ -19,9 +19,8 @@
     </div>
   <% end %>
     <div class="bar">
-        <%# f.label :query, "Search for:" %>
       <%= f.text_field :query, multiple: true, class: "input", placeholder: "Enter ingredient or recipe name" %>
-      <%= f.submit "", name: nil, class: "btn btn--light btn--go" do %>
+      <%= button_tag type: 'submit', class: "btn btn--light btn--go" do %>
         <i class="fa-solid fa-magnifying-glass"></i>
       <% end %>
     </div>
@@ -30,7 +29,7 @@
   <%= hidden_field_tag :title, yield(:title) %>
   <% if title == "Meal Planner" %>
       <div class="bar-footer">
-      <%= link_to "Finish Planning", menus_path, class: "btn btn--light btn--stop" %>
+      <%= link_to "Done Planning", menus_path, class: "btn btn--light btn--stop" %>
     </div>
 
     <%= hidden_field_tag 'course_type', @course_type, data: { target: 'course-new-form.formCourseType' } %>

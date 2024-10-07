@@ -6,23 +6,17 @@ class RecipesController < ApplicationController
 
 
   def index
-      s = { query: ["peanut butter"],
-            filters: { "mealType" => "",
-                       "dishType" => "",
-                       "health" => "" }
-          }
-      results = Edamam::EdamamRecipe.search(s[:query], s[:filters])
-      if results.keys.include?(:Status)
-        redirect_to root_path, notice: "Recipe API error: " + @results
-      else
-        @recipes = results[:recipes]
-        unless results[:next_page].nil?
-          @next_page = results[:next_page]
-
-        end
-      end
-
-    console
+    s = { query: ["peanut butter"],
+          filters: { mealType: "",
+                     dishType: "",
+                     health: "" } }
+    results = Edamam::EdamamRecipe.search(s[:query], s[:filters])
+    if results.keys.include?(:Status)
+      redirect_to root_path, notice: "Recipe API error: " + @results
+    else
+      @recipes = results[:recipes]
+      @next_page = results[:next_page] unless results[:next_page].nil?
+    end
   end
 
   def show
@@ -36,16 +30,15 @@ class RecipesController < ApplicationController
         dish_types = Course::DISH_TYPES[course_type.to_sym]
         filters["dishType"] = dish_types
       end
-    filters
     results = Edamam::EdamamRecipe.search(query, filters)
     if results.keys.include?(:Status)
       redirect_to root_path, notice: "Recipe API error: " + @results
     else
       @recipes = results[:recipes]
-      @next_page = results[:next_page]
+      @next_page = results[:next_page] unless results[:next_page].nil?
     end
 
-    @title = params["title"]
+    @title = params[:title]
     @course_type = params[:course_type].nil? ? params[:filters][:dishType] : params[:course_type]
 
     # Meal Planner params

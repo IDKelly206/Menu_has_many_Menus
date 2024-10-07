@@ -4,20 +4,19 @@
 
 
 <% if @next_page[:links].present? %>
-  <% href = @next_page[:links][:href] %>
-  <% count = @next_page[:count] %>
-  <% total = @next_page[:total] %>
-
-    <%= turbo_stream.replace "fetch-recipes" do %>
-      <%= turbo_frame_tag "fetch-recipes",
-        src: fetch_recipes_path(href: @next_page[:links][:href], title: @title, format: :turbo_stream),
-        loading: :lazy do %>
-        Fetching more recipes .... ... .. .
-        <% end %>
-    <% end %>
-
-    <%= turbo_stream.replace "load_more" do %>
-      <%= render partial: "/recipes/load_more", locals: { title: @title } %>
-    <% end %>
-
+  <%= turbo_stream.replace "fetch-recipes" do %>
+    <%= turbo_frame_tag "fetch-recipes",
+      src: fetch_recipes_path(href: @next_page[:links][:href],
+                              title: @title,
+                              count: @next_page[:count],
+                              total: @next_page[:total],
+                              format: :turbo_stream),
+      loading: :lazy do %>
+      Fetching more recipes .... ... .. .
+      <% end %>
+  <% end %>
+  
+  <%= turbo_stream.replace "apply_course" do %>
+    <div id="apply_course" data-course-new-form-target="newRecipes"></div>
+  <% end %>
 <% end %>

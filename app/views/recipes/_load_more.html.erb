@@ -1,3 +1,6 @@
+  <%# <%= render partial: "/recipes/load_more"%> %>
+
+
 <% if @next_page[:links].nil? %>
   <% href = "" %>
   <% count = "" %>
@@ -10,11 +13,10 @@
 
 <% yield(:title).blank? ? title = title : title = yield(:title) %>
 <div id="load_more" >
-
-
-
-
-
-
-  <div data-course-new-form-target="newRecipes"></div>
+    <div class="load_recipes ">
+      <%= link_to "Next Page", fetch_recipe_search_path(total: total, href: href, count: count, title: title),
+            class: "btn btn--dark btn--go",
+            data: { turbo_method: :post,
+                    target: 'infinite-scroll.pagination' }   %>
+    </div>
 </div>

@@ -7,19 +7,10 @@ class FetchRecipesController < ApplicationController
       redirect_to root_path, notice: "Recipe API error: " + @results
     else
       @recipes = results[:recipes]
-      unless results[:next_page].nil?
-        @next_page = results[:next_page]
-        # render partial: "fetch_recipes/scrollable_list, locals: { title: @title }"
-      end
-      console
+      @next_page = results[:next_page] unless results[:next_page].nil?
     end
-
-
   end
   def search
-    # Need data:
-    # course_type
-    # title cycled
     href = params[:href]
     @title = params[:title]
     results = Edamam::EdamamRecipe.update_recipes(href)
@@ -27,14 +18,10 @@ class FetchRecipesController < ApplicationController
       redirect_to root_path, notice: "Recipe API error: " + @results
     else
       @recipes = results[:recipes]
-      unless results[:next_page].nil?
-        @next_page = results[:next_page]
-        # render :scrollable_list
-      end
-
+      @next_page = results[:next_page] unless results[:next_page].nil?
     end
     respond_to do |format|
-      format.turbo_stream { }
+      format.turbo_stream {}
     end
   end
 end

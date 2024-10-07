@@ -13,13 +13,16 @@ class PlannersController < ApplicationController
   def index
     @meal_ids = params[:meal_ids]
 
-    s = { query: ["peach"], filters: { mealType: @meal_type, dishType: Course::DISH_TYPES[@course_type.to_sym], health: @dietary_restrictions } }
+    s = { query: ["peanut butter"],
+          filters: { mealType: @meal_type,
+                     dishType: Course::DISH_TYPES[@course_type.to_sym],
+                     health: @dietary_restrictions } }
     results = Edamam::EdamamRecipe.search(s[:query], s[:filters])
     if results.keys.include?(:Status)
       redirect_to root_path, notice: "Recipe API error: " + @results
     else
       @recipes = results[:recipes]
-      @next_page = results[:next_page]
+      @next_page = results[:next_page] unless results[:next_page].nil?
     end
   end
 
@@ -48,7 +51,6 @@ class PlannersController < ApplicationController
       @users = @household.users
       render :new, status: :unprocessable_entity
     end
-
   end
 
   private

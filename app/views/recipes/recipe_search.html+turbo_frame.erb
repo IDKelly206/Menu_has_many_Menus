@@ -1,12 +1,18 @@
 <%= turbo_frame_tag "recipes", class: "section--cards section--cards-recipes",
-    data: {
-        controller: "infinite-scroll",
-        action: "scroll@window->infinite-scroll#scroll"
-      }, target: "_top" do %>
+    target: "_top" do %>
   <div id="recipe_cards" class="card-rolodex">
     <%= render @recipes, locals: { title: @title }  %>
   </div>
 
-  <%= render partial: "/recipes/load_more", locals: { title: @title } %>
+  <%= turbo_frame_tag "fetch-recipes",
+    src: fetch_recipes_path(href: @next_page[:links][:href],
+                              title: @title,
+                              count: @next_page[:count],
+                              total: @next_page[:total],
+                              format: :turbo_stream),
+    loading: :lazy do %>
+    Fetching more recipes .... ... .. .
+  <% end %>
+  <div id="apply_course" data-course-new-form-target="newRecipes"></div>
   <div id="gList"></div>
 <% end %>
