@@ -176,15 +176,27 @@
   gap: var(--space-m);
   padding: var(--space-m);
 
-  grid-template-columns: 1fr;
 
-  @include media(tabletAndUp) {
-    --num-cards: 4;
+  --w1: 2000px;
+  --xl: 5;
+  --w2: 1400px;
+  --l: 4;
+  --w3: 1000px;
+  --m: 3;
+  --w4: 675px;
+  --s: 2;
 
-    --minsize: calc((100% / (var(--num-cards) + 1)) + 0.1%);
+  grid-template-columns: repeat(auto-fill, minmax(clamp(clamp(clamp(clamp(
+                                                  100%/(var(--xl) + 1) + 0.1%,
+                                                    calc((var(--w1) - 100vw) * 1000),
+                                                  100%/(var(--l) + 1) + 0.1%),
+                                                    calc((var(--w2) - 100vw) * 1000),
+                                                  100%/(var(--m) + 1) + 0.1%),
+                                                    calc((var(--w3) - 100vw) * 1000),
+                                                  100%/(var(--s) + 1) + 0.1%),
+                                                    calc((var(--w4) - 100vw) * 1000),
+                                            100%), 1fr));
 
-    grid-template-columns: repeat(auto-fill, minmax(var(--minsize), 1fr));
-  }
 
   .no-scrollbar {
     scrollbar-width: none;
@@ -197,9 +209,9 @@
   }
 
 
-.load_recipes {
-  // height: 0;
-}
+// .load_recipes {
+//   height: 0;
+// }
 
   // &--repeat-5 {
 
@@ -209,22 +221,24 @@
   //     100%), 1fr));
 
 
-  //   --b1: 1100px;
-  //   --xl: 5;
-  //   --b2: 992px;
-  //   --l: 4;
-  //   --b3: 768px;
-  //   --m: 3;
-  //   --b4: 675px;
-  //   --s: 2;
+    // --b1: 1100px;
+    // --xl: 5;
+    // --b2: 992px;
+    // --l: 4;
+    // --b3: 768px;
+    // --m: 3;
+    // --b4: 675px;
+    // --s: 2;
   // }
+
+  // grid-template-columns: repeat(auto-fiill, minmax(clamp(100%/( 3 + 1) + 0.1% , calc(400px - 100vw) * 1000, 100%), 1fr))
+
 
 
   // grid-template-ROWS: repeat(auto-fit, minmax(clamp(100%/( 4 + 1) + 0.1% , (100% - 100vh) * 1000, 100%), minmax(0, 1fr)))
 
 
 
-  // grid-template-columns: repeat(auto-fit, minmax(clamp(100%/( 4 + 1) + 0.1% , (400px - 100vw) * 1000, 100%), 1fr))
 
   // repeat(auto-fit, minmax(clamp(
                           // 100% /(var(--n) + 1) + 0.1% ,

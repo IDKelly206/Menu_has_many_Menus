@@ -213,17 +213,9 @@
         color: var(--color-text-light);
         border-top: var(--border-light);
 
-        .servings > i,
-        .servings > .value,
-        .servings > .title {
-          // background-color: var(--color-bg-light);
+        .content-body > ul.deatils > li.item.servings > * {
           color: var(--color-txt-dark);
         }
-
-
-        // button{
-        //   color: var(--color-text-light)
-        // }
       }
     }
   }
