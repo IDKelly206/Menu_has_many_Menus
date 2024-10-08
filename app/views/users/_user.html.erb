@@ -17,7 +17,12 @@
                           user_path(user),
                           method: :delete,
                           class: "btn btn--stop fa-solid fa-circle-minus",
-                          data: { turbo_confirm: "Are you sure?" } %>
+                          form: {
+                            data: {
+                              turbo_method: "delete",
+                              turbo_confirm: "Are you sure?",
+                              turbo_confirm_confirm_label: "Yup, destory",
+                              turbo_confirm_cancel_label: "Hold up partner!" } } %>
         </div>
 
       </div>

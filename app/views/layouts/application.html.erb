@@ -15,11 +15,22 @@
     <div id="flash" class="flash">
       <%= render "shared/flash" %>
     </div>
+
     <%= turbo_frame_tag "modal"%>
     <div class="container-box container-box--dark">
       <%= render "shared/navbar" %>
       <%= render "shared/header" %>
       <%= yield %>
+
+      <dialog id="turbo-confirm">
+        <form method="dialog">
+          <p>Are you certain?</p>
+          <div>
+            <button value="cancel">Cancel</button>
+            <button value="confirm">Confirmm</button>
+          </div>
+        </form>
+      </dialog>
     </div>
   </body>
 </html>
