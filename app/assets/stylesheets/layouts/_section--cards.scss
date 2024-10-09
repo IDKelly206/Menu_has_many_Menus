@@ -187,13 +187,13 @@
   --s: 2;
 
   grid-template-columns: repeat(auto-fill, minmax(clamp(clamp(clamp(clamp(
-                                                  100%/(var(--xl) + 1) + 0.1%,
+                                                  calc(100%/(var(--xl) + 1) + 0.1%),
                                                     calc((var(--w1) - 100vw) * 1000),
-                                                  100%/(var(--l) + 1) + 0.1%),
+                                                  calc(100%/(var(--l) + 1) + 0.1%)),
                                                     calc((var(--w2) - 100vw) * 1000),
-                                                  100%/(var(--m) + 1) + 0.1%),
+                                                  calc(100%/(var(--m) + 1) + 0.1%)),
                                                     calc((var(--w3) - 100vw) * 1000),
-                                                  100%/(var(--s) + 1) + 0.1%),
+                                                  calc(100%/(var(--s) + 1) + 0.1%)),
                                                     calc((var(--w4) - 100vw) * 1000),
                                             100%), 1fr));
 

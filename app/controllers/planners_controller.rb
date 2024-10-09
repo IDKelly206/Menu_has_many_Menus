@@ -13,7 +13,7 @@ class PlannersController < ApplicationController
   def index
     @meal_ids = params[:meal_ids]
 
-    s = { query: ["peanut butter"],
+    s = { query: [""],
           filters: { mealType: @meal_type,
                      dishType: Course::DISH_TYPES[@course_type.to_sym],
                      health: @dietary_restrictions } }

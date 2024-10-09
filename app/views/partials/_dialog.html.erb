@@ -1,9 +1,11 @@
 <dialog id="turbo-confirm">
-  <form method="dialog">
-    <p>Are you certain?</p>
-    <div>
-      <button value="cancel">Cancel</button>
-      <button value="confirm">Confirmm</button>
+  <form method="dialog" class="card-modal">
+    <div class="card-modal__header">
+      <h3 class="card-modal__title">Confirm action!</h3>
+    </div>
+    <div class="card-modal__body">
+      <button value="confirm" class="btn btn--dark btn--stop">Confirm</button>
+      <button value="cancel" class="btn btn--dark btn--go">Cancel</button>
     </div>
   </form>
 </dialog>

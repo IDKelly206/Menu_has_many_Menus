@@ -12,6 +12,11 @@
                           meal_ids: @meal_ids),
                         method: :delete,
                         class: "btn btn--stop fa-solid fa-circle-minus",
-                        data: { turbo_confirm: "Are you sure?" }  %>
+                        form: {
+                            data: {
+                              turbo_method: "delete",
+                              turbo_confirm: "Delete course?",
+                              turbo_confirm_confirm_label: "Yes, delete",
+                              turbo_confirm_cancel_label: "Oops ... cancel" } } %>
   </div>
 <% end %>
