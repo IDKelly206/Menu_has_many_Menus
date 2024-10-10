@@ -27,7 +27,7 @@
         <%= f.hidden_field :household_id, value: current_user.household_id %>
         <%= f.submit "Save", class: "btn btn--dark btn--go" %>
       <% end %>
-        <%= button_to "Cancel", "#",
+        <%= link_to "Cancel", "#",
           data: { action: "turbo-modal#hideModal" },
           type: 'button',
           class: "btn btn--dark btn--stop",
